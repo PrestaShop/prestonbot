@@ -20,65 +20,64 @@ class WebhookController extends Controller
         if ($data === null) {
             throw new \Exception('Invalid JSON body!');
         }
-
-        $event = $request->headers->get('X-Github-Event');
+        
+        $event = $this->get('app.webhook_resolver')->resolve($data);
         $listener = $this->get('app.issue_listener');
 
-        switch ($event) {
-            case 'issue_comment':
+        switch ($event::name()) {
+            case 'IssueCommentEvent':
                 $responseData = [
-                    'issue' => $data['issue']['number'],
+                    'issue' => $event->issue->getNumber(),
                     'status_change' => $listener->handleCommentAddedEvent(
-                        $data['issue']['number'],
-                        $data['comment']['body']
+                        $event->issue->getNumber(),
+                        $event->comment->getBody()
                     ),
                 ];
                 break;
-            case 'pull_request':
-                switch ($data['action']) {
+            case 'PullRequestEvent':
+                switch ($event->action) {
                     case 'opened':
                         $responseData = [
-                            'pull_request' => $data['pull_request']['number'],
+                            'pull_request' => $event->pullRequest->getNumber(),
                             'status_change' => $listener->handlePullRequestCreatedEvent(
-                                $data['pull_request']['number']
+                                $event->pullRequest->getNumber()
                             ),
                         ];
+                        
+                        $this->get('app.pullrequest_listener')->checkForCommitLabel($event->pullRequest->getNumber(), $event->pullRequest->getCommitSha());
+                        $responseData['status_change'] .= ' & Commit label checked';
                         break;
+                        
                     default:
                         $responseData = [
-                            'unsupported_action' => $data['action'],
+                            'unsupported_action' => $event->action,
                         ];
                 }
                 break;
-            case 'issues':
-                switch ($data['action']) {
+            case 'IssuesEvent':
+                switch ($event->action) {
                     case 'labeled':
                         $responseData = [
-                            'issue' => $data['issue']['number'],
+                            'issue' => $event->issue->getNumber(),
                             'status_change' => $listener->handleLabelAddedEvent(
-                                $data['issue']['number'],
-                                $data['label']['name']
+                                $event->issue->getNumber(),
+                                $event->label->getName()
                             ),
                         ];
                         break;
                     default:
                         $responseData = [
-                            'unsupported_action' => $data['action'],
+                            'unsupported_action' => $event->action,
                         ];
                 }
                 break;
             default:
                 $responseData = [
-                    'unsupported_event' => $event,
+                    'unsupported_event' => $event::name(),
                 ];
         }
 
         return new JsonResponse($responseData);
-
-        // 1 read in what event they have
-        // 2 perform some action
-        // 3 return JSON
-
         // log something to the database?
     }
 }

@@ -10,7 +10,7 @@
     },
     "require": {
         "php": ">=5.3.9",
-        "symfony/symfony": "2.7.*",
+        "symfony/symfony": "2.8.*",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "doctrine/dbal": "<2.5",
         "doctrine/doctrine-bundle": "~1.4",
@@ -20,7 +20,8 @@
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "knplabs/github-api": "^1.4"
+        "knplabs/github-api": "^1.4",
+        "lp-digital/github-event-parser": "~0.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

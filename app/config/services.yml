@@ -4,6 +4,9 @@ parameters:
 #    parameter_name: value
 
 services:
+    app.webhook_resolver:
+        class: Lpdigital\Github\Parser\WebhookResolver
+        
     app.github.client:
         class: Github\Client
         arguments: []
@@ -17,7 +20,12 @@ services:
         class: Github\Api\Issue
         factory: ['@app.github.client', api]
         arguments: [issue]
-
+        
+    app.github.pullrequests_api:
+        class: Github\Api\PullRequest
+        factory: ['@app.github.client', api]
+        arguments: [pull_request]
+        
     app.github.labels_api:
         class: Github\Api\Issue\Labels
         factory: ['@app.github.issues_api', labels]
@@ -33,3 +41,8 @@ services:
     app.issue_listener:
         class: AppBundle\Issues\IssueListener
         arguments: ['@app.status_api']
+    
+    app.pullrequest_listener:
+        class: AppBundle\PullRequests\PullRequestListener
+        arguments: ['@app.github.issues_api', %repository_username%, %repository_name%]
+    
