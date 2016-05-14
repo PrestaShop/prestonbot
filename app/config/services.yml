@@ -43,6 +43,6 @@ services:
         arguments: ['@app.status_api']
     
     app.pullrequest_listener:
-        class: AppBundle\PullRequests\PullRequestListener
+        class: AppBundle\PullRequests\Listener
         arguments: ['@app.github.issues_api', %repository_username%, %repository_name%]
     

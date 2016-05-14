@@ -44,8 +44,7 @@ class WebhookController extends Controller
                             ),
                         ];
                         
-                        $this->get('app.pullrequest_listener')->checkForCommitLabel($event->pullRequest->getNumber(), $event->pullRequest->getCommitSha());
-                        $responseData['status_change'] .= ' & Commit label checked';
+                        $this->get('app.pullrequest_listener')->checkForDescription($event->pullRequest, $event->pullRequest->getCommitSha());
                         break;
                         
                     default:
@@ -55,6 +54,7 @@ class WebhookController extends Controller
                 }
                 break;
             case 'IssuesEvent':
+            case 'IssueEvent':
                 switch ($event->action) {
                     case 'labeled':
                         $responseData = [

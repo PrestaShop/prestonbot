@@ -1,11 +1,10 @@
 {
-    "name": "weaverryan/symfony_issue_bot",
+    "name": "prestashop/preston-bot",
     "license": "MIT",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/",
-            "SymfonyStandard\\": "app/SymfonyStandard/"
+            "": "src/"
         }
     },
     "require": {
@@ -24,7 +23,7 @@
         "lp-digital/github-event-parser": "~0.6"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "phpunit/phpunit": "4.8.*"
     },
     "scripts": {
         "post-root-package-install": [

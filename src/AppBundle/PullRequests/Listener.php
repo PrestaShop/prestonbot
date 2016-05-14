@@ -3,8 +3,9 @@
 namespace AppBundle\PullRequests;
 
 use Github\Api\Issue;
+use Lpdigital\Github\Entity\PullRequest;
 
-class PullRequestListener
+class Listener
 {
     private $issueApi;
     private $repositoryUsername;
@@ -17,11 +18,11 @@ class PullRequestListener
         $this->repositoryName = $repositoryName;
     }
     
-    public function checkForCommitLabel($pullRequestId, $commitId)
+    public function checkForDescription(PullRequest $pullRequest, $commitId)
     {
         $this->issueApi->comments()
-            ->create($this->repositoryUsername, $this->repositoryName, $pullRequestId, [
-                'body' => 'created from boterland',
+            ->create($this->repositoryUsername, $this->repositoryName, $pullRequest->getNumber(), [
+                'body' => 'created from describe botterland',
                 ]
             );
     }
