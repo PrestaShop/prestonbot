@@ -38,6 +38,14 @@ class BodyParserTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->bodyParser->getDescription(), "Such a great description");
     }
     
+    public function testGetType()
+    {
+        $this->assertSame($this->bodyParser->getType(), "new feature");
+        $this->assertTrue($this->bodyParser->isAFeature());
+        $this->assertFalse($this->bodyParser->isAnImprovement());
+        $this->assertFalse($this->bodyParser->isABugFix());
+    }
+    
     private function getExpectedBody()
     {
         $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.opened.json');

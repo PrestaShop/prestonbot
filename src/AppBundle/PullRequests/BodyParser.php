@@ -69,17 +69,17 @@ class BodyParser
     
     public function isAFeature()
     {
-        return preg_match('/feature/',$this->getType());
+        return preg_match('/feature/',$this->getType()) == true;
     }
     
     public function isAnImprovement()
     {
-        return preg_match('/improvement/',$this->getType());
+        return preg_match('/improvement/',$this->getType()) == true;
     }
     
     public function isABugFix()
     {
-        return preg_match('/bug fix/',$this->getType());
+        return preg_match('/bug fix/',$this->getType()) == true;
     }
     
     public function getRelatedForgeIssue()
