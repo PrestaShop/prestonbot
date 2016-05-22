@@ -1,7 +1,7 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
-#    parameter_name: value
+    enable_labels: false
 
 services:
     app.webhook_resolver:
@@ -44,5 +44,5 @@ services:
     
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener
-        arguments: ['@app.github.issues_api', %repository_username%, %repository_name%]
+        arguments: ['@app.github.issues_api', %repository_username%, %repository_name%, '@validator']
     

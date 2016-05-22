@@ -1,6 +1,8 @@
 <?php
 
-namespace AppBundle\Issues;
+namespace AppBundle\Tests\Issues;
+
+use AppBundle\Issues\StatusApi;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>

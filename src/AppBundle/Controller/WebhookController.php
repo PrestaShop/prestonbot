@@ -23,26 +23,34 @@ class WebhookController extends Controller
         
         $event = $this->get('app.webhook_resolver')->resolve($data);
         $listener = $this->get('app.issue_listener');
+        // found a smarter way to do this ...
+        $enableLabels = $this->getParameter('enable_labels');
 
         switch ($event::name()) {
             case 'IssueCommentEvent':
-                $responseData = [
-                    'issue' => $event->issue->getNumber(),
-                    'status_change' => $listener->handleCommentAddedEvent(
-                        $event->issue->getNumber(),
-                        $event->comment->getBody()
-                    ),
-                ];
+                if($enableLabels) {
+                    $responseData = [
+                        'issue' => $event->issue->getNumber(),
+                        'status_change' => $listener->handleCommentAddedEvent(
+                            $event->issue->getNumber(),
+                            $event->comment->getBody()
+                        ),
+                    ];
+                }
+                
                 break;
             case 'PullRequestEvent':
                 switch ($event->action) {
                     case 'opened':
-                        $responseData = [
-                            'pull_request' => $event->pullRequest->getNumber(),
-                            'status_change' => $listener->handlePullRequestCreatedEvent(
-                                $event->pullRequest->getNumber()
-                            ),
-                        ];
+                        if ($enableLabels) {
+                            $responseData = [
+                                'pull_request' => $event->pullRequest->getNumber(),
+                                'status_change' => $listener->handlePullRequestCreatedEvent(
+                                    $event->pullRequest->getNumber()
+                                ),
+                            ];
+                        }
+                        
                         
                         $this->get('app.pullrequest_listener')->checkForDescription($event->pullRequest, $event->pullRequest->getCommitSha());
                         break;

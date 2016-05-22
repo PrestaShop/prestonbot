@@ -1,7 +1,9 @@
-
+parameters:
+    enable_labels: true
+    
 imports:
     - { resource: services.yml }
 
 services:
     app.status_api:
-        class: AppBundle\Issues\NullStatusApi
+        class: AppBundle\Tests\Issues\NullStatusApi

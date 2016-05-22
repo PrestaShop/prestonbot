@@ -2,6 +2,10 @@
 
 namespace AppBundle\PullRequests;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use \Exception;
+
+
 /**
  * Extract human readable data from Pull request body
  */
@@ -17,9 +21,8 @@ class BodyParser
     public function getBranch()
     {
         $regex = "/(\|[[:space:]]Branch\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
-        preg_match($regex, $this->getBody(), $matches);
         
-        return $matches[2];
+        return $this->extractWithRegex($regex);
     }
     
     public function getBody()
@@ -27,44 +30,48 @@ class BodyParser
         return $this->bodyContent;
     }
     
+    /**
+     * @Assert\NotBlank(message = "The `description` shouldn't be empty.")
+     */
     public function getDescription()
     {
         $regex = "/(\|[[:space:]]Description\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
-        preg_match($regex, $this->getBody(), $matches);
         
-        return $matches[2];
+        return $this->extractWithRegex($regex);
     }
     
+    /**
+     * @Assert\Choice(choices = {"feature", "improvement", "fix"},
+     * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`.")
+     */
     public function getType()
     {
         $regex = "/(\|[[:space:]]Type\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
-        preg_match($regex, $this->getBody(), $matches);
         
-        return $matches[2];
+        return $this->extractWithRegex($regex);
     }
     
     public function getCategory()
     {
         $regex = "/(\|[[:space:]]Category\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
-        preg_match($regex, $this->getBody(), $matches);
         
-        return $matches[2];
+        return $this->extractWithRegex($regex);
     }
     
     public function isBackwardCompatible()
     {
         $regex = "/(\|[[:space:]]BC breaks\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
-        preg_match($regex, $this->getBody(), $matches);
+        $backwardCompatible = $this->extractWithRegex($regex);
         
-        return $matches[2] == 'no' ? false : true;
+        return $backwardCompatible == 'yes' ? true : false;
     }
     
     public function willDeprecateCode()
     {
         $regex = "/(\|[[:space:]]Deprecations\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
-        preg_match($regex, $this->getBody(), $matches);
+        $willDeprecateCode = $this->extractWithRegex($regex);
         
-        return $matches[2] == 'no' ? false : true;
+        return $willDeprecateCode == 'no' ? false : true;
     }
     
     public function isAFeature()
@@ -84,11 +91,18 @@ class BodyParser
     
     public function getRelatedForgeIssue()
     {
-        
+        throw new Exception('Need to be done');
     }
     
     public function getTestingScenario()
     {
+        throw new Exception('Need to be done');
+    }
+    
+    private function extractWithRegex($regex)
+    {
+        preg_match($regex, $this->getBody(), $matches);
         
+        return isset($matches[2]) ? $matches[2] : '';
     }
 }
