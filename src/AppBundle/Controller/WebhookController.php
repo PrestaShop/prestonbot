@@ -26,7 +26,9 @@ class WebhookController extends Controller
         $responseData = [];
         // found a smarter way to do this ...
         $enableLabels = $this->getParameter('enable_labels');
-
+        
+        
+        // todo dispatch a GithubEvent and remove logic from controller
         switch ($event::name()) {
             case 'IssueCommentEvent':
                 if($enableLabels) {
@@ -54,6 +56,10 @@ class WebhookController extends Controller
                         
                         
                         $this->get('app.pullrequest_listener')->checkForDescription($event->pullRequest, $event->pullRequest->getCommitSha());
+                        $responseData = [
+                            'issue' => $event->issue->getNumber(),
+                            'status_change' => 'PR checked',
+                        ];
                         break;
                         
                     default:

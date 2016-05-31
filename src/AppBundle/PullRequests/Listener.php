@@ -2,7 +2,7 @@
 
 namespace AppBundle\PullRequests;
 
-use Github\Api\Issue;
+use AppBundle\Comments\GitHub\GitHubCommentApi;
 use Lpdigital\Github\Entity\PullRequest;
 use AppBundle\PullRequests\BodyParser;
 use Symfony\Component\Validator\ValidatorInterface;
@@ -13,17 +13,13 @@ use \Twig_Environment;
  */
 class Listener
 {
-    private $issueApi;
-    private $repositoryUsername;
-    private $repositoryName;
+    private $commentApi;
     private $validator;
     private $twig;
     
-    public function __construct(Issue $issue, $repositoryUsername, $repositoryName, ValidatorInterface $validator, Twig_Environment $twig)
+    public function __construct(GitHubCommentApi $commentApi, ValidatorInterface $validator, Twig_Environment $twig)
     {
-        $this->issueApi = $issue;
-        $this->repositoryUsername = $repositoryUsername;
-        $this->repositoryName = $repositoryName;
+        $this->commentApi = $commentApi;
         $this->validator = $validator;
         $this->twig = $twig;
     }
@@ -33,31 +29,9 @@ class Listener
         $bodyParser = new BodyParser($pullRequest->getBody());
         
         $validationErrors = $this->validator->validate($bodyParser);
-        if(0 === count($validationErrors)) {
-            $this->issueApi
-                ->comments()
-                ->create(
-                    $this->repositoryUsername,
-                    $this->repositoryName,
-                    $pullRequest->getNumber(), [
-                        'body' => 'created from describe botterland',
-                    ]
-                )
-            ;
-        }else {
+        if(count($validationErrors) > 0) {
             $bodyMessage = $this->twig->render('markdown/pr_table_errors.md.twig', ["errors" => $validationErrors]);
-            dump($bodyMessage);
-            $this->issueApi
-                ->comments()
-                ->create(
-                    $this->repositoryUsername,
-                    $this->repositoryName,
-                    $pullRequest->getNumber(), [
-                        'body' => $bodyMessage,
-                    ]
-                )
-            ;
+            $this->commentApi->send($pullRequest, $bodyMessage);
         }
-        
     }
 }
