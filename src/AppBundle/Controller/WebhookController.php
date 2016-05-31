@@ -23,6 +23,7 @@ class WebhookController extends Controller
         
         $event = $this->get('app.webhook_resolver')->resolve($data);
         $listener = $this->get('app.issue_listener');
+        $responseData = [];
         // found a smarter way to do this ...
         $enableLabels = $this->getParameter('enable_labels');
 

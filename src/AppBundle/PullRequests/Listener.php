@@ -6,20 +6,26 @@ use Github\Api\Issue;
 use Lpdigital\Github\Entity\PullRequest;
 use AppBundle\PullRequests\BodyParser;
 use Symfony\Component\Validator\ValidatorInterface;
+use \Twig_Environment;
 
+/**
+ * Note to myself: too much logic in this Listener
+ */
 class Listener
 {
     private $issueApi;
     private $repositoryUsername;
     private $repositoryName;
     private $validator;
+    private $twig;
     
-    public function __construct(Issue $issue, $repositoryUsername, $repositoryName, ValidatorInterface $validator)
+    public function __construct(Issue $issue, $repositoryUsername, $repositoryName, ValidatorInterface $validator, Twig_Environment $twig)
     {
         $this->issueApi = $issue;
         $this->repositoryUsername = $repositoryUsername;
         $this->repositoryName = $repositoryName;
         $this->validator = $validator;
+        $this->twig = $twig;
     }
     
     public function checkForDescription(PullRequest $pullRequest, $commitId)
@@ -39,18 +45,15 @@ class Listener
                 )
             ;
         }else {
-            $errorMessage = 'This pull request seems to be incomplete or malformed: '. PHP_EOL;
-            foreach($validationErrors as $error) {
-                // @todo should be in an editable template
-                $errorMessage .= '* '.$error->getMessage(). PHP_EOL;
-            }
+            $bodyMessage = $this->twig->render('markdown/pr_table_errors.md.twig', ["errors" => $validationErrors]);
+            dump($bodyMessage);
             $this->issueApi
                 ->comments()
                 ->create(
                     $this->repositoryUsername,
                     $this->repositoryName,
                     $pullRequest->getNumber(), [
-                        'body' => $errorMessage,
+                        'body' => $bodyMessage,
                     ]
                 )
             ;

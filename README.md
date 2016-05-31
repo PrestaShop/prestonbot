@@ -6,7 +6,7 @@ This application is a fork of Symfony CarsonBot and aims to help PrestaShop main
 Features to come:
 
 - [ ] Send a welcome message :)
-- [ ] Check commit label
+- [ ] Check pull request template
 - [ ] Send an "How to rebase ?" message
 - [ ] Reveal hot pull requests by email (old pull requests that are valid)
 - [ ] When a pull request need to be rebased -> send a message to inform the author

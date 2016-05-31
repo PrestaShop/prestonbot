@@ -44,5 +44,5 @@ services:
     
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener
-        arguments: ['@app.github.issues_api', %repository_username%, %repository_name%, '@validator']
+        arguments: ['@app.github.issues_api', %repository_username%, %repository_name%, '@validator', '@twig']
     
