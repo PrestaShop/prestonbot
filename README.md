@@ -1,14 +1,15 @@
-PrestonBot
-=======================
+# PrestonBot
 
-This application is a fork of Symfony CarsonBot and aims to help PrestaShop maintainers and contributors
+This application is based on Symfony CarsonBot and aims to help PrestaShop maintainers and contributors
 
 Features to come:
 
 - [ ] Send a welcome message :)
-- [ ] Check pull request template
+- [X] Check pull request template
 - [ ] Send an "How to rebase ?" message
 - [ ] Reveal hot pull requests by email (old pull requests that are valid)
-- [ ] When a pull request need to be rebased -> send a message to inform the author
-- [ ] Check commit label 2 -> regarding information on PR table, check the commit label and the related branch
+- [ ] Check is commit label respect our Coding standards
+- [ ] Regarding information on PR table, check the commit label and the related branch
 - [ ] Generate contributing data that have a meaningful interest
+- [ ] Send mails to a group of persons according to the labels (ex: notify PM or QA)
+- [ ] A great UI/UX because the current UI/UX sucks!
