@@ -29,22 +29,46 @@ class WebhookControllerTest extends WebTestCase
         $tests[] = array(
             'issue_comment',
             'issue_comment.created.json',
-            array('status_change' => 'needs_review', 'issue' => 1),
+            array(
+                array(
+                    'event' => 'issue_comment_created',
+                    'action' => 'add labels if required',
+                )
+            ),
         );
         $tests[] = array(
             'pull_request',
             'pull_request.opened.json',
-            array('status_change' => 'needs_review', 'pull_request' => 3),
+            array(
+                array(
+                    'event' => 'pr_opened',
+                    'action' => 'table description checked',
+                ),
+                array(
+                    "event" => "pr_opened",
+                    "action" => "labels initialized",
+                )
+            ),
         );
         $tests[] = array(
             'issues',
             'issues.labeled.bug.json',
-            array('status_change' => 'needs_review', 'issue' => 5),
+            array(
+                array(
+                    'event' => 'issue_event_labeled',
+                    'action' => 'added required labels',
+                )
+            ),
         );
         $tests[] = array(
             'issues',
             'issues.labeled.feature.json',
-            array('status_change' => null, 'issue' => 5),
+            array(
+                array(
+                    'event' => 'issue_event_labeled',
+                    'action' => 'ignored',
+                )
+            ),
         );
 
         return $tests;

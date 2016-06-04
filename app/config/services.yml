@@ -50,3 +50,23 @@ services:
         class: AppBundle\PullRequests\Listener
         arguments: ['@app.comment_api', '@validator', '@twig']
     
+    app.pullrequest_subscriber:
+        class: AppBundle\EventSubscriber\PullRequestSubscriber
+        calls: 
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: kernel.event_subscriber }
+    
+    app.issuecomment_subscriber:
+        class: AppBundle\EventSubscriber\IssueCommentSubscriber
+        calls: 
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: kernel.event_subscriber }
+            
+    app.issues_subscriber:
+        class: AppBundle\EventSubscriber\IssuesSubscriber
+        calls: 
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: kernel.event_subscriber }
