@@ -5,7 +5,6 @@ namespace AppBundle\PullRequests;
 use Symfony\Component\Validator\Constraints as Assert;
 use \Exception;
 
-
 /**
  * Extract human readable data from Pull request body
  */
@@ -76,17 +75,17 @@ class BodyParser
     
     public function isAFeature()
     {
-        return preg_match('/feature/',$this->getType()) == true;
+        return preg_match('/feature/', $this->getType()) == true;
     }
     
     public function isAnImprovement()
     {
-        return preg_match('/improvement/',$this->getType()) == true;
+        return preg_match('/improvement/', $this->getType()) == true;
     }
     
     public function isABugFix()
     {
-        return preg_match('/bug fix/',$this->getType()) == true;
+        return preg_match('/bug fix/', $this->getType()) == true;
     }
     
     public function getRelatedForgeIssue()

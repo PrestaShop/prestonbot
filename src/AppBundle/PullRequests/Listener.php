@@ -29,7 +29,7 @@ class Listener
         $bodyParser = new BodyParser($pullRequest->getBody());
         
         $validationErrors = $this->validator->validate($bodyParser);
-        if(count($validationErrors) > 0) {
+        if (count($validationErrors) > 0) {
             $bodyMessage = $this->twig->render('markdown/pr_table_errors.md.twig', ["errors" => $validationErrors]);
             $this->commentApi->send($pullRequest, $bodyMessage);
         }

@@ -29,7 +29,7 @@ class IssuesSubscriber implements EventSubscriberInterface
      */
     public function updateLabels(GitHubEvent $githubEvent)
     {
-        if(true === $this->container->getParameter('enable_labels')) {
+        if (true === $this->container->getParameter('enable_labels')) {
             $event = $githubEvent->getEvent();
 
             $status = $this->container

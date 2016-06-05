@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Lpdigital\Github\EventType\ActionableEventInterface;
 use AppBundle\Event\GitHubEvent;
 
-
 class WebhookController extends Controller
 {
     /**

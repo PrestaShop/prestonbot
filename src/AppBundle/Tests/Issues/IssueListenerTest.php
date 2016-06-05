@@ -23,7 +23,7 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->statusApi = $this->getMock('AppBundle\Issues\StatusApi');
+        $this->statusApi = $this->createMock('AppBundle\Issues\StatusApi');
         $this->listener = new Listener($this->statusApi);
     }
 
