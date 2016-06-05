@@ -20,14 +20,14 @@ class WebhookController extends Controller
     {
         $data = json_decode($request->getContent(), true);
         $responseData = [];
-        
+
         if ($data === null) {
             return new JsonResponse(['error' => 'Invalid JSON body'], 500);
         }
 
         $event = $this->get('app.webhook_resolver')->resolve($data);
         $githubEvent = new GitHubEvent($event::name(), $event);
-        
+
         if ($event instanceof ActionableEventInterface) {
             $eventName = strtolower($event::name()).'_'.$event->getAction();
 

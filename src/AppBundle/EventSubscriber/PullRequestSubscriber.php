@@ -14,19 +14,19 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $this->container = $container;
     }
-    
+
     public static function getSubscribedEvents()
     {
-        return array(
-           'pullrequestevent_opened' => array(
-               array('checkForTableDescription', 255),
-               array('initLabels', 254),
-           )
-        );
+        return [
+           'pullrequestevent_opened' => [
+               ['checkForTableDescription', 255],
+               ['initLabels', 254],
+           ],
+        ];
     }
 
     /**
-     * For now, only add "Needs Review" label
+     * For now, only add "Needs Review" label.
      */
     public function initLabels(GitHubEvent $githubEvent)
     {
@@ -35,7 +35,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ->get('app.issue_listener')
             ->handlePullRequestCreatedEvent($event->pullRequest->getNumber())
         ;
-        
+
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'labels initialized',

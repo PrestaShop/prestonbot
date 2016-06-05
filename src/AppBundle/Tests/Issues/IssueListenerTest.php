@@ -46,106 +46,106 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
     public function getCommentsForStatusChange()
     {
         $tests = [];
-        $tests[] = array(
+        $tests[] = [
             'Have a great day!',
             null,
-        );
+        ];
         // basic tests for status change
-        $tests[] = array(
+        $tests[] = [
             'Status: needs review',
             Status::NEEDS_REVIEW,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             'Status: needs work',
             Status::NEEDS_WORK,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             'Status: reviewed',
             Status::REVIEWED,
-        );
+        ];
 
         // accept quotes
-        $tests[] = array(
+        $tests[] = [
             'Status: "reviewed"',
             Status::REVIEWED,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             "Status: 'reviewed'",
             Status::REVIEWED,
-        );
+        ];
 
         // accept trailing punctuation
-        $tests[] = array(
+        $tests[] = [
             'Status: works for me!',
             Status::WORKS_FOR_ME,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             'Status: works for me.',
             Status::WORKS_FOR_ME,
-        );
+        ];
 
         // play with different formatting
-        $tests[] = array(
+        $tests[] = [
             'STATUS: REVIEWED',
             Status::REVIEWED,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             '**Status**: reviewed',
             Status::REVIEWED,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             '**Status:** reviewed',
             Status::REVIEWED,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             '**Status: reviewed**',
             Status::REVIEWED,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             '**Status: reviewed!**',
             Status::REVIEWED,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             '**Status: reviewed**.',
             Status::REVIEWED,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             'Status:reviewed',
             Status::REVIEWED,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             'Status:     reviewed',
             Status::REVIEWED,
-        );
+        ];
 
         // reject missing colon
-        $tests[] = array(
+        $tests[] = [
             'Status reviewed',
             null,
-        );
+        ];
 
         // multiple matches - use the last one
-        $tests[] = array(
+        $tests[] = [
             "Status: needs review \r\n that is what the issue *was* marked as.\r\n Status: reviewed",
             Status::REVIEWED,
-        );
+        ];
         // "needs review" does not come directly after status: , so there is no status change
-        $tests[] = array(
+        $tests[] = [
             'Here is my status: I\'m really happy! I realize this needs review, but I\'m, having too much fun Googling cats!',
             null,
-        );
+        ];
 
         // reject if the status is not on a line of its own
         // use case: someone posts instructions about how to change a status
         // in a comment
-        $tests[] = array(
+        $tests[] = [
             'You should include e.g. the line `Status: needs review` in your comment',
             null,
-        );
-        $tests[] = array(
+        ];
+        $tests[] = [
             'Before the ticket was in state "Status: reviewed", but then the status was changed',
             null,
-        );
+        ];
 
         return $tests;
     }

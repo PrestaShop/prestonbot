@@ -9,21 +9,21 @@ use AppBundle\Event\GitHubEvent;
 class IssuesSubscriber implements EventSubscriberInterface
 {
     public $container;
-    
+
     public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
     }
-    
+
     public static function getSubscribedEvents()
     {
-        return array(
-           'issuesevent_labeled' => array(
-               array('updateLabels', 255),
-           )
-        );
+        return [
+           'issuesevent_labeled' => [
+               ['updateLabels', 255],
+           ],
+        ];
     }
-    
+
     /**
      * Changes "Bug" issues to "Needs Review".
      */
@@ -38,7 +38,7 @@ class IssuesSubscriber implements EventSubscriberInterface
                     $event->issue->getNumber(),
                     $event->label->getName()
             );
-            
+
             $action = (null === $status) ? 'ignored' : 'added required labels';
             $githubEvent->addStatus([
                 'event' => 'issue_event_labeled',

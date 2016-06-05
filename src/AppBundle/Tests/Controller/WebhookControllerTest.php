@@ -13,7 +13,7 @@ class WebhookControllerTest extends WebTestCase
     {
         $client = $this->createClient();
         $body = file_get_contents(__DIR__.'/../webhook_examples/'.$payloadFilename);
-        $client->request('POST', '/webhooks/github', array(), array(), array('HTTP_X-Github-Event' => $eventHeader), $body);
+        $client->request('POST', '/webhooks/github', [], [], ['HTTP_X-Github-Event' => $eventHeader], $body);
         $response = $client->getResponse();
 
         $responseData = json_decode($response->getContent(), true);
@@ -25,51 +25,51 @@ class WebhookControllerTest extends WebTestCase
 
     public function getTests()
     {
-        $tests = array();
-        $tests[] = array(
+        $tests = [];
+        $tests[] = [
             'issue_comment',
             'issue_comment.created.json',
-            array(
-                array(
+            [
+                [
                     'event' => 'issue_comment_created',
                     'action' => 'add labels if required',
-                )
-            ),
-        );
-        $tests[] = array(
+                ],
+            ],
+        ];
+        $tests[] = [
             'pull_request',
             'pull_request.opened.json',
-            array(
-                array(
+            [
+                [
                     'event' => 'pr_opened',
                     'action' => 'table description checked',
-                ),
-                array(
-                    "event" => "pr_opened",
-                    "action" => "labels initialized",
-                )
-            ),
-        );
-        $tests[] = array(
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'labels initialized',
+                ],
+            ],
+        ];
+        $tests[] = [
             'issues',
             'issues.labeled.bug.json',
-            array(
-                array(
+            [
+                [
                     'event' => 'issue_event_labeled',
                     'action' => 'added required labels',
-                )
-            ),
-        );
-        $tests[] = array(
+                ],
+            ],
+        ];
+        $tests[] = [
             'issues',
             'issues.labeled.feature.json',
-            array(
-                array(
+            [
+                [
                     'event' => 'issue_event_labeled',
                     'action' => 'ignored',
-                )
-            ),
-        );
+                ],
+            ],
+        ];
 
         return $tests;
     }

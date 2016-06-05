@@ -23,7 +23,8 @@
         "lp-digital/github-event-parser": "~0.7"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.4.*"
+        "phpunit/phpunit": "5.4.*",
+        "fabpot/php-cs-fixer": "1.11.3"
     },
     "scripts": {
         "post-root-package-install": [

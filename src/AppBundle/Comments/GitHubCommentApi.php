@@ -6,7 +6,7 @@ use Github\Api\Issue;
 use Lpdigital\Github\Entity\PullRequest;
 
 /**
- * Responsible of comments publication on repository
+ * Responsible of comments publication on repository.
  */
 class GitHubCommentApi
 {
@@ -14,7 +14,7 @@ class GitHubCommentApi
      * @var Issue
      */
     private $issue;
-    
+
     /**
      * @var string
      */
@@ -24,14 +24,14 @@ class GitHubCommentApi
      * @var string
      */
     private $repositoryName;
-    
+
     public function __construct(Issue $issue, $repositoryUsername, $repositoryName)
     {
         $this->issue = $issue;
         $this->repositoryUsername = $repositoryUsername;
         $this->repositoryName = $repositoryName;
     }
-    
+
     public function send(PullRequest $pullRequest, $comment)
     {
         $this->issue

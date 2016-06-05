@@ -38,7 +38,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug', 'Status: Needs Review'));
+            ->willReturn(['Bug', 'Status: Needs Review']);
 
         $this->labelsApi->expects($this->once())
             ->method('removeIssueLabel')
@@ -56,7 +56,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug'));
+            ->willReturn(['Bug']);
 
         $this->labelsApi->expects($this->never())
             ->method('removeIssueLabel');
@@ -73,7 +73,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->at(0))
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug', 'Status: Needs Review', 'Status: Needs Work'));
+            ->willReturn(['Bug', 'Status: Needs Review', 'Status: Needs Work']);
 
         $this->labelsApi->expects($this->at(1))
             ->method('removeIssueLabel')
@@ -95,7 +95,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug', 'Status: Needs Review'));
+            ->willReturn(['Bug', 'Status: Needs Review']);
 
         $this->labelsApi->expects($this->never())
             ->method('removeIssueLabel');
@@ -111,7 +111,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug', 'Status: Needs Review', 'Status: Reviewed'));
+            ->willReturn(['Bug', 'Status: Needs Review', 'Status: Reviewed']);
 
         $this->labelsApi->expects($this->once())
             ->method('removeIssueLabel')
@@ -128,7 +128,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug', 'Status: Needs Review', 'Unconfirmed'));
+            ->willReturn(['Bug', 'Status: Needs Review', 'Unconfirmed']);
 
         $this->labelsApi->expects($this->at(1))
             ->method('removeIssueLabel')
@@ -150,7 +150,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug', 'Status: Needs Review'));
+            ->willReturn(['Bug', 'Status: Needs Review']);
 
         $this->assertSame(Status::NEEDS_REVIEW, $this->api->getIssueStatus(1234));
     }
@@ -160,7 +160,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug', 'Status: Needs Review', 'Status: Reviewed'));
+            ->willReturn(['Bug', 'Status: Needs Review', 'Status: Reviewed']);
 
         $this->assertSame(Status::NEEDS_REVIEW, $this->api->getIssueStatus(1234));
     }
@@ -170,7 +170,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(array('Bug'));
+            ->willReturn(['Bug']);
 
         $this->assertNull($this->api->getIssueStatus(1234));
     }
