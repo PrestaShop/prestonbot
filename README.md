@@ -2,7 +2,7 @@
 
 This application is based on Symfony CarsonBot and aims to help PrestaShop maintainers and contributors
 
-![Preston, the PrestaShop contributor best friend](http://i.imgur.com/0J9RLFo.png)
+![Preston, the PrestaShop contributor best friend](http://i.imgur.com/r26gJW4.png)
 
 *Features to come:*
 
