@@ -2,7 +2,9 @@
 
 This application is based on Symfony CarsonBot and aims to help PrestaShop maintainers and contributors
 
-Features to come:
+![Preston, the PrestaShop contributor best friend](http://i.imgur.com/0J9RLFo.png)
+
+*Features to come:*
 
 - [ ] Send a welcome message :)
 - [X] Check pull request template
@@ -13,3 +15,4 @@ Features to come:
 - [ ] Generate contributing data that have a meaningful interest
 - [ ] Send mails to a group of persons according to the labels (ex: notify PM or QA)
 - [ ] A great UI/UX because the current UI/UX sucks!
+
