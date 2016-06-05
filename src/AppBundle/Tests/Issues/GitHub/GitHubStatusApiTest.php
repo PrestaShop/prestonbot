@@ -2,8 +2,8 @@
 
 namespace AppBundle\Tests\Issues\GitHub;
 
-use AppBundle\Issues\GitHub\CachedLabelsApi;
-use AppBundle\Issues\GitHub\GitHubStatusApi;
+use AppBundle\Issues\CachedLabelsApi;
+use AppBundle\Issues\GitHubStatusApi;
 use AppBundle\Issues\Status;
 
 /**
@@ -27,7 +27,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->labelsApi = $this->getMockBuilder('AppBundle\Issues\GitHub\CachedLabelsApi')
+        $this->labelsApi = $this->getMockBuilder('AppBundle\Issues\CachedLabelsApi')
             ->disableOriginalConstructor()
             ->getMock();
         $this->api = new GitHubStatusApi($this->labelsApi, self::USER_NAME, self::REPO_NAME);

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Comments\GitHub;
+namespace AppBundle\Comments;
 
 use Github\Api\Issue;
 use Lpdigital\Github\Entity\PullRequest;

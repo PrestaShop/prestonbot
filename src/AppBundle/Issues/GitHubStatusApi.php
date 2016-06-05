@@ -1,9 +1,6 @@
 <?php
 
-namespace AppBundle\Issues\GitHub;
-
-use AppBundle\Issues\Status;
-use AppBundle\Issues\StatusApi;
+namespace AppBundle\Issues;
 
 class GitHubStatusApi implements StatusApi
 {

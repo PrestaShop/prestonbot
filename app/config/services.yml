@@ -31,19 +31,19 @@ services:
         factory: ['@app.github.issues_api', labels]
 
     app.github.cached_labels_api:
-        class: AppBundle\Issues\GitHub\CachedLabelsApi
+        class: AppBundle\Issues\CachedLabelsApi
         arguments: ['@app.github.labels_api', '%repository_username%', '%repository_name%']
 
     app.status_api:
-        class: AppBundle\Issues\GitHub\GitHubStatusApi
+        class: AppBundle\Issues\GitHubStatusApi
         arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
         
     app.comment_api:
-        class: AppBundle\Comments\GitHub\GitHubCommentApi
+        class: AppBundle\Comments\GitHubCommentApi
         arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
 
     app.issue_listener:
-        class: AppBundle\Issues\IssueListener
+        class: AppBundle\Issues\Listener
         arguments: ['@app.status_api']
     
     app.pullrequest_listener:

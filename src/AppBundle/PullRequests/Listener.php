@@ -2,7 +2,7 @@
 
 namespace AppBundle\PullRequests;
 
-use AppBundle\Comments\GitHub\GitHubCommentApi;
+use AppBundle\Comments\GitHubCommentApi;
 use Lpdigital\Github\Entity\PullRequest;
 use AppBundle\PullRequests\BodyParser;
 use Symfony\Component\Validator\ValidatorInterface;

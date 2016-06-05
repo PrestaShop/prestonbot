@@ -2,7 +2,7 @@
 
 namespace AppBundle\Issues;
 
-class IssueListener
+class Listener
 {
     private static $triggerWordToStatus = [
         'needs review' => Status::NEEDS_REVIEW,

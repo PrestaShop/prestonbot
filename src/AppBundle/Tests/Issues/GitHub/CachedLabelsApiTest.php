@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Issues\GitHub;
 
-use AppBundle\Issues\GitHub\CachedLabelsApi;
+use AppBundle\Issues\CachedLabelsApi;
 use Github\Api\Issue\Labels;
 
 /**

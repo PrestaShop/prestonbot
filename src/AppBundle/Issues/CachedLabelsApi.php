@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Issues\GitHub;
+namespace AppBundle\Issues;
 
 use Github\Api\Issue\Labels;
 
