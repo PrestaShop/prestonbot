@@ -1088,16 +1088,16 @@
         },
         {
             "name": "lp-digital/github-event-parser",
-            "version": "v0.7.1",
+            "version": "v0.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lp-digital/github-event-parser.git",
-                "reference": "023954941fc7fa59531a172dd830a39e3f52b4ee"
+                "reference": "c2d93c7d89146ddaa5eb31b1bb7ffa0a2c122bb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lp-digital/github-event-parser/zipball/023954941fc7fa59531a172dd830a39e3f52b4ee",
-                "reference": "023954941fc7fa59531a172dd830a39e3f52b4ee",
+                "url": "https://api.github.com/repos/Lp-digital/github-event-parser/zipball/c2d93c7d89146ddaa5eb31b1bb7ffa0a2c122bb0",
+                "reference": "c2d93c7d89146ddaa5eb31b1bb7ffa0a2c122bb0",
                 "shasum": ""
             },
             "require": {
@@ -1134,7 +1134,7 @@
                 "github",
                 "json parser"
             ],
-            "time": "2016-06-04 20:53:57"
+            "time": "2016-06-05 14:40:39"
         },
         {
             "name": "monolog/monolog",

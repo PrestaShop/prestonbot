@@ -1,12 +1,11 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
 parameters:
     enable_labels: false
 
 services:
     app.webhook_resolver:
         class: Lpdigital\Github\Parser\WebhookResolver
-        
+
+# GitHub Client
     app.github.client:
         class: Github\Client
         arguments: []
@@ -15,6 +14,8 @@ services:
               arguments:
                 - http_token
                 - %github_token%
+
+# GitHub API
 
     app.github.issues_api:
         class: Github\Api\Issue
@@ -42,6 +43,8 @@ services:
         class: AppBundle\Comments\GitHubCommentApi
         arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
 
+# Listeners (but not Symfony listeners)
+
     app.issue_listener:
         class: AppBundle\Issues\Listener
         arguments: ['@app.status_api']
@@ -49,7 +52,9 @@ services:
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener
         arguments: ['@app.comment_api', '@validator', '@twig']
-    
+
+# Event subscribers
+
     app.pullrequest_subscriber:
         class: AppBundle\EventSubscriber\PullRequestSubscriber
         calls: 
@@ -70,3 +75,9 @@ services:
             - ['setContainer', ['@service_container']]
         tags:
             - { name: kernel.event_subscriber }
+
+# Repositories
+
+    app.pull_request.repository:
+        class: AppBundle\PullRequests\Repository
+        arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
