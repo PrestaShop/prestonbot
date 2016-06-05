@@ -26,7 +26,7 @@ class IssueCommentSubscriber implements EventSubscriberInterface
     
     public function addLabels(GitHubEvent $githubEvent)
     {
-        if(true === $this->container->getParameter('enable_labels')) {
+        if (true === $this->container->getParameter('enable_labels')) {
             $event = $githubEvent->getEvent();
 
             $this->container

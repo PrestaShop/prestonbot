@@ -9,7 +9,7 @@ use Lpdigital\Github\Entity\PullRequest;
  * Get the pull requests according to some filters
  * As GitHub consider pull requests as specific issues
  * don't be surprised too much by the produced repository.
- * 
+ *
  * @doc https://github.com/KnpLabs/php-github-api/blob/master/doc/issues.md
  * @todo: how to test this feature easily ? :/ prepare a fake issueApi
  */
@@ -32,7 +32,7 @@ class Repository
         $issues = $this->issueApi->all($this->repositoryUsername, $this->repositoryName, []);
         
         /* @doc https://developer.github.com/v3/pulls/#labels-assignees-and-milestones */
-        foreach($issues as $issue) {
+        foreach ($issues as $issue) {
             if (isset($issue['pull_request'])) {
                 $pullRequests[] = PullRequest::createFromData($issue);
             }
@@ -46,7 +46,7 @@ class Repository
         $pullRequests = [];
         $issues = $this->issueApi->all($this->repositoryUsername, $this->repositoryName, ['labels' => $tag]);
         
-        foreach($issues as $issue) {
+        foreach ($issues as $issue) {
             if (isset($issue['pull_request'])) {
                 $pullRequests[] = PullRequest::createFromData($issue);
             }
@@ -59,8 +59,8 @@ class Repository
     {
         $pullRequests = [];
         $issues = $this->issueApi->all($this->repositoryUsername, $this->repositoryName, ['labels' => implode(",", $tags)]);
-        
-        foreach($issues as $issue) {
+
+        foreach ($issues as $issue) {
             if (isset($issue['pull_request'])) {
                 $pullRequests[] = PullRequest::createFromData($issue);
             }
