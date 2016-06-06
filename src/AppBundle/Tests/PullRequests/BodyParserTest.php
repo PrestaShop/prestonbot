@@ -44,6 +44,8 @@ class BodyParserTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->bodyParser->isAFeature());
         $this->assertFalse($this->bodyParser->isAnImprovement());
         $this->assertFalse($this->bodyParser->isABugFix());
+        $this->assertFalse($this->bodyParser->isASmallFix());
+        $this->assertFalse($this->bodyParser->isARefacto());
     }
 
     private function getExpectedBody()
