@@ -16,3 +16,28 @@ This application is based on Symfony CarsonBot and aims to help PrestaShop maint
 - [ ] Send mails to a group of persons according to the labels (ex: notify PM or QA)
 - [ ] A great UI/UX because the current UI/UX sucks!
 
+
+## How to install ?
+
+First of all you have to configure your GitHub repository and have a GitHub token.
+
+```bash
+composer install // and complete the interactive fields asked
+```
+
+For now this application allow you to valid pull requests description
+according to **PrestaShop** standards.
+
+## How to test ?
+
+```bash
+bin/phpunit -c app
+```
+
+## Our standards ?
+
+Yeah, the *Symfony* ones:
+
+```bash
+bin/php-cs-fixer fix .
+```
