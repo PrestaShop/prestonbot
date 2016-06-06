@@ -1,5 +1,9 @@
 parameters:
     enable_labels: true
+    # token generated from a fake account
+    github_token: 2c505aa93e73fdfee66d1bd138519338e88334f1
+    repository_username: symfony
+    repository_name: symfony
     
 imports:
     - { resource: services.yml }
