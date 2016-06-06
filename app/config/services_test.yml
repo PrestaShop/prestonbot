@@ -11,3 +11,7 @@ imports:
 services:
     app.status_api:
         class: AppBundle\Tests\Issues\NullStatusApi
+    # Your integrations tests shouldn't post comments to github
+    app.pullrequest_listener:
+        class: AppBundle\Tests\PullRequests\FakeListener
+        arguments: ['@app.comment_api', '@validator', '@twig']
