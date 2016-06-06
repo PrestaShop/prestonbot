@@ -93,6 +93,11 @@ class BodyParser
         return preg_match('/small fix/', $this->getType()) == true;
     }
 
+    public function isARefacto()
+    {
+        return preg_match('/refacto/', $this->getType()) == true;
+    }
+
     public function getRelatedForgeIssue()
     {
         throw new Exception('Need to be done');
