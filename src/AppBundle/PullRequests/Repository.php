@@ -11,7 +11,6 @@ use Lpdigital\Github\Entity\PullRequest;
  * don't be surprised too much by the produced repository.
  *
  * @doc https://github.com/KnpLabs/php-github-api/blob/master/doc/issues.md
- * @todo: how to test this feature easily ? :/ prepare a fake issueApi
  */
 class Repository
 {

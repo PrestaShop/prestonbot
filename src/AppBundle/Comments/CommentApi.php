@@ -8,7 +8,7 @@ use Lpdigital\Github\Entity\PullRequest;
 /**
  * Responsible of comments publication on repository.
  */
-class GitHubCommentApi
+class CommentApi
 {
     /**
      * @var Issue

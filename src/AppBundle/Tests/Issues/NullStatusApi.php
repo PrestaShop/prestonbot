@@ -7,7 +7,7 @@ use AppBundle\Issues\StatusApi;
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class NullStatusApi implements StatusApi
+class NullStatusApi extends StatusApi
 {
     public function getIssueStatus($issueNumber)
     {

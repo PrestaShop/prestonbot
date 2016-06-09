@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\PullRequests;
 
-use AppBundle\Comments\GitHubCommentApi;
+use AppBundle\Comments\CommentApi;
 use AppBundle\PullRequests\BodyParser;
 use Lpdigital\Github\Entity\PullRequest;
 use Symfony\Component\Validator\ValidatorInterface;
@@ -17,7 +17,7 @@ class FakeListener
     private $validator;
     private $twig;
 
-    public function __construct(GitHubCommentApi $commentApi, ValidatorInterface $validator, Twig_Environment $twig)
+    public function __construct(CommentApi $commentApi, ValidatorInterface $validator, Twig_Environment $twig)
     {
         $this->commentApi = $commentApi;
         $this->validator = $validator;

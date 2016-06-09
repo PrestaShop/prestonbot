@@ -11,6 +11,7 @@ imports:
 services:
     app.status_api:
         class: AppBundle\Tests\Issues\NullStatusApi
+        arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
     # Your integrations tests shouldn't post comments to github
     app.pullrequest_listener:
         class: AppBundle\Tests\PullRequests\FakeListener

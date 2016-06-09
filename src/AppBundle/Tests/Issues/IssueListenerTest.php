@@ -3,8 +3,8 @@
 namespace AppBundle\Tests\Issues;
 
 use AppBundle\Issues\Listener;
-use AppBundle\Issues\Status;
 use AppBundle\Issues\StatusApi;
+use AppBundle\Issues\Status;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>

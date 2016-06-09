@@ -3,13 +3,13 @@
 namespace AppBundle\Tests\Issues\GitHub;
 
 use AppBundle\Issues\CachedLabelsApi;
-use AppBundle\Issues\GitHubStatusApi;
+use AppBundle\Issues\StatusApi;
 use AppBundle\Issues\Status;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
+class StatusApiTest extends \PHPUnit_Framework_TestCase
 {
     const USER_NAME = 'weaverryan';
 
@@ -21,7 +21,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
     private $labelsApi;
 
     /**
-     * @var GitHubStatusApi
+     * @var StatusApi
      */
     private $api;
 
@@ -30,7 +30,7 @@ class GitHubStatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi = $this->getMockBuilder('AppBundle\Issues\CachedLabelsApi')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->api = new GitHubStatusApi($this->labelsApi, self::USER_NAME, self::REPO_NAME);
+        $this->api = new StatusApi($this->labelsApi, self::USER_NAME, self::REPO_NAME);
     }
 
     public function testSetIssueStatus()

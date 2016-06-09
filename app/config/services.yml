@@ -36,11 +36,11 @@ services:
         arguments: ['@app.github.labels_api', '%repository_username%', '%repository_name%']
 
     app.status_api:
-        class: AppBundle\Issues\GitHubStatusApi
+        class: AppBundle\Issues\StatusApi
         arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
         
     app.comment_api:
-        class: AppBundle\Comments\GitHubCommentApi
+        class: AppBundle\Comments\CommentApi
         arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
 
 # Listeners (but not Symfony listeners)
