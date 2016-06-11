@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Tests\PullRequests;
+namespace tests\AppBundle\PullRequests;
 
 use Lpdigital\Github\Entity\PullRequest;
 use AppBundle\PullRequests\Repository;

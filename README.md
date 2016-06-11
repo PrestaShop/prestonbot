@@ -31,7 +31,7 @@ according to **PrestaShop** standards.
 ## How to test ?
 
 ```bash
-bin/phpunit -c app
+./vendor/bin/phpunit
 ```
 
 ## Our standards ?
@@ -39,7 +39,7 @@ bin/phpunit -c app
 Yeah, the *Symfony* ones:
 
 ```bash
-bin/php-cs-fixer fix .
+./vendor/bin/php-cs-fixer fix .
 ```
 
 
@@ -52,7 +52,8 @@ Todo rapide:
 - [ ] Récupérer les labels de PrestaShop
 - [ ] Définir un **workflow** avec Xavier (utiliser le composant workflow ? une autre lib ?)
 - [ ] Maintenir l'item précédemment cité SIMPLE
-- [ ] Migrer sur Sf3, supprimer tous les composants inutiles et ne plus dépendre du metapackage
+- [X] Migrer sur Sf3
+- [X] ~~Supprimer tous les composants inutiles et ne plus dépendre du metapackage~~ (remercions le génie Nicolas Grekas)
 - [ ] Systeme d'envoi de mails (ré écrire encore et encore cette putain de classe Mailer)
 
 

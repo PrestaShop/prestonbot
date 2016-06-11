@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Tests\PullRequests;
+namespace tests\AppBundle\PullRequests;
 
 use AppBundle\Comments\CommentApi;
 use AppBundle\PullRequests\BodyParser;
 use Lpdigital\Github\Entity\PullRequest;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Twig_Environment;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Tests\Issues\GitHub;
+namespace Tests\AppBundle\Issues\GitHub;
 
 use AppBundle\Issues\CachedLabelsApi;
 use AppBundle\Issues\StatusApi;

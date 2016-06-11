@@ -4,7 +4,7 @@ namespace AppBundle\PullRequests;
 
 use AppBundle\Comments\GitHubCommentApi;
 use Lpdigital\Github\Entity\PullRequest;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Note to myself: too much logic in this Listener.
