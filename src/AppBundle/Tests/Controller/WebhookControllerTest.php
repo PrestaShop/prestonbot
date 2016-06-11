@@ -48,6 +48,10 @@ class WebhookControllerTest extends WebTestCase
                     'event' => 'pr_opened',
                     'action' => 'labels initialized',
                 ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'user welcomed',
+                ],
             ],
         ];
         $tests[] = [

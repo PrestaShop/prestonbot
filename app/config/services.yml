@@ -41,7 +41,11 @@ services:
         
     app.comment_api:
         class: AppBundle\Comments\CommentApi
-        arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
+        arguments:
+            - '@app.github.issues_api'
+            - '%repository_username%'
+            - '%repository_name%'
+            - '@twig'
 
 # Listeners (but not Symfony listeners)
 
@@ -51,7 +55,7 @@ services:
     
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener
-        arguments: ['@app.comment_api', '@validator', '@twig']
+        arguments: ['@app.comment_api', '@validator']
 
 # Event subscribers
 

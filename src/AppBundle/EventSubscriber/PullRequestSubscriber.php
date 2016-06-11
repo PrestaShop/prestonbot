@@ -21,6 +21,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
            'pullrequestevent_opened' => [
                ['checkForTableDescription', 255],
                ['initLabels', 254],
+               ['welcomePeople', 253],
            ],
         ];
     }
@@ -54,6 +55,15 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'table description checked',
+            ])
+        ;
+    }
+
+    public function welcomePeople(GitHubEvent $githubEvent)
+    {
+        $githubEvent->addStatus([
+            'event' => 'pr_opened',
+            'action' => 'user welcomed',
             ])
         ;
     }

@@ -31,6 +31,7 @@ class FakeListener
         $validationErrors = $this->validator->validate($bodyParser);
         if (count($validationErrors) > 0) {
             $bodyMessage = $this->twig->render('markdown/pr_table_errors.md.twig', ['errors' => $validationErrors]);
+
             return true;
         }
     }

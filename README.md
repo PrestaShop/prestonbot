@@ -41,3 +41,24 @@ Yeah, the *Symfony* ones:
 ```bash
 bin/php-cs-fixer fix .
 ```
+
+
+Todo rapide:
+
+- [X] Déplacer twig dans le commentApi, implementer sendMessage($string) et sendTemplate($templateName, array $params)
+- [ ] Implementer le welcome message
+- [ ] Système d'analyse des PRS selon mergeabilité et date de dernier update (bootstrap Dashboard)
+- [ ] Trouver une solution pour vérifier la mergeability d'une pull request
+- [ ] Récupérer les labels de PrestaShop
+- [ ] Définir un **workflow** avec Xavier (utiliser le composant workflow ? une autre lib ?)
+- [ ] Maintenir l'item précédemment cité SIMPLE
+- [ ] Migrer sur Sf3, supprimer tous les composants inutiles et ne plus dépendre du metapackage
+- [ ] Systeme d'envoi de mails (ré écrire encore et encore cette putain de classe Mailer)
+
+
+Roadmap:
+=> envoi de mail internes
+=> dashboard de tri des PRS
+=> gestion labels automatiques
+=> welcome message
+=> passe de vérification
