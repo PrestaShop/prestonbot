@@ -15,6 +15,15 @@ This application is based on Symfony CarsonBot and aims to help PrestaShop maint
 - [ ] Generate contributing data that have a meaningful interest
 - [ ] Send mails to a group of persons according to the labels (ex: notify PM or QA)
 - [ ] A great UI/UX because the current UI/UX sucks!
+- [X] Move Twig to CommentApi, implement sendMessage($string) and sendTemplate($templateName, array $params)
+- [ ] List all pull requests according to some tags and last update date
+- [ ] How to check "mergeability" of a pull request ?
+- [ ] Get [PrestaShop labels](https://github.com/PrestaShop/PrestaShop/labels)
+- [ ] Define a **workflow** with Xavier & Julien about how we merge
+- [ ] Keep the previous item *SIMPLE*
+- [X] Migrate to Symfony 3
+- [X] ~~Delete all useless dependencies and remove `symfony/symfony` metapackage~~ (no need thanks to Nicolas Grekas)
+- [X] Mailing system
 
 
 ## How to install ?
@@ -41,25 +50,3 @@ Yeah, the *Symfony* ones:
 ```bash
 ./vendor/bin/php-cs-fixer fix .
 ```
-
-
-Todo rapide:
-
-- [X] Déplacer twig dans le commentApi, implementer sendMessage($string) et sendTemplate($templateName, array $params)
-- [ ] Implementer le welcome message
-- [ ] Système d'analyse des PRS selon mergeabilité et date de dernier update (bootstrap Dashboard)
-- [ ] Trouver une solution pour vérifier la mergeability d'une pull request
-- [ ] Récupérer les [labels de PrestaShop](https://github.com/PrestaShop/PrestaShop/labels)
-- [ ] Définir un **workflow** avec Xavier (utiliser le composant workflow ? une autre lib ?)
-- [ ] Maintenir l'item précédemment cité SIMPLE
-- [X] Migrer sur Sf3
-- [X] ~~Supprimer tous les composants inutiles et ne plus dépendre du metapackage~~ (remercions le génie Nicolas Grekas)
-- [ ] Systeme d'envoi de mails (ré écrire encore et encore cette putain de classe Mailer)
-
-
-Roadmap:
-=> envoi de mail internes
-=> dashboard de tri des PRS
-=> gestion labels automatiques
-=> welcome message
-=> passe de vérification
