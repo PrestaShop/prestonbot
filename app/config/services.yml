@@ -74,7 +74,7 @@ services:
             - { name: kernel.event_subscriber }
             
     app.issues_subscriber:
-        class: AppBundle\EventSubscriber\IssuesSubscriber
+        class: AppBundle\EventSubscriber\IssueSubscriber
         calls: 
             - ['setContainer', ['@service_container']]
         tags:

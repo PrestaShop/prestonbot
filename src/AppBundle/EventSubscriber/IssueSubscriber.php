@@ -6,7 +6,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Event\GitHubEvent;
 
-class IssuesSubscriber implements EventSubscriberInterface
+class IssueSubscriber implements EventSubscriberInterface
 {
     public $container;
 
