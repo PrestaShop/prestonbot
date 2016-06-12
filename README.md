@@ -49,7 +49,7 @@ Todo rapide:
 - [ ] Implementer le welcome message
 - [ ] Système d'analyse des PRS selon mergeabilité et date de dernier update (bootstrap Dashboard)
 - [ ] Trouver une solution pour vérifier la mergeability d'une pull request
-- [ ] Récupérer les labels de PrestaShop
+- [ ] Récupérer les [labels de PrestaShop](https://github.com/PrestaShop/PrestaShop/labels)
 - [ ] Définir un **workflow** avec Xavier (utiliser le composant workflow ? une autre lib ?)
 - [ ] Maintenir l'item précédemment cité SIMPLE
 - [X] Migrer sur Sf3
