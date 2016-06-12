@@ -1,31 +1,21 @@
+{% import 'macros.html.twig' as macros %}
+
 Hi,
 
 this is a list of remaining pull requests:
 
 {% if waitingForCodeReviewsContribs|length > 0 %}
-    {{ _self.generateList('waiting for code review', waitingForCodeReviewsContribs) }}
+    {{ macros.generateList('waiting for code review', waitingForCodeReviewsContribs) }}
 {% endif %}
 
 {% if waitingForQAContribs|length > 0 %}
-    {{ _self.generateList('waiting for QA review', waitingForQAContribs) }}
+    {{ macros.generateList('waiting for QA review', waitingForQAContribs) }}
 {% endif %}
 
 {% if waitingForPMContribs|length > 0 %}
-    {{ _self.generateList('waiting for PM review', waitingForPMContribs) }}
+    {{ macros.generateList('waiting for PM review', waitingForPMContribs) }}
 {% endif %}
 
-{% if waitingForMergeContribs|length > 0 %}
-    {{ _self.generateList('waiting for merge', waitingForMergeContribs) }}
+{% if silentContribs|length > 0 %}
+    {{ macros.generateList('silent pull requests', silentContribs) }}
 {% endif %}
-
-{% macro generateList(title, contribs) %}
-<b>{{ title }}:</b>
-
-<ul>
-    {% for contrib in contribs %}
-        <li>
-            <a href="{{ contrib.url }}">{{ contrib.title }}</a> - since {{ contrib.updatedAt|date('d/m/Y') }}
-        </li>
-    {% endfor %}
-</ul>
-{% endmacro %}
