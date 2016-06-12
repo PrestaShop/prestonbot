@@ -85,3 +85,8 @@ services:
     app.pull_request.repository:
         class: AppBundle\PullRequests\Repository
         arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
+
+# Common services
+    app.mailer:
+        class: AppBundle\Services\Mailer
+        arguments: ['@mailer', '@twig']
