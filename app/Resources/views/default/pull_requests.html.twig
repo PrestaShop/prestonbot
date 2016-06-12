@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macros %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="text-center page-header">
+
+                <h1>Pull requests Dashboard</h1>
+
+                <h2>This is a list of remaining pull requests</h2>
+                
+                {% if waitingForCodeReviewsContribs|length > 0 %}
+                    {{ macros.generateList('waiting for code review', waitingForCodeReviewsContribs) }}
+                {% endif %}
+                
+                {% if waitingForQAContribs|length > 0 %}
+                    {{ macros.generateList('waiting for QA review', waitingForQAContribs) }}
+                {% endif %}
+                
+                {% if waitingForPMContribs|length > 0 %}
+                    {{ macros.generateList('waiting for PM review', waitingForPMContribs) }}
+                {% endif %}
+                
+                {% if silentContribs|length > 0 %}
+                    {{ macros.generateList('silent pull requests', silentContribs) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
