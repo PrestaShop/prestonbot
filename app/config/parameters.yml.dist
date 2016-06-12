@@ -20,6 +20,7 @@ parameters:
 
     # token used to update labels on the repository, etc
     github_token: XXXX
+    
     # point to the selected repository
     repository_username: PrestaShop
     repository_name: PrestaShop
