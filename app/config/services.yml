@@ -86,6 +86,12 @@ services:
         class: AppBundle\PullRequests\Repository
         arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
 
+# Reporters
+
+    app.pull_request.reporter:
+        class: AppBundle\PullRequests\Reporter
+        arguments: ['@app.pull_request.repository']
+
 # Common services
     app.mailer:
         class: AppBundle\Services\Mailer
