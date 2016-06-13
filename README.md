@@ -13,7 +13,7 @@ This application is based on Symfony CarsonBot and aims to help PrestaShop maint
 - [ ] Check is commit label respect our Coding standards
 - [ ] Regarding information on PR table, check the commit label and the related branch
 - [ ] Generate contributing data that have a meaningful interest
-- [ ] Send mails to a group of persons according to the labels (ex: notify PM or QA)
+- [X] Send mails to a group of persons according to the labels (ex: notify PM or QA)
 - [ ] A great UI/UX because the current UI/UX sucks!
 - [X] Move Twig to CommentApi, implement sendMessage($string) and sendTemplate($templateName, array $params)
 - [ ] List all pull requests according to some tags and last update date
