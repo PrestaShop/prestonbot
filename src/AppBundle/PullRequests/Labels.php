@@ -3,7 +3,7 @@
 namespace AppBundle\PullRequests;
 
 /**
- * Describe all PrestaShop labels
+ * Describe all PrestaShop labels.
  */
 final class Labels
 {
