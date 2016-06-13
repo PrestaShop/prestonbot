@@ -1,11 +1,10 @@
 {% macro generateList(title, contribs) %}
     <b>{{ title }}:</b>
-    
     <ul>
         {% for contrib in contribs %}
             <li>
                 {% set updatedAt = contrib.updatedAt is null ? contrib.createdAt : contrib.updatedAt %}
-                <a href="{{ contrib.url }}">{{ contrib.title }}</a> - since {{ updatedAt|date('d/m/Y') }}
+                <a href="{{ contrib.htmlUrl }}">{{ contrib.title }}</a> - since {{ updatedAt|date('d/m/Y') }}
             </li>
         {% endfor %}
     </ul>
