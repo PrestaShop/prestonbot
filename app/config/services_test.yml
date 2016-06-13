@@ -4,6 +4,12 @@ parameters:
     github_token: dc3541f1283279b880f9a733fbb3dd90e48b2fcf
     repository_username: mickaelandrieu
     repository_name: test-modobot
+
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_port: 1025
+    mailer_user: null
+    mailer_password: null
     
 imports:
     - { resource: services.yml }
