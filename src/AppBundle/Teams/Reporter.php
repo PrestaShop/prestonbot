@@ -19,14 +19,14 @@ class Reporter
     public function reportTeamsAndMembers()
     {
         $report = [];
-        
+
         $teams = $this->repository->getTeams();
-        
-        foreach($teams as &$team) {
+
+        foreach ($teams as &$team) {
             $team['members'] = $this->repository->getTeamMembers($team['name']);
             $report[] = $team;
         }
-        
+
         return $report;
     }
 }

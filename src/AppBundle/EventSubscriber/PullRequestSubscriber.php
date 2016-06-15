@@ -63,7 +63,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         // use https://github.com/KnpLabs/php-github-api/blob/master/lib/Github/Api/Repo.php and implement a global maybe ?
         // PrestaShop/Repository.php
-        
+
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'user welcomed',

@@ -14,7 +14,7 @@ class SendPullRequestReportCommandTest extends WebTestCase
         static::$kernel = static::createKernel();
         static::$kernel->boot();
     }
-    
+
     public function testExecute()
     {
         $application = new Application(static::$kernel);
@@ -22,7 +22,7 @@ class SendPullRequestReportCommandTest extends WebTestCase
 
         $command = $application->find('pull_request:report:send_mail');
         $commandTester = new CommandTester($command);
-        $commandTester->execute(array('command' => $command->getName()));
+        $commandTester->execute(['command' => $command->getName()]);
 
         $this->assertRegExp('/Pull requests Reporter/', $commandTester->getDisplay());
         $this->assertRegExp('/\/\/ List of recipients/', $commandTester->getDisplay());

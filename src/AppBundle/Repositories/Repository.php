@@ -46,9 +46,9 @@ class Repository
             ->statistics($this->repositoryUsername, $this->repositoryName)
         ;
     }
-    
+
     /**
-     * Get the top contributors
+     * Get the top contributors.
      */
     public function getTopContributors()
     {
@@ -76,5 +76,4 @@ class Repository
             ->all($this->repositoryUsername, $this->repositoryName)
         ;
     }
-
 }
