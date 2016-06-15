@@ -21,15 +21,27 @@ services:
         class: Github\Api\Issue
         factory: ['@app.github.client', api]
         arguments: [issue]
-        
+
     app.github.pullrequests_api:
         class: Github\Api\PullRequest
         factory: ['@app.github.client', api]
         arguments: [pull_request]
+
+    app.github.repositories_api:
+        class: Github\Api\Repo
+        factory: ['@app.github.client', api]
+        arguments: [repository]
         
+    app.github.organizations_api:
+        class: Github\Api\Organization
+        factory: ['@app.github.client', api]
+        arguments: [organization]
+
     app.github.labels_api:
         class: Github\Api\Issue\Labels
         factory: ['@app.github.issues_api', labels]
+
+# Application GitHub API
 
     app.github.cached_labels_api:
         class: AppBundle\Issues\CachedLabelsApi
@@ -38,7 +50,7 @@ services:
     app.status_api:
         class: AppBundle\Issues\StatusApi
         arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
-        
+
     app.comment_api:
         class: AppBundle\Comments\CommentApi
         arguments:
@@ -65,14 +77,14 @@ services:
             - ['setContainer', ['@service_container']]
         tags:
             - { name: kernel.event_subscriber }
-    
+
     app.issuecomment_subscriber:
         class: AppBundle\EventSubscriber\IssueCommentSubscriber
         calls: 
             - ['setContainer', ['@service_container']]
         tags:
             - { name: kernel.event_subscriber }
-            
+
     app.issues_subscriber:
         class: AppBundle\EventSubscriber\IssueSubscriber
         calls: 
@@ -85,12 +97,29 @@ services:
     app.pull_request.repository:
         class: AppBundle\PullRequests\Repository
         arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
+    
+    app.repository_repository:
+        class: AppBundle\Repositories\Repository
+        arguments:
+            - '@app.github.repositories_api'
+            - '%repository_username%'
+            - '%repository_name%'
+    
+    app.organization_repository:
+        class: AppBundle\Organizations\Repository
+        arguments:
+            - '@app.github.organizations_api'
+            - '%repository_username%'
 
 # Reporters
 
     app.pull_request.reporter:
         class: AppBundle\PullRequests\Reporter
         arguments: ['@app.pull_request.repository']
+
+    app.teams.reporter:
+        class: AppBundle\Teams\Reporter
+        arguments: ['@app.organization_repository']
 
 # Common services
     app.mailer:

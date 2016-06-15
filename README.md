@@ -15,7 +15,7 @@ This application is based on Symfony CarsonBot and aims to help PrestaShop maint
 - [X] Send mails to a group of persons according to the labels (ex: notify PM or QA)
 - [ ] A great UI/UX because the current UI/UX sucks!
 - [X] Move Twig to CommentApi, implement sendMessage($string) and sendTemplate($templateName, array $params)
-- [ ] List all pull requests according to some tags and last update date
+- [X] List all pull requests according to some tags and last update date
 - [ ] How to check "mergeability" of a pull request ?
 - [ ] Get [PrestaShop labels](https://github.com/PrestaShop/PrestaShop/labels)
 - [ ] Define a **workflow** with Xavier & Julien about how we merge
