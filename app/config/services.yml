@@ -21,12 +21,17 @@ services:
         class: Github\Api\Issue
         factory: ['@app.github.client', api]
         arguments: [issue]
-        
+
     app.github.pullrequests_api:
         class: Github\Api\PullRequest
         factory: ['@app.github.client', api]
         arguments: [pull_request]
-        
+
+    app.github.repositories_api:
+        class: Github\Api\Repo
+        factory: ['@app.github.client', api]
+        arguments: [repository]
+
     app.github.labels_api:
         class: Github\Api\Issue\Labels
         factory: ['@app.github.issues_api', labels]
@@ -38,7 +43,7 @@ services:
     app.status_api:
         class: AppBundle\Issues\StatusApi
         arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
-        
+
     app.comment_api:
         class: AppBundle\Comments\CommentApi
         arguments:
@@ -46,6 +51,13 @@ services:
             - '%repository_username%'
             - '%repository_name%'
             - '@twig'
+
+    app.repository_api:
+        class: AppBundle\Repository\RepositoryApi
+        arguments:
+            - '@app.github.repositories_api'
+            - 'PrestaShop'
+            - 'PrestaShop'
 
 # Listeners (but not Symfony listeners)
 
@@ -65,14 +77,14 @@ services:
             - ['setContainer', ['@service_container']]
         tags:
             - { name: kernel.event_subscriber }
-    
+
     app.issuecomment_subscriber:
         class: AppBundle\EventSubscriber\IssueCommentSubscriber
         calls: 
             - ['setContainer', ['@service_container']]
         tags:
             - { name: kernel.event_subscriber }
-            
+
     app.issues_subscriber:
         class: AppBundle\EventSubscriber\IssueSubscriber
         calls: 
