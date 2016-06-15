@@ -16,7 +16,7 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
     {
         $this
             ->setName('pull_request:report:send_mail')
-            ->setDescription('Send Pull request by mail')
+            ->setDescription('Send pull requests by tag report mails.')
         ;
     }
 
@@ -38,7 +38,7 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
                 foreach ($groupMembers as $groupMember) {
                     $nbMails += $mailer->send(
                         'Daily report '.date('d/m/Y'),
-                        'mickael.andrieu@prestashop.com',
+                        $this->getContainer()->getParameter('admin_mail'),
                         $groupMember,
                         'mail/pr_sumup_for_mail.html.twig',
                         $reporter->reportActivity()

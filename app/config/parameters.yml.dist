@@ -24,3 +24,6 @@ parameters:
     # point to the selected repository
     repository_username: PrestaShop
     repository_name: PrestaShop
+
+    # mail used to send every notification
+    admin_mail: admin@prestashop.com
