@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Repository;
+namespace AppBundle\Repositories;
 
 use Github\Api\Repo;
 
-class RepositoryApi
+class Repository
 {
     /**
      * @var Repository
@@ -71,7 +71,10 @@ class RepositoryApi
 
     public function getMembers()
     {
-        // then get the group then ... WON ! @todo WE NEED CACHE
+        return $this->repositoryApi
+            ->collaborators()
+            ->all($this->repositoryUsername, $this->repositoryName)
+        ;
     }
 
 }
