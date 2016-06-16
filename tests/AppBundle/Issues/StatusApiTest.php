@@ -177,6 +177,6 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
 
     public function testGetNeedsReviewUrl()
     {
-        $this->assertSame('https://github.com/weaverryan/carson/labels/Status%3A%20Needs%20Review', $this->api->getNeedsReviewUrl());
+        $this->assertSame('https://github.com/weaverryan/carson/labels/waiting%20for%20code%20review', $this->api->getNeedsReviewUrl());
     }
 }

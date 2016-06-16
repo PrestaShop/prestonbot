@@ -12,8 +12,12 @@ class HomeController extends Controller
      */
     public function homepageAction()
     {
+        $statusApi = $this->get('app.status_api');
+
         return $this->render('default/homepage.html.twig', [
-            'needsReviewUrl' => $this->get('app.status_api')->getNeedsReviewUrl(),
+            'needsReviewUrl' => $statusApi->getNeedsReviewUrl(),
+            'waitingForQAUrl' => $statusApi->getWaitingForQAUrl(),
+            'waitingForPMUrl' => $statusApi->getWaitingForPMUrl(),
         ]);
     }
 }

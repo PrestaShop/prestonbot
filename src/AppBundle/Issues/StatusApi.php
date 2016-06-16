@@ -2,6 +2,8 @@
 
 namespace AppBundle\Issues;
 
+use AppBundle\PullRequests\Labels;
+
 class StatusApi
 {
     private $statusToLabel = [
@@ -95,7 +97,27 @@ class StatusApi
             'https://github.com/%s/%s/labels/%s',
             $this->repositoryUsername,
             $this->repositoryName,
-            rawurlencode($this->statusToLabel[Status::NEEDS_REVIEW])
+            rawurlencode(Labels::WAITING_FOR_CODE_REVIEW)
+        );
+    }
+
+    public function getWaitingForQAUrl()
+    {
+        return sprintf(
+            'https://github.com/%s/%s/labels/%s',
+            $this->repositoryUsername,
+            $this->repositoryName,
+            rawurlencode(Labels::WAITING_FOR_QA_FEEDBACK)
+        );
+    }
+
+    public function getWaitingForPMUrl()
+    {
+        return sprintf(
+            'https://github.com/%s/%s/labels/%s',
+            $this->repositoryUsername,
+            $this->repositoryName,
+            rawurlencode(Labels::WAITING_FOR_PM_FEEDBACK)
         );
     }
 }
