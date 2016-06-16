@@ -3,10 +3,10 @@ imports:
     
 parameters:
     enable_labels: true
-    # token generated from a fake account
-    github_token: 37663333636223bcc2a22e0810d0b59df9539384
-    repository_username: mickaelandrieu
-    repository_name: test-modobot
+    # token generated from a fake account who have admin rights on loveOSS organisation
+    github_token: 2c31748b7db3f4e7ac135ac8296b3b2259246111
+    repository_username: loveOSS
+    repository_name: test
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1

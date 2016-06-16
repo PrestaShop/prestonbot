@@ -23,6 +23,7 @@ This application is based on Symfony CarsonBot and aims to help PrestaShop maint
 - [X] Migrate to Symfony 3
 - [X] ~~Delete all useless dependencies and remove `symfony/symfony` metapackage~~ (no need thanks to Nicolas Grekas)
 - [X] Mailing system
+- [ ] **Change and delete all used GitHub tokens** before put repository in open source
 
 
 ## How to install ?

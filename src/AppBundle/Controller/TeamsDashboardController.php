@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 class TeamsDashboardController extends Controller
 {
     /**
-     * @Route("/dashboard/teams")
+     * @Route("/dashboard/teams2")
      * @Cache(expires="tomorrow", public=true)
      */
     public function indexAction()
