@@ -1,7 +1,10 @@
+imports:
+    - { resource: services.yml }
+    
 parameters:
     enable_labels: true
     # token generated from a fake account
-    github_token: dc3541f1283279b880f9a733fbb3dd90e48b2fcf
+    github_token: 37663333636223bcc2a22e0810d0b59df9539384
     repository_username: mickaelandrieu
     repository_name: test-modobot
 
@@ -11,9 +14,6 @@ parameters:
     mailer_user: null
     mailer_password: null
     
-imports:
-    - { resource: services.yml }
-
 services:
     app.status_api:
         class: Tests\AppBundle\Issues\NullStatusApi

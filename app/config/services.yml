@@ -113,7 +113,7 @@ services:
 
 # Reporters
 
-    app.pull_request.reporter:
+    app.pull_requests.reporter:
         class: AppBundle\PullRequests\Reporter
         arguments: ['@app.pull_request.repository']
 

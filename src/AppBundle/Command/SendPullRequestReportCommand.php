@@ -24,7 +24,7 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
     {
         $io = new SymfonyStyle($input, $output);
         $groups = $this->getContainer()->getParameter('recipients');
-        $reporter = $this->getContainer()->get('app.pull_request.reporter');
+        $reporter = $this->getContainer()->get('app.pull_requests.reporter');
         $mailer = $this->getContainer()->get('app.mailer');
         $nbMails = 0;
 

@@ -26,4 +26,16 @@ parameters:
     repository_name: PrestaShop
 
     # mail used to send every notification
-    admin_mail: admin@prestashop.com
+        admin_mail: mickael.andrieu@prestashop.com
+    
+    # list of recipients for mail notifications
+    recipients:
+        'waiting for code review':
+            - waiting_code_review@prestashop.com
+        'waiting for QA feedback':
+            - foo@prestashop.com
+            - bar@prestashop.com
+            - baz@prestashop.com
+        'waiting for PM feedback':
+            - waiting_for_pm@prestashop.com
+
