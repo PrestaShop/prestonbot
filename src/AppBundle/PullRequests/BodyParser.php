@@ -40,8 +40,8 @@ class BodyParser
     }
 
     /**
-     * @Assert\Choice(choices = {"feature", "improvement", "fix"},
-     * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`.")
+     * @Assert\Choice(choices = {"feature", "improvement", "fix", "refacto"},
+     * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`, `refacto`.")
      */
     public function getType()
     {
@@ -50,6 +50,11 @@ class BodyParser
         return $this->extractWithRegex($regex);
     }
 
+    /**
+     * @Assert\Choice(choices = {"FO", "BO", "CO", "IN", "TE", "WS"},
+     * message = "The `category` should be one of: `FO`, `BO`, `CO`, `IN`, `TE`, `WS`"
+     * )
+     */
     public function getCategory()
     {
         $regex = "/(\|[[:space:]]Category\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
