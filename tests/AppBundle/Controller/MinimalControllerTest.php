@@ -35,7 +35,7 @@ class MinimalControllerTest extends WebTestCase
 
     public function testTeamsDashboardOk()
     {
-        $this->client->request('GET', '/dashboard/teams2');
+        $this->client->request('GET', '/dashboard/teams');
         $response = $this->client->getResponse();
 
         $this->assertEquals(200, $response->getStatusCode());
