@@ -74,6 +74,11 @@ class WebhookControllerTest extends WebTestCase
                 ],
             ],
         ];
+        $tests[] = [
+            'pull_request',
+            'wrong_repository.pull_request.json',
+            []
+        ];
 
         return $tests;
     }

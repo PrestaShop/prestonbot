@@ -28,7 +28,9 @@ class WebhookController extends Controller
         $event = $this->get('app.webhook_resolver')->resolve($data);
         $githubEvent = new GitHubEvent($event::name(), $event);
 
-        if ($event instanceof ActionableEventInterface) {
+        if ($event instanceof ActionableEventInterface &&
+            $this->isValid($event)
+        ) {
             $eventName = strtolower($event::name()).'_'.$event->getAction();
 
             $this->get('event_dispatcher')->dispatch($eventName, $githubEvent);
@@ -36,5 +38,18 @@ class WebhookController extends Controller
         }
 
         return new JsonResponse($responseData);
+    }
+    
+    /**
+     * @todo: create a custom validation rule instead and log error
+     */
+    private function isValid(ActionableEventInterface $event)
+    {
+        $repository = $event->getRepository();
+        list($repositoryUsername, $repositoryName) = explode('/', $repository->getFullName());
+        
+        return $repositoryUsername === $this->getParameter('repository_username') &&
+            $repositoryName === $this->getParameter('repository_name')
+        ;
     }
 }
