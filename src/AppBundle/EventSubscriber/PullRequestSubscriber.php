@@ -32,21 +32,34 @@ class PullRequestSubscriber implements EventSubscriberInterface
     public function initLabels(GitHubEvent $githubEvent)
     {
         $event = $githubEvent->getEvent();
-        $this->container
-            ->get('app.issue_listener')
-            ->handlePullRequestCreatedEvent($event->pullRequest->getNumber())
-        ;
 
-        $githubEvent->addStatus([
-            'event' => 'pr_opened',
-            'action' => 'labels initialized',
-            ])
-        ;
+        if (true === $this->container->getParameter('enable_labels')) {
+            $this->container
+                ->get('app.issue_listener')
+                ->handlePullRequestCreatedEvent($event->pullRequest->getNumber())
+            ;
+
+            $githubEvent->addStatus([
+                'event' => 'pr_opened',
+                'action' => 'labels initialized',
+                ])
+            ;
+        }
     }
 
     public function checkForTableDescription(GitHubEvent $githubEvent)
     {
         $event = $githubEvent->getEvent();
+        $pullRequest = $event->pullRequest;
+
+        if (
+            'closed' === $pullRequest->getState() ||
+            (null !== $pullRequest->isMerged() && true === $pullRequest->isMerged())
+
+        ) {
+            return;
+        }
+
         $this->container
             ->get('app.pullrequest_listener')
             ->checkForDescription($event->pullRequest, $event->pullRequest->getCommitSha())
