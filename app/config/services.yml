@@ -21,6 +21,10 @@ services:
         class: Github\Api\Issue
         factory: ['@app.github.client', api]
         arguments: [issue]
+    
+    app.github.comments_api:
+        class: Github\Api\Issue\Comments
+        factory: ['@app.github.issues_api', comments]
 
     app.github.pullrequests_api:
         class: Github\Api\PullRequest
@@ -54,7 +58,7 @@ services:
     app.comment_api:
         class: AppBundle\Comments\CommentApi
         arguments:
-            - '@app.github.issues_api'
+            - '@app.github.comments_api'
             - '%repository_username%'
             - '%repository_name%'
             - '@twig'

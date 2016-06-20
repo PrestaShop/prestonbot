@@ -2,7 +2,7 @@
 
 namespace AppBundle\Comments;
 
-use Github\Api\Issue;
+use Github\Api\Issue\Comments as KnpCommentApi;
 use Lpdigital\Github\Entity\PullRequest;
 use Twig_Environment;
 
@@ -12,9 +12,9 @@ use Twig_Environment;
 class CommentApi
 {
     /**
-     * @var Issue
+     * @var KnpCommentApi
      */
-    private $issue;
+    private $knpCommentApi;
 
     /**
      * @var string
@@ -31,9 +31,9 @@ class CommentApi
      */
     private $twig;
 
-    public function __construct(Issue $issue, $repositoryUsername, $repositoryName, Twig_Environment $twig)
+    public function __construct(KnpCommentApi $knpCommentApi, $repositoryUsername, $repositoryName, Twig_Environment $twig)
     {
-        $this->issue = $issue;
+        $this->knpCommentApi = $knpCommentApi;
         $this->repositoryUsername = $repositoryUsername;
         $this->repositoryName = $repositoryName;
         $this->twig = $twig;
@@ -41,8 +41,7 @@ class CommentApi
 
     public function send(PullRequest $pullRequest, $comment)
     {
-        $this->issue
-            ->comments()
+        $this->knpCommentApi
             ->create(
                 $this->repositoryUsername,
                 $this->repositoryName,
@@ -56,8 +55,7 @@ class CommentApi
     public function sendWithTemplate(PullRequest $pullRequest, $templateName, $params)
     {
         $comment = $this->twig->render($templateName, $params);
-        $this->issue
-            ->comments()
+        $this->knpCommentApi
             ->create(
                 $this->repositoryUsername,
                 $this->repositoryName,
