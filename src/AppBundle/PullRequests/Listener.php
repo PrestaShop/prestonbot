@@ -2,7 +2,7 @@
 
 namespace AppBundle\PullRequests;
 
-use AppBundle\Comments\GitHubCommentApi;
+use AppBundle\Comments\CommentApi;
 use Lpdigital\Github\Entity\PullRequest;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -14,7 +14,7 @@ class Listener
     private $commentApi;
     private $validator;
 
-    public function __construct(GitHubCommentApi $commentApi, ValidatorInterface $validator)
+    public function __construct(CommentApi $commentApi, ValidatorInterface $validator)
     {
         $this->commentApi = $commentApi;
         $this->validator = $validator;
@@ -26,7 +26,7 @@ class Listener
 
         $validationErrors = $this->validator->validate($bodyParser);
         if (count($validationErrors) > 0) {
-            $this->commentApi->sendTemplate($pullRequest, 'markdown/pr_table_errors.md.twig', ['errors' => $validationErrors]);
+            $this->commentApi->sendWithTemplate($pullRequest, 'markdown/pr_table_errors.md.twig', ['errors' => $validationErrors]);
         }
     }
 }
