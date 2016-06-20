@@ -26,7 +26,7 @@ parameters:
     repository_name: PrestaShop
 
     # mail used to send every notification
-        admin_mail: mickael.andrieu@prestashop.com
+    admin_mail: mickael.andrieu@prestashop.com
     
     # list of recipients for mail notifications
     recipients:
