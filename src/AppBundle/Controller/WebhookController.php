@@ -39,7 +39,7 @@ class WebhookController extends Controller
 
         return new JsonResponse($responseData);
     }
-    
+
     /**
      * @todo: create a custom validation rule instead and log error
      */
@@ -47,7 +47,7 @@ class WebhookController extends Controller
     {
         $repository = $event->getRepository();
         list($repositoryUsername, $repositoryName) = explode('/', $repository->getFullName());
-        
+
         return $repositoryUsername === $this->getParameter('repository_username') &&
             $repositoryName === $this->getParameter('repository_name')
         ;

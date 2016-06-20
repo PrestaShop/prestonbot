@@ -12,12 +12,18 @@ class WebhookControllerTest extends WebTestCase
     public function testIssueComment($eventHeader, $payloadFilename, $expectedResponse)
     {
         $client = $this->createClient();
+        $client->enableProfiler();
+        $errorsMessage = null;
+
         $body = file_get_contents(__DIR__.'/../webhook_examples/'.$payloadFilename);
         $client->request('POST', '/webhooks/github', [], [], ['HTTP_X-Github-Event' => $eventHeader], $body);
         $response = $client->getResponse();
 
+        if ($profile = $client->getProfile()) {
+            $errorsMessage = $this->handleExceptionFromCollector($profile);
+        }
         $responseData = json_decode($response->getContent(), true);
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode(), $errorsMessage);
 
         // a weak sanity check that we went down "the right path" in the controller
         $this->assertEquals($expectedResponse, $responseData);
@@ -77,9 +83,21 @@ class WebhookControllerTest extends WebTestCase
         $tests[] = [
             'pull_request',
             'wrong_repository.pull_request.json',
-            []
+            [],
         ];
 
         return $tests;
+    }
+
+    private function handleExceptionFromCollector($profile)
+    {
+        $exception = $profile->getCollector('exception');
+        $trace = current($exception->getTrace());
+        $formatter = new OutputFormatter();
+
+        return $exception->getMessage()
+            .' in '.$trace['file']
+            .'(line '.$trace['line'].')'
+        ;
     }
 }
