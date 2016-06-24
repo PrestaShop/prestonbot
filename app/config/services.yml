@@ -41,6 +41,11 @@ services:
         factory: ['@app.github.client', api]
         arguments: [organization]
 
+    app.github.search_api:
+        class: Github\Api\Search
+        factory: ['@app.github.client', api]
+        arguments: [search]
+
     app.github.labels_api:
         class: Github\Api\Issue\Labels
         factory: ['@app.github.issues_api', labels]
@@ -100,7 +105,7 @@ services:
 
     app.pull_request.repository:
         class: AppBundle\PullRequests\Repository
-        arguments: ['@app.github.issues_api', '%repository_username%', '%repository_name%']
+        arguments: ['@app.search.repository']
     
     app.repository_repository:
         class: AppBundle\Repositories\Repository
@@ -114,6 +119,10 @@ services:
         arguments:
             - '@app.github.organizations_api'
             - '%repository_username%'
+
+    app.search.repository:
+        class: AppBundle\Search\Repository
+        arguments: ['@app.github.search_api', '%repository_username%', '%repository_name%']
 
 # Reporters
 

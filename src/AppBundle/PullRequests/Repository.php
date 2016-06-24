@@ -2,67 +2,48 @@
 
 namespace AppBundle\PullRequests;
 
-use Github\Api\Issue;
+use AppBundle\Search\Repository as SearchRepository;
 use Lpdigital\Github\Entity\PullRequest;
 
 /**
  * Get the pull requests according to some filters
  * As GitHub consider pull requests as specific issues
  * don't be surprised too much by the produced repository.
- *
- * @doc https://github.com/KnpLabs/php-github-api/blob/master/doc/issues.md
  */
 class Repository
 {
-    private $issueApi;
-    private $repositoryUsername;
-    private $repositoryName;
+    private $searchRepository;
 
-    public function __construct(Issue $issueApi, $repositoryUsername, $repositoryName)
+    public function __construct(SearchRepository $searchRepository)
     {
-        $this->issueApi = $issueApi;
-        $this->repositoryUsername = $repositoryUsername;
-        $this->repositoryName = $repositoryName;
+        $this->searchRepository = $searchRepository;
     }
 
-    public function findAll()
+    public function findAll($base = 'develop')
     {
         $pullRequests = [];
-        $issues = $this->issueApi->all($this->repositoryUsername, $this->repositoryName, []);
+        $search = $this->searchRepository->getPullRequests(['base' => $base]);
 
-        /* @doc https://developer.github.com/v3/pulls/#labels-assignees-and-milestones */
-        foreach ($issues as $issue) {
-            if (isset($issue['pull_request'])) {
-                $pullRequests[] = PullRequest::createFromData($issue);
-            }
+        foreach ($search['items'] as $pullRequest) {
+            $pullRequests[] = PullRequest::createFromData($pullRequest);
         }
 
         return $pullRequests;
     }
 
-    public function findAllWithTag($tag)
+    public function findAllWithLabel($label, $base = 'develop')
     {
         $pullRequests = [];
-        $issues = $this->issueApi->all($this->repositoryUsername, $this->repositoryName, ['labels' => $tag]);
+        $search = $this->searchRepository->getPullRequests(
+            [
+                'label' => $this->parseLabel($label),
+                'base' => $base,
 
-        foreach ($issues as $issue) {
-            if (isset($issue['pull_request'])) {
-                $pullRequests[] = PullRequest::createFromData($issue);
-            }
-        }
+            ]
+        );
 
-        return $pullRequests;
-    }
-
-    public function findAllWithTags($tags)
-    {
-        $pullRequests = [];
-        $issues = $this->issueApi->all($this->repositoryUsername, $this->repositoryName, ['labels' => implode(',', $tags)]);
-
-        foreach ($issues as $issue) {
-            if (isset($issue['pull_request'])) {
-                $pullRequests[] = PullRequest::createFromData($issue);
-            }
+        foreach ($search['items'] as $pullRequest) {
+            $pullRequests[] = PullRequest::createFromData($pullRequest);
         }
 
         return $pullRequests;
@@ -73,5 +54,10 @@ class Repository
         throw new \Exception('Need to be done');
 
         return [];
+    }
+
+    private function parseLabel($label)
+    {
+        return '"'.$label.'"';
     }
 }

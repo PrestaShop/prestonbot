@@ -40,7 +40,7 @@ according to **PrestaShop** standards.
 ## How to test ?
 
 ```bash
-./vendor/bin/phpunit
+./vendor/bin/phpunit --exclude-group=GitHub
 ```
 
 ## Our standards ?

@@ -14,8 +14,15 @@ class PullRequestsDashboardController extends Controller
      */
     public function indexAction()
     {
-        $report = $this->get('app.pull_requests.reporter')->reportActivity();
+        $reporter = $this->get('app.pull_requests.reporter');
+        $reports = [
+            'develop' => $reporter->reportActivity('develop'),
+            'legacy (1.6.1.x)' => $reporter->reportActivity('1.6.1.x'),
+        ];
 
-        return $this->render('default/pull_requests.html.twig', $report);
+        return $this->render('default/pull_requests.html.twig', [
+            'reports' => $reports,
+            ]
+        );
     }
 }

@@ -2,9 +2,7 @@
 
 namespace tests\AppBundle\PullRequests;
 
-use Lpdigital\Github\Entity\PullRequest;
 use AppBundle\PullRequests\Repository;
-use Github\Api\Issue;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
@@ -15,18 +13,13 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $issueApiMock = $this->getMockBuilder(Issue::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['all'])
-            ->getMock()
+        $searchMock = $this->createMock('AppBundle\Search\Repository');
+
+        $searchMock->method('getPullRequests')
+            ->will($this->returnCallback([$this, 'generateExpectedArray']))
         ;
 
-        /* the mock will return response from fixtures */
-        $issueApiMock->method('all')
-            ->will($this->returnCallback([$this, 'generateExpectedGitHubResponse']))
-        ;
-
-        $this->repository = new Repository($issueApiMock, 'fakeUsername', 'fakeName');
+        $this->repository = new Repository($searchMock);
     }
 
     public function tearDown()
@@ -34,50 +27,38 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->repository = null;
     }
 
-    public function generateExpectedGitHubResponse($repositoryUsername, $repositoryName, $args)
+    public function generateExpectedArray($filters)
     {
-        if ([] === $args) {
-            $filename = 'all_prs.json';
-        } elseif (isset($args['labels']) && 'bug' === $args['labels']) {
-            $filename = 'one_label_prs.json';
-        } elseif (isset($args['labels']) && 'bug,question' === $args['labels']) {
-            $filename = 'labels_prs.json';
+        if (isset($filters['label'])) {
+            $filename = 'search_repository_one_label.json';
         } else {
-            $filename = 'waiting_prs.json'; // not implemented yet
+            $filename = 'search_repository_all.json';
         }
 
         $fileContent = file_get_contents(__DIR__.'/../webhook_examples/'.$filename);
 
-        return json_decode($fileContent, true);
+        return [
+            'count' => 0,
+            'incomplete_results' => false,
+            'items' => json_decode($fileContent, true),
+        ];
     }
 
     public function testFindAll()
     {
-        /* 8 pull requests expected */
         $pullRequests = $this->repository->findAll();
-        $this->makeMinimalTests($pullRequests);
-        $this->assertCount(8, $pullRequests, 'Repository:findAll() should return 8 pull requests.');
+        $this->minimalTests($pullRequests);
     }
 
-    public function testFindAllWithTag()
+    public function testFindAllWithLabel()
     {
-        /* only one pull request labelized with `bug` entry */
-        $pullRequests = $this->repository->findAllWithTag('bug');
-        $this->makeMinimalTests($pullRequests);
-        $this->assertCount(1, $pullRequests, 'There is only 1 pull request with `bug` label.');
+        $pullRequests = $this->repository->findAllWithLabel('waiting for code review');
+        $this->minimalTests($pullRequests);
     }
 
-    public function testFindAllWithTags()
+    public function minimalTests($pullRequests)
     {
-        /* then, 2 pull requests with both `bug` and `question` labels */
-        $pullRequests = $this->repository->findAllWithTags(['bug', 'question']);
-        $this->makeMinimalTests($pullRequests);
-        $this->assertCount(2, $pullRequests, 'There are 3 pull requests with both `bug` and `question` labels.');
-    }
-
-    private function makeMinimalTests($pullRequests)
-    {
-        $this->assertInternalType('array', $pullRequests, 'The repository is expected to return an array.');
-        $this->assertInstanceOf(PullRequest::class, $pullRequests[0], 'And it is an array of PullRequest objects.');
+        $this->assertInternalType('array', $pullRequests);
+        $this->assertInstanceOf('Lpdigital\Github\Entity\PullRequest', $pullRequests[0]);
     }
 }

@@ -14,12 +14,12 @@ class Reporter
         $this->repository = $repository;
     }
 
-    public function reportActivity()
+    public function reportActivity($base = 'develop')
     {
-        $toBeCodeReviewed = $this->findAll(Labels::WAITING_FOR_CODE_REVIEW);
-        $toBeQAFeedback = $this->findAll(Labels::WAITING_FOR_QA_FEEDBACK);
-        $toBePMFeedback = $this->findAll(Labels::WAITING_FOR_PM_FEEDBACK);
-        $silentContribs = $this->findAll('');
+        $toBeCodeReviewed = $this->findAll(Labels::WAITING_FOR_CODE_REVIEW, $base);
+        $toBeQAFeedback = $this->findAll(Labels::WAITING_FOR_QA_FEEDBACK, $base);
+        $toBePMFeedback = $this->findAll(Labels::WAITING_FOR_PM_FEEDBACK, $base);
+        $silentContribs = $this->findAll('', $base);
 
         return [
             'waitingForCodeReviewsContribs' => $toBeCodeReviewed,
@@ -29,8 +29,8 @@ class Reporter
         ];
     }
 
-    private function findAll($tagName)
+    private function findAll($tagName, $base)
     {
-        return $this->repository->findAllWithTag($tagName);
+        return $this->repository->findAllWithLabel($tagName, $base);
     }
 }
