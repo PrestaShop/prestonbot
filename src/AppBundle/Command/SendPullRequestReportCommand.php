@@ -3,6 +3,7 @@
 namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -12,17 +13,26 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class SendPullRequestReportCommand extends ContainerAwareCommand
 {
+    const DEFAULT_BRANCH = 'develop';
+    
     protected function configure()
     {
         $this
             ->setName('pull_request:report:send_mail')
             ->setDescription('Send pull requests by tag report mails.')
+            ->addArgument(
+                'branch',
+                InputArgument::OPTIONAL,
+                'Select branch (`develop` by default)'
+            )
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
+        $branch = $input->getArgument('branch') ? $input->getArgument('branch') : self::DEFAULT_BRANCH;
+        
         $groups = $this->getContainer()->getParameter('recipients');
         $reporter = $this->getContainer()->get('app.pull_requests.reporter');
         $mailer = $this->getContainer()->get('app.mailer');
@@ -41,7 +51,7 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
                         $this->getContainer()->getParameter('admin_mail'),
                         $groupMember,
                         'mail/pr_sumup_for_mail.html.twig',
-                        $reporter->reportActivity()
+                        $reporter->reportActivity($branch)
                     );
                 }
             }
