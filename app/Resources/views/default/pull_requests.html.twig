@@ -9,23 +9,25 @@
 
                 <h1>Pull requests Dashboard</h1>
 
-                <h2>This is a list of remaining pull requests</h2>
-                
-                {% if waitingForCodeReviewsContribs|length > 0 %}
-                    {{ macros.generateList('waiting for code review', waitingForCodeReviewsContribs) }}
-                {% endif %}
-                
-                {% if waitingForQAContribs|length > 0 %}
-                    {{ macros.generateList('waiting for QA review', waitingForQAContribs) }}
-                {% endif %}
-                
-                {% if waitingForPMContribs|length > 0 %}
-                    {{ macros.generateList('waiting for PM review', waitingForPMContribs) }}
-                {% endif %}
-                
-                {% if silentContribs|length > 0 %}
-                    {{ macros.generateList('silent pull requests', silentContribs) }}
-                {% endif %}
+                {% for reportName, report in reports %}
+                    <h2>List of remaining pull requests for {{ reportName }} branch:</h2>
+
+                    {% if report.waitingForCodeReviewsContribs|length > 0 %}
+                        {{ macros.generateList('waiting for code review', report.waitingForCodeReviewsContribs) }}
+                    {% endif %}
+                    
+                    {% if report.waitingForQAContribs|length > 0 %}
+                        {{ macros.generateList('waiting for QA review', report.waitingForQAContribs) }}
+                    {% endif %}
+                    
+                    {% if report.waitingForPMContribs|length > 0 %}
+                        {{ macros.generateList('waiting for PM review', report.waitingForPMContribs) }}
+                    {% endif %}
+                    
+                    {% if report.silentContribs|length > 0 %}
+                        {{ macros.generateList('silent pull requests', report.silentContribs) }}
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -1,0 +1,2030 @@
+[
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5302",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5302\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5302\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5302\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5302",
+    "id": 145973249,
+    "number": 5302,
+    "title": "(WIP) [*] CORE : Improved DbQuery class + parameterized queries",
+    "user": {
+      "login": "firstred",
+      "id": 6775736,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/6775736?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/firstred",
+      "html_url": "https:\/\/github.com\/firstred",
+      "followers_url": "https:\/\/api.github.com\/users\/firstred\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/firstred\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/firstred\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/firstred\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/firstred\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/firstred\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/firstred\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/firstred\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/firstred\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20L",
+        "name": "Estimate: L",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20rebase",
+        "name": "waiting for rebase",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/WIP",
+        "name": "WIP",
+        "color": "eb6420"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 13,
+    "created_at": "2016-04-05T12:27:37Z",
+    "updated_at": "2016-06-22T13:20:27Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5302",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5302",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5302.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5302.patch"
+    },
+    "body": "## Description\r\nUpgrade the `DbQuery` class with some extra functionality. Based on Doctrine's SQL Query Builder.\r\nIt is 100% compatible with pre-1.7's `DbQuery` and ~90% compatible with Doctrine's SQL Query Builder.\r\n\r\nThe `DbQuery` has been designed in such a way that it is very easy to create SQL templates and add parameters in order to execute parameterized queries.\r\n\r\nParameterized queries can lead to a significant performance improvement and is a great defense against SQL injections.\r\n\r\n`Db::update` and `Db::insert` are automatically parameterized, thus automatically preventing SQL injections and improving performance with repeated queries.\r\n\r\n## How to use it \/ Best practice\r\nCreate an SQL template:\r\n``` PHP\r\n$sql = new DbQuery();\r\n$sql->select('id_product');\r\n$sql->from('product'),\r\n$sql->where('id_product = ? OR id_product = ?');\r\n```\r\nThen set the parameters:\r\n``` PHP\r\n$sql->setParameter(1, Db::TYPE_INTEGER);\r\n$sql->setParameter(2, Db::TYPE_INTEGER);\r\n```\r\nYou can also set the parameters as follows:\r\n``` PHP\r\n$sql->setParameters([1,2], [Db::TYPE_INTEGER, Db::TYPE_INTEGER]);\r\n```\r\nThe order is important. The available types are limited by `MySQLi`'s types.\r\nMore info on (most of) the possibilities can be found here: http:\/\/doctrine-orm.readthedocs.org\/projects\/doctrine-dbal\/en\/latest\/reference\/query-builder.html\r\nThe compatibility and limitations can be found in the PHPDoc comments.\r\n\r\n## Limitations\r\n- PDO's named parameters are not supported, only question mark parameters\r\n- Support for the old `mysql` extension needs to be dropped\r\n\r\n## Steps to Test this Feature\r\n\r\n1. Try a `SELECT` or `DELETE` through `DbQuery`\r\n2. Try to `UPDATE` or `INSERT` with `Db`\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5053",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5053\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5053\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5053\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5053",
+    "id": 135253523,
+    "number": 5053,
+    "title": "[-] CORE: valid orders amount currency fix (PSCSX-7738)",
+    "user": {
+      "login": "Casper-O",
+      "id": 956154,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/956154?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/Casper-O",
+      "html_url": "https:\/\/github.com\/Casper-O",
+      "followers_url": "https:\/\/api.github.com\/users\/Casper-O\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/Casper-O\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/Casper-O\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/Casper-O\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/Casper-O\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/Casper-O\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/Casper-O\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/Casper-O\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/Casper-O\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20bug%20fix",
+        "name": "Type: bug fix",
+        "color": "e11d21"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 3,
+    "created_at": "2016-02-21T20:19:52Z",
+    "updated_at": "2016-06-21T08:26:08Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5053",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5053",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5053.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5053.patch"
+    },
+    "body": "If a shop is multi-currency and customer pays in an other than the default, the valid orders amount is displaying the amount with default currency ISO code.\r\n\r\n1. customer pays 100 EURO, default store currency is DKK = displaying customers valid order is worth 100 DKK, instead of 100 EURO - since stores can have many currencies i figured out it was best to convert the orders back to the default currency instead of guessing the most valid currency for each customer\r\n\r\nForge ticket: http:\/\/forge.prestashop.com\/browse\/PSCSX-7738",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5583",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5583\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5583\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5583\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5583",
+    "id": 155351215,
+    "number": 5583,
+    "title": "The maintenance text can be customized from the back-office",
+    "user": {
+      "login": "kpodemski",
+      "id": 2137763,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/2137763?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/kpodemski",
+      "html_url": "https:\/\/github.com\/kpodemski",
+      "followers_url": "https:\/\/api.github.com\/users\/kpodemski\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/kpodemski\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/kpodemski\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/kpodemski\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/kpodemski\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/kpodemski\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/kpodemski\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/kpodemski\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/kpodemski\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/PM-approved",
+        "name": "PM-approved",
+        "color": "009800"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 30,
+    "created_at": "2016-05-17T20:16:20Z",
+    "updated_at": "2016-06-20T21:22:50Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5583",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5583",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5583.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5583.patch"
+    },
+    "body": "<!-- Thank you for contributing to the PrestaShop project! \r\n\r\nPlease take the time to edit the \"Answers\" rows with the necessary information:-->\r\n\r\n| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | Possibility to set custom maintenance text from back-office\r\n| Type?         | improvement\r\n| Category?     | BO\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| Fixed ticket? | n\/a\r\n| How to test?  | Set text in BO, check maintenance page while shop is turned off",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4510",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4510\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4510\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4510\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4510",
+    "id": 118428262,
+    "number": 4510,
+    "title": "[*] CORE : Redis cache manager",
+    "user": {
+      "login": "Mooty13",
+      "id": 3109820,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/3109820?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/Mooty13",
+      "html_url": "https:\/\/github.com\/Mooty13",
+      "followers_url": "https:\/\/api.github.com\/users\/Mooty13\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/Mooty13\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/Mooty13\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/Mooty13\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/Mooty13\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/Mooty13\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/Mooty13\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/Mooty13\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/Mooty13\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20L",
+        "name": "Estimate: L",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20tests%20to%20pass",
+        "name": "waiting for tests to pass",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20wording",
+        "name": "waiting for wording",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 4,
+    "created_at": "2015-11-23T17:17:39Z",
+    "updated_at": "2016-06-20T16:01:45Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/4510",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4510",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4510.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4510.patch"
+    },
+    "body": "# Redis Cache in Prestashop\r\n\r\n## What ?\r\nWe want to implement a reliable way to use Redis Cache into Prestashop. There is a PECL package for PHP which is old enough now to be reliable in production.\r\n\r\n## Why ?\r\nRedis is faster, less restrictive, reliable and stable.\r\n(see here for more technical infos : http:\/\/stackoverflow.com\/questions\/10558465\/memcached-vs-redis)\r\n\r\n## How ?\r\nInclude it aside of Memcached, APC and file system cache already included in Prestashop.\r\nLike @firstred did on his own plugin, as it's done with Memcached, we should also implement multi-server redis feature. \r\nLocalhost should also be specified by default.\r\n\r\n\r\n# TODO \r\n- New SQL DB for Multi server ( @xBorderie this is the point where we need help indications )\r\n- Form in controllers\/admin\/AdminPerformanceController.php\r\n- Multi server in classes\/cache\/CacheRedis.php > Following @firstred proposal\r\n- Speficy and test localhost first",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5177",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5177\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5177\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5177\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5177",
+    "id": 140201014,
+    "number": 5177,
+    "title": "\/\/ Security CSRF tokens sf #BOOM-206",
+    "user": {
+      "login": "xGouley",
+      "id": 12794114,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/12794114?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/xGouley",
+      "html_url": "https:\/\/github.com\/xGouley",
+      "followers_url": "https:\/\/api.github.com\/users\/xGouley\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/xGouley\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/xGouley\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/xGouley\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/xGouley\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/xGouley\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/xGouley\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/xGouley\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/xGouley\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20L",
+        "name": "Estimate: L",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/POC",
+        "name": "POC",
+        "color": "eb6420"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/WIP",
+        "name": "WIP",
+        "color": "eb6420"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2016-03-11T14:45:13Z",
+    "updated_at": "2016-06-20T16:01:33Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5177",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5177",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5177.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5177.patch"
+    },
+    "body": "",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4746",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4746\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4746\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4746\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4746",
+    "id": 127839901,
+    "number": 4746,
+    "title": "[*] CORE : Remove migrate jquery plugin",
+    "user": {
+      "login": "gRoussac",
+      "id": 3099551,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/3099551?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/gRoussac",
+      "html_url": "https:\/\/github.com\/gRoussac",
+      "followers_url": "https:\/\/api.github.com\/users\/gRoussac\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/gRoussac\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/gRoussac\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/gRoussac\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/gRoussac\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/gRoussac\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/gRoussac\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/gRoussac\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/gRoussac\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2016-01-21T03:57:54Z",
+    "updated_at": "2016-06-20T16:01:18Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/4746",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4746",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4746.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4746.patch"
+    },
+    "body": "",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4020",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4020\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4020\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4020\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4020",
+    "id": 107019270,
+    "number": 4020,
+    "title": "Add customization fields when adding a product on order",
+    "user": {
+      "login": "maximebiloe",
+      "id": 2203436,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/2203436?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/maximebiloe",
+      "html_url": "https:\/\/github.com\/maximebiloe",
+      "followers_url": "https:\/\/api.github.com\/users\/maximebiloe\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/maximebiloe\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/maximebiloe\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/maximebiloe\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/maximebiloe\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/maximebiloe\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/maximebiloe\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/maximebiloe\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/maximebiloe\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20bug%20fix",
+        "name": "Type: bug fix",
+        "color": "e11d21"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2015-09-17T16:09:50Z",
+    "updated_at": "2016-06-20T15:17:41Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/4020",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4020",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4020.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4020.patch"
+    },
+    "body": "| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | Add customization fields when adding a product on order\r\n| Type?         |  new feature\r\n| Category?     | BO \r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| How to test it ? | Just open an existing order and try to add a product with customization\r\n\r\n\r\n\r\nhttp:\/\/forge.prestashop.com\/browse\/PSCSX-5851\r\n\r\nRelated to #3636 ",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4335",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4335\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4335\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4335\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4335",
+    "id": 113246494,
+    "number": 4335,
+    "title": "[+] BO : PSCSX-7124 Added ParcelDelivery Gmail markup to the in_transit email.",
+    "user": {
+      "login": "pierreavizou",
+      "id": 7101583,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/7101583?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/pierreavizou",
+      "html_url": "https:\/\/github.com\/pierreavizou",
+      "followers_url": "https:\/\/api.github.com\/users\/pierreavizou\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/pierreavizou\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/pierreavizou\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/pierreavizou\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/pierreavizou\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/pierreavizou\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/pierreavizou\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/pierreavizou\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/pierreavizou\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20L",
+        "name": "Estimate: L",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/PM-approved",
+        "name": "PM-approved",
+        "color": "009800"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 14,
+    "created_at": "2015-10-25T19:37:14Z",
+    "updated_at": "2016-06-20T14:38:15Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/4335",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4335",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4335.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4335.patch"
+    },
+    "body": "Tracking and order content information will show in customers' Gmail, Inbox and Google Now for Google whitelisted merchants. See https:\/\/developers.google.com\/gmail\/markup\/overview ",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4342",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4342\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4342\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/4342\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4342",
+    "id": 113580453,
+    "number": 4342,
+    "title": "[*] CORE: Allow rel=\"nofollow\" in anchors",
+    "user": {
+      "login": "gskema",
+      "id": 5542423,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/5542423?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/gskema",
+      "html_url": "https:\/\/github.com\/gskema",
+      "followers_url": "https:\/\/api.github.com\/users\/gskema\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/gskema\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/gskema\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/gskema\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/gskema\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/gskema\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/gskema\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/gskema\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/gskema\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/PM-approved",
+        "name": "PM-approved",
+        "color": "009800"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20rebase",
+        "name": "waiting for rebase",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 4,
+    "created_at": "2015-10-27T13:12:39Z",
+    "updated_at": "2016-06-20T14:32:51Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/4342",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4342",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4342.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/4342.patch"
+    },
+    "body": "People who are doing SEO optimization need to have this.",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5044",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5044\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5044\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5044\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5044",
+    "id": 134814641,
+    "number": 5044,
+    "title": "[-] CORE : Fixed bug while updating ObjectModel::update() for all shops context",
+    "user": {
+      "login": "creaweb06",
+      "id": 987970,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/987970?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/creaweb06",
+      "html_url": "https:\/\/github.com\/creaweb06",
+      "followers_url": "https:\/\/api.github.com\/users\/creaweb06\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/creaweb06\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/creaweb06\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/creaweb06\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/creaweb06\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/creaweb06\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/creaweb06\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/creaweb06\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/creaweb06\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Context:%20multistore",
+        "name": "Context: multistore",
+        "color": "f7c6c7"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20bug%20fix",
+        "name": "Type: bug fix",
+        "color": "e11d21"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20author%20feedback",
+        "name": "waiting for author feedback",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 12,
+    "created_at": "2016-02-19T09:28:01Z",
+    "updated_at": "2016-06-20T13:38:15Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5044",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5044",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5044.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5044.patch"
+    },
+    "body": "When saving changes in all shops context, and have no checkbox checked, it replaces all values in all shops.\r\nThis fix this bug.",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5664",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5664\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5664\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5664\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5664",
+    "id": 157176715,
+    "number": 5664,
+    "title": "CO: Add an option allowing no padding to resize function (ImageManager).",
+    "user": {
+      "login": "e-gaulue",
+      "id": 4291874,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/4291874?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/e-gaulue",
+      "html_url": "https:\/\/github.com\/e-gaulue",
+      "followers_url": "https:\/\/api.github.com\/users\/e-gaulue\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/e-gaulue\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/e-gaulue\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/e-gaulue\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/e-gaulue\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/e-gaulue\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/e-gaulue\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/e-gaulue\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/e-gaulue\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2016-05-27T10:28:09Z",
+    "updated_at": "2016-06-17T15:18:21Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5664",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5664",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5664.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5664.patch"
+    },
+    "body": "<!-- Thank you for contributing to the PrestaShop project! \r\n\r\nPlease take the time to edit the \"Answers\" rows with the necessary information:-->\r\n\r\n| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | Add an option to use the fonction resize of ImageManager to resize a image with no padding. In this case, it just tries to get the best width\/height keeping ratio.\r\n| Type?         | improvement\r\n| Category?     | CO\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| Fixed ticket? | no\r\n| How to test?  | Change function call in _regenerateNewImages of AdminImagesController with this option set to true. Then from the BO regenerate all product images with thickbox_default set to 700x700. You'll see pictures won't be 700x700 but 700 x n or m x 700 with no padding.  \r\n\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5114",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5114\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5114\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5114\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5114",
+    "id": 137892800,
+    "number": 5114,
+    "title": "[*] On-the-fly image resizing OK with php-fpm + apache",
+    "user": {
+      "login": "djfm",
+      "id": 1460499,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/1460499?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/djfm",
+      "html_url": "https:\/\/github.com\/djfm",
+      "followers_url": "https:\/\/api.github.com\/users\/djfm\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/djfm\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/djfm\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/djfm\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/djfm\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/djfm\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/djfm\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/djfm\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/djfm\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20bug%20fix",
+        "name": "Type: bug fix",
+        "color": "e11d21"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20test",
+        "name": "waiting for test",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2016-03-02T14:48:16Z",
+    "updated_at": "2016-06-17T13:38:08Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5114",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5114",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5114.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5114.patch"
+    },
+    "body": "The travis tests made me realize that we have 404's on all images with the apache + php-fpm setup.\r\n\r\nThis fixes it on apache + php-fpm.\r\n\r\nSince this part of the code is a bit complicated, I'd like to confirm that images are not broken on:\r\n\r\n- [ ] apache + php-fpm \/ with URL rewriting\r\n- [x] apache + php-fpm \/ no URL rewriting\r\n- [x] apache + mod php \/ with URL rewriting\r\n- [ ] apache + mod php \/ no URL rewriting\r\n- [ ] nginx \/ with URL rewriting\r\nrewriting\r\n- [ ] <s>nginx \/ no URL rewriting<\/s>\r\n\r\nCan anybody check it out?\r\n\r\nThe tests consist in removing all images from img\/, then installing PrestaShop and seeing if front-end images are OK.",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5615",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5615\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5615\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5615\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5615",
+    "id": 156244389,
+    "number": 5615,
+    "title": "WS: Add ability to manage Attachments via Webservice",
+    "user": {
+      "login": "Perfecticus",
+      "id": 2196792,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/2196792?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/Perfecticus",
+      "html_url": "https:\/\/github.com\/Perfecticus",
+      "followers_url": "https:\/\/api.github.com\/users\/Perfecticus\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/Perfecticus\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/Perfecticus\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/Perfecticus\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/Perfecticus\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/Perfecticus\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/Perfecticus\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/Perfecticus\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/Perfecticus\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20L",
+        "name": "Estimate: L",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 4,
+    "created_at": "2016-05-23T10:04:58Z",
+    "updated_at": "2016-06-15T15:43:38Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5615",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5615",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5615.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5615.patch"
+    },
+    "body": "| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop (should also be in 1.6.1.x however)\r\n| Description?  | This pull request adds the ability to manage and download Attachments via Webservice. It also adds Attachments associations to Products and reverse (Product association for Attachments).\r\n| Type?         | new feature\r\n| Category?     | WS\r\n| BC breaks?    | No, it's unlikely\r\n| Deprecations? | No\r\n| Fixed ticket? | No tickets, but multiple forum entries concerning this.<br>https:\/\/www.prestashop.com\/forums\/topic\/322464-products-attachments-webservice\/<br>https:\/\/www.prestashop.com\/forums\/topic\/503882-webservice-for-downloading-product-attachments\/<br>https:\/\/www.prestashop.com\/forums\/topic\/430091-webservice-add-product-attachment\/<br>https:\/\/www.prestashop.com\/forums\/topic\/433842-products-attachments-via-web-service-possibile\/<br>https:\/\/www.prestashop.com\/forums\/topic\/275248-api-and-products-attachments\/<br>https:\/\/www.prestashop.com\/forums\/topic\/433666-file-upload-via-web-service\/ <br><br>Probably missed some topics also.\r\n| How to test?  | Use Webservice to add\/update Attachments, check attachment associations for products via webservice. I should probably mention that not all of the functionality added has been thoroughly tested, however I've tested the binary upload and the fetching part of both endpoints.\r\n\r\n## Notes:\r\nThis is one of the essential parts which seem to be missing from PrestaShop in terms of Webservice.\r\nMost other management can already be done through webservice, but Attachments are not handled yet.\r\n\r\nIn order to reuse functionality of WebserviceRequest for the handling of details; i.e. Attachment details handled via xml\/json, some methods and variables of WebserviceRequest requires enhanced visibility in order to be used through the WebserviceSpecificManagementInterface. I can't see how this would not be backwards compatible, but perhaps someone else has more knowledge.\r\n\r\nIn order handle default request for presenting and updating Attachment details, I decided to emulate\r\nsuch a request by unassigning the $objectSpecificManagement within the specific management and later calling the WebserviceRequest default operation.\r\n\r\nVariables\/Methods required to be **public** (WebserviceRequest.php):\r\n_$objectSpecificManagement\r\nreturnOutput()\r\nentityExecutePost()\r\nentityExecutePut()\r\nentityExecuteDelete()_\r\n\r\nThe binary handling of Attachment files has been more or less copied from the AdminAttachmentsController with the addition of some comments.\r\n\r\nFor the specific management part of the addition, I studied the specific management of images and tried to follow its structure for it to seemlessly integrate into the project.\r\n\r\nFurthermore I hope that this could also work its way into the 1.6.1.x branch and releases as I see this as a critical feature that should have been implemented earlier.\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5614",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5614\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5614\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5614\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5614",
+    "id": 156232363,
+    "number": 5614,
+    "title": "FO: Introduce new `hook_block` for Smarty",
+    "user": {
+      "login": "julienbourdeau",
+      "id": 1525636,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/1525636?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/julienbourdeau",
+      "html_url": "https:\/\/github.com\/julienbourdeau",
+      "followers_url": "https:\/\/api.github.com\/users\/julienbourdeau\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/julienbourdeau\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/julienbourdeau\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/julienbourdeau\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/julienbourdeau\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/julienbourdeau\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/julienbourdeau\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/julienbourdeau\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/julienbourdeau\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20L",
+        "name": "Estimate: L",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/POC",
+        "name": "POC",
+        "color": "eb6420"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 7,
+    "created_at": "2016-05-23T09:05:21Z",
+    "updated_at": "2016-06-15T15:43:38Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5614",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5614",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5614.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5614.patch"
+    },
+    "body": "| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | This is a proposal for an improved hook system in Smarty, the point is to have a default behavior that can be overridden by modules.\r\n| Type?         | bug fix \/ improvement \/ new feature\r\n| Category?     | GO\r\n| BC breaks?    | yes. `{hook}` tag will have to be closed\r\n| Deprecations? | no\r\n| How to test?  | Create a module that overrides something! Best example being [Advanced EU Compliance](https:\/\/github.com\/PrestaShop\/advancedeucompliance)\r\n\r\n\r\n### Example\r\n\r\n#### Before\r\n\r\n```smarty\r\n{if $product.ecotax.amount > 0}\r\n  <p class=\"price-ecotax\">{l s='Including %s for ecotax' sprintf=$product.ecotax.value}\r\n    {if $product.has_discount}\r\n      {l s='(not impacted by the discount)'}\r\n    {\/if}\r\n  <\/p>\r\n{\/if}\r\n{hook h='displaySomeExtraInfo' }\r\n```\r\n\r\n#### After\r\n\r\n```smarty\r\n{hook_block h='displayPrice' product=$product type='ecotax' page='product'}\r\n  {if $product.ecotax.amount > 0}\r\n    <p class=\"price-ecotax\">{l s='Including %s for ecotax' sprintf=$product.ecotax.value}\r\n      {if $product.has_discount}\r\n        {l s='(not impacted by the discount)'}\r\n      {\/if}\r\n    <\/p>\r\n  {\/if}\r\n{\/hook_block}\r\n```\r\n\r\nHence you can completely changed what is displayed here and if no modules are hooked we display the default content.\r\n\r\n\r\n### TODO\r\n\r\n- [x] Let theme declare default behavior for any hook\r\n- [x] Automatically generate a _hookBefore_ and _hookAfter_\r\n- [ ] Rename all `{hook_block}` to `{hook}` and close all existing hook tags.\r\n- [ ] Provide command so contributors can easily close their hook tag\r\n- [ ] Make sure hooks cannot modify global scope\r\n\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5531",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5531\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5531\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5531\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5531",
+    "id": 153216874,
+    "number": 5531,
+    "title": "[+]WS : Added new hook for adding new resource in webservice",
+    "user": {
+      "login": "dks295",
+      "id": 3726768,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/3726768?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/dks295",
+      "html_url": "https:\/\/github.com\/dks295",
+      "followers_url": "https:\/\/api.github.com\/users\/dks295\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/dks295\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/dks295\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/dks295\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/dks295\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/dks295\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/dks295\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/dks295\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/dks295\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2016-05-05T11:46:04Z",
+    "updated_at": "2016-06-15T15:43:37Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5531",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5531",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5531.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5531.patch"
+    },
+    "body": "| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | [+]WS : Added new hook for adding new resource in webservice #5529\r\n| Type?         | bug fix\/improvement\/new feature\r\n| Category?     | webservice\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| How to test?  | add new resource in prestashop webservice",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5425",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5425\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5425\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5425\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5425",
+    "id": 149496612,
+    "number": 5425,
+    "title": "[*] WS : Optionally send in-transit email when updating tracking number",
+    "user": {
+      "login": "gerdus",
+      "id": 542625,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/542625?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/gerdus",
+      "html_url": "https:\/\/github.com\/gerdus",
+      "followers_url": "https:\/\/api.github.com\/users\/gerdus\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/gerdus\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/gerdus\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/gerdus\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/gerdus\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/gerdus\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/gerdus\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/gerdus\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/gerdus\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 3,
+    "created_at": "2016-04-19T15:30:55Z",
+    "updated_at": "2016-06-15T15:43:36Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5425",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5425",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5425.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5425.patch"
+    },
+    "body": "| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | Optionally send in-transit email when updating tracking number. Moved the email sending to OrderCarrier from admin order controller in order to accomplish this.\r\n| Type?         | improvement\r\n| Category?     | WS\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| Fixed ticket? | n\/a\r\n| How to test?  |  add sendemail=1 to URL e.g. myshop.com\/api\/order_carriers\/7?sendemail=1 and do a PUT (update)\r\n\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5467",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5467\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5467\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5467\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5467",
+    "id": 150383603,
+    "number": 5467,
+    "title": "Removed unsecure HTTP header entry",
+    "user": {
+      "login": "mickaelandrieu",
+      "id": 1247388,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/1247388?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/mickaelandrieu",
+      "html_url": "https:\/\/github.com\/mickaelandrieu",
+      "followers_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/mickaelandrieu\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2016-04-22T14:26:55Z",
+    "updated_at": "2016-06-15T15:43:36Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5467",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5467",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5467.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5467.patch"
+    },
+    "body": "| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | \r\n| Type?         | bug fix\r\n| Category?     | Security\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| How to test?  | Look into the HTTP headers of a PrestaShop website\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5384",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5384\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5384\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5384\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5384",
+    "id": 148200525,
+    "number": 5384,
+    "title": "[-] BO : Fixed popup when previewing on Product page (#BOOM-451)",
+    "user": {
+      "login": "antho-girard",
+      "id": 2207308,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/2207308?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/antho-girard",
+      "html_url": "https:\/\/github.com\/antho-girard",
+      "followers_url": "https:\/\/api.github.com\/users\/antho-girard\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/antho-girard\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/antho-girard\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/antho-girard\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/antho-girard\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/antho-girard\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/antho-girard\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/antho-girard\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/antho-girard\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2016-04-13T22:25:13Z",
+    "updated_at": "2016-06-15T15:43:36Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5384",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5384",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5384.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5384.patch"
+    },
+    "body": "<!-- Thank you for contributing to the PrestaShop project! -->\r\n\r\nPlease take the time to edit the \"Answers\" rows with the necessary information:\r\n\r\n| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | Prestashop 1.7 (alpha 3) - Firefox\/Chrome. This PR fixes the blocked popup when previewing a product on product page. Browsers didn't considerate the clicking event as \"trusted\" because of ajax async. request\r\n| Type?         | bug fix\r\n| Category?     | BO\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| Fixed ticket? | http:\/\/forge.prestashop.com\/browse\/BOOM-451\r\n| How to test?  | Create or edit an existing product. Then click the preview button. A new blank tab will open and redirect to the product page. \r\n\r\n<!-- Click the form's \"Preview button\" to make sure the table is functional in GitHub. Thank you! -->\r\n\r\n#### Important guidelines\r\n\r\n* Make sure [your local branch is up to date](https:\/\/help.github.com\/articles\/syncing-a-fork\/) before commiting your changes!\r\n* Your code MUST respect [the PSR-2 Coding Style](http:\/\/doc.prestashop.com\/display\/PS16\/Coding+Standards)!\r\n* Your commit MUST respect our [naming convention](http:\/\/doc.prestashop.com\/display\/PS16\/How+to+write+a+commit+message)\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5355",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5355\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5355\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5355\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5355",
+    "id": 147581007,
+    "number": 5355,
+    "title": "[*] TR : Country names from CLDR",
+    "user": {
+      "login": "firstred",
+      "id": 6775736,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/6775736?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/firstred",
+      "html_url": "https:\/\/github.com\/firstred",
+      "followers_url": "https:\/\/api.github.com\/users\/firstred\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/firstred\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/firstred\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/firstred\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/firstred\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/firstred\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/firstred\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/firstred\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/firstred\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 6,
+    "created_at": "2016-04-11T23:06:24Z",
+    "updated_at": "2016-06-15T15:43:35Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5355",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5355",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5355.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5355.patch"
+    },
+    "body": "## Description\r\nWhile checking out CLDR I saw that it contains localized country names as well.\r\nPrestaShop is missing a lot of translations so CLDR also seems to be useful here for country names.\r\nI made a quick 'n dirty Node.js script to generate the translation files: https:\/\/gist.github.com\/firstred\/0b47dac668a520378c788859767a672d\r\n\r\n## Steps to Test this Feature\r\nStep 1. Go to Duolingo\r\nStep 2. Complete every course\r\nStep 3. With your newly gained language skills, check all the country names\r\nOR\r\nStep 1. Check out the gist used for the generation of the files: https:\/\/gist.github.com\/firstred\/0b47dac668a520378c788859767a672d\r\nStep 2. Check if the language codes are mapped correctly\r\nStep 3. Check if all files are correct\r\n\r\nWhichever you prefer \ud83d\ude1c \r\n\r\n\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5360",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5360\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5360\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5360\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5360",
+    "id": 147680214,
+    "number": 5360,
+    "title": "[-] BO : Fix backoffice order with deleted address",
+    "user": {
+      "login": "Shopmonauten",
+      "id": 4729231,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/4729231?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/Shopmonauten",
+      "html_url": "https:\/\/github.com\/Shopmonauten",
+      "followers_url": "https:\/\/api.github.com\/users\/Shopmonauten\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/Shopmonauten\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/Shopmonauten\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/Shopmonauten\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/Shopmonauten\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/Shopmonauten\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/Shopmonauten\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/Shopmonauten\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/Shopmonauten\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20author%20feedback",
+        "name": "waiting for author feedback",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2016-04-12T08:49:42Z",
+    "updated_at": "2016-06-15T15:43:35Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5360",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5360",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5360.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5360.patch"
+    },
+    "body": "If you want to add an order via backoffice and you have chosen an existing customer, his carts and orders are loaded. But if the address of the cart is not existing anymore (marked as deleted), there is no chance to edit it. This code change makes sure, that an existing backup address is loaded properly.",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5347",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5347\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5347\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5347\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5347",
+    "id": 147294194,
+    "number": 5347,
+    "title": "[+] CORE : Add hooks for URL rewriting modules",
+    "user": {
+      "login": "firstred",
+      "id": 6775736,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/6775736?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/firstred",
+      "html_url": "https:\/\/github.com\/firstred",
+      "followers_url": "https:\/\/api.github.com\/users\/firstred\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/firstred\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/firstred\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/firstred\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/firstred\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/firstred\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/firstred\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/firstred\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/firstred\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 11,
+    "created_at": "2016-04-11T02:03:54Z",
+    "updated_at": "2016-06-15T15:43:34Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5347",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5347",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5347.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5347.patch"
+    },
+    "body": "## Description\r\nAdds hooks for those who are brave enough to change PrestaShop's URL schema.\r\nIt should provide a toolkit that is extensive enough to radically change PrestaShop's URLs without the need for overrides.\r\n\r\n## Steps to Test this Fix\r\nStep 1. Take a rewriting module\r\nStep 2. Migrate the overrides to the hooks\r\nStep 3. Should get the same results\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5352",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5352\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5352\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5352\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5352",
+    "id": 147440871,
+    "number": 5352,
+    "title": "[-] WS : Fix webservice unit_price_ratio set to 0",
+    "user": {
+      "login": "studiokiwik",
+      "id": 4717939,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/4717939?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/studiokiwik",
+      "html_url": "https:\/\/github.com\/studiokiwik",
+      "followers_url": "https:\/\/api.github.com\/users\/studiokiwik\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/studiokiwik\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/studiokiwik\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/studiokiwik\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/studiokiwik\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/studiokiwik\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/studiokiwik\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/studiokiwik\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/studiokiwik\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20bug%20fix",
+        "name": "Type: bug fix",
+        "color": "e11d21"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2016-04-11T14:06:05Z",
+    "updated_at": "2016-06-15T15:43:34Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5352",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5352",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5352.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5352.patch"
+    },
+    "body": "Product class contains associated tables (manufacturer, supplier, categories, etc). In the core ObjectModel when class that have associated tables is updated it loads fields and merges them with Shop specific fields.\r\n=> file `classes\/ObjectModel.php` line 250\r\n\r\nObjectModel is abstract, inherited by original classes like Product.\r\n\r\nIn Product class there is method `getFieldsShop()` line 517\r\nThis method checks if there are update fields. In your test case there are no update fields because you pass same data as original Product record so it goes to line 521:\r\n```\r\n$fields['unit_price_ratio'] = (float)$this->unit_price > 0 ? $this->price \/ $this->unit_price : 0;\r\n```\r\n\r\nBut `$this->unit_price` is NULL in webservice call because this property is set in Product's `__constructor()` (line 500) ONLY id second parameter of constructor is true (`$full = true`)\r\n\r\nHowever in `classes\/webservice\/WebserviceRequest.php` line 1408 the constructor is called with only 1 parameter, the record id: \r\n```\r\n$object = new $this->resourceConfiguration['retrieveData']['className']((int)$attributes->id);\r\n```\r\n$full is false by default and unit_price is 0 so unit_price_ratio is also 0.\r\n\r\nI used part of the code (2 lines) located in Product's `__construct()` and added these 2 lines in `updateWS()`. This guarantees that the change is executed only on webservice update. The 2 lines are:\r\n\r\n```\r\n$this->price = Product::getPriceStatic((int)$this->id, false, null, 6, null, false, true, 1, false, null, null, null, $this->specificPrice);\r\n$this->unit_price = ($this->unit_price_ratio != 0  ? $this->price \/ $this->unit_price_ratio : 0);\r\n```\r\n\r\nThese 2 lines are added in `classes\/Product.php` in `public function updateWs()` after line 5847\r\n\r\nunit_price is a calculated field, it does not exist in db. But it is calculated only if Product record is loaded with `$full=true` in `__construct()` method.\r\nLater in the update process, the code checks if no unit_price set, then unit_price_ratio is set to 0.\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5342",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5342\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5342\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5342\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5342",
+    "id": 147247096,
+    "number": 5342,
+    "title": "[+] FO : Adds extra exculed keys for canonicalRedirection",
+    "user": {
+      "login": "Soullivaneuh",
+      "id": 1698357,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/1698357?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/Soullivaneuh",
+      "html_url": "https:\/\/github.com\/Soullivaneuh",
+      "followers_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/Soullivaneuh\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2016-04-10T17:57:10Z",
+    "updated_at": "2016-06-15T15:43:34Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5342",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5342",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5342.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5342.patch"
+    },
+    "body": "## Description\r\n\r\nThe goal of this PR is to allow to add extra `excluded_keys` for canonical redirection.\r\n\r\nThis will be useful for modules' front controllers with custom routes definitions.\r\n\r\n## Steps to Test this Fix\r\n\r\nLet's take a concrete exemple. Here is my route configuration for my `artists` module:\r\n\r\n```php\r\npublic function hookModuleRoutes($params)\r\n{\r\n    return [\r\n        'module-artists-artists' => [\r\n            'controller' => 'artists',\r\n            'rule' => 'artists',\r\n            'keywords' => [],\r\n            'params' => [\r\n                'fc' => 'module',\r\n                'module' => 'artists',\r\n            ],\r\n        ],\r\n        'module-artists-artist' => [\r\n            'controller' => 'artist',\r\n            'rule' => 'artists\/a-{id_artist}-{rewrite}',\r\n            'keywords' => [\r\n                'id_artist' => ['regexp' => '[0-9]+', 'param' => 'id_artist'],\r\n                'rewrite' => ['regexp' => '[_a-zA-Z0-9\\pL\\pS-]*', 'param' => 'rewrite'],\r\n            ],\r\n            'params' => [\r\n                'fc' => 'module',\r\n                'module' => 'artists',\r\n                'controller' => 'artist',\r\n            ],\r\n        ]\r\n    ];\r\n}\r\n```\r\n\r\nThe route `module-artists-artist` has `id_artist` and `rewrite` parameters.\r\n\r\nHere is my `ArtistsArtistController` from module with `canonicalRedirection` implement:\r\n\r\n```php\r\nclass ArtistsArtistModuleFrontController extends ModuleFrontControllerCore\r\n{\r\n    \/**\r\n     * @var Artist\r\n     *\/\r\n    private $artist;\r\n\r\n    public function canonicalRedirection($canonical_url = '')\r\n    {\r\n        if (Tools::getValue('live_edit')) {\r\n            return;\r\n        }\r\n        if (Validate::isLoadedObject($this->artist)) {\r\n            parent::canonicalRedirection(\r\n                $this->context->link->getModuleLink('artists', 'artist', [\r\n                    'id_artist' => $this->artist->id,\r\n                    'rewrite' => $this->artist->link_rewrite,\r\n                ])\r\n            );\r\n        }\r\n    }\r\n}\r\n```\r\n\r\nImagine the artist `42` with rewrite `joe`, the canonical url would be: `a-42-joe`.\r\n\r\nWith the actual code, if I try to get `\/a-42-not-the-good-rewrite`, I will be redirected to `\/a-42-joe?id_artist=42&rewrite=joe&module=artists`. Pretty ugly, isn't it?\r\n\r\nWith my PR's code, I just have to add the following:\r\n\r\n```php\r\nclass ArtistsArtistModuleFrontController extends ModuleFrontControllerCore\r\n{\r\n    protected $redirectionExtraExcludedKeys = ['module', 'id_artist', 'rewrite'];\r\n\r\n    \/\/ Stuff...\r\n}\r\n```\r\n\r\nAnd my problem is solved.\r\n\r\nI opened this PR on `develop` as a new feature, but if you are OK to accept it on 1.6, I'll be glad to rebase my work on it!",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5339",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5339\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5339\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5339\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5339",
+    "id": 147103050,
+    "number": 5339,
+    "title": "[-] BO: Duplicated Payments",
+    "user": {
+      "login": "kermes",
+      "id": 7022112,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/7022112?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/kermes",
+      "html_url": "https:\/\/github.com\/kermes",
+      "followers_url": "https:\/\/api.github.com\/users\/kermes\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/kermes\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/kermes\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/kermes\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/kermes\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/kermes\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/kermes\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/kermes\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/kermes\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20bug%20fix",
+        "name": "Type: bug fix",
+        "color": "e11d21"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20QA%20feedback",
+        "name": "waiting for QA feedback",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2016-04-09T07:41:40Z",
+    "updated_at": "2016-06-15T15:43:33Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5339",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5339",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5339.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5339.patch"
+    },
+    "body": "This error only happens when the orders status workflow is altered to invoice AFTER sending (useful in COD payment method)\r\nIn this scenario, as a sent order needs an invoice to set the delivery slip number and delivery date, an invoice is created in this part of the code.\r\n\r\nThis modifications to `changeIdOrderState` doesn't affect the normal behaviour where invoices are generated first. Here is why:\r\n\r\n* the method `setDeliverySlip()` generates an invoice, set delivery date and set delivery number IF there are no invoices.\r\n* This invoice generation doesn't check for previous payments, so a new payment is added <--- here is the problem\r\n* the method `setInvoice($use_existing_payment)` generate an invoice and check for previous payments, so no duplicate payment is generated, but doesn't add the delivery number and delivery date. It doesn't matter: latter in the same function `changeIdOrderState` there is a call to `setDelivery()`, which does exactly those things.\r\n\r\nThere were various ways to solve this:\r\n\r\n* use a different way to store delivery slips (and not using an invoice for that)\r\n* if an invoice is needed before sending, force payment method's statuses to always invoice.\r\nthis PR :)\r\n\r\nNote: after doing this PR, looks like there is no other call `$order->setDeliverySlip()` in the whole project, so it might be deleted...",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5337",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5337\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5337\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5337\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5337",
+    "id": 146992375,
+    "number": 5337,
+    "title": "[-] BO: Fix CMS pages permissions (#BOOM-505)",
+    "user": {
+      "login": "fojtcz",
+      "id": 7465851,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/7465851?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/fojtcz",
+      "html_url": "https:\/\/github.com\/fojtcz",
+      "followers_url": "https:\/\/api.github.com\/users\/fojtcz\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/fojtcz\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/fojtcz\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/fojtcz\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/fojtcz\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/fojtcz\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/fojtcz\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/fojtcz\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/fojtcz\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/QA-approved",
+        "name": "QA-approved",
+        "color": "009800"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 1,
+    "created_at": "2016-04-08T17:42:00Z",
+    "updated_at": "2016-06-15T15:43:33Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5337",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5337",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5337.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5337.patch"
+    },
+    "body": "Fix: http:\/\/forge.prestashop.com\/browse\/BOOM-505",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5308",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5308\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5308\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5308\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5308",
+    "id": 146031478,
+    "number": 5308,
+    "title": "Change setWsCategories because bad product positions in category",
+    "user": {
+      "login": "studiokiwik",
+      "id": 4717939,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/4717939?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/studiokiwik",
+      "html_url": "https:\/\/github.com\/studiokiwik",
+      "followers_url": "https:\/\/api.github.com\/users\/studiokiwik\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/studiokiwik\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/studiokiwik\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/studiokiwik\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/studiokiwik\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/studiokiwik\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/studiokiwik\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/studiokiwik\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/studiokiwik\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20bug%20fix",
+        "name": "Type: bug fix",
+        "color": "e11d21"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20author%20feedback",
+        "name": "waiting for author feedback",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 4,
+    "created_at": "2016-04-05T15:54:31Z",
+    "updated_at": "2016-06-15T15:43:33Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5308",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5308",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5308.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5308.patch"
+    },
+    "body": "Fixing Product::setWsCategories() : for existing category associations product will maintain its current position, for new ones it will be placed at the end of the list (current behaviour is completly bugged, using array index as position)",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5316",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5316\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5316\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5316\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5316",
+    "id": 146331294,
+    "number": 5316,
+    "title": "CO:  Fix deprecation",
+    "user": {
+      "login": "Shine-neko",
+      "id": 884441,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/884441?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/Shine-neko",
+      "html_url": "https:\/\/github.com\/Shine-neko",
+      "followers_url": "https:\/\/api.github.com\/users\/Shine-neko\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/Shine-neko\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/Shine-neko\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/Shine-neko\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/Shine-neko\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/Shine-neko\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/Shine-neko\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/Shine-neko\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/Shine-neko\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20rebase",
+        "name": "waiting for rebase",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/WIP",
+        "name": "WIP",
+        "color": "eb6420"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": {
+      "login": "julienbourdeau",
+      "id": 1525636,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/1525636?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/julienbourdeau",
+      "html_url": "https:\/\/github.com\/julienbourdeau",
+      "followers_url": "https:\/\/api.github.com\/users\/julienbourdeau\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/julienbourdeau\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/julienbourdeau\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/julienbourdeau\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/julienbourdeau\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/julienbourdeau\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/julienbourdeau\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/julienbourdeau\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/julienbourdeau\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "milestone": null,
+    "comments": 3,
+    "created_at": "2016-04-06T14:27:09Z",
+    "updated_at": "2016-06-15T15:43:33Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5316",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5316",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5316.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5316.patch"
+    },
+    "body": "| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | \r\n| Type?         | bug fix\r\n| Category?     | CO\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n\r\n",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5273",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5273\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5273\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5273\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5273",
+    "id": 143977226,
+    "number": 5273,
+    "title": "[*] BO: Allow override",
+    "user": {
+      "login": "kermes",
+      "id": 7022112,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/7022112?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/kermes",
+      "html_url": "https:\/\/github.com\/kermes",
+      "followers_url": "https:\/\/api.github.com\/users\/kermes\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/kermes\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/kermes\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/kermes\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/kermes\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/kermes\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/kermes\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/kermes\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/kermes\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20S",
+        "name": "Estimate: S",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2016-03-28T13:28:47Z",
+    "updated_at": "2016-06-15T15:43:32Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5273",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5273",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5273.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5273.patch"
+    },
+    "body": "trying again https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5088",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5285",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5285\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5285\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5285\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5285",
+    "id": 145176468,
+    "number": 5285,
+    "title": "Change cleanPositions to static method",
+    "user": {
+      "login": "studiokiwik",
+      "id": 4717939,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/4717939?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/studiokiwik",
+      "html_url": "https:\/\/github.com\/studiokiwik",
+      "followers_url": "https:\/\/api.github.com\/users\/studiokiwik\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/studiokiwik\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/studiokiwik\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/studiokiwik\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/studiokiwik\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/studiokiwik\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/studiokiwik\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/studiokiwik\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/studiokiwik\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Type:%20enhancement",
+        "name": "Type: enhancement",
+        "color": "207de5"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 6,
+    "created_at": "2016-04-01T13:06:19Z",
+    "updated_at": "2016-06-15T15:43:32Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5285",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5285",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5285.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5285.patch"
+    },
+    "body": "Change all method cleanPosition to a staic method\r\nchange all call to this method to a static call",
+    "score": 1
+  },
+  {
+    "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5270",
+    "repository_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop",
+    "labels_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5270\/labels{\/name}",
+    "comments_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5270\/comments",
+    "events_url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/issues\/5270\/events",
+    "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5270",
+    "id": 143975572,
+    "number": 5270,
+    "title": "[-] BO: File doesn't exists",
+    "user": {
+      "login": "kermes",
+      "id": 7022112,
+      "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/7022112?v=3",
+      "gravatar_id": "",
+      "url": "https:\/\/api.github.com\/users\/kermes",
+      "html_url": "https:\/\/github.com\/kermes",
+      "followers_url": "https:\/\/api.github.com\/users\/kermes\/followers",
+      "following_url": "https:\/\/api.github.com\/users\/kermes\/following{\/other_user}",
+      "gists_url": "https:\/\/api.github.com\/users\/kermes\/gists{\/gist_id}",
+      "starred_url": "https:\/\/api.github.com\/users\/kermes\/starred{\/owner}{\/repo}",
+      "subscriptions_url": "https:\/\/api.github.com\/users\/kermes\/subscriptions",
+      "organizations_url": "https:\/\/api.github.com\/users\/kermes\/orgs",
+      "repos_url": "https:\/\/api.github.com\/users\/kermes\/repos",
+      "events_url": "https:\/\/api.github.com\/users\/kermes\/events{\/privacy}",
+      "received_events_url": "https:\/\/api.github.com\/users\/kermes\/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/Estimate:%20M",
+        "name": "Estimate: M",
+        "color": "bfe5bf"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20code%20review",
+        "name": "waiting for code review",
+        "color": "fbca04"
+      },
+      {
+        "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/labels\/waiting%20for%20rebase",
+        "name": "waiting for rebase",
+        "color": "fbca04"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2016-03-28T13:18:39Z",
+    "updated_at": "2016-06-15T15:43:32Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https:\/\/api.github.com\/repos\/PrestaShop\/PrestaShop\/pulls\/5270",
+      "html_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5270",
+      "diff_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5270.diff",
+      "patch_url": "https:\/\/github.com\/PrestaShop\/PrestaShop\/pull\/5270.patch"
+    },
+    "body": "",
+    "score": 1
+  }
+]
