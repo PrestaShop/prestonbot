@@ -16,4 +16,8 @@ final class Status
     const WORKS_FOR_ME = 'works_for_me';
 
     const REVIEWED = 'reviewed';
+
+    const QA_APPROVED = 'qa_approved';
+
+    const PM_APPROVED = 'pm_approved';
 }

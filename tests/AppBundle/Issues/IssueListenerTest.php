@@ -50,6 +50,14 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
             'Have a great day!',
             null,
         ];
+        $tests[] = [
+            "Status: 'PM approved'",
+            Status::PM_APPROVED,
+        ];
+        $tests[] = [
+            "Status: 'QA approved'",
+            Status::QA_APPROVED,
+        ];
         // basic tests for status change
         $tests[] = [
             'Status: needs review',
