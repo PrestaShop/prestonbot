@@ -14,7 +14,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class SendPullRequestReportCommand extends ContainerAwareCommand
 {
     const DEFAULT_BRANCH = 'develop';
-    
+
     protected function configure()
     {
         $this
@@ -32,7 +32,7 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
     {
         $io = new SymfonyStyle($input, $output);
         $branch = $input->getArgument('branch') ? $input->getArgument('branch') : self::DEFAULT_BRANCH;
-        
+
         $groups = $this->getContainer()->getParameter('recipients');
         $reporter = $this->getContainer()->get('app.pull_requests.reporter');
         $mailer = $this->getContainer()->get('app.mailer');

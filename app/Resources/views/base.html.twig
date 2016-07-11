@@ -5,11 +5,24 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap-prestashop-ui-kit.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/prestonbot.css') }}" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <footer class="footer">
+          <div class="container">
+              <ul class="list-inline">
+                  <li class="list-inline-item">
+                      <a href="{{ path('dashboard_pull_requests') }}">Pull requests Dashboard</a>
+                  </li>
+                  <li class="list-inline-item">
+                      <a href="{{ path('dashboard_teams') }}">Team Dashboard</a>
+                  </li>
+              </ul>
+          </div>
+        </footer>
     </body>
 </html>

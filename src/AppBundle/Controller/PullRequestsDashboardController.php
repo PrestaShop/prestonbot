@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 class PullRequestsDashboardController extends Controller
 {
     /**
-     * @Route("/dashboard/pull_requests")
+     * @Route("/dashboard/pull_requests", name="dashboard_pull_requests")
      * @Cache(expires="tomorrow", public=true)
      */
     public function indexAction()
