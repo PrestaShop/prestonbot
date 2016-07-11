@@ -40,7 +40,7 @@ class BodyParser
     }
 
     /**
-     * @Assert\Choice(choices = {"feature", "new feature", "improvement", "fix", "refacto"},
+     * @Assert\Choice(choices = {"feature", "new feature", "improvement", "fix", "refacto", "bug fix"},
      * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`, `refacto`.")
      */
     public function getType()
