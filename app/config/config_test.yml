@@ -15,3 +15,7 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+parameters:
+    enable_labels: true
+    labels_pr_creation: true

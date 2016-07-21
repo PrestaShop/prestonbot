@@ -33,7 +33,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $event = $githubEvent->getEvent();
 
-        if (true === $this->container->getParameter('enable_labels')) {
+        if (true === $this->container->getParameter('labels_pr_creation')) {
             $this->container
                 ->get('app.issue_listener')
                 ->handlePullRequestCreatedEvent($event->pullRequest->getNumber())

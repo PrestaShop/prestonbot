@@ -2,7 +2,6 @@ imports:
     - { resource: services.yml }
     
 parameters:
-    enable_labels: true
     # token generated from a fake account who have admin rights on loveOSS organisation
     github_token: 2c31748b7db3f4e7ac135ac8296b3b2259246111
     repository_username: loveOSS

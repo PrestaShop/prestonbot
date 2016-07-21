@@ -1,6 +1,3 @@
-parameters:
-    enable_labels: false
-
 services:
     app.webhook_resolver:
         class: Lpdigital\Github\Parser\WebhookResolver
