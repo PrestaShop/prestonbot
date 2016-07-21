@@ -73,7 +73,7 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->at(0))
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(['Bug', 'Status: Needs Review', 'Status: Needs Work']);
+            ->willReturn(['Bug', 'Status: Needs Review', 'QA-approved']);
 
         $this->labelsApi->expects($this->at(1))
             ->method('removeIssueLabel')
@@ -81,7 +81,7 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
 
         $this->labelsApi->expects($this->at(2))
             ->method('removeIssueLabel')
-            ->with(1234, 'Status: Needs Work');
+            ->with(1234, 'QA-approved');
 
         $this->labelsApi->expects($this->at(3))
             ->method('addIssueLabel')

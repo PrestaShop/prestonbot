@@ -6,9 +6,9 @@ class Listener
 {
     private static $triggerWordToStatus = [
         'needs review' => Status::NEEDS_REVIEW,
-        'needs work' => Status::NEEDS_WORK,
-        'works for me' => Status::WORKS_FOR_ME,
         'reviewed' => Status::REVIEWED,
+        'qa approved' => Status::QA_APPROVED,
+        'pm approved' => Status::PM_APPROVED,
     ];
 
     /**
@@ -45,7 +45,6 @@ class Listener
         if (preg_match_all($pattern, $comment, $matches)) {
             // Second subpattern = first status character
             $newStatus = self::$triggerWordToStatus[strtolower(end($matches[1]))];
-
             $this->statusApi->setIssueStatus($issueNumber, $newStatus);
 
             return $newStatus;

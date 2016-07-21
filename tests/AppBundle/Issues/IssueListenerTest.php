@@ -50,14 +50,18 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
             'Have a great day!',
             null,
         ];
+        $tests[] = [
+            "Status: 'PM approved'",
+            Status::PM_APPROVED,
+        ];
+        $tests[] = [
+            "Status: 'QA approved'",
+            Status::QA_APPROVED,
+        ];
         // basic tests for status change
         $tests[] = [
             'Status: needs review',
             Status::NEEDS_REVIEW,
-        ];
-        $tests[] = [
-            'Status: needs work',
-            Status::NEEDS_WORK,
         ];
         $tests[] = [
             'Status: reviewed',
@@ -73,17 +77,6 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
             "Status: 'reviewed'",
             Status::REVIEWED,
         ];
-
-        // accept trailing punctuation
-        $tests[] = [
-            'Status: works for me!',
-            Status::WORKS_FOR_ME,
-        ];
-        $tests[] = [
-            'Status: works for me.',
-            Status::WORKS_FOR_ME,
-        ];
-
         // play with different formatting
         $tests[] = [
             'STATUS: REVIEWED',
@@ -211,7 +204,7 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
         $this->statusApi->expects($this->once())
             ->method('getIssueStatus')
             ->with(1234)
-            ->willReturn(Status::NEEDS_WORK);
+            ->willReturn(Status::NEEDS_REVIEW);
 
         $this->statusApi->expects($this->never())
             ->method('setIssueStatus');
