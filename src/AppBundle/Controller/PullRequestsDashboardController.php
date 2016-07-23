@@ -25,7 +25,7 @@ class PullRequestsDashboardController extends Controller
         }catch(RunTimeException $exception) {
             $this->addFlash(
                 'danger',
-                'Quota API GitHub dépassé, revenez plus tard...'
+                'Quota API GitHub limit reached.'
             );
             
             return $this->redirectToRoute('home_page');
