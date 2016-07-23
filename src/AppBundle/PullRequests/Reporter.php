@@ -9,6 +9,12 @@ class Reporter
 {
     private $repository;
 
+    private $labelToVarname = [
+        Labels::WAITING_FOR_CODE_REVIEW => 'waitingForCodeReviewsContribs',
+        Labels::WAITING_FOR_QA_FEEDBACK => 'waitingForQAContribs',
+        Labels::WAITING_FOR_PM_FEEDBACK => 'waitingForPMContribs',
+    ];
+
     public function __construct(Repository $repository)
     {
         $this->repository = $repository;
@@ -26,6 +32,19 @@ class Reporter
             'waitingForQAContribs' => $toBeQAFeedback,
             'waitingForPMContribs' => $toBePMFeedback,
             'silentContribs' => $silentContribs,
+        ];
+    }
+
+    public function reportActivityForLabel($base = 'develop', $label = Labels::WAITING_FOR_CODE_REVIEW)
+    {
+        if (!in_array($label, keys($this->labelToVarname))) {
+            throw new LabelNotFoundException($label);
+        }
+
+        $varName = $this->labelToVarname[$label];
+
+        return [
+            $varName => $this->findAll($label, $base),
         ];
     }
 
