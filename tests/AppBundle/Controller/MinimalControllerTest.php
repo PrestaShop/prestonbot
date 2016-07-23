@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Controller;
+namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -14,31 +14,32 @@ class MinimalControllerTest extends WebTestCase
     protected function setUp()
     {
         $this->client = $this->createClient();
-        $this->client->insulate();
     }
 
     public function testHomepageOk()
     {
-        $this->client->request('GET', '/');
+        $this->client->request('HEAD', '/');
         $response = $this->client->getResponse();
 
         $this->assertEquals(200, $response->getStatusCode());
     }
 
     /**
-     * @group GitHub
+     * This call may be redirected to home because of GitHub Quota
      */
     public function testPullRequestDashboardOk()
     {
-        $this->client->request('GET', '/dashboard/pull_requests');
+        $this->client->followRedirects();
+        
+        $this->client->request('HEAD', '/dashboard/pull_requests');
         $response = $this->client->getResponse();
 
-        $this->assertEquals(200, $response->getStatusCode(), $response->getContent());
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
     public function testTeamsDashboardOk()
     {
-        $this->client->request('GET', '/dashboard/teams');
+        $this->client->request('HEAD', '/dashboard/teams');
         $response = $this->client->getResponse();
 
         $this->assertEquals(200, $response->getStatusCode());

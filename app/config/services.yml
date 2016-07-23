@@ -3,14 +3,16 @@ services:
         class: Lpdigital\Github\Parser\WebhookResolver
 
 # GitHub Client
+    app.github.client.cache:
+        class: Github\HttpClient\CachedHttpClient
+        arguments: 
+            - 'cache_dir': '%kernel.cache_dir%/github-api/'
+
     app.github.client:
         class: Github\Client
-        arguments: []
+        arguments: ['@app.github.client.cache']
         calls:
-            - method: authenticate
-              arguments:
-                - http_token
-                - %github_token%
+            - ['authenticate', ['http_token', '%github_token%']]
 
 # GitHub API
 

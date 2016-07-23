@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Search;
+namespace Tests\AppBundle\Search;
 
 use AppBundle\Search\Repository;
 use Github\Api\Search;
