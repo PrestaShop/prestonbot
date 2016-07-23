@@ -37,7 +37,7 @@ class Reporter
 
     public function reportActivityForLabel($base = 'develop', $label = Labels::WAITING_FOR_CODE_REVIEW)
     {
-        if (!in_array($label, keys($this->labelToVarname))) {
+        if (!in_array($label, array_keys($this->labelToVarname))) {
             throw new LabelNotFoundException($label);
         }
 

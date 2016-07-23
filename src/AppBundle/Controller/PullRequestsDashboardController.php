@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
+use Github\Exception\RuntimeException;
+
 class PullRequestsDashboardController extends Controller
 {
     /**
@@ -14,11 +16,20 @@ class PullRequestsDashboardController extends Controller
      */
     public function indexAction()
     {
-        $reporter = $this->get('app.pull_requests.reporter');
-        $reports = [
-            'develop' => $reporter->reportActivity('develop'),
-            'legacy (1.6.1.x)' => $reporter->reportActivity('1.6.1.x'),
-        ];
+        try {
+            $reporter = $this->get('app.pull_requests.reporter');
+            $reports = [
+                'develop' => $reporter->reportActivity('develop'),
+                'legacy (1.6.1.x)' => $reporter->reportActivity('1.6.1.x'),
+            ];
+        }catch(RunTimeException $exception) {
+            $this->addFlash(
+                'danger',
+                'Quota API GitHub dépassé, revenez plus tard...'
+            );
+            
+            return $this->redirectToRoute('home_page');
+        }
 
         return $this->render('default/pull_requests.html.twig', [
             'reports' => $reports,

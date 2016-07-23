@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\PullRequests;
+namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\BodyParser;
 use Lpdigital\Github\Parser\WebhookResolver;

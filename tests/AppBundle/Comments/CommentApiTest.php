@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Comments;
+namespace Tests\AppBundle\Comments;
 
 use AppBundle\Comments\CommentApi;
 
