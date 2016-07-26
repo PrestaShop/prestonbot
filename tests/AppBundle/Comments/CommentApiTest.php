@@ -9,6 +9,8 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
     const USER_NAME = 'weaverryan';
 
     const REPO_NAME = 'carson';
+    
+    const FAKE_COMMENT_ID = 123;
 
     private $knpCommentApi;
     private $commentApi;
@@ -78,5 +80,20 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
             'tpl/foo.html.twig',
             ['bar' => 'baz']
         );
+    }
+
+    public function testRemove()
+    {
+        $this->knpCommentApi
+            ->expects($this->once())
+            ->method('remove')
+            ->with(
+                self::USER_NAME,
+                42,
+                self::FAKE_COMMENT_ID
+            )
+        ;
+
+        $this->commentApi->remove($this->pullRequest, self::FAKE_COMMENT_ID);
     }
 }

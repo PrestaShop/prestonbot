@@ -104,7 +104,11 @@ services:
 
     app.pull_request.repository:
         class: AppBundle\PullRequests\Repository
-        arguments: ['@app.search.repository']
+        arguments: 
+            - '@app.search.repository'
+            - '@app.github.comments_api'
+            - '%repository_username%'
+            - '%repository_name%'
     
     app.repository_repository:
         class: AppBundle\Repositories\Repository

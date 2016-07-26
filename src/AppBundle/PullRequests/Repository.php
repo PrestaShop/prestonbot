@@ -2,7 +2,9 @@
 
 namespace AppBundle\PullRequests;
 
+use Github\Api\Issue\Comments as CommentsApi;
 use AppBundle\Search\Repository as SearchRepository;
+use Lpdigital\Github\Entity\Comment;
 use Lpdigital\Github\Entity\PullRequest;
 
 /**
@@ -13,10 +15,21 @@ use Lpdigital\Github\Entity\PullRequest;
 class Repository
 {
     private $searchRepository;
+    private $commentsApi;
 
-    public function __construct(SearchRepository $searchRepository)
-    {
+    private $repositoryUsername;
+    private $repositoryName;
+
+    public function __construct(
+        SearchRepository $searchRepository,
+        CommentsApi $commentsApi,
+        $repositoryUsername,
+        $repositoryName
+        ) {
         $this->searchRepository = $searchRepository;
+        $this->commentsApi = $commentsApi;
+        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryName = $repositoryName;
     }
 
     public function findAll($base = 'develop')
@@ -54,6 +67,24 @@ class Repository
         throw new \Exception('Need to be done');
 
         return [];
+    }
+
+    public function getComments(PullRequest $pullRequest)
+    {
+        $commentsApi = $this->commentsApi
+            ->all(
+                $this->repositoryUsername,
+                $this->repositoryName,
+                $pullRequest->getNumber()
+            )
+        ;
+
+        $comments = [];
+        foreach ($commentsApi as $comment) {
+            $comments[] = Comment::createFromData($comment);
+        }
+
+        return $comments;
     }
 
     private function parseLabel($label)
