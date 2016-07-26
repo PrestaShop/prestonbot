@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-
 use Github\Exception\RuntimeException;
 
 class PullRequestsDashboardController extends Controller
@@ -22,12 +21,12 @@ class PullRequestsDashboardController extends Controller
                 'develop' => $reporter->reportActivity('develop'),
                 'legacy (1.6.1.x)' => $reporter->reportActivity('1.6.1.x'),
             ];
-        }catch(RunTimeException $exception) {
+        } catch (RunTimeException $exception) {
             $this->addFlash(
                 'danger',
                 'Quota API GitHub limit reached.'
             );
-            
+
             return $this->redirectToRoute('home_page');
         }
 

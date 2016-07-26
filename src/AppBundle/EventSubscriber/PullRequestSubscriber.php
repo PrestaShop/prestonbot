@@ -23,6 +23,9 @@ class PullRequestSubscriber implements EventSubscriberInterface
                ['initLabels', 254],
                ['welcomePeople', 253],
            ],
+           'pullrequestevent_edited' => [
+               ['removePrestonComment', 255],
+            ],
         ];
     }
 
@@ -80,6 +83,15 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'user welcomed',
+            ])
+        ;
+    }
+
+    public function removePrestonComment(GithubEvent $githubEvent)
+    {
+        $githubEvent->addStatus([
+            'event' => 'pr_edited',
+            'action' => 'preston validation comment removed',
             ])
         ;
     }

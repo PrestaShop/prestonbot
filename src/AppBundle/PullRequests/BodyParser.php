@@ -119,7 +119,7 @@ class BodyParser
 
         return isset($matches[2]) ? $matches[2] : '';
     }
-    
+
     public static function getValidTypes()
     {
         return [
