@@ -87,6 +87,28 @@ class Repository
         return $comments;
     }
 
+    /**
+     * Return Comments of selected user if any.
+     * 
+     * @param PullRequest Lpdigital\Github\Entity\PullRequest
+     * @param string login from Entity User of Comment entry
+     * 
+     * @return array collection of user's comments
+     */
+    public function getCommentsFrom(PullRequest $pullRequest, $userLogin)
+    {
+        $comments = $this->getComments($pullRequest);
+        $userComments = [];
+
+        foreach ($comments as $comment) {
+            if ($userLogin === $comment->getUserLogin()) {
+                $userComments[] = $comment;
+            }
+        }
+
+        return $comments;
+    }
+
     private function parseLabel($label)
     {
         return '"'.$label.'"';
