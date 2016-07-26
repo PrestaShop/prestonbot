@@ -72,7 +72,7 @@ services:
     app.issue_listener:
         class: AppBundle\Issues\Listener
         arguments: ['@app.status_api']
-    
+
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener
         arguments: ['@app.comment_api', '@validator']

@@ -8,8 +8,6 @@ use AppBundle\Event\GitHubEvent;
 
 class PullRequestSubscriber implements EventSubscriberInterface
 {
-    public $container;
-
     public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
@@ -20,11 +18,11 @@ class PullRequestSubscriber implements EventSubscriberInterface
         return [
            'pullrequestevent_opened' => [
                ['checkForTableDescription', 255],
-               ['initLabels', 254],
                ['welcomePeople', 253],
+               ['initLabels', 254],
            ],
            'pullrequestevent_edited' => [
-               ['removePrestonComment', 255],
+               ['removePrestonBotComment', 255],
             ],
         ];
     }
@@ -34,12 +32,12 @@ class PullRequestSubscriber implements EventSubscriberInterface
      */
     public function initLabels(GitHubEvent $githubEvent)
     {
-        $event = $githubEvent->getEvent();
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
 
         if (true === $this->container->getParameter('labels_pr_creation')) {
             $this->container
                 ->get('app.issue_listener')
-                ->handlePullRequestCreatedEvent($event->pullRequest->getNumber())
+                ->handlePullRequestCreatedEvent($pullRequest->getNumber())
             ;
 
             $githubEvent->addStatus([
@@ -50,22 +48,16 @@ class PullRequestSubscriber implements EventSubscriberInterface
         }
     }
 
+    /**
+     * This event MUST be spawned first.
+     */
     public function checkForTableDescription(GitHubEvent $githubEvent)
     {
-        $event = $githubEvent->getEvent();
-        $pullRequest = $event->pullRequest;
-
-        if (
-            'closed' === $pullRequest->getState() ||
-            (null !== $pullRequest->isMerged() && true === $pullRequest->isMerged())
-
-        ) {
-            return;
-        }
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
 
         $this->container
             ->get('app.pullrequest_listener')
-            ->checkForDescription($event->pullRequest, $event->pullRequest->getCommitSha())
+            ->handlePullRequestCreatedEvent($pullRequest, $pullRequest->getCommitSha())
         ;
 
         $githubEvent->addStatus([
@@ -87,8 +79,22 @@ class PullRequestSubscriber implements EventSubscriberInterface
         ;
     }
 
-    public function removePrestonComment(GithubEvent $githubEvent)
+    /**
+     * @todo: create functional test in WebhookController
+     */
+    public function removePrestonBotComment(GithubEvent $githubEvent)
     {
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
+
+        if ($pullRequest->isClosed() || $pullRequest->isMerged()) {
+            return;
+        }
+
+        $this->container
+            ->get('app.pullrequest_listener')
+            ->handlePullRequestEditedEvent($pullRequest)
+        ;
+
         $githubEvent->addStatus([
             'event' => 'pr_edited',
             'action' => 'preston validation comment removed',

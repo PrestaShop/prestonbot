@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Twig_Environment;
 
 /**
- * Note to myself: in integrations tests, don't send comments!
+ * We don't create/update/delete comments intentionally.
  */
 class FakeListener
 {
@@ -24,7 +24,7 @@ class FakeListener
         $this->twig = $twig;
     }
 
-    public function checkForDescription(PullRequest $pullRequest, $commitId)
+    public function handlePullRequestCreatedEvent(PullRequest $pullRequest, $commitId)
     {
         $bodyParser = new BodyParser($pullRequest->getBody());
 
@@ -34,5 +34,20 @@ class FakeListener
 
             return true;
         }
+    }
+
+    public function handlePullRequestEditedEvent(PullRequest $pullRequest)
+    {
+        $prestonComments = $this->repository
+            ->getCommentsFrom($pullRequest, self::PRESTONBOT_NAME)
+        ;
+
+        if (count($prestonComments) > 0) {
+            $validationComment = $prestonComments[0];
+            
+            return true;
+        }
+
+        return false;
     }
 }
