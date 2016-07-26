@@ -40,7 +40,7 @@ class BodyParser
     }
 
     /**
-     * @Assert\Choice(choices = {"feature", "new feature", "improvement", "fix", "refacto", "bug fix"},
+     * @Assert\Choice(callback = "getValidTypes",
      * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`, `refacto`.")
      */
     public function getType()
@@ -118,5 +118,18 @@ class BodyParser
         preg_match($regex, $this->getBody(), $matches);
 
         return isset($matches[2]) ? $matches[2] : '';
+    }
+    
+    public static function getValidTypes()
+    {
+        return [
+            'feature',
+            'new feature',
+            'improvement',
+            'fix',
+            'refacto',
+            'bug fix',
+            'small fix',
+        ];
     }
 }
