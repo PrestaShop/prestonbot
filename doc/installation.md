@@ -9,6 +9,8 @@ The minimal requirements for this application is `PHP 5.6+`.
 Composer is required to install all the dependencies, the installation
 is well described in the documentation: https://getcomposer.org/doc/00-intro.md#globally
 
+When installed, use ``composer install`` command to install dependencies.
+
 ## Apache
 
 The application needs ``mod_rewrite`` to be enabled and the following configuration file:
