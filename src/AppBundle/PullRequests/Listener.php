@@ -47,7 +47,7 @@ class Listener
 
         if (count($prestonComments) > 0) {
             $validationComment = $prestonComments[0];
-            $this->commentApi->remove($pullRequest, $validationComment->getId());
+            $this->commentApi->remove($validationComment->getId());
         }
     }
 }
