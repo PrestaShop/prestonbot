@@ -75,7 +75,7 @@ services:
 
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener
-        arguments: ['@app.comment_api', '@validator']
+        arguments: ['@app.comment_api', '@validator', '@app.pull_request.repository']
 
 # Event subscribers
 
