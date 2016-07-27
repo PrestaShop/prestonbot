@@ -89,11 +89,11 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
             ->method('remove')
             ->with(
                 self::USER_NAME,
-                42,
+                self::REPO_NAME,
                 self::FAKE_COMMENT_ID
             )
         ;
 
-        $this->commentApi->remove($this->pullRequest, self::FAKE_COMMENT_ID);
+        $this->commentApi->remove(self::FAKE_COMMENT_ID);
     }
 }

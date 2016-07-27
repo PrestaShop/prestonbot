@@ -66,12 +66,12 @@ class CommentApi
         ;
     }
 
-    public function remove(PullRequest $pullRequest, $commentId)
+    public function remove($commentId)
     {
         $this->knpCommentApi
             ->remove(
                 $this->repositoryUsername,
-                $pullRequest->getNumber(),
+                $this->repositoryName,
                 $commentId
             )
         ;
