@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AppBundle\PullRequests;
+namespace tests\AppBundle\PullRequests;
 
 use AppBundle\Comments\CommentApi;
 use AppBundle\PullRequests\BodyParser;
@@ -44,7 +44,7 @@ class FakeListener
 
         if (count($prestonComments) > 0) {
             $validationComment = $prestonComments[0];
-            
+
             return true;
         }
 

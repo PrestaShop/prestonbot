@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AppBundle\Issues;
+namespace tests\AppBundle\Issues;
 
 use AppBundle\Issues\Listener;
 use AppBundle\Issues\StatusApi;
