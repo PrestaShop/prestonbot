@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AppBundle\PullRequests;
+namespace tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\Repository;
 
@@ -23,18 +23,18 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $searchMock->method('getPullRequests')
             ->will($this->returnCallback([$this, 'generateExpectedArray']))
         ;
-        
+
         $commentsApiMock->method('all')
             ->will($this->returnCallback([$this, 'exportCommentsJson']))
         ;
-        
+
         $this->pullRequestMock = $this->createMock('Lpdigital\Github\Entity\PullRequest');
-        
+
         $this->pullRequestMock
             ->method('getNumber')
             ->willReturn('123')
         ;
-        
+
         $this->repository = new Repository(
             $searchMock,
             $commentsApiMock,
@@ -64,11 +64,11 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             'items' => json_decode($fileContent, true),
         ];
     }
-    
+
     public function exportCommentsJson()
     {
         $fileContent = file_get_contents(__DIR__.'/../webhook_examples/pull_request_comments.json');
-        
+
         return json_decode($fileContent, true);
     }
 

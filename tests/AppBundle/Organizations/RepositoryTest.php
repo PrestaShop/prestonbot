@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AppBundle\Organizations;
+namespace tests\AppBundle\Organizations;
 
 use AppBundle\Organizations\Repository;
 
