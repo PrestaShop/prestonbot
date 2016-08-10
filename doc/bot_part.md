@@ -10,9 +10,10 @@ If you add a comment with certains "patterns", PrestonBot will automatically
 add a label to the pull request:
 
 | Pattern to put in a comment  | Label added
-|------------------------------|----------------
+|------------------------------|------------------
 | ``Status: 'QA approved'``    | ``QA-approved``
 | ``Status: 'PM approved'``    | ``PM-approved``
+| ``Status: 'Code reviewed'``  | ``Code reviewed``
 
 > This feature is usable for everyone, if required we will restrict the feature
 only to PrestaShop team.
