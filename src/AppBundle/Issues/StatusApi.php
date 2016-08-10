@@ -8,7 +8,7 @@ class StatusApi
 {
     private $statusToLabel = [
         Status::NEEDS_REVIEW => 'Status: Needs Review',
-        Status::REVIEWED => 'Status: Reviewed',
+        Status::REVIEWED => 'Code reviewed',
         Status::QA_APPROVED => 'QA-approved',
         Status::PM_APPROVED => 'PM-approved',
     ];
