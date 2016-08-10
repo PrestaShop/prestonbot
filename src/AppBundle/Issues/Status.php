@@ -11,7 +11,7 @@ final class Status
 {
     const NEEDS_REVIEW = 'needs_review';
 
-    const REVIEWED = 'reviewed';
+    const REVIEWED = 'code_reviewed';
 
     const QA_APPROVED = 'qa_approved';
 
