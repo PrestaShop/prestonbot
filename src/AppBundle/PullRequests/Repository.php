@@ -106,7 +106,7 @@ class Repository
             }
         }
 
-        return $comments;
+        return $userComments;
     }
 
     private function parseLabel($label)
