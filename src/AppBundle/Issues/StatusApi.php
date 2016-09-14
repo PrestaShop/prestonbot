@@ -8,7 +8,7 @@ class StatusApi
 {
     private $statusToLabel = [
         Status::NEEDS_REVIEW => 'Status: Needs Review',
-        Status::REVIEWED => 'Status: Reviewed',
+        Status::CODE_REVIEWED => 'Code reviewed',
         Status::QA_APPROVED => 'QA-approved',
         Status::PM_APPROVED => 'PM-approved',
     ];
@@ -57,7 +57,7 @@ class StatusApi
             // but still marked as unconfirmed.
             if (
                 !isset($this->labelToStatus[$label])
-                && !(Status::REVIEWED === $newStatus && 'Unconfirmed' === $label)
+                && !(Status::CODE_REVIEWED === $newStatus && 'Unconfirmed' === $label)
             ) {
                 continue;
             }

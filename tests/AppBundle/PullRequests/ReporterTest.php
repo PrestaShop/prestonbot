@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AppBundle\PullRequests;
+namespace tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\LabelNotFoundException;

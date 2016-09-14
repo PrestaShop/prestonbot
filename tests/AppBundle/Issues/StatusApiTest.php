@@ -46,9 +46,9 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
 
         $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
-            ->with(1234, 'Status: Reviewed');
+            ->with(1234, 'Code reviewed');
 
-        $this->api->setIssueStatus(1234, Status::REVIEWED);
+        $this->api->setIssueStatus(1234, Status::CODE_REVIEWED);
     }
 
     public function testSetIssueStatusWithoutPreviousStatus()
@@ -63,9 +63,9 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
 
         $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
-            ->with(1234, 'Status: Reviewed');
+            ->with(1234, 'Code reviewed');
 
-        $this->api->setIssueStatus(1234, Status::REVIEWED);
+        $this->api->setIssueStatus(1234, Status::CODE_REVIEWED);
     }
 
     public function testSetIssueStatusRemovesExcessStatuses()
@@ -73,7 +73,13 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->at(0))
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(['Bug', 'Status: Needs Review', 'QA-approved']);
+            ->willReturn(
+                [
+                    'Bug',
+                    'Status: Needs Review',
+                    'QA-approved',
+                ]
+            );
 
         $this->labelsApi->expects($this->at(1))
             ->method('removeIssueLabel')
@@ -85,9 +91,9 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
 
         $this->labelsApi->expects($this->at(3))
             ->method('addIssueLabel')
-            ->with(1234, 'Status: Reviewed');
+            ->with(1234, 'Code reviewed');
 
-        $this->api->setIssueStatus(1234, Status::REVIEWED);
+        $this->api->setIssueStatus(1234, Status::CODE_REVIEWED);
     }
 
     public function testSetIssueStatusDoesNothingIfAlreadySet()
@@ -111,7 +117,7 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(['Bug', 'Status: Needs Review', 'Status: Reviewed']);
+            ->willReturn(['Bug', 'Status: Needs Review', 'Code reviewed']);
 
         $this->labelsApi->expects($this->once())
             ->method('removeIssueLabel')
@@ -120,7 +126,7 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->never())
             ->method('addIssueLabel');
 
-        $this->api->setIssueStatus(1234, Status::REVIEWED);
+        $this->api->setIssueStatus(1234, Status::CODE_REVIEWED);
     }
 
     public function testSetIssueStatusRemovesUnconfirmedWhenBugIsReviewed()
@@ -140,9 +146,9 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
 
         $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
-            ->with(1234, 'Status: Reviewed');
+            ->with(1234, 'Code reviewed');
 
-        $this->api->setIssueStatus(1234, Status::REVIEWED);
+        $this->api->setIssueStatus(1234, Status::CODE_REVIEWED);
     }
 
     public function testGetIssueStatus()
@@ -160,7 +166,7 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
         $this->labelsApi->expects($this->once())
             ->method('getIssueLabels')
             ->with(1234)
-            ->willReturn(['Bug', 'Status: Needs Review', 'Status: Reviewed']);
+            ->willReturn(['Bug', 'Status: Needs Review', 'Code reviewed']);
 
         $this->assertSame(Status::NEEDS_REVIEW, $this->api->getIssueStatus(1234));
     }

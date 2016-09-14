@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AppBundle\Issues;
+namespace tests\AppBundle\Issues;
 
 use AppBundle\Issues\Listener;
 use AppBundle\Issues\StatusApi;
@@ -64,63 +64,63 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
             Status::NEEDS_REVIEW,
         ];
         $tests[] = [
-            'Status: reviewed',
-            Status::REVIEWED,
+            'Status: Code reviewed',
+            Status::CODE_REVIEWED,
         ];
 
         // accept quotes
         $tests[] = [
-            'Status: "reviewed"',
-            Status::REVIEWED,
+            'Status: "Code reviewed"',
+            Status::CODE_REVIEWED,
         ];
         $tests[] = [
-            "Status: 'reviewed'",
-            Status::REVIEWED,
+            "Status: 'Code reviewed'",
+            Status::CODE_REVIEWED,
         ];
         // play with different formatting
         $tests[] = [
-            'STATUS: REVIEWED',
-            Status::REVIEWED,
+            'STATUS: CODE REVIEWED',
+            Status::CODE_REVIEWED,
         ];
         $tests[] = [
-            '**Status**: reviewed',
-            Status::REVIEWED,
+            '**Status**: code reviewed',
+            Status::CODE_REVIEWED,
         ];
         $tests[] = [
-            '**Status:** reviewed',
-            Status::REVIEWED,
+            '**Status:** code reviewed',
+            Status::CODE_REVIEWED,
         ];
         $tests[] = [
-            '**Status: reviewed**',
-            Status::REVIEWED,
+            '**Status: code reviewed**',
+            Status::CODE_REVIEWED,
         ];
         $tests[] = [
-            '**Status: reviewed!**',
-            Status::REVIEWED,
+            '**Status: code reviewed!**',
+            Status::CODE_REVIEWED,
         ];
         $tests[] = [
-            '**Status: reviewed**.',
-            Status::REVIEWED,
+            '**Status: code reviewed**.',
+            Status::CODE_REVIEWED,
         ];
         $tests[] = [
-            'Status:reviewed',
-            Status::REVIEWED,
+            'Status:code reviewed',
+            Status::CODE_REVIEWED,
         ];
         $tests[] = [
-            'Status:     reviewed',
-            Status::REVIEWED,
+            'Status:    code reviewed',
+            Status::CODE_REVIEWED,
         ];
 
         // reject missing colon
         $tests[] = [
-            'Status reviewed',
+            'Status code reviewed',
             null,
         ];
 
         // multiple matches - use the last one
         $tests[] = [
-            "Status: needs review \r\n that is what the issue *was* marked as.\r\n Status: reviewed",
-            Status::REVIEWED,
+            "Status: needs review \r\n that is what the issue *was* marked as.\r\n Status: Code reviewed",
+            Status::CODE_REVIEWED,
         ];
         // "needs review" does not come directly after status: , so there is no status change
         $tests[] = [
@@ -136,7 +136,7 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
             null,
         ];
         $tests[] = [
-            'Before the ticket was in state "Status: reviewed", but then the status was changed',
+            'Before the ticket was in state "Status: Code reviewed", but then the status was changed',
             null,
         ];
 

@@ -6,7 +6,7 @@ class Listener
 {
     private static $triggerWordToStatus = [
         'needs review' => Status::NEEDS_REVIEW,
-        'reviewed' => Status::REVIEWED,
+        'code reviewed' => Status::CODE_REVIEWED,
         'qa approved' => Status::QA_APPROVED,
         'pm approved' => Status::PM_APPROVED,
     ];

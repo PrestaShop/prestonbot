@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AppBundle\Controller;
+namespace tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -25,12 +25,12 @@ class MinimalControllerTest extends WebTestCase
     }
 
     /**
-     * This call may be redirected to home because of GitHub Quota
+     * This call may be redirected to home because of GitHub Quota.
      */
     public function testPullRequestDashboardOk()
     {
         $this->client->followRedirects();
-        
+
         $this->client->request('HEAD', '/dashboard/pull_requests');
         $response = $this->client->getResponse();
 
