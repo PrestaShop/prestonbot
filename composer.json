@@ -1,6 +1,12 @@
 {
     "name": "mickaelandrieu/harmony",
     "license": "MIT",
+    "authors": [
+    {
+        "name": "Mickaël Andrieu",
+        "email": "andrieu.travail@gmail.com"
+    }
+    ],
     "type": "project",
     "autoload": {
         "psr-4": { "": "src/" },
