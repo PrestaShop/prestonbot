@@ -45,7 +45,7 @@ class BodyParser
      */
     public function getType()
     {
-        $regex = "/(\|[[:space:]]Type\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = "/(\|[[:space:]]Type\?[[:space:]]+\|[[:space:]]*)(\S+\s?\S*)[[:space:]]*\r\n/";
 
         return $this->extractWithRegex($regex);
     }
