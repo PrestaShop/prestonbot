@@ -20,7 +20,7 @@ install:
   - composer update --prefer-dist --no-interaction --no-progress
 
 script:
-  - bin/phpunit -c app/
+  - ./vendor/bin/phpunit
 
 notifications:
   email: false
