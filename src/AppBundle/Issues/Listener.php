@@ -97,4 +97,15 @@ class Listener
 
         return $newStatus;
     }
+
+    /**
+     * Add "waiting for wording" label to an issue.
+     *
+     * @param int    $issueNumber The issue that was labeled
+     * @param string $label       The added label
+     */
+    public function handleWaitingForWordingEvent($issueNumber)
+    {
+        $this->statusApi->setIssueStatus($issueNumber, Status::WAITING_FOR_WORDING);
+    }
 }

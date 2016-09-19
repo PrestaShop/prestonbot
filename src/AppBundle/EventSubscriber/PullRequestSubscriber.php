@@ -5,9 +5,12 @@ namespace AppBundle\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Event\GitHubEvent;
+use AppBundle\PullRequests\Diff;
 
 class PullRequestSubscriber implements EventSubscriberInterface
 {
+    const TRANS_PATTERN = '#(trans\(|l\()#';
+
     public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
@@ -19,10 +22,12 @@ class PullRequestSubscriber implements EventSubscriberInterface
            'pullrequestevent_opened' => [
                ['checkForTableDescription', 255],
                ['welcomePeople', 253],
+               ['checkForNewTranslations', 252],
                ['initLabels', 254],
            ],
            'pullrequestevent_edited' => [
                ['removePrestonBotComment', 255],
+               ['checkForNewTranslations', 252],
             ],
         ];
     }
@@ -63,6 +68,32 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'table description checked',
+            ])
+        ;
+    }
+
+    /**
+     * if a call to trans or l function is done, add
+     * "waiting for wording" label.
+     */
+    public function checkForNewTranslations(GitHubEvent $githubEvent)
+    {
+        $event = $githubEvent->getEvent();
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
+        $diff = file_get_contents($pullRequest->getDiffUrl());
+
+        if (Diff::match(self::TRANS_PATTERN, $diff)) {
+            $this->container
+                ->get('app.issue_listener')
+                ->handleWaitingForWordingEvent($pullRequest->getNumber())
+            ;
+        }
+
+        $eventStatus = $event->getAction() == 'opened' ? 'opened' : 'edited';
+
+        $githubEvent->addStatus([
+            'event' => 'pr_'.$eventStatus,
+            'action' => 'checked for new translations',
             ])
         ;
     }

@@ -11,6 +11,7 @@ class StatusApi
         Status::CODE_REVIEWED => 'Code reviewed',
         Status::QA_APPROVED => 'QA-approved',
         Status::PM_APPROVED => 'PM-approved',
+        Status::WAITING_FOR_WORDING => 'waiting for wording',
     ];
 
     private $labelToStatus = [];
