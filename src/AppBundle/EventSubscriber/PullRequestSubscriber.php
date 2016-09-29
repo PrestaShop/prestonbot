@@ -20,9 +20,11 @@ class PullRequestSubscriber implements EventSubscriberInterface
                ['checkForTableDescription', 255],
                ['welcomePeople', 253],
                ['initLabels', 254],
+               ['checkCommits', 252],
            ],
            'pullrequestevent_edited' => [
-               ['removePrestonBotComment', 255],
+               ['removePullRequestValidationComment', 255],
+               ['removePullCommitValidationComment', 255],
             ],
         ];
     }
@@ -57,12 +59,31 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         $this->container
             ->get('app.pullrequest_listener')
-            ->handlePullRequestCreatedEvent($pullRequest, $pullRequest->getCommitSha())
+            ->checkForTableDescription($pullRequest)
         ;
 
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'table description checked',
+            ])
+        ;
+    }
+
+    /**
+     * Validate the commits name.
+     */
+    public function checkCommits(GitHubEvent $githubEvent)
+    {
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
+
+        $this->container
+            ->get('app.pullrequest_listener')
+            ->checkCommits($pullRequest)
+        ;
+
+        $githubEvent->addStatus([
+            'event' => 'pr_opened',
+            'action' => 'commits labels checked',
             ])
         ;
     }
@@ -82,7 +103,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @todo: create functional test in WebhookController
      */
-    public function removePrestonBotComment(GithubEvent $githubEvent)
+    public function removePullRequestValidationComment(GithubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
 
@@ -92,7 +113,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         $this->container
             ->get('app.pullrequest_listener')
-            ->handlePullRequestEditedEvent($pullRequest)
+            ->handleValidationMessagesOnEdition($pullRequest)
         ;
 
         $githubEvent->addStatus([

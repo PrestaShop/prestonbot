@@ -1,0 +1,35 @@
+<-- PR_COMMIT_NAME_ERROR -->
+Hi!
+
+These(s) commit(s) name(s) seems to be incomplete or malformed, regarding our [guidelines](http://doc.prestashop.com/display/PS16/How+to+write+a+commit+message):
+
+{% if commits|length > 1 %}
+<table>
+  <tr>
+    <th>Malformed commits</th>
+  </tr>
+  {% for commit in commits %}
+    <tr>
+        <td>{{ commit }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>`{{ commits[0] }}` is malformed or incomplete.</p>
+{% endif %}
+
+A valid commit name can be, for instance:
+
+```
+BO: Shows company in BO search if B2B is enabled
+```
+
+Would you mind to amend your commits' names?
+
+To do this, open a command line window and use `git commit --amend` for the commit's name. See [GitHub's help page](https://help.github.com/articles/changing-a-commit-message/) for more information.
+
+_Note: this **must** be done via the command line: you can't do this just by changing the title of the pull-request from the GitHub interface!_ :)
+
+Thank you!
+
+(note: this is an automated message, but answering it will reach a real human )

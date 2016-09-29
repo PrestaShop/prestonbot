@@ -20,4 +20,8 @@ services:
     # Your integrations tests shouldn't post comments to github
     app.pullrequest_listener:
         class: Tests\AppBundle\PullRequests\FakeListener
-        arguments: ['@app.comment_api', '@validator', '@twig']
+        arguments:
+            - '@app.comment_api'
+            - '@validator'
+            - '@twig'
+            - '@app.commit.repository'

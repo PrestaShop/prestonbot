@@ -9,7 +9,7 @@ class WebhookControllerTest extends WebTestCase
     /**
      * @dataProvider getTests
      */
-    public function testIssueComment($eventHeader, $payloadFilename, $expectedResponse)
+    public function testActions($eventHeader, $payloadFilename, $expectedResponse)
     {
         $client = $this->createClient();
         $client->enableProfiler();
@@ -32,7 +32,7 @@ class WebhookControllerTest extends WebTestCase
     public function getTests()
     {
         $tests = [];
-        $tests[] = [
+        $tests['Issue comments'] = [
             'issue_comment',
             'issue_comment.created.json',
             [
@@ -42,7 +42,7 @@ class WebhookControllerTest extends WebTestCase
                 ],
             ],
         ];
-        $tests[] = [
+        $tests['Pull request creation'] = [
             'pull_request',
             'pull_request.opened.json',
             [
@@ -58,9 +58,13 @@ class WebhookControllerTest extends WebTestCase
                     'event' => 'pr_opened',
                     'action' => 'user welcomed',
                 ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'commits labels checked',
+                ],
             ],
         ];
-        $tests[] = [
+        $tests['Add labels'] = [
             'issues',
             'issues.labeled.bug.json',
             [
@@ -70,7 +74,7 @@ class WebhookControllerTest extends WebTestCase
                 ],
             ],
         ];
-        $tests[] = [
+        $tests['Ignore labels'] = [
             'issues',
             'issues.labeled.feature.json',
             [
@@ -80,7 +84,7 @@ class WebhookControllerTest extends WebTestCase
                 ],
             ],
         ];
-        $tests[] = [
+        $tests['Pull request on wrong repository'] = [
             'pull_request',
             'wrong_repository.pull_request.json',
             [],

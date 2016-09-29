@@ -1,6 +1,6 @@
 {
   "action": "opened",
-  "number": 3,
+  "number": 1,
   "pull_request": {
     "url": "https://api.github.com/repos/weaverryan/symfony/pulls/3",
     "id": 38727018,
@@ -8,7 +8,7 @@
     "diff_url": "https://github.com/weaverryan/symfony/pull/3.diff",
     "patch_url": "https://github.com/weaverryan/symfony/pull/3.patch",
     "issue_url": "https://api.github.com/repos/weaverryan/symfony/issues/3",
-    "number": 3,
+    "number": 1,
     "state": "open",
     "locked": false,
     "title": "Testing PR",
