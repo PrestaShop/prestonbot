@@ -62,8 +62,6 @@ class FakeListener
         if (count($validationErrors) > 0) {
             $bodyMessage = $this->twig->render('markdown/pr_commit_name_nok.md.twig', ['commits' => $validationErrors]);
 
-            dump($bodyMessage);
-
             return true;
         }
     }
