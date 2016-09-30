@@ -48,9 +48,6 @@ class Repository
             $pullRequest->getNumber()
         );
 
-        foreach ($responseApi as $commit) {
-        }
-
         return $responseApi;
     }
 }

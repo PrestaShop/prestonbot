@@ -16,8 +16,8 @@ class Listener
     private $repository;
 
     const PRESTONBOT_NAME = 'prestonBot';
-    const PR_TABLE_DESCRIPTION_ERROR = 'PR_TABLE_DESCRIPTION_ERROR';
-    const PR_COMMIT_NAME_ERROR = 'PR_COMMIT_NAME_ERROR';
+    const TABLE_ERROR = 'PR_TABLE_DESCRIPTION_ERROR';
+    const COMMIT_ERROR = 'PR_COMMIT_NAME_ERROR';
 
     public function __construct(
         CommentApi $commentApi,
@@ -51,20 +51,9 @@ class Listener
      */
     public function checkCommits(PullRequest $pullRequest)
     {
-        $commits = $this->commitRepository->findAllByPullRequest($pullRequest);
-        $commitErrors = [];
+        $commitErrors = $this->getErrorsFromCommits($pullRequest);
 
-        foreach ($commits as $commit) {
-            $commitLabel = $commit['commit']['message'];
-            $commitParser = new CommitParser($commitLabel, $pullRequest);
-            $commitErrors = $this->validator->validate($commitParser);
-
-            if (count($commitErrors) > 0) {
-                $commitErrors[] = $commitLabel;
-            }
-        }
-
-        if (count($commitErrors) > 0) {
+        if ($commitErrors > 0) {
             $this->commentApi->sendWithTemplate(
                 $pullRequest,
                 'markdown/pr_commit_name_nok.md.twig',
@@ -77,24 +66,62 @@ class Listener
     {
         $bodyParser = new BodyParser($pullRequest->getBody());
 
-        $validationErrors = $this->validator->validate($bodyParser);
-        if (count($validationErrors) > 0) {
-            $validationComments = $this->$this->repository
-            ->getCommentsByExpressionFrom(
-                $pullRequest,
-                self::PR_TABLE_DESCRIPTION_ERROR,
-                self::PRESTONBOT_NAME
-            );
-
-            if (count($validationComments) > 0) {
-                $comment = $validationComments[0];
-                $this->commentApi->remove($comment->getId());
-            }
+        $bodyErrors = $this->validator->validate($bodyParser);
+        if (0 === count($bodyErrors)) {
+            $this->removeCommentsIfExists($pullRequest, self::TABLE_ERROR);
         }
     }
 
     public function removeCommitValidationComment(PullRequest $pullRequest)
     {
-        //@todo
+        if (0 === $this->getErrorsFromCommits($pullRequest)) {
+            $this->removeCommentsIfExists($pullRequest, self::COMMIT_ERROR);
+        }
     }
+
+    /**
+     * Wrap the validation of commits.
+     * 
+     * @return array error messages if any.
+     */
+    public function getErrorsFromCommits(PullRequest $pullRequest)
+    {
+        $commits = $this->commitRepository->findAllByPullRequest($pullRequest);
+        $commitsErrors = [];
+
+        foreach ($commits as $commit) {
+            $commitLabel = $commit['commit']['message'];
+            $commitParser = new CommitParser($commitLabel, $pullRequest);
+            $commitsErrors = $this->validator->validate($commitParser);
+
+            if (count($commitErrors) > 0) {
+                $commitsErrors[] = $commitLabel;
+            }
+        }
+
+        return $commitsErrors;
+    }
+
+     /**
+      * Wraps the remove of existing PrestonBot comments.
+      * 
+      * @param PullRequest the pull request
+      * @param $pattern expression to filter comments in CommentApi
+      */
+     public function removeCommentsIfExists(PullRequest $pullRequest, $pattern)
+     {
+         $comments = $this->repository
+            ->getCommentsByExpressionFrom(
+                $pullRequest,
+                $pattern,
+                self::PRESTONBOT_NAME
+            )
+        ;
+
+         if (count($comments) > 0) {
+             foreach ($comments as $comment) {
+                 $this->commentApi->remove($comment->getId());
+             }
+         }
+     }
 }
