@@ -60,9 +60,11 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'commits labels checked',
                     'action' => 'checked for new translations',
                 ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'commits labels checked']
             ],
         ];
         $tests['Add labels'] = [
