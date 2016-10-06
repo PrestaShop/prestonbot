@@ -1,0 +1,641 @@
+diff --git a/src/Adapter/Product/AdminProductWrapper.php b/src/Adapter/Product/AdminProductWrapper.php
+index 02d518a..6094839 100644
+--- a/src/Adapter/Product/AdminProductWrapper.php
++++ b/src/Adapter/Product/AdminProductWrapper.php
+@@ -131,7 +131,10 @@ public function processProductAttribute($product, $combinationValues)
+             }
+         }
+ 
+-        $this->processQuantityUpdate($product, $combinationValues['attribute_quantity'], $id_product_attribute);
++        if(isset($combinationValues['attribute_quantity'])){
++            $this->processQuantityUpdate($product, $combinationValues['attribute_quantity'], $id_product_attribute);
++        }
++
+     }
+ 
+     /**
+diff --git a/src/PrestaShopBundle/Controller/Admin/ProductController.php b/src/PrestaShopBundle/Controller/Admin/ProductController.php
+index 7c09471..c5643fe 100644
+--- a/src/PrestaShopBundle/Controller/Admin/ProductController.php
++++ b/src/PrestaShopBundle/Controller/Admin/ProductController.php
+@@ -439,7 +439,9 @@ public function formAction($id, Request $request)
+                     // If there is no combination, then quantity is managed for the whole product (as combination ID 0)
+                     // In all cases, legacy hooks are triggered: actionProductUpdate and actionUpdateQuantity
+                     if (count($_POST['combinations']) === 0) {
+-                        $adminProductWrapper->processQuantityUpdate($product, $_POST['qty_0']);
++                        if (isset($_POST['qty_0'])){
++                            $adminProductWrapper->processQuantityUpdate($product, $_POST['qty_0']);
++                        }
+                     }
+                     // else quantities are managed from $adminProductWrapper->processProductAttribute() above.
+ 
+diff --git a/src/PrestaShopBundle/Form/Admin/Product/ProductCombination.php b/src/PrestaShopBundle/Form/Admin/Product/ProductCombination.php
+index b43b26b..c1420d5 100644
+--- a/src/PrestaShopBundle/Form/Admin/Product/ProductCombination.php
++++ b/src/PrestaShopBundle/Form/Admin/Product/ProductCombination.php
+@@ -63,6 +63,8 @@ public function __construct($translator, $legacyContext)
+      */
+     public function buildForm(FormBuilderInterface $builder, array $options)
+     {
++        $is_stock_management = $this->configuration->get('PS_STOCK_MANAGEMENT');
++
+         $builder->add('id_product_attribute', 'Symfony\Component\Form\Extension\Core\Type\HiddenType', array(
+             'required' => false,
+         ))
+@@ -142,16 +144,18 @@ public function buildForm(FormBuilderInterface $builder, array $options)
+             'label'    => $this->translator->trans('Set as default combination', [], 'Admin.Catalog.Feature'),
+             'required' => false,
+             'attr' => array('class' => 'attribute_default_checkbox'),
+-        ))
+-        ->add('attribute_quantity', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
+-            'required' => true,
+-            'label' => $this->translator->trans('Quantity', [], 'Admin.Catalog.Feature'),
+-            'constraints' => array(
+-                new Assert\NotBlank(),
+-                new Assert\Type(array('type' => 'numeric')),
+-            )
+-        ))
+-        ->add('id_image_attr', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
++        ));
++        if ($is_stock_management){
++           $builder->add('attribute_quantity', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
++                'required' => true,
++                'label' => $this->translator->trans('Quantity', [], 'Admin.Catalog.Feature'),
++                'constraints' => array(
++                    new Assert\NotBlank(),
++                    new Assert\Type(array('type' => 'numeric')),
++                )
++            ));
++        }
++        $builder->add('id_image_attr', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+             'choices'  => array(),
+             'choices_as_values' => true,
+             'required' => false,
+diff --git a/src/PrestaShopBundle/Form/Admin/Product/ProductCombinationBulk.php b/src/PrestaShopBundle/Form/Admin/Product/ProductCombinationBulk.php
+index 664ca3a..f6f7eab 100644
+--- a/src/PrestaShopBundle/Form/Admin/Product/ProductCombinationBulk.php
++++ b/src/PrestaShopBundle/Form/Admin/Product/ProductCombinationBulk.php
+@@ -29,6 +29,7 @@
+ use Symfony\Component\Form\FormBuilderInterface;
+ use Symfony\Component\OptionsResolver\OptionsResolver;
+ use Symfony\Component\Translation\TranslatorInterface;
++use PrestaShop\PrestaShop\Adapter\Configuration;
+ 
+ /**
+  * This form class is responsible to generate the form for bulk combination feature
+@@ -47,47 +48,54 @@ public function __construct(TranslatorInterface $translator)
+ 
+     public function buildForm(FormBuilderInterface $builder, array $options)
+     {
++        $configuration = new Configuration();
++        $is_stock_management = $configuration->get('PS_STOCK_MANAGEMENT');
+         $this->isoCode = $options['iso_code'];
+         $this->priceDisplayPrecision = $options['price_display_precision'];
+ 
+-        $builder->add('quantity', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
+-            'required' => true,
+-            'label' => $this->translator->trans('Quantity', [], 'Admin.Catalog.Feature'),
+-        ))
+-        ->add('cost_price', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
++        if($is_stock_management){
++            $builder->add('quantity', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
++                'required' => true,
++                'label' => $this->translator->trans('Quantity', [], 'Admin.Catalog.Feature'),
++            ));
++        }
++
++        $builder->add('cost_price', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
+             'required' => false,
+             'label' => $this->translator->trans('Cost Price', [], 'Admin.Catalog.Feature'),
+             'attr' => ['data-display-price-precision' => self::PRESTASHOP_DECIMALS],
+             'currency' => $this->isoCode,
+         ))
+-        ->add('impact_on_weight', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
+-            'required' => false,
+-            'label' => $this->translator->trans('Impact on weight', [], 'Admin.Catalog.Feature'),
+-        ))
+-        ->add('impact_on_price_te', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
+-            'required' => false,
+-            'label' => $this->translator->trans('Impact on price (tax excl.)', [], 'Admin.Catalog.Feature'),
+-            'currency' => $this->isoCode,
+-        ))
+-        ->add('impact_on_price_ti', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
+-            'required' => false,
+-            'mapped' => false,
+-            'label' => $this->translator->trans('Impact on price (tax incl.)', [], 'Admin.Catalog.Feature'),
+-            'currency' => $this->isoCode,
+-        ))
+-        ->add('date_availability', 'PrestaShopBundle\Form\Admin\Type\DatePickerType', array(
+-            'required' => false,
+-            'label' => $this->translator->trans('Availability date', [], 'Admin.Catalog.Feature'),
+-            'attr' => ['class' => 'date', 'placeholder' => 'YYYY-MM-DD'],
+-        ))
+-        ->add('reference', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+-            'required' => false,
+-            'label' => $this->translator->trans('Reference', [], 'Admin.Catalog.Feature'),
+-        ))
+-        ->add('minimal_quantity', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
+-            'required' => false,
+-            'label' => $this->translator->trans('Minimum quantity', [], 'Admin.Catalog.Feature'),
+-        ));
++            ->add('impact_on_weight', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
++                'required' => false,
++                'label' => $this->translator->trans('Impact on weight', [], 'Admin.Catalog.Feature'),
++            ))
++            ->add('impact_on_price_te', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
++                'required' => false,
++                'label' => $this->translator->trans('Impact on price (tax excl.)', [], 'Admin.Catalog.Feature'),
++                'currency' => $this->isoCode,
++            ))
++            ->add('impact_on_price_ti', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
++                'required' => false,
++                'mapped' => false,
++                'label' => $this->translator->trans('Impact on price (tax incl.)', [], 'Admin.Catalog.Feature'),
++                'currency' => $this->isoCode,
++            ))
++            ->add('date_availability', 'PrestaShopBundle\Form\Admin\Type\DatePickerType', array(
++                'required' => false,
++                'label' => $this->translator->trans('Availability date', [], 'Admin.Catalog.Feature'),
++                'attr' => ['class' => 'date', 'placeholder' => 'YYYY-MM-DD'],
++            ))
++            ->add('reference', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
++                'required' => false,
++                'label' => $this->translator->trans('Reference', [], 'Admin.Catalog.Feature'),
++            ))
++            ->add('minimal_quantity', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
++                'required' => false,
++                'label' => $this->translator->trans('Minimum quantity', [], 'Admin.Catalog.Feature'),
++            ));
++
++
+     }
+ 
+     public function configureOptions(OptionsResolver $resolver)
+diff --git a/src/PrestaShopBundle/Form/Admin/Product/ProductInformation.php b/src/PrestaShopBundle/Form/Admin/Product/ProductInformation.php
+index 4956da4..e371bee 100644
+--- a/src/PrestaShopBundle/Form/Admin/Product/ProductInformation.php
++++ b/src/PrestaShopBundle/Form/Admin/Product/ProductInformation.php
+@@ -90,6 +90,7 @@ public function __construct($translator, $legacyContext, $router, $categoryDataP
+      */
+     public function buildForm(FormBuilderInterface $builder, array $options)
+     {
++        $is_stock_management = $this->configuration->get('PS_STOCK_MANAGEMENT');
+         $builder->add('type_product', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+             'choices'  => array(
+                 $this->translator->trans('Standard product', [], 'Admin.Catalog.Feature') => 0,
+@@ -203,16 +204,18 @@ public function buildForm(FormBuilderInterface $builder, array $options)
+             'label' => $this->translator->trans('Retail price with tax', [], 'Admin.Catalog.Feature'),
+             'mapped' => false,
+             'currency' => $this->currency->iso_code,
+-        ))
+-        ->add('qty_0_shortcut', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
+-            'required' => false,
+-            'label' => $this->translator->trans('Quantity', [], 'Admin.Catalog.Feature'),
+-            'constraints' => array(
+-                new Assert\NotBlank(),
+-                new Assert\Type(array('type' => 'numeric'))
+-            )
+-        ))
+-        ->add('categories', 'PrestaShopBundle\Form\Admin\Type\ChoiceCategoriesTreeType', array(
++        ));
++        if ($is_stock_management){
++            $builder->add('qty_0_shortcut', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
++                'required' => false,
++                'label' => $this->translator->trans('Quantity', [], 'Admin.Catalog.Feature'),
++                'constraints' => array(
++                    new Assert\NotBlank(),
++                    new Assert\Type(array('type' => 'numeric'))
++                )
++            ));
++        }
++        $builder->add('categories', 'PrestaShopBundle\Form\Admin\Type\ChoiceCategoriesTreeType', array(
+             'label' => $this->translator->trans('Associated categories', [], 'Admin.Catalog.Feature'),
+             'list' => $this->nested_categories,
+             'valid_list' => $this->categories,
+diff --git a/src/PrestaShopBundle/Form/Admin/Product/ProductQuantity.php b/src/PrestaShopBundle/Form/Admin/Product/ProductQuantity.php
+index 5183f1f..d420102 100644
+--- a/src/PrestaShopBundle/Form/Admin/Product/ProductQuantity.php
++++ b/src/PrestaShopBundle/Form/Admin/Product/ProductQuantity.php
+@@ -64,6 +64,7 @@ public function __construct($translator, $router, $legacyContext)
+      */
+     public function buildForm(FormBuilderInterface $builder, array $options)
+     {
++        $is_stock_management = $this->configuration->get('PS_STOCK_MANAGEMENT');
+         $builder->add('attributes', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+             'attr' => array(
+                 'class' => 'tokenfield',
+@@ -88,16 +89,18 @@ public function buildForm(FormBuilderInterface $builder, array $options)
+                 'expanded' => true,
+                 'required' => true,
+                 'multiple' => false,
+-            ))
+-            ->add('qty_0', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
+-                'required' => true,
+-                'label' => $this->translator->trans('Quantity', array(), 'Admin.Catalog.Feature'),
+-                'constraints' => array(
+-                    new Assert\NotBlank(),
+-                    new Assert\Type(array('type' => 'numeric')),
+-                ),
+-            ))
+-            ->add('out_of_stock', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
++            ));
++            if($is_stock_management){
++                $builder->add('qty_0', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
++                    'required' => true,
++                    'label' => $this->translator->trans('Quantity', array(), 'Admin.Catalog.Feature'),
++                    'constraints' => array(
++                        new Assert\NotBlank(),
++                        new Assert\Type(array('type' => 'numeric')),
++                    ),
++                ));
++            }
++            $builder->add('out_of_stock', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                 'choices_as_values' => true,
+             ))
+             ->add('minimal_quantity', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
+diff --git a/src/PrestaShopBundle/Resources/views/Admin/Product/Include/form_combination.html.twig b/src/PrestaShopBundle/Resources/views/Admin/Product/Include/form_combination.html.twig
+index 5ac0e8a..21b81b8 100644
+--- a/src/PrestaShopBundle/Resources/views/Admin/Product/Include/form_combination.html.twig
++++ b/src/PrestaShopBundle/Resources/views/Admin/Product/Include/form_combination.html.twig
+@@ -1,3 +1,4 @@
++{% set is_stock_management = 'PS_STOCK_MANAGEMENT'|configuration %}
+ <tr class="combination loaded" id="attribute_{{ form.vars.value.id_product_attribute }}" data="{{ form.vars.value.id_product_attribute }}" data-index="{{ form.vars.value.id_product_attribute }}">
+   <td width="1%"><input class="js-combination" type="checkbox" data-id="{{ form.vars.value.id_product_attribute }}" data-index="{{ form.vars.value.id_product_attribute }}"></td>
+   <td class="img"><div class="fake-img"></div></td>
+@@ -11,11 +12,13 @@
+     <td class="attribute-finalprice text-xs-right">
+       <span data-price="{{ form.vars.value.final_price }}" data-uniqid="{{ form.vars.value.id_product_attribute }}">{{ form.vars.value.final_price }}</span> {{ default_currency }}
+     </td>
+-    <td class="attribute-quantity">
+-        <div>
+-            <input type="text" value="{{ form.vars.value.attribute_quantity }}" class="form-control text-xs-right">
+-        </div>
+-    </td>
++    {% if is_stock_management %}
++      <td class="attribute-quantity">
++          <div>
++              <input type="text" value="{{ form.vars.value.attribute_quantity }}" class="form-control text-xs-right">
++          </div>
++      </td>
++    {% endif %}
+ 
+     <td class="attribute-actions">
+         <div class="btn-group btn-group-sm" role="group">
+@@ -37,6 +40,7 @@
+                 </h2>
+                 {{ form_widget(form.attribute_default) }}
+                 <div class="row">
++                  {% if is_stock_management %}
+                     <div class="col-md-2">
+                       <fieldset class="form-group">
+                           <label class="combination-label">
+@@ -45,6 +49,7 @@
+                           {{ form_widget(form.attribute_quantity) }}
+                       </fieldset>
+                     </div>
++                  {% endif %}
+                     <div class="col-md-3">
+                       <fieldset class="form-group">
+                           <label class="combination-label">{{ form.available_date_attribute.vars.label }}</label>
+diff --git a/src/PrestaShopBundle/Resources/views/Admin/Product/Include/form_combinations.html.twig b/src/PrestaShopBundle/Resources/views/Admin/Product/Include/form_combinations.html.twig
+index 8bc8c2e..ffb60d6 100644
+--- a/src/PrestaShopBundle/Resources/views/Admin/Product/Include/form_combinations.html.twig
++++ b/src/PrestaShopBundle/Resources/views/Admin/Product/Include/form_combinations.html.twig
+@@ -63,7 +63,9 @@
+             <th>{{ 'Combinations'|trans({}, 'Admin.Catalog.Feature') }}</th>
+             <th>{{ 'Impact on price'|trans({}, 'Admin.Catalog.Feature') }}</th>
+             <th>{{ 'Final price'|trans({}, 'Admin.Catalog.Feature') }}</th>
+-            <th>{{ 'Quantity'|trans({}, 'Admin.Catalog.Feature') }}</th>
++            {% if is_stock_management %}
++                <th>{{ 'Quantity'|trans({}, 'Admin.Catalog.Feature') }}</th>
++            {% endif %}
+             <th colspan="3" class="text-xs-right">{{ 'Default combination'|trans({}, 'Admin.Catalog.Feature') }}</th>
+           </tr>
+         </thead>
+@@ -84,9 +86,11 @@
+               <td class="attribute-finalprice">
+                 <div class="animated-background"></div>
+               </td>
+-              <td class="attribute-quantity">
+-                <div class="animated-background"></div>
+-              </td>
++              {% if is_stock_management %}
++                <td class="attribute-quantity">
++                  <div class="animated-background"></div>
++                </td>
++              {% endif %}
+               <td colspan="6"></td>
+             </tr>
+           {%  endif %}
+@@ -141,25 +145,30 @@
+     <div class="col-md-12">
+       <h2>{{ 'Availability preferences'|trans({}, 'Admin.Catalog.Feature') }}</h2>
+     </div>
++    {% if is_stock_management %}
++      <div class="col-md-12">
++        <label class="form-control-label">{{ 'Behavior when out of stock'|trans({}, 'Admin.Catalog.Feature') }}</label>
++        {{ form_errors(form.out_of_stock) }}
++        {{ form_widget(form.out_of_stock) }}
++      </div>
+ 
+-    <div class="col-md-12">
+-      <label class="form-control-label">{{ 'Behavior when out of stock'|trans({}, 'Admin.Catalog.Feature') }}</label>
+-      {{ form_errors(form.out_of_stock) }}
+-      {{ form_widget(form.out_of_stock) }}
+-    </div>
++      <div class="col-md-4">
++        <label class="form-control-label">{{ form.available_now.vars.label }}</label>
++        {{ form_errors(form.available_now) }}
++        {{ form_widget(form.available_now) }}
++      </div>
+ 
+-    <div class="col-md-4">
+-      <label class="form-control-label">{{ form.available_now.vars.label }}</label>
+-      {{ form_errors(form.available_now) }}
+-      {{ form_widget(form.available_now) }}
+-    </div>
++      <div class="col-md-4 ">
++        <label class="form-control-label">{{ form.available_later.vars.label }}</label>
++        {{ form_errors(form.available_later) }}
++        {{ form_widget(form.available_later) }}
++      </div>
++    {% else %}
++      <div class="col-md-12">
++        <h3>{{  'Stock management is disabled'|trans({}, 'Admin.Catalog.Feature') }}</h3>
++      </div>
++    {% endif %}
+ 
+-    <div class="col-md-4 ">
+-      <label class="form-control-label">{{ form.available_later.vars.label }}</label>
+-      {{ form_errors(form.available_later) }}
+-      {{ form_widget(form.available_later) }}
+-    </div>
+-    
+     {% if not has_combinations %}
+     <div class="col-md-4 ">
+       <label class="form-control-label">{{ form.available_date.vars.label }}</label>
+diff --git a/src/PrestaShopBundle/Resources/views/Admin/Product/catalog.html.twig b/src/PrestaShopBundle/Resources/views/Admin/Product/catalog.html.twig
+index 8b4a3f7..3a95bbe 100644
+--- a/src/PrestaShopBundle/Resources/views/Admin/Product/catalog.html.twig
++++ b/src/PrestaShopBundle/Resources/views/Admin/Product/catalog.html.twig
+@@ -47,6 +47,8 @@
+ 
+ {% block content %}
+ 
++  {% set is_stock_management = 'PS_STOCK_MANAGEMENT'|configuration %}
++
+   <div class="products-catalog">
+ 
+     {{ renderhook('legacy_block_kpi', {'kpi_controller': 'AdminProductsController'}) }}
+@@ -227,12 +229,18 @@
+                       'column': 'price'
+                     } %}
+                   </th>
++
++                  {% if is_stock_management %}
+                   <th style="width: 9%">
+                     {{ "Quantity"|trans({}, 'Admin.Catalog.Feature') }}
+                     {% include 'PrestaShopBundle:Admin/Product/Include:catalog_order_carrets.html.twig' with {
+                       'column': 'sav_quantity'
+                     } %}
+                   </th>
++                  {% else %}
++                    <th></th>
++                  {% endif %}
++
+                   <th>
+                     {{ "Status"|trans({}, 'Admin.Global') }}
+                     {% include 'PrestaShopBundle:Admin/Product/Include:catalog_order_carrets.html.twig' with {
+@@ -299,6 +307,7 @@
+                     } %}
+                   </th>
+ 
++                  {% if is_stock_management %}
+                   <th>
+                     {% include 'PrestaShopBundle:Admin/Helpers:range_inputs.html.twig' with {
+                       'input_name': "filter_column_sav_quantity",
+@@ -309,6 +318,10 @@
+                       'value': filter_column_sav_quantity,
+                     } %}
+                   </th>
++                  {% else %}
++                    <th>&nbsp;</th>
++                  {% endif %}
++
+                   <th>
+                     <select data-toggle="select2" name="filter_column_active">
+                       <option value=""></option>
+diff --git a/src/PrestaShopBundle/Resources/views/Admin/Product/form.html.twig b/src/PrestaShopBundle/Resources/views/Admin/Product/form.html.twig
+index a72a75a..8e6488c 100644
+--- a/src/PrestaShopBundle/Resources/views/Admin/Product/form.html.twig
++++ b/src/PrestaShopBundle/Resources/views/Admin/Product/form.html.twig
+@@ -1,6 +1,7 @@
+ {% extends 'PrestaShopBundle:Admin:layout.html.twig' %}
+ 
+ {% block content %}
++  {% set is_stock_management = 'PS_STOCK_MANAGEMENT'|configuration %}
+ 
+   <form name="form" id="form" method="post" class="form-horizontal product-page row" novalidate="novalidate">
+ 
+@@ -248,7 +249,7 @@
+                               {{ "Reference"|trans({}, 'Admin.Catalog.Feature') }}
+                               <span class="help-box" data-toggle="popover"
+                                 data-content="{{ "Your internal reference code for this product. Allowed special characters: .-_#\."|trans({}, 'Admin.Catalog.Help') }}" ></span>
+-                            </2>
++                            </h2>
+                             {{ form_errors(form.step6.reference) }}
+                             <div class="row">
+                               <div class="col-xl-12 col-lg-12" id="product_reference_field">
+@@ -257,23 +258,25 @@
+                             </div>
+                           </div>
+ 
+-                          <div class="form-group" id="product_qty_0_shortcut_div">
+-                            <h2>
+-                              {{ "Quantity"|trans({}, 'Admin.Catalog.Feature') }}
+-                              <span class="help-box" data-toggle="popover"
+-                                data-content="{{ "How many products should be available for sale?"|trans({}, 'Admin.Catalog.Help') }}" ></span>
+-                            </h2>
+-                            {{ form_errors(form.step1.qty_0_shortcut) }}
+-                            <div class="row">
+-                              <div class="col-xl-6 col-lg-12">
+-                                {{ form_widget(form.step1.qty_0_shortcut) }}
++                          {% if is_stock_management %}
++                            <div class="form-group" id="product_qty_0_shortcut_div">
++                              <h2>
++                                {{ "Quantity"|trans({}, 'Admin.Catalog.Feature') }}
++                                <span class="help-box" data-toggle="popover"
++                                  data-content="{{ "How many products should be available for sale?"|trans({}, 'Admin.Catalog.Help') }}" ></span>
++                              </h2>
++                              {{ form_errors(form.step1.qty_0_shortcut) }}
++                              <div class="row">
++                                <div class="col-xl-6 col-lg-12">
++                                  {{ form_widget(form.step1.qty_0_shortcut) }}
++                                </div>
+                               </div>
++                              <span class="small font-secondary">
++                                {# First tag [1][/1] is for a HTML link. Second tag [2] is an icon (no closing tag needed). #}
++                                {{ "Advanced settings in [1][2]Quantities[/1]"|trans({}, 'Admin.Catalog.Help')|replace({'[1]': '<a href="#tab-step3" onclick="$(\'a[href=\\\'#step3\\\']\').tab(\'show\');" class="btn sensitive p-x-0">', '[/1]': '</a>', '[2]': '<i class="material-icons">open_in_new</i>'})|raw }}
++                              </span>
+                             </div>
+-                            <span class="small font-secondary">
+-                              {# First tag [1][/1] is for a HTML link. Second tag [2] is an icon (no closing tag needed). #}
+-                              {{ "Advanced settings in [1][2]Quantities[/1]"|trans({}, 'Admin.Catalog.Help')|replace({'[1]': '<a href="#tab-step3" onclick="$(\'a[href=\\\'#step3\\\']\').tab(\'show\');" class="btn sensitive p-x-0">', '[/1]': '</a>', '[2]': '<i class="material-icons">open_in_new</i>'})|raw }}
+-                            </span>
+-                          </div>
++                          {% endif %}
+ 
+                           <div class="form-group">
+                             <h2>
+@@ -339,11 +342,13 @@
+                       <h2>{{ 'Quantities'|trans({}, 'Admin.Catalog.Feature') }}</h2>
+                       <fieldset class="form-group">
+                         <div class="row">
+-                          <div class="col-md-4">
+-                            <label class="form-control-label">{{ form.step3.qty_0.vars.label }}</label>
+-                            {{ form_errors(form.step3.qty_0) }}
+-                            {{ form_widget(form.step3.qty_0) }}
+-                          </div>
++                          {% if is_stock_management %}
++                            <div class="col-md-4">
++                              <label class="form-control-label">{{ form.step3.qty_0.vars.label }}</label>
++                              {{ form_errors(form.step3.qty_0) }}
++                              {{ form_widget(form.step3.qty_0) }}
++                            </div>
++                          {% endif %}
+                           <div class="col-md-4">
+                             <label class="form-control-label">{{ form.step3.minimal_quantity.vars.label }}</label>
+                             <span class="help-box" data-toggle="popover"
+@@ -445,17 +450,17 @@
+                         </div>
+                       </div>
+                     {% endif %}
+-
+-                    <div id="pack_stock_type">
+-                      <h2>{{ form.step3.pack_stock_type.vars.label }}</h2>
+-                      <div class="row col-md-4">
+-                        <fieldset class="form-group">
+-                          {{ form_errors(form.step3.pack_stock_type) }}
+-                          {{ form_widget(form.step3.pack_stock_type) }}
+-                        </fieldset>
++                    {% if is_stock_management %}
++                      <div id="pack_stock_type">
++                        <h2>{{ form.step3.pack_stock_type.vars.label }}</h2>
++                        <div class="row col-md-4">
++                          <fieldset class="form-group">
++                            {{ form_errors(form.step3.pack_stock_type) }}
++                            {{ form_widget(form.step3.pack_stock_type) }}
++                          </fieldset>
++                        </div>
+                       </div>
+-                    </div>
+-
++                    {% endif %}
+                     {{ include('PrestaShopBundle:Admin/Product/Include:form_combinations.html.twig', {'form': form.step3, 'form_combination_bulk': formCombinations}) }}
+ 
+                   </div>
+diff --git a/src/PrestaShopBundle/Resources/views/Admin/Product/form_combinations_bulk.html.twig b/src/PrestaShopBundle/Resources/views/Admin/Product/form_combinations_bulk.html.twig
+index 160621f..8747965 100644
+--- a/src/PrestaShopBundle/Resources/views/Admin/Product/form_combinations_bulk.html.twig
++++ b/src/PrestaShopBundle/Resources/views/Admin/Product/form_combinations_bulk.html.twig
+@@ -1,9 +1,12 @@
++{% set is_stock_management = 'PS_STOCK_MANAGEMENT'|configuration %}
+ <div class="row">
+-  <div class="col-xl-2 col-lg-6 custom-width m-b-1">
+-    <label class="form-control-label">{{ form.quantity.vars.label }}</label>
+-    {{ form_errors(form.quantity) }}
+-    {{ form_widget(form.quantity) }}
+-  </div>
++  {% if is_stock_management %}
++    <div class="col-xl-2 col-lg-6 custom-width m-b-1">
++      <label class="form-control-label">{{ form.quantity.vars.label }}</label>
++      {{ form_errors(form.quantity) }}
++      {{ form_widget(form.quantity) }}
++    </div>
++  {% endif %}
+ 
+   <div class="col-xl-2 col-lg-6 custom-width m-b-1">
+     <label class="form-control-label">{{ form.cost_price.vars.label }}</label>
+diff --git a/src/PrestaShopBundle/Resources/views/Admin/Product/list.html.twig b/src/PrestaShopBundle/Resources/views/Admin/Product/list.html.twig
+index 068de73..1530cbc 100644
+--- a/src/PrestaShopBundle/Resources/views/Admin/Product/list.html.twig
++++ b/src/PrestaShopBundle/Resources/views/Admin/Product/list.html.twig
+@@ -2,6 +2,7 @@
+   {% if activate_drag_and_drop and has_category_filter %}class="sortable"{% endif %}
+   last_sql="{{ last_sql_query|escape('html_attr') }}"
+ >
++{% set is_stock_management = 'PS_STOCK_MANAGEMENT'|configuration %}
+   {% for product in products %}
+         <tr data-uniturl="{{ product.unit_action_url|default('#') }}" data-product-id="{{ product.id_product }}">
+             <td class="checkbox-column">
+@@ -28,6 +29,7 @@
+               <a href="{{ product.url|default('') }}#tab-step2">{{ product.price|default('N/A'|trans({}, 'Admin.Global')) }}</a>
+             </td>
+ 
++            {% if is_stock_management %}
+             <td class="product-sav-quantity" data-product-quantity-value="{{ product.sav_quantity|default('') }}">
+               <a href="{{ product.url|default('') }}#tab-step3">
+                 {% if product.sav_quantity is defined and product.sav_quantity > 0 %}
+@@ -37,6 +39,9 @@
+                 {% endif %}
+               </a>
+             </td>
++            {% else %}
++                <td></td>
++            {% endif %}
+             <td>
+               {% if product.active|default(0) == 0 %}
+                 <a href="#" onclick="unitProductAction(this, 'activate'); return false;">
+diff --git a/src/PrestaShopBundle/Resources/views/Admin/Product/list_quicknav.html.twig b/src/PrestaShopBundle/Resources/views/Admin/Product/list_quicknav.html.twig
+index d00d725..9dd3139 100644
+--- a/src/PrestaShopBundle/Resources/views/Admin/Product/list_quicknav.html.twig
++++ b/src/PrestaShopBundle/Resources/views/Admin/Product/list_quicknav.html.twig
+@@ -1,3 +1,4 @@
++{% set is_stock_management = 'PS_STOCK_MANAGEMENT'|configuration %}
+ <div class="quicknav-container">
+     <div class="quicknav-header">
+         <div class="pull-left"><a href="#" data-toggle="sidebar" data-target=".sidebar">&times;</a></div>
+@@ -16,9 +17,11 @@
+                     <th class="hidden-xs hidden-sm">
+                         {{ "Price"|trans({}, 'Admin.Global') }}
+                     </th>
+-                    <th class="hidden-xs">
+-                        {{ "Quantity"|trans({}, 'Admin.Catalog.Feature') }}
+-                    </th>
++                    {% if is_stock_management %}
++                        <th class="hidden-xs">
++                            {{ "Quantity"|trans({}, 'Admin.Catalog.Feature') }}
++                        </th>
++                    {% endif %}
+                 </tr>
+             </thead>
+             <tbody>
+@@ -33,15 +36,19 @@
+                         <td class="hidden-xs hidden-sm">
+                             <a href="{{ product.url|default('') }}#tab-step2">{{ product.price|default('N/A'|trans({}, 'Admin.Global')) }}</a>
+                         </td>
+-                        <td class="hidden-xs product-sav-quantity" productquantityvalue="{{ product.sav_quantity|default('') }}">
+-                            <a href="{{ product.url|default('') }}#tab-step3">
+-                                {% if product.sav_quantity is defined and product.sav_quantity > 0 %}
+-                                    {{ product.sav_quantity }}
+-                                {% else %}
+-                                    <span class="badge badge-danger">{{ product.sav_quantity|default('N/A'|trans({}, 'Admin.Global')) }}</span>
+-                                {% endif %}
+-                            </a>
+-                        </td>
++                        {% if is_stock_management %}
++                            <td class="hidden-xs product-sav-quantity"
++                                productquantityvalue="{{ product.sav_quantity|default('') }}">
++                                <a href="{{ product.url|default('') }}#tab-step3">
++                                    {% if product.sav_quantity is defined and product.sav_quantity > 0 %}
++                                        {{ product.sav_quantity }}
++                                    {% else %}
++                                        <span
++                                            class="badge badge-danger">{{ product.sav_quantity|default('N/A'|trans({}, 'Admin.Global')) }}</span>
++                                    {% endif %}
++                                </a>
++                            </td>
++                        {% endif %}
+                     </tr>
+                 {% else %}
+                     <tr><td colspan="5">

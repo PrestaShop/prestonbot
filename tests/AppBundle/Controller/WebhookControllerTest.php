@@ -61,6 +61,7 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'commits labels checked',
+                    'action' => 'checked for new translations',
                 ],
             ],
         ];

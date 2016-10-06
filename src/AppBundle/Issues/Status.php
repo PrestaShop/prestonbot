@@ -16,4 +16,6 @@ final class Status
     const QA_APPROVED = 'qa_approved';
 
     const PM_APPROVED = 'pm_approved';
+
+    const WAITING_FOR_WORDING = 'waiting_for_wording';
 }
