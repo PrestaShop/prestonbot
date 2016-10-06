@@ -4,6 +4,7 @@ namespace AppBundle\Commits;
 
 use Github\Api\GitData\Commits as CommitApi;
 use Github\Api\PullRequest as PullRequestApi;
+use Lpdigital\Github\Entity\Commit;
 use Lpdigital\Github\Entity\PullRequest;
 
 class Repository
@@ -48,6 +49,11 @@ class Repository
             $pullRequest->getNumber()
         );
 
-        return $responseApi;
+        $commits = [];
+        foreach ($responseApi as $commitApi) {
+            $commits[] = Commit::createFromData($commitApi['commit']);
+        }
+
+        return $commits;
     }
 }

@@ -50,7 +50,7 @@ class FakeListener
         $validationErrors = [];
 
         foreach ($commits as $commit) {
-            $commitLabel = $commit['commit']['message'];
+            $commitLabel = $commit->getMessage();
             $commitParser = new CommitParser($commitLabel, $pullRequest);
             $commitErrors = $this->validator->validate($commitParser);
 

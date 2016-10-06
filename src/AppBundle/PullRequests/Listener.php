@@ -46,7 +46,6 @@ class Listener
     }
 
     /**
-     * @todo: use Lpdigital\Entity\Commit when exists
      * @todo: if Pull request description is valid, proposal can be improved.
      */
     public function checkCommits(PullRequest $pullRequest)
@@ -90,11 +89,11 @@ class Listener
         $commitsErrors = [];
 
         foreach ($commits as $commit) {
-            $commitLabel = $commit['commit']['message'];
+            $commitLabel = $commit->getMessage();
             $commitParser = new CommitParser($commitLabel, $pullRequest);
-            $commitsErrors = $this->validator->validate($commitParser);
+            $validationErrors = $this->validator->validate($commitParser);
 
-            if (count($commitErrors) > 0) {
+            if (count($validationErrors) > 0) {
                 $commitsErrors[] = $commitLabel;
             }
         }
