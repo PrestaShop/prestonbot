@@ -14,6 +14,7 @@ use Lpdigital\Github\Entity\PullRequest;
  */
 class Repository
 {
+    private $pullRequestRepository;
     private $searchRepository;
     private $commentsApi;
 
@@ -89,10 +90,10 @@ class Repository
 
     /**
      * Return Comments of selected user if any.
-     * 
+     *
      * @param PullRequest Lpdigital\Github\Entity\PullRequest
      * @param string login from Entity User of Comment entry
-     * 
+     *
      * @return array collection of user's comments
      */
     public function getCommentsFrom(PullRequest $pullRequest, $userLogin)
@@ -107,6 +108,31 @@ class Repository
         }
 
         return $userComments;
+    }
+
+    /**
+     * Return Comments of selected user if any, filtered by expression.
+     * 
+     * @param PullRequest Lpdigital\Github\Entity\PullRequest
+     * @param string login from Entity User of Comment entry
+     * 
+     * @return array collection of user's filtered comments
+     */
+    public function getCommentsByExpressionFrom(
+        PullRequest $pullRequest,
+        $expression,
+        $userLogin
+        ) {
+        $userCommentsByExpression = [];
+        $userComments = $this->getCommentsFrom($pullRequest, $userLogin);
+
+        foreach ($userComments as $userComment) {
+            if (strpos($userComment->getBody(), $expression)) {
+                $userCommentsByExpression[] = $userComment;
+            }
+        }
+
+        return $userCommentsByExpression;
     }
 
     private function parseLabel($label)

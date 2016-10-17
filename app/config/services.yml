@@ -20,7 +20,7 @@ services:
         class: Github\Api\Issue
         factory: ['@app.github.client', api]
         arguments: [issue]
-    
+
     app.github.comments_api:
         class: Github\Api\Issue\Comments
         factory: ['@app.github.issues_api', comments]
@@ -34,7 +34,7 @@ services:
         class: Github\Api\Repo
         factory: ['@app.github.client', api]
         arguments: [repository]
-        
+
     app.github.organizations_api:
         class: Github\Api\Organization
         factory: ['@app.github.client', api]
@@ -48,6 +48,15 @@ services:
     app.github.labels_api:
         class: Github\Api\Issue\Labels
         factory: ['@app.github.issues_api', labels]
+
+    app.github.gitdata_api:
+        class: Github\Api\GitData
+        factory: ['@app.github.client', api]
+        arguments: [gitData]
+
+    app.github.commits_api:
+        class: Github\Api\GitData\Commits
+        factory: ['@app.github.gitdata_api', commits]
 
 # Application GitHub API
 
@@ -75,7 +84,11 @@ services:
 
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener
-        arguments: ['@app.comment_api', '@validator', '@app.pull_request.repository']
+        arguments:
+            - '@app.comment_api'
+            - '@app.commit.repository'
+            - '@validator'
+            - '@app.pull_request.repository'
 
 # Event subscribers
 
@@ -126,6 +139,14 @@ services:
     app.search.repository:
         class: AppBundle\Search\Repository
         arguments: ['@app.github.search_api', '%repository_username%', '%repository_name%']
+
+    app.commit.repository:
+        class: AppBundle\Commits\Repository
+        arguments:
+            - '@app.github.commits_api'
+            - '@app.github.pullrequests_api'
+            - '%repository_username%'
+            - '%repository_name%'
 
 # Reporters
 

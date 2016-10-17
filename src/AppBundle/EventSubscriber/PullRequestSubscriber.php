@@ -24,8 +24,11 @@ class PullRequestSubscriber implements EventSubscriberInterface
                ['welcomePeople', 253],
                ['checkForNewTranslations', 252],
                ['initLabels', 254],
+               ['checkCommits', 252],
            ],
            'pullrequestevent_edited' => [
+               ['removePullRequestValidationComment', 255],
+               ['removeCommitValidationComment', 255],
                ['removePrestonBotComment', 255],
                ['checkForNewTranslations', 252],
             ],
@@ -62,7 +65,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         $this->container
             ->get('app.pullrequest_listener')
-            ->handlePullRequestCreatedEvent($pullRequest, $pullRequest->getCommitSha())
+            ->checkForTableDescription($pullRequest)
         ;
 
         $githubEvent->addStatus([
@@ -73,7 +76,25 @@ class PullRequestSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * if a call to trans or l function is done, add
+     * Validate the commits name.
+     */
+    public function checkCommits(GitHubEvent $githubEvent)
+    {
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
+
+        $this->container
+            ->get('app.pullrequest_listener')
+            ->checkCommits($pullRequest)
+        ;
+
+        $githubEvent->addStatus([
+            'event' => 'pr_opened',
+            'action' => 'commits labels checked',
+        ]);
+    }
+
+    /**
+     * If a call to trans or l function is done, add
      * "waiting for wording" label.
      */
     public function checkForNewTranslations(GitHubEvent $githubEvent)
@@ -113,7 +134,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @todo: create functional test in WebhookController
      */
-    public function removePrestonBotComment(GithubEvent $githubEvent)
+    public function removePullRequestValidationComment(GithubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
 
@@ -123,12 +144,35 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         $this->container
             ->get('app.pullrequest_listener')
-            ->handlePullRequestEditedEvent($pullRequest)
+            ->removePullRequestValidationComment($pullRequest)
         ;
 
         $githubEvent->addStatus([
             'event' => 'pr_edited',
             'action' => 'preston validation comment removed',
+            ])
+        ;
+    }
+    
+    /**
+     * @todo: create functional test in WebhookController
+     */
+    public function removeCommitValidationComment(GithubEvent $githubEvent)
+    {
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
+
+        if ($pullRequest->isClosed() || $pullRequest->isMerged()) {
+            return;
+        }
+
+        $this->container
+            ->get('app.pullrequest_listener')
+            ->removeCommitValidationComment($pullRequest)
+        ;
+
+        $githubEvent->addStatus([
+            'event' => 'pr_edited',
+            'action' => 'preston validation commit comment removed',
             ])
         ;
     }
