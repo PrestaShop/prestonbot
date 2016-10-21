@@ -52,7 +52,7 @@ class Listener
     {
         $commitErrors = $this->getErrorsFromCommits($pullRequest);
 
-        if ($commitErrors > 0) {
+        if (count($commitErrors) > 0) {
             $this->commentApi->sendWithTemplate(
                 $pullRequest,
                 'markdown/pr_commit_name_nok.md.twig',
