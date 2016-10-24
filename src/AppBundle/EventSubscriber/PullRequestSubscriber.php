@@ -29,7 +29,6 @@ class PullRequestSubscriber implements EventSubscriberInterface
            'pullrequestevent_edited' => [
                ['removePullRequestValidationComment', 255],
                ['removeCommitValidationComment', 255],
-               ['removePrestonBotComment', 255],
                ['checkForNewTranslations', 252],
             ],
         ];
