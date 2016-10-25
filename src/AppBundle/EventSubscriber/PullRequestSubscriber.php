@@ -5,11 +5,11 @@ namespace AppBundle\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Event\GitHubEvent;
-use AppBundle\PullRequests\Diff;
+use AppBundle\Diff\Diff;
 
 class PullRequestSubscriber implements EventSubscriberInterface
 {
-    const TRANS_PATTERN = '#(trans\(|l\()#';
+    const TRANS_PATTERN = '#(trans\(|->l\()#';
 
     public function setContainer(ContainerInterface $container)
     {
@@ -100,9 +100,9 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $event = $githubEvent->getEvent();
         $pullRequest = $githubEvent->getEvent()->pullRequest;
-        $diff = file_get_contents($pullRequest->getDiffUrl());
+        $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
 
-        if (Diff::match(self::TRANS_PATTERN, $diff)) {
+        if ($diff->additions()->contains(self::TRANS_PATTERN)->match()) {
             $this->container
                 ->get('app.issue_listener')
                 ->handleWaitingForWordingEvent($pullRequest->getNumber())

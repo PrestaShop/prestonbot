@@ -1983,12 +1983,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "fdb7834f695552d4e51f2c9ea9d73eed0b77f10f"
+                "reference": "f2768dc247b60e7cc3f3992b6086da048577f20e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/fdb7834f695552d4e51f2c9ea9d73eed0b77f10f",
-                "reference": "fdb7834f695552d4e51f2c9ea9d73eed0b77f10f",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/f2768dc247b60e7cc3f3992b6086da048577f20e",
+                "reference": "f2768dc247b60e7cc3f3992b6086da048577f20e",
                 "shasum": ""
             },
             "require": {
@@ -2117,7 +2117,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-10-24 18:44:12"
+            "time": "2016-10-25 18:41:00"
         },
         {
             "name": "twig/twig",
@@ -2125,12 +2125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "5e4fa99dc97ef98be3ca0b5e18d0e605e3cfe26d"
+                "reference": "50c8024766a97c39d7c28a6ab3a34be43f2a7493"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5e4fa99dc97ef98be3ca0b5e18d0e605e3cfe26d",
-                "reference": "5e4fa99dc97ef98be3ca0b5e18d0e605e3cfe26d",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/50c8024766a97c39d7c28a6ab3a34be43f2a7493",
+                "reference": "50c8024766a97c39d7c28a6ab3a34be43f2a7493",
                 "shasum": ""
             },
             "require": {
@@ -2179,7 +2179,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-24 23:59:56"
+            "time": "2016-10-25 17:31:35"
         }
     ],
     "packages-dev": [
