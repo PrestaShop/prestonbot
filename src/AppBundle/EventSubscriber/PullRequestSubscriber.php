@@ -152,7 +152,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ])
         ;
     }
-    
+
     /**
      * @todo: create functional test in WebhookController
      */

@@ -19,6 +19,7 @@ class WebhookControllerTest extends WebTestCase
         $client->request('POST', '/webhooks/github', [], [], ['HTTP_X-Github-Event' => $eventHeader], $body);
         $response = $client->getResponse();
 
+        $errorsMessage = 'OK';
         if ($profile = $client->getProfile()) {
             $errorsMessage = $this->handleExceptionFromCollector($profile);
         }
@@ -64,7 +65,7 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'commits labels checked']
+                    'action' => 'commits labels checked', ],
             ],
         ];
         $tests['Add labels'] = [

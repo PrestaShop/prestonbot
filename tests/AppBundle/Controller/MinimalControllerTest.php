@@ -23,25 +23,4 @@ class MinimalControllerTest extends WebTestCase
 
         $this->assertEquals(200, $response->getStatusCode());
     }
-
-    /**
-     * This call may be redirected to home because of GitHub Quota.
-     */
-    public function testPullRequestDashboardOk()
-    {
-        $this->client->followRedirects();
-
-        $this->client->request('HEAD', '/dashboard/pull_requests');
-        $response = $this->client->getResponse();
-
-        $this->assertEquals(200, $response->getStatusCode());
-    }
-
-    public function testTeamsDashboardOk()
-    {
-        $this->client->request('HEAD', '/dashboard/teams');
-        $response = $this->client->getResponse();
-
-        $this->assertEquals(200, $response->getStatusCode());
-    }
 }
