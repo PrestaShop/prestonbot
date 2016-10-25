@@ -3,7 +3,7 @@ imports:
     
 parameters:
     # token generated from a fake account who have admin rights on loveOSS organisation
-    github_token: 3976a64ca51d38281ef8aa55fd78d41813c52d8c
+    github_token: %env(GH_TOKEN)%
     repository_username: loveOSS
     repository_name: test
 

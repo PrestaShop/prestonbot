@@ -41,7 +41,8 @@ class BodyParser
 
     /**
      * @Assert\Choice(callback = "getValidTypes",
-     * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`, `refacto`.")
+     * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`, `refacto`.",
+     * strict=true)
      */
     public function getType()
     {
@@ -52,8 +53,8 @@ class BodyParser
 
     /**
      * @Assert\Choice(choices = {"FO", "BO", "CO", "IN", "TE", "WS"},
-     * message = "The `category` should be one of: `FO`, `BO`, `CO`, `IN`, `TE`, `WS`"
-     * )
+     * message = "The `category` should be one of: `FO`, `BO`, `CO`, `IN`, `TE`, `WS`",
+     * strict=true)
      */
     public function getCategory()
     {
