@@ -6,7 +6,7 @@ use AppBundle\Diff\Iterator\FilesIterator;
 use IteratorAggregate;
 
 /**
- * Extract human readable data from Pull diff.
+ * Extract human readable data from git diff file content.
  */
 class Diff implements IteratorAggregate
 {

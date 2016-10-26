@@ -21,6 +21,12 @@ according to **PrestaShop** standards.
 ./vendor/bin/phpunit
 ```
 
+You need also to create your own GitHub [personal token](https://github.com/settings/tokens) and export it:
+
+```bash
+export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
 ## Our standards ?
 
 Yeah, the *Symfony* ones:

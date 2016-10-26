@@ -3,7 +3,7 @@
 namespace AppBundle\Diff;
 
 /**
- * File from git diff.
+ * File structure from git diff.
  */
 class File
 {

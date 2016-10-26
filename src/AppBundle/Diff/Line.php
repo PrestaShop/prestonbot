@@ -3,7 +3,7 @@
 namespace AppBundle\Diff;
 
 /**
- * Line from git diff.
+ * Line structure from git diff.
  */
 class Line
 {
