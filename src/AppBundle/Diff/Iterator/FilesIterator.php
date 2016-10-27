@@ -2,17 +2,13 @@
 
 namespace AppBundle\Diff\Iterator;
 
-use AppBundle\Diff\Iterator\Filter\AdditionsFilterIterator;
-use AppBundle\Diff\Iterator\Filter\DeletionsFilterIterator;
 use AppBundle\Diff\Iterator\Filter\ContentFilterIterator;
 use AppBundle\Diff\Iterator\Filter\PathFilterIterator;
 
 class FilesIterator implements \IteratorAggregate, \Countable
 {
-    private $contains;
     private $files;
     private $iterator;
-    private $names;
 
     public function __construct($files)
     {
@@ -32,16 +28,14 @@ class FilesIterator implements \IteratorAggregate, \Countable
 
     public function path($regexp)
     {
-        $this->names[] = $regexp;
-        $this->iterator = new PathFilterIterator($this->iterator, $this->names);
+        $this->iterator = new PathFilterIterator($this->iterator, $regexp);
 
         return $this;
     }
 
     public function contains($regexp)
     {
-        $this->contains[] = $regexp;
-        $this->iterator = new ContentFilterIterator($this->iterator, $this->contains);
+        $this->iterator = new ContentFilterIterator($this->iterator, $regexp);
 
         return $this;
     }

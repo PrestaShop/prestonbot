@@ -6,22 +6,20 @@ use Iterator;
 
 class ContentFilterIterator extends \FilterIterator
 {
-    private $matchRegexps;
+    private $matchRegexp;
 
-    public function __construct(Iterator $iterator, $regexps)
+    public function __construct(Iterator $iterator, $regexp)
     {
         parent::__construct($iterator);
-        $this->matchRegexps = $regexps;
+        $this->matchRegexp = $regexp;
     }
 
     public function accept()
     {
         $file = $this->getInnerIterator()->current();
 
-        foreach ($this->matchRegexps as $regexp) {
-            if (preg_match($regexp, $file->content())) {
-                return true;
-            }
+        if (preg_match($this->matchRegexp, $file->content())) {
+            return true;
         }
 
         return false;

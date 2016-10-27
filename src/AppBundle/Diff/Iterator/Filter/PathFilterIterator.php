@@ -8,20 +8,18 @@ class PathFilterIterator extends \FilterIterator
 {
     private $matchRegexps;
 
-    public function __construct(Iterator $iterator, $matchRegexps)
+    public function __construct(Iterator $iterator, $matchRegexp)
     {
         parent::__construct($iterator);
-        $this->matchRegexps = $matchRegexps;
+        $this->matchRegexp = $matchRegexp;
     }
 
     public function accept()
     {
         $file = $this->getInnerIterator()->current();
 
-        foreach ($this->matchRegexps as $regexp) {
-            if (preg_match($regexp, $file->name())) {
-                return true;
-            }
+        if (preg_match($this->matchRegexp, $file->name())) {
+            return true;
         }
 
         return false;
