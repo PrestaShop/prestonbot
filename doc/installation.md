@@ -58,11 +58,9 @@ The application needs ``mod_rewrite`` to be enabled and the following configurat
 
 ## Routing
 
-There are actualy 4 routes/urls defined:
+There are actualy 2 routes/urls defined:
 
 * / [GET]
-* /dashboard/teams [GET]
-* /dashboard/pull_requests [GET]
 * /webhooks/github [POST]
 
 Only the **last one** MUST be totaly public to everyone, because this is the url needed
@@ -106,5 +104,3 @@ we also need a cron task in order to "daily" executes a mail sending:
 ```
 bin/console p:r:s
 ```
-
-On the root of application.
