@@ -51,6 +51,11 @@ class Diff implements IteratorAggregate
             $token = strtok(PHP_EOL);
         }
 
+        if (count($this->lines) > 0) {
+            $this->files[] = new File($this->lines);
+            $this->lines = [];
+        }
+
         return new FilesIterator($this->files);
     }
 

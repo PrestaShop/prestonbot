@@ -3,6 +3,7 @@
 namespace tests\AppBundle\Diff;
 
 use AppBundle\Diff\Diff;
+use Lpdigital\Github\Parser\WebhookResolver;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
@@ -10,6 +11,19 @@ use AppBundle\Diff\Diff;
 class DiffTest extends \PHPUnit_Framework_TestCase
 {
     const TRANS_PATTERN = '#(trans\(|->l\()#';
+
+    private $event;
+    private $pullRequest;
+    private $webhookResolver;
+
+    protected function setUp()
+    {
+        $this->webhookResolver = new WebhookResolver();
+        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_opened_wording.json');
+        $data = json_decode($webhookResponse, true);
+        $this->event = $this->webhookResolver->resolve($data);
+        $this->pullRequest = $this->event->pullRequest;
+    }
 
     public function testMatch()
     {
@@ -96,6 +110,13 @@ class DiffTest extends \PHPUnit_Framework_TestCase
         $iterator = $diff->additions()->contains(self::TRANS_PATTERN);
 
         $this->assertTrue($iterator->match());
+    }
+
+    public function testFromPullRequestResponse()
+    {
+        $diff = Diff::create(file_get_contents($this->pullRequest->getDiffUrl()));
+
+        $this->assertTrue($diff->additions()->contains(self::TRANS_PATTERN)->match());
     }
 
     private function getExpectedDiff()

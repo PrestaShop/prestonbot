@@ -42,7 +42,7 @@ class FilesIterator implements \IteratorAggregate, \Countable
 
     public function additions()
     {
-        foreach ($this->iterator as &$file) {
+        foreach ($this->iterator as $file) {
             $file->setlines($file->additions());
         }
 
@@ -51,7 +51,7 @@ class FilesIterator implements \IteratorAggregate, \Countable
 
     public function deletions()
     {
-        foreach ($this->iterator as &$file) {
+        foreach ($this->iterator as $file) {
             $file->setLines($file->deletions());
         }
 

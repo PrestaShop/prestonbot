@@ -47,15 +47,4 @@ class BodyParserTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->bodyParser->isASmallFix());
         $this->assertFalse($this->bodyParser->isARefacto());
     }
-
-    private function getExpectedBody()
-    {
-        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.opened.json');
-        $data = json_decode($webhookResponse, true);
-
-        return $this->webhookResolver
-            ->resolve($data)
-            ->pullRequest
-            ->getBody();
-    }
 }
