@@ -5,7 +5,7 @@ namespace AppBundle\Teams;
 use AppBundle\Organizations\Repository;
 
 /**
- * Returns useful informations about organization teams.
+ * Returns useful information about organization teams.
  */
 class Reporter
 {

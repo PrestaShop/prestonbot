@@ -6,7 +6,7 @@ use Iterator;
 
 class PathFilterIterator extends \FilterIterator
 {
-    private $matchRegexps;
+    private $matchRegexp;
 
     public function __construct(Iterator $iterator, $matchRegexp)
     {
