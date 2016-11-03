@@ -124,8 +124,10 @@ class FakeListener
 
         if (count($comments) > 0) {
             foreach ($comments as $comment) {
-                $this->commentApi->remove($comment->getId());
+                $commentIds[] = $comment->getId();
             }
         }
+
+        return $commentIds;
     }
 }
