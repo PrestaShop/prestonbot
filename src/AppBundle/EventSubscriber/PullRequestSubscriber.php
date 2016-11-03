@@ -19,17 +19,20 @@ class PullRequestSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-           'pullrequestevent_opened' => [
+            'pullrequestevent_opened' => [
                ['checkForTableDescription', 255],
                ['welcomePeople', 253],
                ['checkForNewTranslations', 252],
                ['initLabels', 254],
                ['checkCommits', 252],
-           ],
-           'pullrequestevent_edited' => [
+            ],
+            'pullrequestevent_edited' => [
                ['removePullRequestValidationComment', 255],
                ['removeCommitValidationComment', 255],
                ['checkForNewTranslations', 252],
+            ],
+            'pullrequestevent_synchronize' => [
+                ['removeCommitValidationComment', 255],
             ],
         ];
     }

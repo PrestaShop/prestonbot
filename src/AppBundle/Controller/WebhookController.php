@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Lpdigital\Github\EventType\ActionableEventInterface;
 use AppBundle\Event\GitHubEvent;
+use Lpdigital\Github\Exception\EventNotFoundException;
 
 class WebhookController extends Controller
 {
@@ -24,8 +25,12 @@ class WebhookController extends Controller
         if ($data === null) {
             return new JsonResponse(['error' => 'Invalid JSON body'], 500);
         }
+        try {
+            $event = $this->get('app.webhook_resolver')->resolve($data);
+        } catch (EventNotFoundException $e) {
+            return new JsonResponse('[err] event not found.');
+        }
 
-        $event = $this->get('app.webhook_resolver')->resolve($data);
         $githubEvent = new GitHubEvent($event::name(), $event);
 
         if ($event instanceof ActionableEventInterface &&
