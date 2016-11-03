@@ -2,10 +2,10 @@
 
 namespace AppBundle\PullRequests;
 
-use AppBundle\Comments\CommentApi;
-use AppBundle\Commits\Repository as CommitRepository;
+use AppBundle\Comments\CommentApiInterface;
+use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
 use Lpdigital\Github\Entity\PullRequest;
-use AppBundle\PullRequests\Repository as PullRequestRepository;
+use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class Listener
@@ -15,15 +15,14 @@ class Listener
     private $validator;
     private $repository;
 
-    const PRESTONBOT_NAME = 'prestonBot';
     const TABLE_ERROR = 'PR_TABLE_DESCRIPTION_ERROR';
     const COMMIT_ERROR = 'PR_COMMIT_NAME_ERROR';
 
     public function __construct(
-        CommentApi $commentApi,
-        CommitRepository $commitRepository,
+        CommentApiInterface $commentApi,
+        CommitRepositoryInterface $commitRepository,
         ValidatorInterface $validator,
-        PullRequestRepository $repository
+        PullRequestRepositoryInterface $repository
     ) {
         $this->commentApi = $commentApi;
         $this->commitRepository = $commitRepository;
@@ -67,14 +66,14 @@ class Listener
 
         $bodyErrors = $this->validator->validate($bodyParser);
         if (0 === count($bodyErrors)) {
-            $this->removeCommentsIfExists($pullRequest, self::TABLE_ERROR);
+            $this->repository->removeCommentsIfExists($pullRequest, self::TABLE_ERROR);
         }
     }
 
     public function removeCommitValidationComment(PullRequest $pullRequest)
     {
         if (0 === $this->getErrorsFromCommits($pullRequest)) {
-            $this->removeCommentsIfExists($pullRequest, self::COMMIT_ERROR);
+            $this->repository->removeCommentsIfExists($pullRequest, self::COMMIT_ERROR);
         }
     }
 
@@ -100,27 +99,4 @@ class Listener
 
         return $commitsErrors;
     }
-
-     /**
-      * Wraps the remove of existing PrestonBot comments.
-      * 
-      * @param PullRequest the pull request
-      * @param $pattern expression to filter comments in CommentApi
-      */
-     public function removeCommentsIfExists(PullRequest $pullRequest, $pattern)
-     {
-         $comments = $this->repository
-            ->getCommentsByExpressionFrom(
-                $pullRequest,
-                $pattern,
-                self::PRESTONBOT_NAME
-            )
-        ;
-
-         if (count($comments) > 0) {
-             foreach ($comments as $comment) {
-                 $this->commentApi->remove($comment->getId());
-             }
-         }
-     }
 }

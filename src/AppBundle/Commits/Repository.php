@@ -7,7 +7,7 @@ use Github\Api\PullRequest as PullRequestApi;
 use Lpdigital\Github\Entity\Commit;
 use Lpdigital\Github\Entity\PullRequest;
 
-class Repository
+class Repository implements RepositoryInterface
 {
     /**
      * @var CommitApi

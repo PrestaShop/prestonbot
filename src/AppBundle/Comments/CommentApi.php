@@ -9,7 +9,7 @@ use Twig_Environment;
 /**
  * Responsible of comments publication on repository.
  */
-class CommentApi
+class CommentApi implements CommentApiInterface
 {
     /**
      * @var KnpCommentApi
@@ -73,7 +73,6 @@ class CommentApi
                 $this->repositoryUsername,
                 $this->repositoryName,
                 $commentId
-            )
-        ;
+            );
     }
 }

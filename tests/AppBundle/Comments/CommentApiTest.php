@@ -7,10 +7,9 @@ use AppBundle\Comments\CommentApi;
 class CommentApiTest extends \PHPUnit_Framework_TestCase
 {
     const USER_NAME = 'weaverryan';
-
     const REPO_NAME = 'carson';
-
     const FAKE_COMMENT_ID = 123;
+    const FAKE_NON_COMMENT_ID = 456;
 
     private $knpCommentApi;
     private $commentApi;

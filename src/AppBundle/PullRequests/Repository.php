@@ -14,7 +14,8 @@ use Lpdigital\Github\Entity\PullRequest;
  */
 class Repository
 {
-    private $pullRequestRepository;
+    const PRESTONBOT_NAME = 'prestonBot';
+
     private $searchRepository;
     private $commentsApi;
 
@@ -63,13 +64,6 @@ class Repository
         return $pullRequests;
     }
 
-    public function findAllWaitingSince($nbDays)
-    {
-        throw new \Exception('Need to be done');
-
-        return [];
-    }
-
     public function getComments(PullRequest $pullRequest)
     {
         $commentsApi = $this->commentsApi
@@ -89,12 +83,7 @@ class Repository
     }
 
     /**
-     * Return Comments of selected user if any.
-     *
-     * @param PullRequest Lpdigital\Github\Entity\PullRequest
-     * @param string login from Entity User of Comment entry
-     *
-     * @return array collection of user's comments
+     * {@inheritdoc}
      */
     public function getCommentsFrom(PullRequest $pullRequest, $userLogin)
     {
@@ -111,12 +100,7 @@ class Repository
     }
 
     /**
-     * Return Comments of selected user if any, filtered by expression.
-     * 
-     * @param PullRequest Lpdigital\Github\Entity\PullRequest
-     * @param string login from Entity User of Comment entry
-     * 
-     * @return array collection of user's filtered comments
+     * {@inheritdoc}
      */
     public function getCommentsByExpressionFrom(
         PullRequest $pullRequest,
@@ -127,12 +111,31 @@ class Repository
         $userComments = $this->getCommentsFrom($pullRequest, $userLogin);
 
         foreach ($userComments as $userComment) {
-            if (strpos($userComment->getBody(), $expression)) {
+            if (strpos($userComment->getBody(), $expression) !== false) {
                 $userCommentsByExpression[] = $userComment;
             }
         }
 
         return $userCommentsByExpression;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeCommentsIfExists(PullRequest $pullRequest, $pattern)
+    {
+        $comments = $this->getCommentsByExpressionFrom(
+            $pullRequest,
+            $pattern,
+            self::PRESTONBOT_NAME
+        )
+        ;
+
+        if (count($comments) > 0) {
+            foreach ($comments as $comment) {
+                $this->remove($comment->getId());
+            }
+        }
     }
 
     private function parseLabel($label)

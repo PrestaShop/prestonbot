@@ -93,6 +93,23 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('mickaelandrieu', $firstComment->getUserLogin());
     }
 
+    public function testGetCommentsByExpressionFromMatch()
+    {
+        $user = 'Shudrum';
+        $comment = 'POC added just to not merge to quickly.';
+
+        $comments = $this->repository->getCommentsByExpressionFrom(
+            $this->pullRequestMock,
+            $comment,
+            $user
+        );
+
+        $this->assertInternalType('array', $comments);
+        $firstComment = $comments[0];
+        $this->assertInstanceOf('Lpdigital\Github\Entity\Comment', $firstComment);
+        $this->assertEquals('Shudrum', $firstComment->getUserLogin());
+    }
+
     private function minimalTests($pullRequests)
     {
         $this->assertInternalType('array', $pullRequests);
