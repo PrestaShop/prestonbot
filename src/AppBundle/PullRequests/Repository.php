@@ -2,7 +2,7 @@
 
 namespace AppBundle\PullRequests;
 
-use Github\Api\Issue\Comments as CommentsApi;
+use Github\Api\Issue\Comments as KnpCommentsApi;
 use AppBundle\Search\Repository as SearchRepository;
 use Lpdigital\Github\Entity\Comment;
 use Lpdigital\Github\Entity\PullRequest;
@@ -14,22 +14,20 @@ use Lpdigital\Github\Entity\PullRequest;
  */
 class Repository
 {
-    const PRESTONBOT_NAME = 'prestonBot';
-
     private $searchRepository;
-    private $commentsApi;
+    private $knpCommentsApi;
 
     private $repositoryUsername;
     private $repositoryName;
 
     public function __construct(
         SearchRepository $searchRepository,
-        CommentsApi $commentsApi,
+        KnpCommentsApi $knpCommentsApi,
         $repositoryUsername,
         $repositoryName
         ) {
         $this->searchRepository = $searchRepository;
-        $this->commentsApi = $commentsApi;
+        $this->knpCommentsApi = $knpCommentsApi;
         $this->repositoryUsername = $repositoryUsername;
         $this->repositoryName = $repositoryName;
     }
@@ -66,7 +64,7 @@ class Repository
 
     public function getComments(PullRequest $pullRequest)
     {
-        $commentsApi = $this->commentsApi
+        $commentsApi = $this->knpCommentsApi
             ->all(
                 $this->repositoryUsername,
                 $this->repositoryName,
@@ -122,18 +120,22 @@ class Repository
     /**
      * {@inheritdoc}
      */
-    public function removeCommentsIfExists(PullRequest $pullRequest, $pattern)
+    public function removeCommentsIfExists(PullRequest $pullRequest, $pattern, $userLogin)
     {
         $comments = $this->getCommentsByExpressionFrom(
             $pullRequest,
             $pattern,
-            self::PRESTONBOT_NAME
+            $userLogin
         )
         ;
 
         if (count($comments) > 0) {
             foreach ($comments as $comment) {
-                $this->remove($comment->getId());
+                $this->knpCommentsApi->remove(
+                    $this->repositoryUsername,
+                    $this->repositoryName,
+                    $comment->getId()
+                );
             }
         }
     }

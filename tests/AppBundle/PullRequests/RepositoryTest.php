@@ -12,20 +12,25 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
     const REPOSITORY_USERNAME = 'loveOSS';
     const REPOSITORY_NAME = 'test';
 
+    private $commentsApiMock;
     private $pullRequestMock;
     private $repository;
 
     public function setUp()
     {
         $searchMock = $this->createMock('AppBundle\Search\Repository');
-        $commentsApiMock = $this->createMock('Github\Api\Issue\Comments');
+        $this->commentsApiMock = $this->createMock('Github\Api\Issue\Comments');
 
         $searchMock->method('getPullRequests')
             ->will($this->returnCallback([$this, 'generateExpectedArray']))
         ;
 
-        $commentsApiMock->method('all')
+        $this->commentsApiMock->method('all')
             ->will($this->returnCallback([$this, 'exportCommentsJson']))
+        ;
+
+        $this->commentsApiMock->method('remove')
+            ->willReturn(true)
         ;
 
         $this->pullRequestMock = $this->createMock('Lpdigital\Github\Entity\PullRequest');
@@ -37,7 +42,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
 
         $this->repository = new Repository(
             $searchMock,
-            $commentsApiMock,
+            $this->commentsApiMock,
             self::REPOSITORY_USERNAME,
             self::REPOSITORY_NAME
         );
@@ -108,6 +113,34 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $firstComment = $comments[0];
         $this->assertInstanceOf('Lpdigital\Github\Entity\Comment', $firstComment);
         $this->assertEquals('Shudrum', $firstComment->getUserLogin());
+    }
+
+    public function testGetCommentsByExpressionFromNotMatch()
+    {
+        $user = 'Shudrum';
+        $comment = 'Hello world';
+
+        $comments = $this->repository->getCommentsByExpressionFrom(
+            $this->pullRequestMock,
+            $comment,
+            $user
+        );
+
+        $this->assertInternalType('array', $comments);
+        $this->assertEmpty($comments);
+    }
+
+    public function testRemoveCommentsIfExists()
+    {
+        $this->commentsApiMock->expects($this->once())
+            ->method('remove')
+        ;
+
+        $this->repository->removeCommentsIfExists(
+            $this->pullRequestMock,
+            'POC added just to not merge to quickly.',
+            'Shudrum'
+        );
     }
 
     private function minimalTests($pullRequests)

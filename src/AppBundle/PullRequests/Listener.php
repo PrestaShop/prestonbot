@@ -15,6 +15,7 @@ class Listener
     private $validator;
     private $repository;
 
+    const PRESTONBOT_NAME = 'prestonBot';
     const TABLE_ERROR = 'PR_TABLE_DESCRIPTION_ERROR';
     const COMMIT_ERROR = 'PR_COMMIT_NAME_ERROR';
 
@@ -66,14 +67,22 @@ class Listener
 
         $bodyErrors = $this->validator->validate($bodyParser);
         if (0 === count($bodyErrors)) {
-            $this->repository->removeCommentsIfExists($pullRequest, self::TABLE_ERROR);
+            $this->repository->removeCommentsIfExists(
+                $pullRequest,
+                self::TABLE_ERROR,
+                self::PRESTONBOT_NAME
+            );
         }
     }
 
     public function removeCommitValidationComment(PullRequest $pullRequest)
     {
         if (0 === $this->getErrorsFromCommits($pullRequest)) {
-            $this->repository->removeCommentsIfExists($pullRequest, self::COMMIT_ERROR);
+            $this->repository->removeCommentsIfExists(
+                $pullRequest,
+                self::COMMIT_ERROR,
+                self::PRESTONBOT_NAME
+            );
         }
     }
 
