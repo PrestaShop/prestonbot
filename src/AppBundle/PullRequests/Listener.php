@@ -121,12 +121,25 @@ class Listener
         return false;
     }
 
+    public function welcomePeople(PullRequest $pullRequest, User $sender, $branch)
+    {
+        $userCommits = $this->commitRepository->findAllByBranchAndUserLogin($branch, $sender);
+
+        if (0 === count($userCommits)) {
+            $this->commentApi->sendWithTemplate(
+                $pullRequest,
+                'markdown/welcome.md.twig',
+                ['username' => $pullRequest->getUser()->getLogin()]
+            );
+        }
+    }
+
     /**
      * Wrap the validation of commits.
      * 
      * @return array error messages if any.
      */
-    public function getErrorsFromCommits(PullRequest $pullRequest)
+    private function getErrorsFromCommits(PullRequest $pullRequest)
     {
         $commits = $this->commitRepository->findAllByPullRequest($pullRequest);
         $commitsErrors = [];
