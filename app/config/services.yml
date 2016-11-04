@@ -49,15 +49,6 @@ services:
         class: Github\Api\Issue\Labels
         factory: ['@app.github.issues_api', labels]
 
-    app.github.gitdata_api:
-        class: Github\Api\GitData
-        factory: ['@app.github.client', api]
-        arguments: [gitData]
-
-    app.github.commits_api:
-        class: Github\Api\GitData\Commits
-        factory: ['@app.github.gitdata_api', commits]
-
 # Application GitHub API
 
     app.github.cached_labels_api:
@@ -143,7 +134,7 @@ services:
     app.commit.repository:
         class: AppBundle\Commits\Repository
         arguments:
-            - '@app.github.commits_api'
+            - '@app.repository_repository'
             - '@app.github.pullrequests_api'
             - '%repository_username%'
             - '%repository_name%'

@@ -69,6 +69,11 @@ class Repository
         return $this->repositoryApi;
     }
 
+    public function getCommits()
+    {
+        return $this->repositoryApi->commits();
+    }
+
     public function getMembers()
     {
         return $this->repositoryApi
