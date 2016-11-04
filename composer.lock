@@ -705,12 +705,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "56741a3fee8b796cc6cc4b97485d12c02da1faf2"
+                "reference": "60a967bb1d40f9562ce4e71bf21df59ac301d802"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/56741a3fee8b796cc6cc4b97485d12c02da1faf2",
-                "reference": "56741a3fee8b796cc6cc4b97485d12c02da1faf2",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/60a967bb1d40f9562ce4e71bf21df59ac301d802",
+                "reference": "60a967bb1d40f9562ce4e71bf21df59ac301d802",
                 "shasum": ""
             },
             "require": {
@@ -776,7 +776,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2016-10-27 00:11:19"
+            "time": "2016-11-03 20:10:41"
         },
         {
             "name": "guzzle/guzzle",
@@ -1039,16 +1039,16 @@
         },
         {
             "name": "lp-digital/github-event-parser",
-            "version": "v0.7.8",
+            "version": "v0.7.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lp-digital/github-event-parser.git",
-                "reference": "bd000b3ec47b7796a62fade09298d2677f69aeba"
+                "reference": "ce6bd12163d63571220717ac074b3a8b08d2ab4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lp-digital/github-event-parser/zipball/bd000b3ec47b7796a62fade09298d2677f69aeba",
-                "reference": "bd000b3ec47b7796a62fade09298d2677f69aeba",
+                "url": "https://api.github.com/repos/Lp-digital/github-event-parser/zipball/ce6bd12163d63571220717ac074b3a8b08d2ab4a",
+                "reference": "ce6bd12163d63571220717ac074b3a8b08d2ab4a",
                 "shasum": ""
             },
             "require": {
@@ -1086,7 +1086,7 @@
                 "github",
                 "json parser"
             ],
-            "time": "2016-11-03 14:53:41"
+            "time": "2016-11-03 15:49:01"
         },
         {
             "name": "monolog/monolog",
@@ -1983,12 +1983,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "31d5fffc3c74c1d1c6ccffd954065300fb79c3a9"
+                "reference": "9e2ad932e9ea91f3456548636d961180ac77d6af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/31d5fffc3c74c1d1c6ccffd954065300fb79c3a9",
-                "reference": "31d5fffc3c74c1d1c6ccffd954065300fb79c3a9",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/9e2ad932e9ea91f3456548636d961180ac77d6af",
+                "reference": "9e2ad932e9ea91f3456548636d961180ac77d6af",
                 "shasum": ""
             },
             "require": {
@@ -2117,7 +2117,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-11-03 08:25:26"
+            "time": "2016-11-03 23:44:20"
         },
         {
             "name": "twig/twig",
@@ -3388,12 +3388,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "d80b41a1ce9642865497a0bdcbc6f9e85e4a1ae3"
+                "reference": "fab61f30fe6b9029a51c165f3a20ae280e60d0f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/d80b41a1ce9642865497a0bdcbc6f9e85e4a1ae3",
-                "reference": "d80b41a1ce9642865497a0bdcbc6f9e85e4a1ae3",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/fab61f30fe6b9029a51c165f3a20ae280e60d0f2",
+                "reference": "fab61f30fe6b9029a51c165f3a20ae280e60d0f2",
                 "shasum": ""
             },
             "require": {
@@ -3438,7 +3438,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2016-10-21 21:13:02"
+            "time": "2016-10-28 08:25:06"
         },
         {
             "name": "webmozart/assert",

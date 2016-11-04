@@ -2,11 +2,12 @@
 
 namespace AppBundle\PullRequests;
 
-use AppBundle\Comments\CommentApiInterface;
-use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
-use Lpdigital\Github\Entity\PullRequest;
 use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
+use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use AppBundle\Comments\CommentApiInterface;
+use Lpdigital\Github\Entity\PullRequest;
+use Lpdigital\Github\Entity\User;
 
 class Listener
 {
@@ -102,7 +103,7 @@ class Listener
             $this->commentApi->sendWithTemplate(
                 $pullRequest,
                 'markdown/welcome.md.twig',
-                ['username' => $pullRequest->getUser()->getLogin()]
+                ['username' => $sender->getLogin()]
             );
         }
     }
