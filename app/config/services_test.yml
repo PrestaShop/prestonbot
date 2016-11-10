@@ -14,14 +14,21 @@ parameters:
     mailer_password: null
     
 services:
+    fake_comment_api:
+        class: Tests\AppBundle\Comments\FakeCommentApi
+        arguments:
+            - '@app.github.comments_api'
+            - '%repository_username%'
+            - '%repository_name%'
+            - '@twig'
     app.status_api:
         class: Tests\AppBundle\Issues\NullStatusApi
         arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
     # Your integrations tests shouldn't post comments to github
     app.pullrequest_listener:
-        class: Tests\AppBundle\PullRequests\FakeListener
+        class: AppBundle\PullRequests\Listener
         arguments:
-            - '@app.comment_api'
-            - '@validator'
-            - '@twig'
+            - '@fake_comment_api'
             - '@app.commit.repository'
+            - '@validator'
+            - '@app.pull_request.repository'

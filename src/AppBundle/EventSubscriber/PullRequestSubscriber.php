@@ -144,21 +144,20 @@ class PullRequestSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $this->container
+        $success = $this->container
             ->get('app.pullrequest_listener')
             ->removePullRequestValidationComment($pullRequest)
         ;
 
-        $githubEvent->addStatus([
-            'event' => 'pr_edited',
-            'action' => 'preston validation comment removed',
-            ])
-        ;
+        if ($success) {
+            $githubEvent->addStatus([
+                'event' => 'pr_edited',
+                'action' => 'preston validation comment removed',
+                ])
+            ;
+        }
     }
 
-    /**
-     * @todo: create functional test in WebhookController
-     */
     public function removeCommitValidationComment(GithubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
@@ -167,15 +166,17 @@ class PullRequestSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $this->container
+        $success = $this->container
             ->get('app.pullrequest_listener')
             ->removeCommitValidationComment($pullRequest)
         ;
 
-        $githubEvent->addStatus([
-            'event' => 'pr_edited',
-            'action' => 'preston validation commit comment removed',
-            ])
-        ;
+        if ($success) {
+            $githubEvent->addStatus([
+                'event' => 'pr_edited',
+                'action' => 'preston validation commit comment removed',
+                ])
+            ;
+        }
     }
 }

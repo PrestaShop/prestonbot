@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\PullRequests;
+namespace tests\AppBundle\PullRequests;
 
-use Github\Exception\RuntimeException;
+use AppBundle\PullRequests\RepositoryInterface;
 use Github\Api\Issue\Comments as KnpCommentsApi;
 use AppBundle\Search\Repository as SearchRepository;
 use Lpdigital\Github\Entity\Comment;
@@ -13,7 +13,7 @@ use Lpdigital\Github\Entity\PullRequest;
  * As GitHub consider pull requests as specific issues
  * don't be surprised too much by the produced repository.
  */
-class Repository implements RepositoryInterface
+class FakeRepository implements RepositoryInterface
 {
     private $searchRepository;
     private $knpCommentsApi;
@@ -26,7 +26,7 @@ class Repository implements RepositoryInterface
         KnpCommentsApi $knpCommentsApi,
         $repositoryUsername,
         $repositoryName
-        ) {
+    ) {
         $this->searchRepository = $searchRepository;
         $this->knpCommentsApi = $knpCommentsApi;
         $this->repositoryUsername = $repositoryUsername;
@@ -65,17 +65,13 @@ class Repository implements RepositoryInterface
 
     public function getComments(PullRequest $pullRequest)
     {
-        try {
-            $commentsApi = $this->knpCommentsApi
-                ->all(
-                    $this->repositoryUsername,
-                    $this->repositoryName,
-                    $pullRequest->getNumber()
-                )
-            ;
-        } catch (RuntimeException $e) {
-            $commentsApi = [];
-        }
+        $commentsApi = $this->knpCommentsApi
+            ->all(
+                $this->repositoryUsername,
+                $this->repositoryName,
+                $pullRequest->getNumber()
+            )
+        ;
 
         $comments = [];
         foreach ($commentsApi as $comment) {
@@ -109,7 +105,7 @@ class Repository implements RepositoryInterface
         PullRequest $pullRequest,
         $expression,
         $userLogin
-        ) {
+    ) {
         $userCommentsByExpression = [];
         $userComments = $this->getCommentsFrom($pullRequest, $userLogin);
 
@@ -135,13 +131,7 @@ class Repository implements RepositoryInterface
         ;
 
         if (count($comments) > 0) {
-            foreach ($comments as $comment) {
-                $this->knpCommentsApi->remove(
-                    $this->repositoryUsername,
-                    $this->repositoryName,
-                    $comment->getId()
-                );
-            }
+            return true;
         }
     }
 

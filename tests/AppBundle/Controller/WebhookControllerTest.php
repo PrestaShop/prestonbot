@@ -93,6 +93,16 @@ class WebhookControllerTest extends WebTestCase
             'wrong_repository.pull_request.json',
             [],
         ];
+        $tests['Pull request synchronize'] = [
+            'pull_request',
+            'pull_request.synchronize.json',
+            [
+                [
+                    'event' => 'pr_edited',
+                    'action' => 'preston validation commit comment removed',
+                ],
+            ],
+        ];
 
         return $tests;
     }
