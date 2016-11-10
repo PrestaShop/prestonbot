@@ -72,18 +72,26 @@ class Listener
                 self::TABLE_ERROR,
                 self::PRESTONBOT_NAME
             );
+
+            return true;
         }
+
+        return false;
     }
 
     public function removeCommitValidationComment(PullRequest $pullRequest)
     {
-        if (0 === $this->getErrorsFromCommits($pullRequest)) {
+        if (0 === count($this->getErrorsFromCommits($pullRequest))) {
             $this->repository->removeCommentsIfExists(
                 $pullRequest,
                 self::COMMIT_ERROR,
                 self::PRESTONBOT_NAME
             );
+
+            return true;
         }
+
+        return false;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Commits;
 
+use Github\Exception\RuntimeException;
 use Github\Api\GitData\Commits as CommitApi;
 use Github\Api\PullRequest as PullRequestApi;
 use Lpdigital\Github\Entity\Commit;
@@ -43,11 +44,15 @@ class Repository implements RepositoryInterface
 
     public function findAllByPullRequest(PullRequest $pullRequest)
     {
-        $responseApi = $this->pullRequestApi->commits(
-            $this->repositoryUsername,
-            $this->repositoryName,
-            $pullRequest->getNumber()
-        );
+        try {
+            $responseApi = $this->pullRequestApi->commits(
+                $this->repositoryUsername,
+                $this->repositoryName,
+                $pullRequest->getNumber()
+            );
+        } catch (RuntimeException $e) {
+            $responseApi = [];
+        }
 
         $commits = [];
         foreach ($responseApi as $commitApi) {

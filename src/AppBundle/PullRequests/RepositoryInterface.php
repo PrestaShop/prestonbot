@@ -42,5 +42,5 @@ interface RepositoryInterface
      * @param PullRequest the pull request
      * @param $pattern expression to filter comments in CommentApi
      */
-    public function removeCommentsIfExists(PullRequest $pullRequest, $pattern);
+    public function removeCommentsIfExists(PullRequest $pullRequest, $pattern, $userLogin);
 }
