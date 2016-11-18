@@ -11,7 +11,7 @@ use Lpdigital\Github\Entity\PullRequest;
 class CommitParser
 {
     /**
-     * @Assert\Regex("/^(CO|FO|BO|TE|IN|WS)(\:[[:space:]])(.+)/")
+     * @Assert\Regex("/^(CO|FO|BO|TE|IN|WS|LO)(\:[[:space:]])(.+)/")
      */
     private $message;
     private $pullRequest;
