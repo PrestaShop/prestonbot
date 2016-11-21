@@ -31,6 +31,17 @@ class DiffTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($diffMatched->contains(self::TRANS_PATTERN)->match());
     }
 
+    /**
+     * @see https://github.com/PrestaShop/PrestaShop/pull/7039
+     * The label "waiting for wording" was not added even if "trans" is
+     * matched.
+     */
+    public function testMatch2()
+    {
+        $diffMatched = Diff::create($this->getExpectedDiff2());
+        $this->assertTrue($diffMatched->additions()->contains(self::TRANS_PATTERN)->match());
+    }
+
     public function testUnmatch()
     {
         $diffUnmatched = Diff::create($this->getNotExpectedDiff());
@@ -122,6 +133,11 @@ class DiffTest extends \PHPUnit_Framework_TestCase
     private function getExpectedDiff()
     {
         return file_get_contents(__DIR__.'/../webhook_examples/git_diff_matched.diff');
+    }
+
+    private function getExpectedDiff2()
+    {
+        return file_get_contents(__DIR__.'/../webhook_examples/git_diff_matched2.diff');
     }
 
     private function getNotExpectedDiff()

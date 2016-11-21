@@ -17,7 +17,7 @@
     },
     "require": {
         "php": ">=7.0",
-        "symfony/symfony": "3.2.x-dev",
+        "symfony/symfony": "v3.2.0-RC1",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
@@ -64,6 +64,5 @@
         "branch-alias": {
             "dev-master": "3.2-dev"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

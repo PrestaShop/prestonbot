@@ -62,6 +62,33 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'checked for new translations',
+                    'status' => 'not_found',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'commits labels checked', ],
+            ],
+        ];
+        $tests['Pull request creation with wording'] = [
+            'pull_request',
+            'pull_request_opened_wording.json',
+            [
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'table description checked',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'labels initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'user welcomed',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'checked for new translations',
+                    'status' => 'found',
                 ],
                 [
                     'event' => 'pr_opened',
