@@ -80,7 +80,7 @@ services:
 
     app.issue_listener:
         class: AppBundle\Issues\Listener
-        arguments: ['@app.status_api']
+        arguments: ['@app.status_api', '@logger']
 
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener

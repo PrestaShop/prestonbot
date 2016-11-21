@@ -2,6 +2,8 @@
 
 namespace AppBundle\Issues;
 
+use Psr\Log\LoggerInterface;
+
 class Listener
 {
     private static $triggerWordToStatus = [
@@ -15,10 +17,16 @@ class Listener
      * @var StatusApi
      */
     private $statusApi;
+    
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
-    public function __construct(StatusApi $statusApi)
+    public function __construct(StatusApi $statusApi, LoggerInterface $logger)
     {
         $this->statusApi = $statusApi;
+        $this->logger = $logger;
     }
 
     /**
@@ -46,6 +54,7 @@ class Listener
             // Second subpattern = first status character
             $newStatus = self::$triggerWordToStatus[strtolower(end($matches[1]))];
             $this->statusApi->setIssueStatus($issueNumber, $newStatus);
+            $this->log($issueNumber, $newStatus);
 
             return $newStatus;
         }
@@ -65,6 +74,7 @@ class Listener
         $newStatus = Status::NEEDS_REVIEW;
 
         $this->statusApi->setIssueStatus($prNumber, $newStatus);
+        $this->log($prNumber, $newStatus);
 
         return $newStatus;
     }
@@ -94,6 +104,7 @@ class Listener
         $newStatus = Status::NEEDS_REVIEW;
 
         $this->statusApi->setIssueStatus($issueNumber, $newStatus);
+        $this->log($issueNumber, $newStatus);
 
         return $newStatus;
     }
@@ -102,10 +113,30 @@ class Listener
      * Add "waiting for wording" label to an issue.
      *
      * @param int    $issueNumber The issue that was labeled
-     * @param string $label       The added label
+     * 
+     * @return string The new status
      */
     public function handleWaitingForWordingEvent($issueNumber)
     {
-        $this->statusApi->setIssueStatus($issueNumber, Status::WAITING_FOR_WORDING);
+        $newStatus = Status::WAITING_FOR_WORDING;
+
+        $this->statusApi->setIssueStatus($issueNumber, $newStatus);
+        $this->log($issueNumber, $newStatus);
+
+        return $newStatus;
+    }
+
+    /**
+     * Log every label added
+     * 
+     * @param int    $issueNumber The issue that was labeled
+     * @param string $status       The added label
+     */
+    private function log($issueNumber, $status)
+    {
+        $this->logger->info(sprintf('Issue n° %s is labelized with `%s` status',
+            $issueNumber,
+            $status
+        ));
     }
 }
