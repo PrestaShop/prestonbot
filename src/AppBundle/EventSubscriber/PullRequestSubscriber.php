@@ -105,7 +105,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $pullRequest = $githubEvent->getEvent()->pullRequest;
         $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
 
-        if ($diff->additions()->contains(self::TRANS_PATTERN)->match()) {
+        if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
             $this->container
                 ->get('app.issue_listener')
                 ->handleWaitingForWordingEvent($pullRequest->getNumber())
@@ -117,6 +117,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
             'action' => 'checked for new translations',
+            'status' => $found ? 'found' : 'not_found',
             ])
         ;
     }
