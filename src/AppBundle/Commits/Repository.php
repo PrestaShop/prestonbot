@@ -57,7 +57,7 @@ class Repository implements RepositoryInterface
         return $this->buildCommits($responseApi);
     }
 
-    public function findAllByBranchAndUserLogin($branch, $userLogin)
+    public function findAllByUserLogin($userLogin)
     {
         try {
             $responseApi = $this->commitsApi
@@ -65,7 +65,7 @@ class Repository implements RepositoryInterface
                 ->all(
                 $this->repositoryUsername,
                 $this->repositoryName,
-                ['sha' => $branch]
+                []
             );
         } catch (RuntimeException $e) {
             $responseApi = [];

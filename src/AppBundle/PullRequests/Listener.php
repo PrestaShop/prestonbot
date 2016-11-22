@@ -122,9 +122,9 @@ class Listener
         return false;
     }
 
-    public function welcomePeople(PullRequest $pullRequest, User $sender, $branch)
+    public function welcomePeople(PullRequest $pullRequest, User $sender)
     {
-        $userCommits = $this->commitRepository->findAllByBranchAndUserLogin($branch, $sender);
+        $userCommits = $this->commitRepository->findAllByUserLogin($sender);
 
         if (0 === count($userCommits)) {
             $this->commentApi->sendWithTemplate(

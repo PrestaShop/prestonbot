@@ -127,11 +127,10 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
         $sender = $githubEvent->getEvent()->sender;
-        $branch = $pullRequest->getBase()['ref'];
 
         $this->container
             ->get('app.pullrequest_listener')
-            ->welcomePeople($pullRequest, $sender, $branch)
+            ->welcomePeople($pullRequest, $sender)
         ;
 
         $githubEvent->addStatus([
