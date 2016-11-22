@@ -47,7 +47,7 @@ class Listener
                 ['errors' => $validationErrors]
             );
 
-            $this->logger->info(sprintf('[Invalid Table]Pull request n° %s', $pullRequest->getNumber()));
+            $this->logger->info(sprintf('[Invalid Table] Pull request n° %s', $pullRequest->getNumber()));
         }
     }
 
@@ -62,7 +62,10 @@ class Listener
                 ['commits' => $commitErrors]
             );
 
-            $commitsLabels = implode(',', $commitErrors);
+            $commitsLabels = implode(',', array_map(function($label) {
+                return '`'. $label . '`';
+            },$commitErrors));
+
             $this->logger->info(sprintf(
                 '[Invalid Commits]Pull request n° %s for commits %s',
                 $pullRequest->getNumber(),
@@ -88,7 +91,7 @@ class Listener
             );
 
             $this->logger->info(sprintf(
-                '[Valid table]Pull request (n° %s) table is now valid.',
+                '[Valid table] Pull request (n° %s) table is now valid.',
                 $pullRequest->getNumber()
             ));
 
@@ -108,7 +111,7 @@ class Listener
             );
 
             $this->logger->info(sprintf(
-                '[Valid Commits]Pull request (n° %s) commits are now valid.',
+                '[Valid Commits] Pull request (n° %s) commits are now valid.',
                 $pullRequest->getNumber()
             ));
 

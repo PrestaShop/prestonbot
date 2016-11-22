@@ -134,7 +134,7 @@ class Listener
      */
     private function log($issueNumber, $status)
     {
-        $this->logger->info(sprintf('Issue n° %s is labelized with `%s` status',
+        $this->logger->info(sprintf('[Label] Issue n° %s is labelized with `%s` status',
             $issueNumber,
             $status
         ));
