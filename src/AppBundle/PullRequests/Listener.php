@@ -2,11 +2,12 @@
 
 namespace AppBundle\PullRequests;
 
-use AppBundle\Comments\CommentApiInterface;
-use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
-use Lpdigital\Github\Entity\PullRequest;
 use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
+use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use AppBundle\Comments\CommentApiInterface;
+use Lpdigital\Github\Entity\PullRequest;
+use Lpdigital\Github\Entity\User;
 use Psr\Log\LoggerInterface;
 
 class Listener
@@ -121,12 +122,31 @@ class Listener
         return false;
     }
 
+    public function welcomePeople(PullRequest $pullRequest, User $sender, $branch)
+    {
+        $userCommits = $this->commitRepository->findAllByBranchAndUserLogin($branch, $sender);
+
+        if (0 === count($userCommits)) {
+            $this->commentApi->sendWithTemplate(
+                $pullRequest,
+                'markdown/welcome.md.twig',
+                ['username' => $sender->getLogin()]
+            );
+
+            $this->logger->info(sprintf(
+                '[Contributor] `%s` was welcomed on Pull request n° %s',
+                $pullRequest->getUser()->getLogin(),
+                $pullRequest->getNumber()
+            ));
+        }
+    }
+
     /**
      * Wrap the validation of commits.
      * 
      * @return array error messages if any.
      */
-    public function getErrorsFromCommits(PullRequest $pullRequest)
+    private function getErrorsFromCommits(PullRequest $pullRequest)
     {
         $commits = $this->commitRepository->findAllByPullRequest($pullRequest);
         $commitsErrors = [];

@@ -3,7 +3,7 @@
 namespace AppBundle\Commits;
 
 use Github\Exception\RuntimeException;
-use Github\Api\GitData\Commits as CommitApi;
+use AppBundle\Repositories\Repository as CommitsApi;
 use Github\Api\PullRequest as PullRequestApi;
 use Lpdigital\Github\Entity\Commit;
 use Lpdigital\Github\Entity\PullRequest;
@@ -11,7 +11,7 @@ use Lpdigital\Github\Entity\PullRequest;
 class Repository implements RepositoryInterface
 {
     /**
-     * @var CommitApi
+     * @var CommitsApi
      */
     private $commitsApi;
 
@@ -31,7 +31,7 @@ class Repository implements RepositoryInterface
     private $repositoryName;
 
     public function __construct(
-        CommitApi $commitsApi,
+        CommitsApi $commitsApi,
         PullRequestApi $pullRequestApi,
         $repositoryUsername,
         $repositoryName
@@ -54,6 +54,38 @@ class Repository implements RepositoryInterface
             $responseApi = [];
         }
 
+        return $this->buildCommits($responseApi);
+    }
+
+    public function findAllByBranchAndUserLogin($branch, $userLogin)
+    {
+        try {
+            $responseApi = $this->commitsApi
+                ->getCommits()
+                ->all(
+                $this->repositoryUsername,
+                $this->repositoryName,
+                ['sha' => $branch]
+            );
+        } catch (RuntimeException $e) {
+            $responseApi = [];
+        }
+
+        $commits = $this->buildCommits($responseApi);
+        $userCommits = [];
+
+        foreach ($commits as $commit) {
+            $authorName = $commit->getAuthor()->getName();
+            if ($authorName === $userLogin) {
+                $userCommits[] = $commit;
+            }
+        }
+
+        return $userCommits;
+    }
+
+    private function buildCommits($responseApi)
+    {
         $commits = [];
         foreach ($responseApi as $commitApi) {
             $commits[] = Commit::createFromData($commitApi['commit']);

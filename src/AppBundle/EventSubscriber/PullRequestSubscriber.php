@@ -103,7 +103,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     public function checkForNewTranslations(GitHubEvent $githubEvent)
     {
         $event = $githubEvent->getEvent();
-        $pullRequest = $githubEvent->getEvent()->pullRequest;
+        $pullRequest = $event->pullRequest;
         $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
 
         if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
@@ -125,6 +125,15 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
     public function welcomePeople(GitHubEvent $githubEvent)
     {
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
+        $sender = $githubEvent->getEvent()->sender;
+        $branch = $pullRequest->getBase()['ref'];
+
+        $this->container
+            ->get('app.pullrequest_listener')
+            ->welcomePeople($pullRequest, $sender, $branch)
+        ;
+
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'user welcomed',
