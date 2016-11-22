@@ -66,23 +66,13 @@ class Repository implements RepositoryInterface
                 ->all(
                 $this->repositoryUsername,
                 $this->repositoryName,
-                []
+                ['author' => $user->getLogin()]
             );
         } catch (RuntimeException $e) {
             $responseApi = [];
         }
 
-        $commits = $this->buildCommits($responseApi);
-        $userCommits = [];
-
-        foreach ($commits as $commit) {
-            $authorName = $commit->getAuthor()->getName();
-            if ($authorName === $user->getLogin()) {
-                $userCommits[] = $commit;
-            }
-        }
-
-        return $userCommits;
+        return $this->buildCommits($responseApi);
     }
 
     private function buildCommits($responseApi)
