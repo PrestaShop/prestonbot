@@ -43,7 +43,7 @@ class WebhookController extends Controller
             ));
             $this->get('event_dispatcher')->dispatch($eventName, $githubEvent);
             $responseData = $githubEvent->getStatuses();
-        }else {
+        } else {
             $this->get('logger')->error(
                 sprintf(
                     '[Event] %s received from `%s` repository',

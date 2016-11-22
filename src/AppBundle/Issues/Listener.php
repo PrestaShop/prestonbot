@@ -17,7 +17,7 @@ class Listener
      * @var StatusApi
      */
     private $statusApi;
-    
+
     /**
      * @var LoggerInterface
      */
@@ -112,7 +112,7 @@ class Listener
     /**
      * Add "waiting for wording" label to an issue.
      *
-     * @param int    $issueNumber The issue that was labeled
+     * @param int $issueNumber The issue that was labeled
      * 
      * @return string The new status
      */
@@ -127,10 +127,10 @@ class Listener
     }
 
     /**
-     * Log every label added
+     * Log every label added.
      * 
      * @param int    $issueNumber The issue that was labeled
-     * @param string $status       The added label
+     * @param string $status      The added label
      */
     private function log($issueNumber, $status)
     {

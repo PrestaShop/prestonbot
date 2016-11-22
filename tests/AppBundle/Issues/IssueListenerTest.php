@@ -5,7 +5,6 @@ namespace tests\AppBundle\Issues;
 use AppBundle\Issues\Listener;
 use AppBundle\Issues\StatusApi;
 use AppBundle\Issues\Status;
-
 use Psr\Log\NullLogger;
 
 /**

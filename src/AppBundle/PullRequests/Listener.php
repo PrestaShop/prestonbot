@@ -62,9 +62,9 @@ class Listener
                 ['commits' => $commitErrors]
             );
 
-            $commitsLabels = implode(',', array_map(function($label) {
-                return '`'. $label . '`';
-            },$commitErrors));
+            $commitsLabels = implode(',', array_map(function ($label) {
+                return '`'.$label.'`';
+            }, $commitErrors));
 
             $this->logger->info(sprintf(
                 '[Invalid Commits]Pull request n° %s for commits %s',
@@ -91,7 +91,7 @@ class Listener
             );
 
             $this->logger->info(sprintf(
-                '[Valid table] Pull request (n° %s) table is now valid.',
+                '[Valid Table] Pull request (n° %s) table is now valid.',
                 $pullRequest->getNumber()
             ));
 
