@@ -5,6 +5,7 @@ namespace AppBundle\Commits;
 use Github\Exception\RuntimeException;
 use AppBundle\Repositories\Repository as CommitsApi;
 use Github\Api\PullRequest as PullRequestApi;
+use Lpdigital\Github\Entity\User;
 use Lpdigital\Github\Entity\Commit;
 use Lpdigital\Github\Entity\PullRequest;
 
@@ -57,7 +58,7 @@ class Repository implements RepositoryInterface
         return $this->buildCommits($responseApi);
     }
 
-    public function findAllByUserLogin($userLogin)
+    public function findAllByUser(User $user)
     {
         try {
             $responseApi = $this->commitsApi
@@ -76,7 +77,7 @@ class Repository implements RepositoryInterface
 
         foreach ($commits as $commit) {
             $authorName = $commit->getAuthor()->getName();
-            if ($authorName === $userLogin) {
+            if ($authorName === $user->getLogin()) {
                 $userCommits[] = $commit;
             }
         }

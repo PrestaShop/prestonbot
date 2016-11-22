@@ -2,11 +2,12 @@
 
 namespace AppBundle\Commits;
 
+use Lpdigital\Github\Entity\User;
 use Lpdigital\Github\Entity\PullRequest;
 
 interface RepositoryInterface
 {
-    public function findAllByUserLogin($userLogin);
+    public function findAllByUser(User $user);
 
     public function findAllByPullRequest(PullRequest $pullRequest);
 }

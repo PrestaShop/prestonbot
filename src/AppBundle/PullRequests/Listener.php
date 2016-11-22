@@ -124,7 +124,7 @@ class Listener
 
     public function welcomePeople(PullRequest $pullRequest, User $sender)
     {
-        $userCommits = $this->commitRepository->findAllByUserLogin($sender);
+        $userCommits = $this->commitRepository->findAllByUser($sender);
 
         if (0 === count($userCommits)) {
             $this->commentApi->sendWithTemplate(
