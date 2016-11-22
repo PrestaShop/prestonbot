@@ -13,5 +13,6 @@
 !var/sessions/.gitkeep
 /vendor/
 /web/bundles/
-var/bootstrap.php.cache
-web/config.php
+/var/bootstrap.php.cache
+/web/config.php
+var/SymfonyRequirements.php

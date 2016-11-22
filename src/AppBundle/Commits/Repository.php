@@ -4,7 +4,6 @@ namespace AppBundle\Commits;
 
 use Github\Exception\RuntimeException;
 use AppBundle\Repositories\Repository as CommitsApi;
-
 use Github\Api\PullRequest as PullRequestApi;
 use Lpdigital\Github\Entity\Commit;
 use Lpdigital\Github\Entity\PullRequest;
