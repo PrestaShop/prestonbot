@@ -132,6 +132,12 @@ class Listener
                 'markdown/welcome.md.twig',
                 ['username' => $sender->getLogin()]
             );
+
+            $this->logger->info(sprintf(
+                '[Contributor] `%s` was welcomed on Pull request n° %s',
+                $pullRequest->getUser()->getLogin(),
+                $pullRequest->getNumber()
+            ));
         }
     }
 
