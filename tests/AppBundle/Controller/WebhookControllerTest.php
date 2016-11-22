@@ -66,7 +66,9 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'commits labels checked', ],
+                    'action' => 'commits labels checked',
+                    'status' => 'not_valid',
+                ],
             ],
         ];
         $tests['Pull request creation with wording'] = [
@@ -92,7 +94,9 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'commits labels checked', ],
+                    'action' => 'commits labels checked',
+                    'status' => 'valid',
+                ],
             ],
         ];
         $tests['Add labels'] = [

@@ -5,6 +5,7 @@ namespace tests\AppBundle\Issues;
 use AppBundle\Issues\Listener;
 use AppBundle\Issues\StatusApi;
 use AppBundle\Issues\Status;
+use Psr\Log\NullLogger;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
@@ -24,7 +25,7 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->statusApi = $this->createMock('AppBundle\Issues\StatusApi');
-        $this->listener = new Listener($this->statusApi);
+        $this->listener = new Listener($this->statusApi, new NullLogger());
     }
 
     /**

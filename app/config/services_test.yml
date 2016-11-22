@@ -32,3 +32,4 @@ services:
             - '@app.commit.repository'
             - '@validator'
             - '@app.pull_request.repository'
+            - '@logger'

@@ -31,23 +31,31 @@ class WebhookController extends Controller
             return new JsonResponse('[err] event not found.');
         }
 
-        $githubEvent = new GitHubEvent($event::name(), $event);
-
         if ($event instanceof ActionableEventInterface &&
             $this->isValid($event)
         ) {
+            $githubEvent = new GitHubEvent($event::name(), $event);
             $eventName = strtolower($event::name()).'_'.$event->getAction();
 
+            $this->get('logger')->info(sprintf('[Event] %s (%s) received',
+                $event::name(),
+                $event->getAction()
+            ));
             $this->get('event_dispatcher')->dispatch($eventName, $githubEvent);
             $responseData = $githubEvent->getStatuses();
+        } else {
+            $this->get('logger')->error(
+                sprintf(
+                    '[Event] %s received from `%s` repository',
+                    $event::name(),
+                    $event->getRepository()->getFullName()
+                )
+            );
         }
 
         return new JsonResponse($responseData);
     }
 
-    /**
-     * @todo: create a custom validation rule instead and log error
-     */
     private function isValid(ActionableEventInterface $event)
     {
         $repository = $event->getRepository();
