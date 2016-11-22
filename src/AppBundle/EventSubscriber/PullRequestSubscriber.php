@@ -84,7 +84,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
 
-        $this->container
+        $hasErrors = $this->container
             ->get('app.pullrequest_listener')
             ->checkCommits($pullRequest)
         ;
@@ -92,6 +92,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'commits labels checked',
+            'status' => $hasErrors ? 'not_valid' : 'valid',
         ]);
     }
 
@@ -124,9 +125,6 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
     public function welcomePeople(GitHubEvent $githubEvent)
     {
-        // use https://github.com/KnpLabs/php-github-api/blob/master/lib/Github/Api/Repo.php and implement a global maybe ?
-        // PrestaShop/Repository.php
-
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'user welcomed',
@@ -134,9 +132,6 @@ class PullRequestSubscriber implements EventSubscriberInterface
         ;
     }
 
-    /**
-     * @todo: create functional test in WebhookController
-     */
     public function removePullRequestValidationComment(GithubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;

@@ -7,11 +7,13 @@ use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
 use Lpdigital\Github\Entity\PullRequest;
 use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Psr\Log\LoggerInterface;
 
 class Listener
 {
     private $commentApi;
     private $commitRepository;
+    private $logger;
     private $validator;
     private $repository;
 
@@ -23,10 +25,12 @@ class Listener
         CommentApiInterface $commentApi,
         CommitRepositoryInterface $commitRepository,
         ValidatorInterface $validator,
-        PullRequestRepositoryInterface $repository
+        PullRequestRepositoryInterface $repository,
+        LoggerInterface $logger
     ) {
         $this->commentApi = $commentApi;
         $this->commitRepository = $commitRepository;
+        $this->logger = $logger;
         $this->validator = $validator;
         $this->repository = $repository;
     }
@@ -42,12 +46,11 @@ class Listener
                 'markdown/pr_table_errors.md.twig',
                 ['errors' => $validationErrors]
             );
+
+            $this->logger->info(sprintf('[Invalid Table]Pull request n° %s', $pullRequest->getNumber()));
         }
     }
 
-    /**
-     * @todo: if Pull request description is valid, proposal can be improved.
-     */
     public function checkCommits(PullRequest $pullRequest)
     {
         $commitErrors = $this->getErrorsFromCommits($pullRequest);
@@ -58,7 +61,18 @@ class Listener
                 'markdown/pr_commit_name_nok.md.twig',
                 ['commits' => $commitErrors]
             );
+
+            $commitsLabels = implode(',', $commitErrors);
+            $this->logger->info(sprintf(
+                '[Invalid Commits]Pull request n° %s for commits %s',
+                $pullRequest->getNumber(),
+                $commitsLabels
+            ));
+
+            return true;
         }
+
+        return false;
     }
 
     public function removePullRequestValidationComment(PullRequest $pullRequest)
@@ -72,6 +86,11 @@ class Listener
                 self::TABLE_ERROR,
                 self::PRESTONBOT_NAME
             );
+
+            $this->logger->info(sprintf(
+                '[Valid table]Pull request (n° %s) table is now valid.',
+                $pullRequest->getNumber()
+            ));
 
             return true;
         }
@@ -87,6 +106,11 @@ class Listener
                 self::COMMIT_ERROR,
                 self::PRESTONBOT_NAME
             );
+
+            $this->logger->info(sprintf(
+                '[Valid Commits]Pull request (n° %s) commits are now valid.',
+                $pullRequest->getNumber()
+            ));
 
             return true;
         }
