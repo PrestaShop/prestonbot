@@ -49,15 +49,15 @@ class WebhookControllerTest extends WebTestCase
             [
                 [
                     'event' => 'pr_opened',
+                    'action' => 'user welcomed',
+                ],
+                [
+                    'event' => 'pr_opened',
                     'action' => 'table description checked',
                 ],
                 [
                     'event' => 'pr_opened',
                     'action' => 'labels initialized',
-                ],
-                [
-                    'event' => 'pr_opened',
-                    'action' => 'user welcomed',
                 ],
                 [
                     'event' => 'pr_opened',
@@ -77,15 +77,15 @@ class WebhookControllerTest extends WebTestCase
             [
                 [
                     'event' => 'pr_opened',
+                    'action' => 'user welcomed',
+                ],
+                [
+                    'event' => 'pr_opened',
                     'action' => 'table description checked',
                 ],
                 [
                     'event' => 'pr_opened',
                     'action' => 'labels initialized',
-                ],
-                [
-                    'event' => 'pr_opened',
-                    'action' => 'user welcomed',
                 ],
                 [
                     'event' => 'pr_opened',
