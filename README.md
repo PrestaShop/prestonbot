@@ -1,6 +1,6 @@
 # PrestonBot
 
-This application is based on Symfony CarsonBot and aims to help PrestaShop maintainers and contributors
+This application is based on Symfony CarsonBot and aims to help PrestaShop maintainers and contributors.
 
 ![Preston, the PrestaShop contributor best friend](http://i.imgur.com/r26gJW4.png)
 
@@ -11,9 +11,6 @@ First of all you have to configure your GitHub repository and have a GitHub toke
 ```bash
 composer install // and complete the interactive fields asked
 ```
-
-For now this application allow you to valid pull requests description
-according to **PrestaShop** standards.
 
 ## How to test ?
 
@@ -29,7 +26,16 @@ export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ## Our standards ?
 
-Yeah, the *Symfony* ones:
+Yeah, mostly the *Symfony* ones:
 
 ```bash
-./vendor/bin/php-cs-fixer fix .
+./vendor/bin/php-cs-fixer fix . # we use the Symfony level + short array notation filter
+```
+
+## What is Preston capable of doing?
+
+* Check a pull request description according to *PrestaShop* standards;
+* Check pull request commits labels according to *PrestaShop* standards;
+* Extract data from the pull request and look for some terms;
+* Welcome every new contributor;
+* Manage labels;
