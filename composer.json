@@ -1,5 +1,6 @@
 {
-    "name": "PrestaShop/prestonbot",
+    "name": "prestashop/prestonbot",
+    "description": "Preston is a GitHub bot that help both PrestaShop maintainers and contributors",
     "license": "GPL-3.0+",
     "authors": [
     {
