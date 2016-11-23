@@ -39,6 +39,9 @@ class CommentApi implements CommentApiInterface
         $this->twig = $twig;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function send(PullRequest $pullRequest, $comment)
     {
         $this->knpCommentApi
@@ -52,6 +55,9 @@ class CommentApi implements CommentApiInterface
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function sendWithTemplate(PullRequest $pullRequest, $templateName, $params)
     {
         $comment = $this->twig->render($templateName, $params);
@@ -66,6 +72,9 @@ class CommentApi implements CommentApiInterface
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function remove($commentId)
     {
         $this->knpCommentApi

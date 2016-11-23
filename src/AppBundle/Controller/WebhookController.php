@@ -56,6 +56,11 @@ class WebhookController extends Controller
         return new JsonResponse($responseData);
     }
 
+    /**
+     * @param ActionableEventInterface $event
+     *
+     * @return bool
+     */
     private function isValid(ActionableEventInterface $event)
     {
         $repository = $event->getRepository();

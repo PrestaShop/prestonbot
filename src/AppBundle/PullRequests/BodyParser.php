@@ -10,13 +10,19 @@ use Exception;
  */
 class BodyParser
 {
+    /**
+     * @var string
+     */
     private $bodyContent;
 
-    public function __construct($bodyContent)
+    public function __construct(string $bodyContent)
     {
         $this->bodyContent = $bodyContent;
     }
 
+    /**
+     * @return string
+     */
     public function getBranch()
     {
         $regex = "/(\|[[:space:]]Branch\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
@@ -24,6 +30,9 @@ class BodyParser
         return $this->extractWithRegex($regex);
     }
 
+    /**
+     * @return string
+     */
     public function getBody()
     {
         return $this->bodyContent;
@@ -31,6 +40,8 @@ class BodyParser
 
     /**
      * @Assert\NotBlank(message = "The `description` shouldn't be empty.")
+     *
+     * @return string
      */
     public function getDescription()
     {
@@ -43,6 +54,8 @@ class BodyParser
      * @Assert\Choice(callback = "getValidTypes",
      * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`, `refacto`.",
      * strict=true)
+     *
+     * @return string
      */
     public function getType()
     {
@@ -55,6 +68,8 @@ class BodyParser
      * @Assert\Choice(choices = {"FO", "BO", "CO", "IN", "TE", "WS", "LO"},
      * message = "The `category` should be one of: `FO`, `BO`, `CO`, `IN`, `TE`, `WS`, `LO`",
      * strict=true)
+     *
+     * @return string
      */
     public function getCategory()
     {
@@ -63,6 +78,9 @@ class BodyParser
         return $this->extractWithRegex($regex);
     }
 
+    /**
+     * @return bool
+     */
     public function isBackwardCompatible()
     {
         $regex = "/(\|[[:space:]]BC breaks\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
@@ -71,6 +89,9 @@ class BodyParser
         return $backwardCompatible == 'yes' ? true : false;
     }
 
+    /**
+     * @return bool
+     */
     public function willDeprecateCode()
     {
         $regex = "/(\|[[:space:]]Deprecations\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
@@ -79,41 +100,67 @@ class BodyParser
         return $willDeprecateCode == 'no' ? false : true;
     }
 
+    /**
+     * @return bool
+     */
     public function isAFeature()
     {
         return preg_match('/feature/', $this->getType()) == true;
     }
 
+    /**
+     * @return bool
+     */
     public function isAnImprovement()
     {
         return preg_match('/improvement/', $this->getType()) == true;
     }
 
+    /**
+     * @return bool
+     */
     public function isABugFix()
     {
         return preg_match('/bug fix/', $this->getType()) == true;
     }
 
+    /**
+     * @return bool
+     */
     public function isASmallFix()
     {
         return preg_match('/small fix/', $this->getType()) == true;
     }
 
+    /**
+     * @return bool
+     */
     public function isARefacto()
     {
         return preg_match('/refacto/', $this->getType()) == true;
     }
 
+    /**
+     * @throws Exception
+     */
     public function getRelatedForgeIssue()
     {
         throw new Exception('Need to be done');
     }
 
+    /**
+     * @throws Exception
+     */
     public function getTestingScenario()
     {
         throw new Exception('Need to be done');
     }
 
+    /**
+     * @param $regex
+     *
+     * @return string
+     */
     private function extractWithRegex($regex)
     {
         preg_match($regex, $this->getBody(), $matches);
@@ -121,6 +168,9 @@ class BodyParser
         return isset($matches[2]) ? $matches[2] : '';
     }
 
+    /**
+     * @return array
+     */
     public static function getValidTypes()
     {
         return [

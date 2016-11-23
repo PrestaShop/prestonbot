@@ -11,11 +11,17 @@ class PullRequestSubscriber implements EventSubscriberInterface
 {
     const TRANS_PATTERN = '#(trans\(|->l\()#';
 
+    /**
+     * @param ContainerInterface $container
+     */
     public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
     }
 
+    /**
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return [
@@ -38,6 +44,8 @@ class PullRequestSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * @param GitHubEvent $githubEvent
+     *
      * For now, only add "Needs Review" label.
      */
     public function initLabels(GitHubEvent $githubEvent)
@@ -59,6 +67,8 @@ class PullRequestSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * @param GitHubEvent $githubEvent
+     *
      * This event MUST be spawned first.
      */
     public function checkForTableDescription(GitHubEvent $githubEvent)
@@ -78,7 +88,9 @@ class PullRequestSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Validate the commits name.
+     * @param GitHubEvent $githubEvent
+     *
+     * Validate the commits labels.
      */
     public function checkCommits(GitHubEvent $githubEvent)
     {
@@ -97,6 +109,8 @@ class PullRequestSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * @param GitHubEvent $githubEvent
+     *
      * If a call to trans or l function is done, add
      * "waiting for wording" label.
      */
@@ -123,6 +137,11 @@ class PullRequestSubscriber implements EventSubscriberInterface
         ;
     }
 
+    /**
+     * @param GitHubEvent $githubEvent
+     *
+     * Send a comment to welcome very first contribution.
+     */
     public function welcomePeople(GitHubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
@@ -140,6 +159,11 @@ class PullRequestSubscriber implements EventSubscriberInterface
         ;
     }
 
+    /**
+     * @param GitHubEvent $githubEvent
+     *
+     * If description become valid, the comment should be removed.
+     */
     public function removePullRequestValidationComment(GithubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
@@ -162,6 +186,11 @@ class PullRequestSubscriber implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @param GitHubEvent $githubEvent
+     *
+     * If commits labels become valid, the comment should be removed.
+     */
     public function removeCommitValidationComment(GithubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;

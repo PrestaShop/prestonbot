@@ -10,21 +10,38 @@ use IteratorAggregate;
  */
 class Diff implements IteratorAggregate
 {
+    /**
+     * @var string
+     */
     private $diffContent;
+    /**
+     * @var array
+     */
     private $files = [];
+    /**
+     * @var array
+     */
     private $lines = [];
 
-    public function __construct($diffContent)
+    public function __construct(string $diffContent)
     {
         $this->diffContent = $diffContent;
         $this->iterator = $this->buildIterator();
     }
 
-    public static function create($content)
+    /**
+     * @param string $content
+     *
+     * @return static
+     */
+    public static function create(string $content)
     {
         return new static($content);
     }
 
+    /**
+     * @return FilesIterator
+     */
     public function buildIterator()
     {
         $token = strtok($this->diffContent, PHP_EOL);
@@ -59,11 +76,19 @@ class Diff implements IteratorAggregate
         return new FilesIterator($this->files);
     }
 
+    /**
+     * @return FilesIterator
+     */
     public function getIterator()
     {
         return $this->iterator;
     }
 
+    /**
+     * @param $regexp
+     *
+     * @return $this
+     */
     public function path($regexp)
     {
         $this->iterator->path($regexp);
@@ -71,6 +96,11 @@ class Diff implements IteratorAggregate
         return $this;
     }
 
+    /**
+     * @param $regexp
+     *
+     * @return $this
+     */
     public function contains($regexp)
     {
         $this->iterator->contains($regexp);
@@ -78,6 +108,9 @@ class Diff implements IteratorAggregate
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function additions()
     {
         $this->iterator->additions();
@@ -85,6 +118,9 @@ class Diff implements IteratorAggregate
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function deletions()
     {
         $this->iterator->deletions();
@@ -92,6 +128,9 @@ class Diff implements IteratorAggregate
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function match()
     {
         return $this->iterator->count() > 0;

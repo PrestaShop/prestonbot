@@ -9,6 +9,9 @@ use AppBundle\Organizations\Repository;
  */
 class Reporter
 {
+    /**
+     * @var Repository
+     */
     private $repository;
 
     public function __construct(Repository $repository)
@@ -16,6 +19,9 @@ class Reporter
         $this->repository = $repository;
     }
 
+    /**
+     * @return array
+     */
     public function reportTeamsAndMembers()
     {
         $report = [];

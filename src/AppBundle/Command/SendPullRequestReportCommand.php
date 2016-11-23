@@ -9,12 +9,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * 
+ * Generate report of repository activity to a group a defined users
+ * and send it by email.
  */
 class SendPullRequestReportCommand extends ContainerAwareCommand
 {
     const DEFAULT_BRANCH = 'develop';
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -28,6 +32,10 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
@@ -62,6 +70,11 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
         $io->success($nbMails.' mails successfuly sent !');
     }
 
+    /**
+     * @param $groups
+     *
+     * @return array
+     */
     private function getRows($groups)
     {
         $rows = [];

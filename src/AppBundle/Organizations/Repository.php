@@ -27,6 +27,9 @@ class Repository
         $this->repositoryUsername = $repositoryUsername;
     }
 
+    /**
+     * @return array
+     */
     public function getTeams()
     {
         if (null === self::$teams) {
@@ -44,6 +47,9 @@ class Repository
         return self::$teams;
     }
 
+    /**
+     * @param $teamName
+     */
     public function getTeam($teamName)
     {
         $teams = $this->getTeams();
@@ -51,6 +57,11 @@ class Repository
         return isset($teams[$teamName]) ? $teams[$teamName] : null;
     }
 
+    /**
+     * @param $teamName
+     *
+     * @return \Guzzle\Http\EntityBodyInterface|mixed|string
+     */
     public function getTeamMembers($teamName)
     {
         $teams = $this->getTeams();

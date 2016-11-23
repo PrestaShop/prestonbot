@@ -43,6 +43,9 @@ class Repository implements RepositoryInterface
         $this->repositoryName = $repositoryName;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function findAllByPullRequest(PullRequest $pullRequest)
     {
         try {
@@ -58,6 +61,9 @@ class Repository implements RepositoryInterface
         return $this->buildCommits($responseApi);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function findAllByUser(User $user)
     {
         try {
@@ -75,7 +81,12 @@ class Repository implements RepositoryInterface
         return $this->buildCommits($responseApi);
     }
 
-    private function buildCommits($responseApi)
+    /**
+     * @param array $responseApi
+     *
+     * @return \Lpdigital\Github\Entity\Commit[]|array
+     */
+    private function buildCommits(array $responseApi)
     {
         $commits = [];
         foreach ($responseApi as $commitApi) {

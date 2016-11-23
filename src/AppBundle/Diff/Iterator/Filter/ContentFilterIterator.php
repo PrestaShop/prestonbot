@@ -6,14 +6,20 @@ use Iterator;
 
 class ContentFilterIterator extends \FilterIterator
 {
+    /**
+     * @var string
+     */
     private $matchRegexp;
 
-    public function __construct(Iterator $iterator, $regexp)
+    public function __construct(Iterator $iterator, string $regexp)
     {
         parent::__construct($iterator);
         $this->matchRegexp = $regexp;
     }
 
+    /**
+     * @return bool
+     */
     public function accept()
     {
         $file = $this->getInnerIterator()->current();
