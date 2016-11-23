@@ -35,4 +35,12 @@ class CommitParser
     {
         return $this->message;
     }
+
+    /**
+     * @return PullRequest
+     */
+    public function getPullRequest()
+    {
+        return $this->pullRequest;
+    }
 }
