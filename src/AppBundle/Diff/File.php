@@ -65,7 +65,7 @@ class File
      */
     public function additions()
     {
-        return array_filter($this->lines, function ($line) {
+        return array_filter($this->lines, function (Line $line) {
             return $line->isAddition();
         });
     }
@@ -75,7 +75,7 @@ class File
      */
     public function deletions()
     {
-        return array_filter($this->lines, function ($line) {
+        return array_filter($this->lines, function (Line $line) {
             return $line->isDeletion();
         });
     }
