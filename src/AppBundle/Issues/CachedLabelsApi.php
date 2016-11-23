@@ -36,6 +36,11 @@ class CachedLabelsApi
         $this->repositoryName = $repositoryName;
     }
 
+    /**
+     * @param $issueNumber
+     *
+     * @return array
+     */
     public function getIssueLabels($issueNumber)
     {
         if (!isset($this->labelCache[$issueNumber])) {
@@ -56,6 +61,10 @@ class CachedLabelsApi
         return array_keys($this->labelCache[$issueNumber]);
     }
 
+    /**
+     * @param $issueNumber
+     * @param $label
+     */
     public function addIssueLabel($issueNumber, $label)
     {
         if (isset($this->labelCache[$issueNumber][$label])) {
@@ -75,6 +84,10 @@ class CachedLabelsApi
         }
     }
 
+    /**
+     * @param $issueNumber
+     * @param $label
+     */
     public function removeIssueLabel($issueNumber, $label)
     {
         if (isset($this->labelCache[$issueNumber]) && !isset($this->labelCache[$issueNumber][$label])) {

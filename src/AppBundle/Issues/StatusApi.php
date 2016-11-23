@@ -6,6 +6,9 @@ use AppBundle\PullRequests\Labels;
 
 class StatusApi
 {
+    /**
+     * @var array
+     */
     private $statusToLabel = [
         Status::NEEDS_REVIEW => 'Status: Needs Review',
         Status::CODE_REVIEWED => 'Code reviewed',
@@ -14,6 +17,9 @@ class StatusApi
         Status::WAITING_FOR_WORDING => 'waiting for wording',
     ];
 
+    /**
+     * @var array
+     */
     private $labelToStatus = [];
 
     /**
@@ -78,6 +84,9 @@ class StatusApi
         }
     }
 
+    /**
+     * @param $issueNumber
+     */
     public function getIssueStatus($issueNumber)
     {
         $currentLabels = $this->labelsApi->getIssueLabels($issueNumber);
@@ -92,6 +101,9 @@ class StatusApi
         return;
     }
 
+    /**
+     * @return string
+     */
     public function getNeedsReviewUrl()
     {
         return sprintf(
@@ -102,6 +114,9 @@ class StatusApi
         );
     }
 
+    /**
+     * @return string
+     */
     public function getWaitingForQAUrl()
     {
         return sprintf(
@@ -112,6 +127,9 @@ class StatusApi
         );
     }
 
+    /**
+     * @return string
+     */
     public function getWaitingForPMUrl()
     {
         return sprintf(

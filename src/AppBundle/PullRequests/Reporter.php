@@ -7,8 +7,14 @@ namespace AppBundle\PullRequests;
  */
 class Reporter
 {
+    /**
+     * @var Repository
+     */
     private $repository;
 
+    /**
+     * @var array
+     */
     private $labelToVarname = [
         Labels::WAITING_FOR_CODE_REVIEW => 'waitingForCodeReviewsContribs',
         Labels::WAITING_FOR_QA_FEEDBACK => 'waitingForQAContribs',
@@ -20,7 +26,12 @@ class Reporter
         $this->repository = $repository;
     }
 
-    public function reportActivity($base = 'develop')
+    /**
+     * @param string $base
+     *
+     * @return array
+     */
+    public function reportActivity(string $base = 'develop')
     {
         $toBeCodeReviewed = $this->findAll(Labels::WAITING_FOR_CODE_REVIEW, $base);
         $toBeQAFeedback = $this->findAll(Labels::WAITING_FOR_QA_FEEDBACK, $base);
@@ -35,7 +46,15 @@ class Reporter
         ];
     }
 
-    public function reportActivityForLabel($base = 'develop', $label = Labels::WAITING_FOR_CODE_REVIEW)
+    /**
+     * @param string $base
+     * @param string $label
+     *
+     * @return array
+     *
+     * @throws LabelNotFoundException
+     */
+    public function reportActivityForLabel(string $base = 'develop', string $label = Labels::WAITING_FOR_CODE_REVIEW)
     {
         if (!in_array($label, array_keys($this->labelToVarname))) {
             throw new LabelNotFoundException($label);
@@ -48,7 +67,13 @@ class Reporter
         ];
     }
 
-    private function findAll($tagName, $base)
+    /**
+     * @param $tagName
+     * @param $base
+     *
+     * @return array
+     */
+    private function findAll(string $tagName, string $base)
     {
         return $this->repository->findAllWithLabel($tagName, $base);
     }

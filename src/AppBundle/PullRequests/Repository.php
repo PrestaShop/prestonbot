@@ -15,10 +15,22 @@ use Lpdigital\Github\Entity\PullRequest;
  */
 class Repository implements RepositoryInterface
 {
+    /**
+     * @var SearchRepository
+     */
     private $searchRepository;
+    /**
+     * @var KnpCommentsApi
+     */
     private $knpCommentsApi;
 
+    /**
+     * @var
+     */
     private $repositoryUsername;
+    /**
+     * @var
+     */
     private $repositoryName;
 
     public function __construct(
@@ -33,7 +45,10 @@ class Repository implements RepositoryInterface
         $this->repositoryName = $repositoryName;
     }
 
-    public function findAll($base = 'develop')
+    /**
+     * {@inheritdoc}
+     */
+    public function findAll(string $base = 'develop')
     {
         $pullRequests = [];
         $search = $this->searchRepository->getPullRequests(['base' => $base]);
@@ -45,7 +60,10 @@ class Repository implements RepositoryInterface
         return $pullRequests;
     }
 
-    public function findAllWithLabel($label, $base = 'develop')
+    /**
+     * {@inheritdoc}
+     */
+    public function findAllWithLabel(string $label, string $base = 'develop')
     {
         $pullRequests = [];
         $search = $this->searchRepository->getPullRequests(
@@ -63,6 +81,9 @@ class Repository implements RepositoryInterface
         return $pullRequests;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getComments(PullRequest $pullRequest)
     {
         try {
@@ -142,10 +163,19 @@ class Repository implements RepositoryInterface
                     $comment->getId()
                 );
             }
+
+            return true;
         }
+
+        return false;
     }
 
-    private function parseLabel($label)
+    /**
+     * @param $label
+     *
+     * @return string
+     */
+    private function parseLabel(string $label)
     {
         return '"'.$label.'"';
     }

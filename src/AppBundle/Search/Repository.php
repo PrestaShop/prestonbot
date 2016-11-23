@@ -11,17 +11,31 @@ use Github\Api\Search;
  */
 class Repository
 {
+    /**
+     * @var Search
+     */
     private $searchApi;
+    /**
+     * @var string
+     */
     private $repositoryUsername;
+    /**
+     * @var string
+     */
     private $repositoryName;
 
-    public function __construct(Search $searchApi, $repositoryUsername, $repositoryName)
+    public function __construct(Search $searchApi, string $repositoryUsername, string $repositoryName)
     {
         $this->searchApi = $searchApi;
         $this->repositoryUsername = $repositoryUsername;
         $this->repositoryName = $repositoryName;
     }
 
+    /**
+     * @param array $filters
+     *
+     * @return array
+     */
     public function getPullRequests($filters = [])
     {
         $basicFilters = [
@@ -35,6 +49,11 @@ class Repository
         return $this->searchApi->issues($this->buildQuery($allFilters));
     }
 
+    /**
+     * @param $filters
+     *
+     * @return string
+     */
     private function buildQuery($filters)
     {
         $query = '';

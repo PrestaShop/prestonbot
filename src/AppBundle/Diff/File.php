@@ -7,13 +7,19 @@ namespace AppBundle\Diff;
  */
 class File
 {
+    /**
+     * @var array
+     */
     private $lines;
 
-    public function __construct($lines)
+    public function __construct(array $lines)
     {
         $this->lines = $lines;
     }
 
+    /**
+     * @return string
+     */
     public function name()
     {
         $fileLine = $this->lines()[0];
@@ -21,6 +27,9 @@ class File
         return $fileLine->getFilepath();
     }
 
+    /**
+     * @return string
+     */
     public function content()
     {
         $content = '';
@@ -31,18 +40,29 @@ class File
         return $content;
     }
 
+    /**
+     * @return array
+     */
     public function lines()
     {
         return $this->lines;
     }
 
-    public function setLines($lines)
+    /**
+     * @param array $lines
+     *
+     * @return $this
+     */
+    public function setLines(array $lines)
     {
         $this->lines = $lines;
 
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function additions()
     {
         return array_filter($this->lines, function ($line) {
@@ -50,6 +70,9 @@ class File
         });
     }
 
+    /**
+     * @return array
+     */
     public function deletions()
     {
         return array_filter($this->lines, function ($line) {
@@ -57,6 +80,11 @@ class File
         });
     }
 
+    /**
+     * @param $regexp
+     *
+     * @return bool
+     */
     public function match($regexp)
     {
         return 1 === preg_match($regexp, $this->content);

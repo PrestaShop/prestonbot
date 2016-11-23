@@ -12,10 +12,25 @@ use Psr\Log\LoggerInterface;
 
 class Listener
 {
+    /**
+     * @var CommentApiInterface
+     */
     private $commentApi;
+    /**
+     * @var CommitRepositoryInterface
+     */
     private $commitRepository;
+    /**
+     * @var LoggerInterface
+     */
     private $logger;
+    /**
+     * @var ValidatorInterface
+     */
     private $validator;
+    /**
+     * @var RepositoryInterface
+     */
     private $repository;
 
     const PRESTONBOT_NAME = 'prestonBot';
@@ -36,6 +51,9 @@ class Listener
         $this->repository = $repository;
     }
 
+    /**
+     * @param PullRequest $pullRequest
+     */
     public function checkForTableDescription(PullRequest $pullRequest)
     {
         $bodyParser = new BodyParser($pullRequest->getBody());
@@ -52,6 +70,11 @@ class Listener
         }
     }
 
+    /**
+     * @param PullRequest $pullRequest
+     *
+     * @return bool
+     */
     public function checkCommits(PullRequest $pullRequest)
     {
         $commitErrors = $this->getErrorsFromCommits($pullRequest);
@@ -79,6 +102,11 @@ class Listener
         return false;
     }
 
+    /**
+     * @param PullRequest $pullRequest
+     *
+     * @return bool
+     */
     public function removePullRequestValidationComment(PullRequest $pullRequest)
     {
         $bodyParser = new BodyParser($pullRequest->getBody());
@@ -102,6 +130,11 @@ class Listener
         return false;
     }
 
+    /**
+     * @param PullRequest $pullRequest
+     *
+     * @return bool
+     */
     public function removeCommitValidationComment(PullRequest $pullRequest)
     {
         if (0 === count($this->getErrorsFromCommits($pullRequest))) {
@@ -122,6 +155,12 @@ class Listener
         return false;
     }
 
+    /**
+     * @param PullRequest $pullRequest
+     * @param User        $sender
+     *
+     * @return bool
+     */
     public function welcomePeople(PullRequest $pullRequest, User $sender)
     {
         $userCommits = $this->commitRepository->findAllByUser($sender);
@@ -138,7 +177,11 @@ class Listener
                 $pullRequest->getUser()->getLogin(),
                 $pullRequest->getNumber()
             ));
+
+            return true;
         }
+
+        return false;
     }
 
     /**

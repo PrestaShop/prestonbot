@@ -21,18 +21,24 @@ class Repository
      */
     private $repositoryName;
 
-    public function __construct(Repo $repositoryApi, $repositoryUsername, $repositoryName)
+    public function __construct(Repo $repositoryApi, string $repositoryUsername, string $repositoryName)
     {
         $this->repositoryApi = $repositoryApi;
         $this->repositoryUsername = $repositoryUsername;
         $this->repositoryName = $repositoryName;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->repositoryName;
     }
 
+    /**
+     * @return array
+     */
     public function getActivity()
     {
         return $this->repositoryApi
@@ -40,6 +46,9 @@ class Repository
         ;
     }
 
+    /**
+     * @return array
+     */
     public function getStatistics()
     {
         return $this->repositoryApi
@@ -57,6 +66,9 @@ class Repository
         ;
     }
 
+    /**
+     * @return \Github\Api\Repository\Stargazers
+     */
     public function getStars()
     {
         return $this->repositoryApi
@@ -64,16 +76,25 @@ class Repository
         ;
     }
 
+    /**
+     * @return Repository|Repo
+     */
     public function getApi()
     {
         return $this->repositoryApi;
     }
 
+    /**
+     * @return \Github\Api\Repository\Commits
+     */
     public function getCommits()
     {
         return $this->repositoryApi->commits();
     }
 
+    /**
+     * @return array
+     */
     public function getMembers()
     {
         return $this->repositoryApi

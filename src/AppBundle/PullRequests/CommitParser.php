@@ -12,16 +12,25 @@ class CommitParser
 {
     /**
      * @Assert\Regex("/^(CO|FO|BO|TE|IN|WS|LO)(\:[[:space:]])(.+)/")
+     *
+     * @var string
      */
     private $message;
+
+    /**
+     * @var PullRequest
+     */
     private $pullRequest;
 
-    public function __construct($message, PullRequest $pullRequest)
+    public function __construct(string $message, PullRequest $pullRequest)
     {
         $this->message = $message;
         $this->pullRequest = $pullRequest;
     }
 
+    /**
+     * @return string
+     */
     public function getMessage()
     {
         return $this->message;

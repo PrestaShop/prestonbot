@@ -6,9 +6,9 @@ use Lpdigital\Github\Entity\PullRequest;
 
 interface RepositoryInterface
 {
-    public function findAll($base);
+    public function findAll(string $base);
 
-    public function findAllWithLabel($label, $base);
+    public function findAllWithLabel(string $label, string $base);
 
     public function getComments(PullRequest $pullRequest);
 
