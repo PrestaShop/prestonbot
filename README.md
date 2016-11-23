@@ -34,8 +34,10 @@ Yeah, mostly the *Symfony* ones:
 
 ## What is Preston capable of doing?
 
-* Check a pull request description according to *PrestaShop* standards;
-* Check pull request commits labels according to *PrestaShop* standards;
+* Comment on a pull request to help a contributor fix his work;
 * Extract data from the pull request and look for some terms;
-* Welcome every new contributor;
 * Manage labels;
+* Validate a pull request description;
+* Validate every commit label;
+* Welcome every new contributor;
+
