@@ -105,7 +105,7 @@ class BodyParser
      */
     public function isAFeature()
     {
-        return true === preg_match('/feature/', $this->getType());
+        return 1 === preg_match('/feature/', $this->getType());
     }
 
     /**
@@ -113,7 +113,7 @@ class BodyParser
      */
     public function isAnImprovement()
     {
-        return true === preg_match('/improvement/', $this->getType());
+        return 1 === preg_match('/improvement/', $this->getType());
     }
 
     /**
@@ -121,7 +121,7 @@ class BodyParser
      */
     public function isABugFix()
     {
-        return true === preg_match('/bug fix/', $this->getType());
+        return 1 === preg_match('/bug fix/', $this->getType());
     }
 
     /**
@@ -129,7 +129,7 @@ class BodyParser
      */
     public function isASmallFix()
     {
-        return true === preg_match('/small fix/', $this->getType());
+        return 1 === preg_match('/small fix/', $this->getType());
     }
 
     /**
@@ -137,7 +137,7 @@ class BodyParser
      */
     public function isARefacto()
     {
-        return true === preg_match('/refacto/', $this->getType());
+        return 1 === preg_match('/refacto/', $this->getType());
     }
 
     /**
