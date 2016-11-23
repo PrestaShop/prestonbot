@@ -26,8 +26,8 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         return [
             'pullrequestevent_opened' => [
-               ['checkForTableDescription', 255],
-               ['welcomePeople', 253],
+               ['checkForTableDescription', 254],
+               ['welcomePeople', 255],
                ['checkForNewTranslations', 252],
                ['initLabels', 254],
                ['checkCommits', 252],
@@ -69,7 +69,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @param GitHubEvent $githubEvent
      *
-     * This event MUST be spawned first.
+     * This event MUST be spawned second.
      */
     public function checkForTableDescription(GitHubEvent $githubEvent)
     {
@@ -140,6 +140,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @param GitHubEvent $githubEvent
      *
+     * This event MUST be spawned second.
      * Send a comment to welcome very first contribution.
      */
     public function welcomePeople(GitHubEvent $githubEvent)
