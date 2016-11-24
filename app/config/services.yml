@@ -2,6 +2,17 @@ services:
     app.webhook_resolver:
         class: Lpdigital\Github\Parser\WebhookResolver
 
+# Argument value resolver
+    app.value_resolver.event:
+        class: AppBundle\Event\GitHubEventResolver
+        arguments:
+            - '@app.webhook_resolver'
+            - '@logger'
+            - '%repository_username%'
+            - '%repository_name%'
+        tags:
+            - { name: controller.argument_value_resolver, priority: 110 }
+
 # GitHub Client
     app.github.client.cache:
         class: Github\HttpClient\CachedHttpClient
