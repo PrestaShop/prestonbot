@@ -124,6 +124,11 @@ class WebhookControllerTest extends WebTestCase
             'wrong_repository.pull_request.json',
             [],
         ];
+        $tests['Status'] = [
+            'pull_request',
+            'status.json',
+            [],
+        ];
         $tests['Pull request synchronize'] = [
             'pull_request',
             'pull_request.synchronize.json',
