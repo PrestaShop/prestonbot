@@ -6,7 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Event\GitHubEvent;
 
 class WebhookController extends Controller
@@ -15,7 +14,7 @@ class WebhookController extends Controller
      * @Route("/webhooks/github", name="webhooks_github")
      * @Method("POST")
      */
-    public function githubAction(Request $request, GithubEvent $event = null)
+    public function githubAction(GithubEvent $event = null)
     {
         if (is_null($event)) {
             return new JsonResponse('[err] event not found.');

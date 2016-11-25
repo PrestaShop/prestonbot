@@ -3,7 +3,7 @@ services:
         class: Lpdigital\Github\Parser\WebhookResolver
 
 # Argument value resolver
-    app.value_resolver.event:
+    app.github_resolver.event:
         class: AppBundle\Event\GitHubEventResolver
         arguments:
             - '@app.webhook_resolver'
