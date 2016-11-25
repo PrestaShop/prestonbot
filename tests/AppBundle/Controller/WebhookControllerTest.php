@@ -9,7 +9,7 @@ class WebhookControllerTest extends WebTestCase
     /**
      * @dataProvider getTests
      */
-    public function testActions($eventHeader, $payloadFilename, $expectedResponse)
+    public function testActions($eventHeader, $payloadFilename, $expectedResponse, $expectedHttpStatusCode = 200)
     {
         $client = $this->createClient();
         $client->enableProfiler();
@@ -24,7 +24,7 @@ class WebhookControllerTest extends WebTestCase
             $errorsMessage = $this->handleExceptionFromCollector($profile);
         }
         $responseData = json_decode($response->getContent(), true);
-        $this->assertEquals(200, $response->getStatusCode(), $errorsMessage);
+        $this->assertEquals($expectedHttpStatusCode, $response->getStatusCode(), $errorsMessage);
 
         // a weak sanity check that we went down "the right path" in the controller
         $this->assertEquals($expectedResponse, $responseData);
@@ -122,12 +122,14 @@ class WebhookControllerTest extends WebTestCase
         $tests['Pull request on wrong repository'] = [
             'pull_request',
             'wrong_repository.pull_request.json',
-            [],
+            null,
+            404,
         ];
         $tests['Status'] = [
             'pull_request',
             'status.json',
-            [],
+            null,
+            404,
         ];
         $tests['Pull request synchronize'] = [
             'pull_request',
