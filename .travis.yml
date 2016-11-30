@@ -11,6 +11,9 @@ cache:
 php:
   - 7.0
 
+env:
+  - SYMFONY_PHPUNIT_VERSION=5.5
+
 before_install:
   - phpenv config-rm xdebug.ini
   - composer self-update
@@ -19,7 +22,7 @@ install:
   - composer update --prefer-dist --no-interaction --no-progress
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/simple-phpunit
 
 notifications:
   email: false
