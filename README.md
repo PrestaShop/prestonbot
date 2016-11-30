@@ -21,6 +21,7 @@ composer install // and complete the interactive fields asked
 You need also to create your own GitHub [personal token](https://github.com/settings/tokens) and export it:
 
 ```bash
+export SYMFONY_PHPUNIT_VERSION=5.5
 export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
