@@ -13,10 +13,21 @@ class WebhookControllerTest extends WebTestCase
     {
         $client = $this->createClient();
         $client->enableProfiler();
+        $gihubToken = static::$kernel
+            ->getContainer()
+            ->getParameter('github_secured_token')
+        ;
+
         $errorsMessage = null;
 
         $body = file_get_contents(__DIR__.'/../webhook_examples/'.$payloadFilename);
-        $client->request('POST', '/webhooks/github', [], [], ['HTTP_X-Github-Event' => $eventHeader], $body);
+
+        $signature = $this->createSignature($body, $gihubToken);
+
+        $client->request('POST', '/webhooks/github', [], [], [
+            'HTTP_X-Github-Event' => $eventHeader,
+            'HTTP_X-Hub-Signature' => $signature,
+        ], $body);
         $response = $client->getResponse();
 
         $errorsMessage = 'OK';
@@ -154,5 +165,17 @@ class WebhookControllerTest extends WebTestCase
             .' in '.$trace['file']
             .'(line '.$trace['line'].')'
         ;
+    }
+
+    /**
+     * @param string $algo
+     * @param string $signedContent
+     * @param string $secret
+     *
+     * @return string
+     */
+    private function createSignature($signedContent, $secret = self::SECRET, $algo = 'sha1')
+    {
+        return sprintf('%s=%s', $algo, hash_hmac($algo, $signedContent, $secret));
     }
 }

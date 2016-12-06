@@ -116,6 +116,12 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    app.github_token_validator_subscriber:
+        class: AppBundle\Security\GitHubTokenValidatorSubscriber
+        arguments:
+            - '@app.github_token_validator'
+            - '%github_secured_token%'
+
 # Repositories
 
     app.pull_request.repository:
@@ -165,3 +171,7 @@ services:
     app.mailer:
         class: AppBundle\Services\Mailer
         arguments: ['@mailer', '@twig']
+
+    app.github_token_validator:
+        class: AppBundle\Security\SignatureValidator
+
