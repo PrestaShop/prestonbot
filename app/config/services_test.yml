@@ -2,8 +2,8 @@ imports:
     - { resource: services.yml }
     
 parameters:
-    # token generated from a fake account who have admin rights on loveOSS organisation
-    github_token: '%env(GH_TOKEN)%'
+    # the token needs to have admin rights on loveOSS organisation
+    # for testing purposes
     repository_username: 'loveOSS'
     repository_name: 'test'
 
