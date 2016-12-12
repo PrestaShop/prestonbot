@@ -28,7 +28,8 @@
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
-        "knplabs/github-api": "^1.7",
+        "knplabs/github-api": "^2.0",
+        "php-http/guzzle6-adapter": "^1.0",
         "lp-digital/github-event-parser": "~0.8"
     },
     "require-dev": {

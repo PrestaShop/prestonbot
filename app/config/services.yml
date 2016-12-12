@@ -14,14 +14,18 @@ services:
             - { name: controller.argument_value_resolver, priority: 110 }
 
 # GitHub Client
-    app.github.client.cache:
-        class: Github\HttpClient\CachedHttpClient
-        arguments: 
-            - 'cache_dir': '%kernel.cache_dir%/github-api/'
+    app.github.client.guzzle.adapter:
+        class: Http\Adapter\Guzzle6\Client
+        public: false
+
+    app.github.client.builder:
+        class:  Github\HttpClient\Builder
+        arguments: ['@app.github.client.guzzle.adapter']
+        public: false
 
     app.github.client:
         class: Github\Client
-        arguments: ['@app.github.client.cache']
+        arguments: ['@app.github.client.builder']
         calls:
             - ['authenticate', ['http_token', '%github_token%']]
 
@@ -121,6 +125,8 @@ services:
         arguments:
             - '@app.github_token_validator'
             - '%github_secured_token%'
+        tags:
+            - { name: kernel.event_subscriber }
 
 # Repositories
 

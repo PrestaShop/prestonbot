@@ -20,11 +20,10 @@ parameters:
 
     # token used to update labels on the repository, etc
     github_token: '%env(GH_TOKEN)%'
-    env(GH_SECURED_TOKEN): ~
 
     # token to identify GitHub requests
     github_secured_token: '%env(GH_SECURED_TOKEN)%'
-    
+
     # point to the selected repository
     repository_username: PrestaShop
     repository_name: PrestaShop
