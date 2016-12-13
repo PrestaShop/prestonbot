@@ -52,7 +52,7 @@ class BodyParser
 
     /**
      * @Assert\Choice(callback = "getValidTypes",
-     * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`, `refacto`.",
+     * message = "The `type` should be one of: `new feature`, `improvement`, `bug fix`, `refacto` or `critical`.",
      * strict=true)
      *
      * @return string
@@ -171,6 +171,7 @@ class BodyParser
             'refacto',
             'bug fix',
             'small fix',
+            'critical',
         ];
     }
 
