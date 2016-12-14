@@ -18,4 +18,6 @@ final class Status
     const PM_APPROVED = 'pm_approved';
 
     const WAITING_FOR_WORDING = 'waiting_for_wording';
+
+    const REPORT_ON_STARTER_THEME = 'report_on_starter_theme';
 }
