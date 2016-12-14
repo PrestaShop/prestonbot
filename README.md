@@ -15,7 +15,7 @@ composer install // and complete the interactive fields asked
 ## How to test ?
 
 ```bash
-./vendor/bin/phpunit
+./vendor/bin/simple-phpunit
 ```
 
 You need also to create your own GitHub [personal token](https://github.com/settings/tokens) and export it:
