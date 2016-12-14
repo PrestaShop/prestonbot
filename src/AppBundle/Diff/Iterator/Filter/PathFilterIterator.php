@@ -24,7 +24,7 @@ class PathFilterIterator extends \FilterIterator
     {
         $file = $this->getInnerIterator()->current();
 
-        if (preg_match($this->matchRegexp, $file->name())) {
+        if (preg_match($this->matchRegexp, $file->path())) {
             return true;
         }
 
