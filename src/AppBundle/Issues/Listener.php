@@ -146,6 +146,23 @@ class Listener
     }
 
     /**
+     * Add "report on StarterTheme" label to an issue.
+     *
+     * @param int $issueNumber The issue that was labeled
+     *
+     * @return string The new status
+     */
+    public function handleClassicChangesEvent($issueNumber)
+    {
+        $newStatus = Status::REPORT_ON_STARTER_THEME;
+
+        $this->statusApi->setIssueStatus($issueNumber, $newStatus);
+        $this->log($issueNumber, $newStatus);
+
+        return $newStatus;
+    }
+
+    /**
      * Log every label added.
      *
      * @param int    $issueNumber The issue that was labeled

@@ -20,4 +20,6 @@ final class Status
     const WAITING_FOR_WORDING = 'waiting_for_wording';
 
     const CRITICAL_ISSUE = 'critical_issue';
+
+    const REPORT_ON_STARTER_THEME = 'report_on_starter_theme';
 }

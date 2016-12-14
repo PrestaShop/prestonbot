@@ -16,6 +16,7 @@ class StatusApi
         Status::PM_APPROVED => 'PM-approved',
         Status::WAITING_FOR_WORDING => 'waiting for wording',
         Status::CRITICAL_ISSUE => 'Type: Critical Bug Fix',
+        Status::REPORT_ON_STARTER_THEME => 'report on StarterTheme',
     ];
 
     /**
