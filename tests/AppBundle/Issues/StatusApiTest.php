@@ -3,8 +3,8 @@
 namespace Tests\AppBundle\Issues\GitHub;
 
 use AppBundle\Issues\CachedLabelsApi;
-use AppBundle\Issues\StatusApi;
 use AppBundle\Issues\Status;
+use AppBundle\Issues\StatusApi;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>

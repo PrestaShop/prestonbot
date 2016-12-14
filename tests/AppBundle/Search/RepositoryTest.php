@@ -27,6 +27,8 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider filters
+     *
+     * @param mixed $filters
      */
     public function testGetAllPullRequests($filters)
     {

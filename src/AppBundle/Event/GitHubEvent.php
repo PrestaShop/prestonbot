@@ -2,8 +2,8 @@
 
 namespace AppBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
 use Lpdigital\Github\EventType\ActionableEventInterface;
+use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Every event returned by GitHub is stored as a GitHubEvent instance.

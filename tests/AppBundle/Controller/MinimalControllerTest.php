@@ -21,6 +21,6 @@ class MinimalControllerTest extends WebTestCase
         $this->client->request('HEAD', '/');
         $response = $this->client->getResponse();
 
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertSame(200, $response->getStatusCode());
     }
 }

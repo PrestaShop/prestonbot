@@ -23,6 +23,8 @@ install:
 
 script:
   - vendor/bin/simple-phpunit
+  - vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`
+
 
 notifications:
   email: false

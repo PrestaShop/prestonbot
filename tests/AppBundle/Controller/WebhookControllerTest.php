@@ -8,6 +8,11 @@ class WebhookControllerTest extends WebTestCase
 {
     /**
      * @dataProvider getTests
+     *
+     * @param mixed $eventHeader
+     * @param mixed $payloadFilename
+     * @param mixed $expectedResponse
+     * @param mixed $expectedHttpStatusCode
      */
     public function testActions($eventHeader, $payloadFilename, $expectedResponse, $expectedHttpStatusCode = 200)
     {
@@ -35,10 +40,10 @@ class WebhookControllerTest extends WebTestCase
             $errorsMessage = $this->handleExceptionFromCollector($profile);
         }
         $responseData = json_decode($response->getContent(), true);
-        $this->assertEquals($expectedHttpStatusCode, $response->getStatusCode(), $errorsMessage);
+        $this->assertSame($expectedHttpStatusCode, $response->getStatusCode(), $errorsMessage);
 
         // a weak sanity check that we went down "the right path" in the controller
-        $this->assertEquals($expectedResponse, $responseData);
+        $this->assertSame($expectedResponse, $responseData);
     }
 
     public function getTests()

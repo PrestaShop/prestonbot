@@ -10,6 +10,8 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
 class GitHubEventResolverTest extends \PHPUnit_Framework_TestCase
 {
+    const REPOSITORY_OWNER = 'loveOSS';
+    const REPOSITORY_NAME = 'test';
     /**
      * @var GitHubEventResolver
      */
@@ -24,9 +26,6 @@ class GitHubEventResolverTest extends \PHPUnit_Framework_TestCase
      * @var LoggerInterface
      */
     private $logger;
-
-    const REPOSITORY_OWNER = 'loveOSS';
-    const REPOSITORY_NAME = 'test';
 
     public function setUp()
     {

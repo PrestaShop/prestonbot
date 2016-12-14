@@ -2,10 +2,10 @@
 
 namespace AppBundle\EventSubscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use AppBundle\Event\GitHubEvent;
 use AppBundle\Diff\Diff;
+use AppBundle\Event\GitHubEvent;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PullRequestSubscriber implements EventSubscriberInterface
 {
@@ -26,16 +26,16 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         return [
             'pullrequestevent_opened' => [
-               ['checkForTableDescription', 254],
-               ['welcomePeople', 255],
-               ['checkForNewTranslations', 252],
-               ['initLabels', 254],
-               ['checkCommits', 252],
+                ['checkForTableDescription', 254],
+                ['welcomePeople', 255],
+                ['checkForNewTranslations', 252],
+                ['initLabels', 254],
+                ['checkCommits', 252],
             ],
             'pullrequestevent_edited' => [
-               ['removePullRequestValidationComment', 255],
-               ['removeCommitValidationComment', 255],
-               ['checkForNewTranslations', 252],
+                ['removePullRequestValidationComment', 255],
+                ['removeCommitValidationComment', 255],
+                ['checkForNewTranslations', 252],
             ],
             'pullrequestevent_synchronize' => [
                 ['removeCommitValidationComment', 255],
@@ -46,7 +46,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @param GitHubEvent $githubEvent
      *
-     * For now, only add "Needs Review" label.
+     * For now, only add "Needs Review" label
      */
     public function initLabels(GitHubEvent $githubEvent)
     {
@@ -69,7 +69,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @param GitHubEvent $githubEvent
      *
-     * This event MUST be spawned second.
+     * This event MUST be spawned second
      */
     public function checkForTableDescription(GitHubEvent $githubEvent)
     {
@@ -90,7 +90,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @param GitHubEvent $githubEvent
      *
-     * Validate the commits labels.
+     * Validate the commits labels
      */
     public function checkCommits(GitHubEvent $githubEvent)
     {
@@ -112,7 +112,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
      * @param GitHubEvent $githubEvent
      *
      * If a call to trans or l function is done, add
-     * "waiting for wording" label.
+     * "waiting for wording" label
      */
     public function checkForNewTranslations(GitHubEvent $githubEvent)
     {
@@ -127,7 +127,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ;
         }
 
-        $eventStatus = $event->getAction() == 'opened' ? 'opened' : 'edited';
+        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
@@ -163,7 +163,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @param GitHubEvent $githubEvent
      *
-     * If description become valid, the comment should be removed.
+     * If description become valid, the comment should be removed
      */
     public function removePullRequestValidationComment(GithubEvent $githubEvent)
     {
@@ -190,7 +190,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     /**
      * @param GitHubEvent $githubEvent
      *
-     * If commits labels become valid, the comment should be removed.
+     * If commits labels become valid, the comment should be removed
      */
     public function removeCommitValidationComment(GithubEvent $githubEvent)
     {

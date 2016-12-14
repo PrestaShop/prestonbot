@@ -28,6 +28,7 @@ class Mailer
      * @param string|array $recipient    The list of recipients
      * @param string       $templateName The template logical name
      * @param array        $params       The template variables
+     * @param null|mixed   $bcc
      */
     public function send(
         $subject,

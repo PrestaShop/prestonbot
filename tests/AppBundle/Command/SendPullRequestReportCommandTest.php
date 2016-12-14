@@ -2,10 +2,10 @@
 
 namespace tests\AppBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Tester\CommandTester;
 use AppBundle\Command\SendPullRequestReportCommand;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Console\Tester\CommandTester;
 
 class SendPullRequestReportCommandTest extends WebTestCase
 {

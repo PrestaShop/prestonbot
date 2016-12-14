@@ -2,8 +2,8 @@
 
 namespace AppBundle\PullRequests;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Lpdigital\Github\Entity\PullRequest;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Extract human readable data from commit.

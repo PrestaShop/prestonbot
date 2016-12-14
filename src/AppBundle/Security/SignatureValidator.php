@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  * @author  Sylvain Mauduit <sylvain@mauduit.fr>
  *
- * @link https://github.com/Swop/github-webhook
+ * @see https://github.com/Swop/github-webhook
  */
 class SignatureValidator implements SignatureValidatorInterface
 {

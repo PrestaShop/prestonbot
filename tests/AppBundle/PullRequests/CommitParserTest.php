@@ -35,6 +35,9 @@ class CommitParserTest extends WebTestCase
 
     /**
      * @dataProvider getCommits
+     *
+     * @param mixed $label
+     * @param mixed $expected
      */
     public function testValidation($label, $expected)
     {

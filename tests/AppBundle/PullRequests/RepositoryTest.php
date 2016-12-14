@@ -95,7 +95,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $comments);
         $firstComment = $comments[0];
         $this->assertInstanceOf('Lpdigital\Github\Entity\Comment', $firstComment);
-        $this->assertEquals('mickaelandrieu', $firstComment->getUserLogin());
+        $this->assertSame('mickaelandrieu', $firstComment->getUserLogin());
     }
 
     public function testGetCommentsByExpressionFromMatch()
@@ -112,7 +112,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $comments);
         $firstComment = $comments[0];
         $this->assertInstanceOf('Lpdigital\Github\Entity\Comment', $firstComment);
-        $this->assertEquals('Shudrum', $firstComment->getUserLogin());
+        $this->assertSame('Shudrum', $firstComment->getUserLogin());
     }
 
     public function testGetCommentsByExpressionFromNotMatch()

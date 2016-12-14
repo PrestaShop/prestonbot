@@ -3,8 +3,8 @@
 namespace tests\AppBundle\Issues;
 
 use AppBundle\Issues\Listener;
-use AppBundle\Issues\StatusApi;
 use AppBundle\Issues\Status;
+use AppBundle\Issues\StatusApi;
 use Psr\Log\NullLogger;
 
 /**
@@ -30,6 +30,9 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getCommentsForStatusChange
+     *
+     * @param mixed $comment
+     * @param mixed $expectedStatus
      */
     public function testHandleCommentAddedEvent($comment, $expectedStatus)
     {

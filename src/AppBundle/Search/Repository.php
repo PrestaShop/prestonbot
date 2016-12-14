@@ -6,7 +6,7 @@ use Github\Api\Search;
 
 /**
  * Access the Search API.
- * 
+ *
  * @doc https://github.com/KnpLabs/php-github-api/blob/master/doc/search.md
  */
 class Repository

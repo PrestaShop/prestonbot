@@ -2,8 +2,8 @@
 
 namespace tests\AppBundle\Comments;
 
-use Github\Api\Issue\Comments as KnpCommentApi;
 use AppBundle\Comments\CommentApiInterface;
+use Github\Api\Issue\Comments as KnpCommentApi;
 use Lpdigital\Github\Entity\PullRequest;
 use Twig_Environment;
 

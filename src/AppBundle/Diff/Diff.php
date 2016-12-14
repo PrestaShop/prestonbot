@@ -53,13 +53,11 @@ class Diff implements IteratorAggregate
                 case $line->isFilename() && 0 === count($this->lines):
                     $this->lines[] = $line;
                 break;
-
                 case $line->isFilename() && count($this->lines) > 0:
                     $this->files[] = new File($this->lines);
                     $this->lines = [];
                     $this->lines[] = $line;
                 break;
-
                 case !$line->isFilename():
                     $this->lines[] = $line;
                 break;

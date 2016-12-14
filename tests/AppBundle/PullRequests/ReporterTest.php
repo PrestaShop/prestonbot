@@ -2,8 +2,8 @@
 
 namespace tests\AppBundle\PullRequests;
 
-use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\LabelNotFoundException;
+use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\Reporter;
 
 /**

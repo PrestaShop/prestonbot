@@ -98,7 +98,6 @@ class StatusApi
         }
 
         // No status set
-        return;
     }
 
     /**

@@ -2,16 +2,19 @@
 
 namespace AppBundle\PullRequests;
 
-use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
-use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 use AppBundle\Comments\CommentApiInterface;
+use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
+use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
 use Lpdigital\Github\Entity\PullRequest;
 use Lpdigital\Github\Entity\User;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class Listener
 {
+    const PRESTONBOT_NAME = 'prestonBot';
+    const TABLE_ERROR = 'PR_TABLE_DESCRIPTION_ERROR';
+    const COMMIT_ERROR = 'PR_COMMIT_NAME_ERROR';
     /**
      * @var CommentApiInterface
      */
@@ -32,10 +35,6 @@ class Listener
      * @var RepositoryInterface
      */
     private $repository;
-
-    const PRESTONBOT_NAME = 'prestonBot';
-    const TABLE_ERROR = 'PR_TABLE_DESCRIPTION_ERROR';
-    const COMMIT_ERROR = 'PR_COMMIT_NAME_ERROR';
 
     public function __construct(
         CommentApiInterface $commentApi,
@@ -186,8 +185,8 @@ class Listener
 
     /**
      * Wrap the validation of commits.
-     * 
-     * @return array error messages if any.
+     *
+     * @return array error messages if any
      */
     private function getErrorsFromCommits(PullRequest $pullRequest)
     {
