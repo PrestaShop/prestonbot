@@ -23,7 +23,7 @@ You need also to create your own GitHub [personal token](https://github.com/sett
 ```bash
 export SYMFONY_PHPUNIT_VERSION=5.5
 export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-export GH_SECURE_TOKEN=YYYYYYYYYYYYYYYYYYYYYYYYYYYY
+export GH_SECURED_TOKEN=YYYYYYYYYYYYYYYYYYYYYYYYYYYY
 ```
 
 ## Our standards ?
