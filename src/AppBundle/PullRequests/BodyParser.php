@@ -141,11 +141,13 @@ class BodyParser
     }
 
     /**
-     * @throws Exception
+     * @return string
      */
     public function getRelatedForgeIssue()
     {
-        throw new Exception('Need to be done');
+        $regex = "/(\|[[:space:]]Fixed ticket\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+
+        return $this->extractWithRegex($regex);
     }
 
     /**
