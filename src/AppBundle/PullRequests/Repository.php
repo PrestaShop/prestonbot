@@ -2,9 +2,9 @@
 
 namespace AppBundle\PullRequests;
 
-use Github\Exception\RuntimeException;
-use Github\Api\Issue\Comments as KnpCommentsApi;
 use AppBundle\Search\Repository as SearchRepository;
+use Github\Api\Issue\Comments as KnpCommentsApi;
+use Github\Exception\RuntimeException;
 use Lpdigital\Github\Entity\Comment;
 use Lpdigital\Github\Entity\PullRequest;
 
@@ -70,7 +70,6 @@ class Repository implements RepositoryInterface
             [
                 'label' => $this->parseLabel($label),
                 'base' => $base,
-
             ]
         );
 

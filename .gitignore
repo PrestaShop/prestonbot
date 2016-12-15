@@ -16,3 +16,4 @@
 /var/bootstrap.php.cache
 /web/config.php
 var/SymfonyRequirements.php
+.php_cs.cache

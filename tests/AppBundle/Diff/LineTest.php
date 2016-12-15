@@ -13,6 +13,9 @@ class LineTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider testCases
+     *
+     * @param mixed $content
+     * @param mixed $expected
      */
     public function testMatch($content, $expected)
     {

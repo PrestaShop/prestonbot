@@ -2,8 +2,8 @@
 
 namespace AppBundle\PullRequests;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Exception;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Extract human readable data from Pull request body.
@@ -86,7 +86,7 @@ class BodyParser
         $regex = "/(\|[[:space:]]BC breaks\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
         $backwardCompatible = $this->extractWithRegex($regex);
 
-        return $backwardCompatible == 'yes' ? true : false;
+        return $backwardCompatible === 'yes';
     }
 
     /**
@@ -97,7 +97,7 @@ class BodyParser
         $regex = "/(\|[[:space:]]Deprecations\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
         $willDeprecateCode = $this->extractWithRegex($regex);
 
-        return $willDeprecateCode == 'no' ? false : true;
+        return $willDeprecateCode === 'no';
     }
 
     /**
@@ -157,18 +157,6 @@ class BodyParser
     }
 
     /**
-     * @param $regex
-     *
-     * @return string
-     */
-    private function extractWithRegex($regex)
-    {
-        preg_match($regex, $this->getBody(), $matches);
-
-        return isset($matches[2]) ? $matches[2] : '';
-    }
-
-    /**
      * @return array
      */
     public static function getValidTypes()
@@ -182,5 +170,17 @@ class BodyParser
             'bug fix',
             'small fix',
         ];
+    }
+
+    /**
+     * @param $regex
+     *
+     * @return string
+     */
+    private function extractWithRegex($regex)
+    {
+        preg_match($regex, $this->getBody(), $matches);
+
+        return isset($matches[2]) ? $matches[2] : '';
     }
 }

@@ -7,6 +7,10 @@ use Github\Api\Organization;
 class Repository
 {
     /**
+     * @var array list of teams (won't change during a request)
+     */
+    protected static $teams;
+    /**
      * @var Organization
      */
     private $organizationApi;
@@ -15,11 +19,6 @@ class Repository
      * @var string
      */
     private $repositoryUsername;
-
-    /**
-     * @var array list of teams (won't change during a request)
-     */
-    protected static $teams;
 
     public function __construct(Organization $organizationApi, $repositoryUsername)
     {

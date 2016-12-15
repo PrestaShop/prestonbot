@@ -2,8 +2,8 @@
 
 namespace AppBundle\Commits;
 
-use Lpdigital\Github\Entity\User;
 use Lpdigital\Github\Entity\PullRequest;
+use Lpdigital\Github\Entity\User;
 
 interface RepositoryInterface
 {

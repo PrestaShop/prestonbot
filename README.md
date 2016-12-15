@@ -31,7 +31,7 @@ export GH_SECURED_TOKEN=YYYYYYYYYYYYYYYYYYYYYYYYYYYY
 Yeah, mostly the *Symfony* ones:
 
 ```bash
-./vendor/bin/php-cs-fixer fix . # we use the Symfony level + short array notation filter
+./vendor/bin/php-cs-fixer fix # we use the Symfony level + short array notation filter
 ```
 
 ## What is Preston capable of doing?

@@ -54,7 +54,7 @@ class DiffTest extends \PHPUnit_Framework_TestCase
         $diff = Diff::create($this->getExpectedDiff());
         $filtered = $diff->path('#ProductCombination.php#');
 
-        $this->assertEquals(
+        $this->assertSame(
             1,
             $filtered->getIterator()->count(),
             'This iterator should contains only 1 file.'
@@ -70,7 +70,7 @@ class DiffTest extends \PHPUnit_Framework_TestCase
             ->getIterator()
         ;
 
-        $this->assertEquals(
+        $this->assertSame(
             1,
             $iterator->count(),
             'This iterator should contains only 1 file.'

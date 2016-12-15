@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  * @author  Sylvain Mauduit <sylvain@mauduit.fr>
  *
- * @link https://github.com/Swop/github-webhook
+ * @see https://github.com/Swop/github-webhook
  */
 class SignatureValidatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -81,6 +81,18 @@ class SignatureValidatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param string $algo
+     * @param string $signedContent
+     * @param string $secret
+     *
+     * @return string
+     */
+    public static function createSignature($signedContent, $secret = self::SECRET, $algo = 'sha1')
+    {
+        return sprintf('%s=%s', $algo, hash_hmac($algo, $signedContent, $secret));
+    }
+
+    /**
      * @param string $requestContent
      * @param string $requestSignature
      *
@@ -98,17 +110,5 @@ class SignatureValidatorTest extends \PHPUnit_Framework_TestCase
         $request->headers->set('X-Hub-Signature', $requestSignatureHeader);
 
         return $request;
-    }
-
-    /**
-     * @param string $algo
-     * @param string $signedContent
-     * @param string $secret
-     *
-     * @return string
-     */
-    public static function createSignature($signedContent, $secret = self::SECRET, $algo = 'sha1')
-    {
-        return sprintf('%s=%s', $algo, hash_hmac($algo, $signedContent, $secret));
     }
 }

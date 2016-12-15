@@ -17,6 +17,7 @@ interface RepositoryInterface
      *
      * @param PullRequest \Lpdigital\Github\Entity\PullRequest
      * @param string login from Entity User of Comment entry
+     * @param mixed $userLogin
      *
      * @return array collection of user's comments
      */
@@ -27,6 +28,8 @@ interface RepositoryInterface
      *
      * @param PullRequest \Lpdigital\Github\Entity\PullRequest
      * @param string login from Entity User of Comment entry
+     * @param mixed $expression
+     * @param mixed $userLogin
      *
      * @return array collection of user's filtered comments
      */
@@ -41,6 +44,7 @@ interface RepositoryInterface
      *
      * @param PullRequest the pull request
      * @param $pattern expression to filter comments in CommentApi
+     * @param mixed $userLogin
      */
     public function removeCommentsIfExists(PullRequest $pullRequest, $pattern, $userLogin);
 }

@@ -3,8 +3,8 @@
 namespace tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\RepositoryInterface;
-use Github\Api\Issue\Comments as KnpCommentsApi;
 use AppBundle\Search\Repository as SearchRepository;
+use Github\Api\Issue\Comments as KnpCommentsApi;
 use Lpdigital\Github\Entity\Comment;
 use Lpdigital\Github\Entity\PullRequest;
 
@@ -52,7 +52,6 @@ class FakeRepository implements RepositoryInterface
             [
                 'label' => $this->parseLabel($label),
                 'base' => $base,
-
             ]
         );
 

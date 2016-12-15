@@ -2,12 +2,12 @@
 
 namespace AppBundle\Commits;
 
-use Github\Exception\RuntimeException;
 use AppBundle\Repositories\Repository as CommitsApi;
 use Github\Api\PullRequest as PullRequestApi;
-use Lpdigital\Github\Entity\User;
+use Github\Exception\RuntimeException;
 use Lpdigital\Github\Entity\Commit;
 use Lpdigital\Github\Entity\PullRequest;
+use Lpdigital\Github\Entity\User;
 
 class Repository implements RepositoryInterface
 {

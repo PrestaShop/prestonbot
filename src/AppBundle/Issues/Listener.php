@@ -58,8 +58,6 @@ class Listener
 
             return $newStatus;
         }
-
-        return;
     }
 
     /**
@@ -113,7 +111,7 @@ class Listener
      * Add "waiting for wording" label to an issue.
      *
      * @param int $issueNumber The issue that was labeled
-     * 
+     *
      * @return string The new status
      */
     public function handleWaitingForWordingEvent($issueNumber)
@@ -128,7 +126,7 @@ class Listener
 
     /**
      * Log every label added.
-     * 
+     *
      * @param int    $issueNumber The issue that was labeled
      * @param string $status      The added label
      */

@@ -2,13 +2,13 @@
 
 namespace AppBundle\Event;
 
+use InvalidArgumentException;
+use Lpdigital\Github\EventType\ActionableEventInterface;
+use Lpdigital\Github\Parser\WebhookResolver;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
-use Lpdigital\Github\EventType\ActionableEventInterface;
-use Lpdigital\Github\Parser\WebhookResolver;
-use InvalidArgumentException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GitHubEventResolver implements ArgumentValueResolverInterface
@@ -37,6 +37,7 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
      * @param WebhookResolver $resolver
      * @param $repositoryOnwer
      * @param $repositoryName
+     * @param mixed $repositoryOwner
      */
     public function __construct(
         WebhookResolver $resolver,
