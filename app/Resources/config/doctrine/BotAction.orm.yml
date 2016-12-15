@@ -1,0 +1,19 @@
+AppBundle\Bot\BotAction:
+    type: entity
+    table: bot_action
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
+        enabled:
+            type: boolean
+        eventName:
+            type: string
+            length: 100
+        callbackName:
+            type: string
+            length: 250
