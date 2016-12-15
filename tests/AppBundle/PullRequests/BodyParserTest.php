@@ -47,4 +47,9 @@ class BodyParserTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->bodyParser->isASmallFix());
         $this->assertFalse($this->bodyParser->isARefacto());
     }
+
+    public function getIssueForge()
+    {
+        $this->assertSame($this->bodyParser->getRelatedForgeIssue(), 'http://forge.prestashop.com/browse/TEST-1234');
+    }
 }
