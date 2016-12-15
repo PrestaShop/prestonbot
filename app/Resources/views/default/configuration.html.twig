@@ -4,6 +4,11 @@
     <div class="container">
         <div class="row">
             <h1>Configuration of features</h1>
+
+            {% for actionForm in forms %}
+                {% set actionBot = actionsBot[loop.index - 1] %}
+                <i>{{ actionBot.name }}</i>: {{ form_widget(actionForm) }}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

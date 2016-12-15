@@ -66,4 +66,9 @@ class BotAction
 
         return $this;
     }
+
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
 }
