@@ -5,10 +5,35 @@
         <div class="row">
             <h1>Configuration of features</h1>
 
-            {% for actionForm in forms %}
-                {% set actionBot = actionsBot[loop.index - 1] %}
-                <i>{{ actionBot.name }}</i>: {{ form_widget(actionForm) }}
-            {% endfor %}
+            <div id="app">
+                <list v-bind:url="'{{ path('api_actions_all') }}'"
+                ></list>
+            </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.4/vue.js"></script>
+
+    <script type="text/x-template" id="actionForm-template">
+    {% verbatim %}
+        <div>
+            <label>{{ action.name }}</label>
+            <input type="checkbox" id="checkbox" v-model="action.enabled">
+        </div>
+    {% endverbatim %}
+    </script>
+
+    <script type="text/x-template" id="list-template">
+    <div>
+        <form>
+            <div>
+                <action v-for="action in actions" v-bind:action="action"></action>
+            </div>
+        </form>
+         <button v-on:click="updateSettings">Update settings</button>
+    </div>
+    </script>
+    <script src="{{ asset('js/configuration-page.js') }}"></script>
 {% endblock %}

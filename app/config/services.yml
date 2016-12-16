@@ -181,3 +181,7 @@ services:
     app.github_token_validator:
         class: AppBundle\Security\SignatureValidator
 
+# Entity repositories
+    app.bot.repository:
+        class: AppBundle\Bot\BotRepository
+        arguments: ['@doctrine.orm.entity_manager']
