@@ -2,6 +2,8 @@
 
 namespace AppBundle\Issues;
 
+use AppBundle\PullRequests\BodyParser;
+use Lpdigital\Github\Entity\PullRequest;
 use Psr\Log\LoggerInterface;
 
 class Listener
@@ -122,6 +124,25 @@ class Listener
         $this->log($issueNumber, $newStatus);
 
         return $newStatus;
+    }
+
+    /**
+     * @param PullRequest $pullRequest
+     */
+    public function addLabelCriticalLabelIfNeeded(PullRequest $pullRequest)
+    {
+        $bodyParser = new BodyParser($pullRequest->getBody());
+
+        if ('critical' === $bodyParser->getType()) {
+            $prNumber = $pullRequest->getNumber();
+            $newStatus = Status::CRITICAL_ISSUE;
+            $this->statusApi->setIssueStatus($prNumber, $newStatus);
+            $this->log($prNumber, $newStatus);
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
