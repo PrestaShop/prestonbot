@@ -11,6 +11,7 @@ use Lpdigital\Github\Parser\WebhookResolver;
 class DiffTest extends \PHPUnit_Framework_TestCase
 {
     const TRANS_PATTERN = '#(trans\(|->l\()#';
+    const CLASSIC_PATH = '#^themes\/classic\/#';
 
     private $event;
     private $pullRequest;
@@ -52,7 +53,7 @@ class DiffTest extends \PHPUnit_Framework_TestCase
     public function testFilterByPath()
     {
         $diff = Diff::create($this->getExpectedDiff());
-        $filtered = $diff->path('#ProductCombination.php#');
+        $filtered = $diff->path('#^src/Adapter/Product/AdminProductWrapper.php$#');
 
         $this->assertSame(
             1,
@@ -86,6 +87,17 @@ class DiffTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertTrue($found);
+    }
+
+    public function testChangesInClassic()
+    {
+        $diff = Diff::create($this->getExpectedDiff());
+
+        $this->assertTrue($diff->path(self::CLASSIC_PATH)->match());
+
+        $diff = Diff::create($this->getNotExpectedDiff());
+
+        $this->assertFalse($diff->path(self::CLASSIC_PATH)->match());
     }
 
     public function testFilterByAdditions()

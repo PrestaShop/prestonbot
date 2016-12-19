@@ -82,6 +82,11 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
+                    'action' => 'checked for changes on Classic Theme',
+                    'status' => 'not_found',
+                ],
+                [
+                    'event' => 'pr_opened',
                     'action' => 'commits labels checked',
                     'status' => 'not_valid',
                 ],
@@ -106,6 +111,44 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'checked for new translations',
+                    'status' => 'found',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'checked for changes on Classic Theme',
+                    'status' => 'not_found',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'commits labels checked',
+                    'status' => 'valid',
+                ],
+            ],
+        ];
+        $tests['Pull request creation with classic changes'] = [
+            'pull_request',
+            'pull_request_opened_classic.json',
+            [
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'user welcomed',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'table description checked',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'labels initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'checked for new translations',
+                    'status' => 'found',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'checked for changes on Classic Theme',
                     'status' => 'found',
                 ],
                 [
