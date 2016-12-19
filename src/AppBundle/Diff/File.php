@@ -24,6 +24,16 @@ class File
     {
         $fileLine = $this->lines()[0];
 
+        return $fileLine->getFilename();
+    }
+
+    /**
+     * @return string
+     */
+    public function path()
+    {
+        $fileLine = $this->lines()[0];
+
         return $fileLine->getFilepath();
     }
 

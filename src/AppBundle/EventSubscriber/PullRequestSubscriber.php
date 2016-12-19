@@ -10,6 +10,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class PullRequestSubscriber implements EventSubscriberInterface
 {
     const TRANS_PATTERN = '#(trans\(|->l\()#';
+    const CLASSIC_PATH = '#^themes\/classic\/#';
 
     /**
      * @param ContainerInterface $container
@@ -26,16 +27,18 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         return [
             'pullrequestevent_opened' => [
-                ['checkForTableDescription', 254],
-                ['welcomePeople', 255],
-                ['checkForNewTranslations', 252],
-                ['initLabels', 254],
-                ['checkCommits', 252],
+               ['checkForTableDescription', 254],
+               ['welcomePeople', 255],
+               ['checkForNewTranslations', 252],
+               ['checkForClassicChanges', 252],
+               ['initLabels', 254],
+               ['checkCommits', 252],
             ],
             'pullrequestevent_edited' => [
-                ['removePullRequestValidationComment', 255],
-                ['removeCommitValidationComment', 255],
-                ['checkForNewTranslations', 252],
+               ['removePullRequestValidationComment', 255],
+               ['removeCommitValidationComment', 255],
+               ['checkForNewTranslations', 252],
+               ['checkForClassicChanges', 252],
             ],
             'pullrequestevent_synchronize' => [
                 ['removeCommitValidationComment', 255],
@@ -134,6 +137,35 @@ class PullRequestSubscriber implements EventSubscriberInterface
             'action' => 'checked for new translations',
             'status' => $found ? 'found' : 'not_found',
             ])
+        ;
+    }
+
+    /**
+     * @param GitHubEvent $githubEvent
+     *
+     * If a change occurs in one of classic's files, add
+     * "report on StarterTheme" label.
+     */
+    public function checkForClassicChanges(GitHubEvent $githubEvent)
+    {
+        $event = $githubEvent->getEvent();
+        $pullRequest = $event->pullRequest;
+        $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
+
+        if ($found = $diff->path(self::CLASSIC_PATH)->match()) {
+            $this->container
+                ->get('app.issue_listener')
+                ->handleClassicChangesEvent($pullRequest->getNumber())
+            ;
+        }
+
+        $eventStatus = $event->getAction() == 'opened' ? 'opened' : 'edited';
+
+        $githubEvent->addStatus([
+            'event' => 'pr_'.$eventStatus,
+            'action' => 'checked for changes on Classic Theme',
+            'status' => $found ? 'found' : 'not_found',
+        ])
         ;
     }
 

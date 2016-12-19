@@ -13,6 +13,8 @@ class Line
 
     const TOKEN_FILENAME = 'diff --git a/';
 
+    const TOKEN_SECOND_FILENAME = ' b/';
+
     /**
      * @var string
      */
@@ -58,10 +60,30 @@ class Line
     /**
      * @return string
      */
-    public function getFilepath()
+    public function getFilename()
     {
         if ($this->isFilename()) {
             return basename(substr($this->content, strlen(self::TOKEN_FILENAME)));
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilepath()
+    {
+        if ($this->isFilename()) {
+            $filename = $this->getFilename();
+            $len = strlen($filename);
+
+            return substr(
+                $this->content,
+                strlen(self::TOKEN_FILENAME),
+                strpos(
+                    $this->content,
+                    $filename . self::TOKEN_SECOND_FILENAME
+                ) - strlen(self::TOKEN_FILENAME) + $len
+            );
         }
     }
 
