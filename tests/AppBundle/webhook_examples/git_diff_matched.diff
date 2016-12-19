@@ -639,3 +639,12 @@ index d00d725..9dd3139 100644
                      </tr>
                  {% else %}
                      <tr><td colspan="5">
+diff --git a/themes/classic/README.md b/themes/classic/README.md
+index 7971283..6871648 100644
+--- a/themes/classic/README.md
++++ b/themes/classic/README.md
+@@ -2,3 +2,4 @@
+
+ The Classic Theme is the new default Theme for Prestashop 1.7 and onwards.
+ It is build upon the new Starter Theme.
++lol
