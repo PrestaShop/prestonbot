@@ -31,6 +31,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['checkForNewTranslations', 252],
                 ['initLabels', 254],
                 ['checkCommits', 252],
+                ['checkIfPrFixCriticalIssue', 253],
             ],
             'pullrequestevent_edited' => [
                 ['removePullRequestValidationComment', 255],
@@ -135,6 +136,21 @@ class PullRequestSubscriber implements EventSubscriberInterface
             'status' => $found ? 'found' : 'not_found',
             ])
         ;
+    }
+
+    public function checkIfPrFixCriticalIssue(GitHubEvent $githubEvent)
+    {
+        $labelWasAdded = $this->container
+            ->get('app.issue_listener')
+            ->addLabelCriticalLabelIfNeeded($githubEvent->getEvent()->pullRequest)
+        ;
+
+        if ($labelWasAdded) {
+            $githubEvent->addStatus([
+                'event' => 'pr_created',
+                'action' => 'critical label was added',
+            ]);
+        }
     }
 
     /**

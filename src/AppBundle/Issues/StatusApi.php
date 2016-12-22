@@ -15,6 +15,7 @@ class StatusApi
         Status::QA_APPROVED => 'QA-approved',
         Status::PM_APPROVED => 'PM-approved',
         Status::WAITING_FOR_WORDING => 'waiting for wording',
+        Status::CRITICAL_ISSUE => 'Type: Critical Bug Fix',
     ];
 
     /**
