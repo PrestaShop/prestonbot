@@ -81,7 +81,7 @@ class Line
                 strlen(self::TOKEN_FILENAME),
                 strpos(
                     $this->content,
-                    $filename . self::TOKEN_SECOND_FILENAME
+                    $filename.self::TOKEN_SECOND_FILENAME
                 ) - strlen(self::TOKEN_FILENAME) + $len
             );
         }

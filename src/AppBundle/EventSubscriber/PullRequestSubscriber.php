@@ -160,7 +160,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
      * @param GitHubEvent $githubEvent
      *
      * If a change occurs in one of classic's files, add
-     * "report on StarterTheme" label.
+     * "report on StarterTheme" label
      */
     public function checkForClassicChanges(GitHubEvent $githubEvent)
     {
@@ -175,7 +175,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ;
         }
 
-        $eventStatus = $event->getAction() == 'opened' ? 'opened' : 'edited';
+        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,

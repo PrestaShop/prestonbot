@@ -37,7 +37,8 @@ class WebhookControllerTest extends WebTestCase
 
         $errorsMessage = 'OK';
         if ($profile = $client->getProfile()) {
-            $errorsMessage = $this->handleExceptionFromCollector($profile);
+            $token = $response->headers->get('X-Debug-Token');
+            $errorsMessage = $this->handleExceptionFromCollector($profile, $token);
         }
         $responseData = json_decode($response->getContent(), true);
         $this->assertSame($expectedHttpStatusCode, $response->getStatusCode(), $errorsMessage);
@@ -82,13 +83,13 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'checked for changes on Classic Theme',
-                    'status' => 'not_found',
+                    'action' => 'commits labels checked',
+                    'status' => 'not_valid',
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'commits labels checked',
-                    'status' => 'not_valid',
+                    'action' => 'checked for changes on Classic Theme',
+                    'status' => 'not_found',
                 ],
             ],
         ];
@@ -115,13 +116,13 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'checked for changes on Classic Theme',
-                    'status' => 'not_found',
+                    'action' => 'commits labels checked',
+                    'status' => 'valid',
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'commits labels checked',
-                    'status' => 'valid',
+                    'action' => 'checked for changes on Classic Theme',
+                    'status' => 'not_found',
                 ],
             ],
         ];
@@ -144,17 +145,17 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'checked for new translations',
-                    'status' => 'found',
-                ],
-                [
-                    'event' => 'pr_opened',
-                    'action' => 'checked for changes on Classic Theme',
-                    'status' => 'found',
+                    'status' => 'not_found',
                 ],
                 [
                     'event' => 'pr_opened',
                     'action' => 'commits labels checked',
                     'status' => 'valid',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'checked for changes on Classic Theme',
+                    'status' => 'found',
                 ],
             ],
         ];
@@ -214,7 +215,7 @@ class WebhookControllerTest extends WebTestCase
         return $tests;
     }
 
-    private function handleExceptionFromCollector($profile)
+    private function handleExceptionFromCollector($profile, $token)
     {
         $exception = $profile->getCollector('exception');
         $trace = current($exception->getTrace());
@@ -222,6 +223,7 @@ class WebhookControllerTest extends WebTestCase
         return $exception->getMessage()
             .' in '.$trace['file']
             .'(line '.$trace['line'].')'
+            .' (token: '.$token.')'
         ;
     }
 
