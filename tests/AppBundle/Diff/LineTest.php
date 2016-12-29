@@ -25,6 +25,9 @@ class LineTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider filenamesCases
+     *
+     * @param mixed $content
+     * @param mixed $expected
      */
     public function testFilename($content, $expected)
     {
@@ -34,6 +37,9 @@ class LineTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider filepathsCases
+     *
+     * @param mixed $content
+     * @param mixed $expected
      */
     public function testFilepath($content, $expected)
     {
