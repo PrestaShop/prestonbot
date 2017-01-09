@@ -1,6 +1,6 @@
 imports:
     - { resource: services.yml }
-    
+
 parameters:
     # the token needs to have admin rights on loveOSS organisation
     # for testing purposes
@@ -12,7 +12,10 @@ parameters:
     mailer_port: 1025
     mailer_user: null
     mailer_password: null
-    
+
+    github_secured_token: 'totalyFakeTokenForTests'
+    env('SYMFONY_PHPUNIT_VERSION'): '5.5'
+
 services:
     fake_comment_api:
         class: Tests\AppBundle\Comments\FakeCommentApi
@@ -24,6 +27,7 @@ services:
     app.status_api:
         class: Tests\AppBundle\Issues\NullStatusApi
         arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
+
     # Your integrations tests shouldn't post comments to github
     app.pullrequest_listener:
         class: AppBundle\PullRequests\Listener
