@@ -26,6 +26,8 @@ export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 export GH_SECURED_TOKEN=YYYYYYYYYYYYYYYYYYYYYYYYYYYY
 ```
 
+> To launch unit tests, you only need to setup your own Github token (`GH_TOKEN`).
+
 ## Our standards ?
 
 Yeah, mostly the *Symfony* ones:
@@ -42,4 +44,5 @@ Yeah, mostly the *Symfony* ones:
 * Validate a pull request description;
 * Validate every commit label;
 * Welcome every new contributor;
-
+* Labelize a PR regarding information in description
+* Labelize a PR regarding files updated
