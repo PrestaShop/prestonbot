@@ -120,7 +120,7 @@ class Listener
     {
         $newStatus = Status::WAITING_FOR_WORDING;
 
-        $this->statusApi->setIssueStatus($issueNumber, $newStatus);
+        $this->statusApi->addIssueLabel($issueNumber, $newStatus);
         $this->log($issueNumber, $newStatus);
 
         return $newStatus;
@@ -136,7 +136,7 @@ class Listener
         if ('critical' === $bodyParser->getType()) {
             $prNumber = $pullRequest->getNumber();
             $newStatus = Status::CRITICAL_ISSUE;
-            $this->statusApi->setIssueStatus($prNumber, $newStatus);
+            $this->statusApi->addIssueLabel($prNumber, $newStatus);
             $this->log($prNumber, $newStatus);
 
             return true;
@@ -156,7 +156,7 @@ class Listener
     {
         $newStatus = Status::REPORT_ON_STARTER_THEME;
 
-        $this->statusApi->setIssueStatus($issueNumber, $newStatus);
+        $this->statusApi->addIssueLabel($issueNumber, $newStatus);
         $this->log($issueNumber, $newStatus);
 
         return $newStatus;
