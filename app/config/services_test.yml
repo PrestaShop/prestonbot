@@ -14,7 +14,6 @@ parameters:
     mailer_password: null
 
     github_secured_token: 'totalyFakeTokenForTests'
-    env('SYMFONY_PHPUNIT_VERSION'): '5.5'
 
 services:
     fake_comment_api:
