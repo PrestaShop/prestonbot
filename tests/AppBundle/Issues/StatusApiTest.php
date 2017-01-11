@@ -33,6 +33,20 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
         $this->api = new StatusApi($this->labelsApi, self::USER_NAME, self::REPO_NAME);
     }
 
+    public function testAddIssueLabel()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('getIssueLabels')
+            ->with(1234)
+            ->willReturn(['Bug', 'Status: Needs Review']);
+
+        $this->labelsApi->expects($this->once())
+            ->method('addIssueLabel')
+            ->with(1234, 'Code reviewed');
+
+        $this->api->addIssueLabel(1234, Status::CODE_REVIEWED);
+    }
+
     public function testSetIssueStatus()
     {
         $this->labelsApi->expects($this->once())

@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Issues;
+namespace Tests\AppBundle\Issues;
 
 use AppBundle\Issues\StatusApi;
 
@@ -10,6 +10,10 @@ use AppBundle\Issues\StatusApi;
 class NullStatusApi extends StatusApi
 {
     public function getIssueStatus($issueNumber)
+    {
+    }
+
+    public function addIssueLabel($issueNumber, $newStatus)
     {
     }
 

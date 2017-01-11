@@ -51,6 +51,29 @@ class StatusApi
      * @param int    $issueNumber The GitHub issue number
      * @param string $newStatus   A Status::* constant
      */
+    public function addIssueLabel($issueNumber, $newStatus)
+    {
+        if (!isset($this->statusToLabel[$newStatus])) {
+            throw new \InvalidArgumentException(sprintf('Invalid status "%s"', $newStatus));
+        }
+
+        $newLabel = $this->statusToLabel[$newStatus];
+        $currentLabels = $this->labelsApi->getIssueLabels($issueNumber);
+        foreach ($currentLabels as $label) {
+            if ($label !== $newLabel) {
+                $this->labelsApi->addIssueLabel($issueNumber, $newLabel);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param int    $issueNumber The GitHub issue number
+     * @param string $newStatus   A Status::* constant
+     */
     public function setIssueStatus($issueNumber, $newStatus)
     {
         if (!isset($this->statusToLabel[$newStatus])) {
