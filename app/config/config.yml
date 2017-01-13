@@ -71,7 +71,7 @@ doctrine:
             Bot:
                 type: 'yml'
                 dir: '%kernel.root_dir%/Resources/config/doctrine'
-                prefix: 'AppBundle\Bot'
+                prefix: 'AppBundle\BotAction'
 
 # Swiftmailer Configuration
 swiftmailer:

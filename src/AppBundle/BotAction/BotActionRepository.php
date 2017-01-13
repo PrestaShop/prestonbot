@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Bot;
+namespace AppBundle\BotAction;
 
 use Doctrine\ORM\EntityManager;
 
-class BotRepository
+class BotActionRepository
 {
     private $em;
 

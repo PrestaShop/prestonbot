@@ -182,6 +182,6 @@ services:
         class: AppBundle\Security\SignatureValidator
 
 # Entity repositories
-    app.bot.repository:
-        class: AppBundle\Bot\BotRepository
+    app.bot_action.repository:
+        class: AppBundle\BotAction\BotActionRepository
         arguments: ['@doctrine.orm.entity_manager']

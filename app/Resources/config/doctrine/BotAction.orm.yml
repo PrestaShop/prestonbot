@@ -1,4 +1,4 @@
-AppBundle\Bot\BotAction:
+AppBundle\BotAction\BotAction:
     type: entity
     table: bot_action
     id:

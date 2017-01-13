@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Bot;
+namespace AppBundle\BotAction;
 
 /**
  * Represents every action of Preston.
