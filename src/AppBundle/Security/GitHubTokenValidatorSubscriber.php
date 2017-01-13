@@ -25,6 +25,8 @@ class GitHubTokenValidatorSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(GetResponseEvent $event)
     {
+        // @todo: we need to disable this subscriber
+        return;
         $request = $event->getRequest();
 
         if (!$request->isMethod('POST')) {
