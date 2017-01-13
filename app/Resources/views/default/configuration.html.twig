@@ -6,7 +6,9 @@
             <h1>Configuration of features</h1>
 
             <div id="app">
-                <list v-bind:url="'{{ path('api_actions_all') }}'"
+                <list
+                    v-bind:url="'{{ path('api_actions_all') }}'"
+                    v-bind:update_url="'{{ path('update_settings') }}'"
                 ></list>
             </div>
         </div>

@@ -25,7 +25,7 @@ class BotController extends Controller
      */
     public function getAction($id)
     {
-        $actionBot = $this->getDoctrine($id)
+        $actionBot = $this->getDoctrine()
             ->getRepository('AppBundle\BotAction\BotAction')
             ->find($id)
         ;

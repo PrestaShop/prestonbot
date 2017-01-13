@@ -3,6 +3,10 @@ Vue.component('list', {
         url: { 
             type: String,
             required: true
+        },
+        update_url: {
+            type: String,
+            required: true
         }
     },
     data: function () {
@@ -29,7 +33,16 @@ Vue.component('list', {
             req.send();
         },
         updateSettings: function () {
-            console.log(this.actions);
+            var self = this;
+            var req = new XMLHttpRequest();
+            req.open('POST', this.update_url, true);
+            req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            var formData = '';
+            self.actions.map(function(action) {
+                formData+= action.id+"="+action.enabled+"&";
+            });
+
+            req.send(formData);
         }
     },
     template: '#list-template',
