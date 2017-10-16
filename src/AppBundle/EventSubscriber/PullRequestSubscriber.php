@@ -31,18 +31,13 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['welcomePeople', 255],
                 ['checkForNewTranslations', 252],
                 ['initLabels', 254],
-                ['checkCommits', 252],
                 ['checkForClassicChanges', 252],
                 ['checkIfPrFixCriticalIssue', 253],
             ],
             'pullrequestevent_edited' => [
                ['removePullRequestValidationComment', 255],
-               ['removeCommitValidationComment', 255],
                ['checkForNewTranslations', 252],
                ['checkForClassicChanges', 252],
-            ],
-            'pullrequestevent_synchronize' => [
-                ['removeCommitValidationComment', 255],
             ],
         ];
     }
@@ -89,27 +84,6 @@ class PullRequestSubscriber implements EventSubscriberInterface
             'action' => 'table description checked',
             ])
         ;
-    }
-
-    /**
-     * @param GitHubEvent $githubEvent
-     *
-     * Validate the commits labels
-     */
-    public function checkCommits(GitHubEvent $githubEvent)
-    {
-        $pullRequest = $githubEvent->getEvent()->pullRequest;
-
-        $hasErrors = $this->container
-            ->get('app.pullrequest_listener')
-            ->checkCommits($pullRequest)
-        ;
-
-        $githubEvent->addStatus([
-            'event' => 'pr_opened',
-            'action' => 'commits labels checked',
-            'status' => $hasErrors ? 'not_valid' : 'valid',
-        ]);
     }
 
     /**
@@ -230,33 +204,6 @@ class PullRequestSubscriber implements EventSubscriberInterface
             $githubEvent->addStatus([
                 'event' => 'pr_edited',
                 'action' => 'preston validation comment removed',
-                ])
-            ;
-        }
-    }
-
-    /**
-     * @param GitHubEvent $githubEvent
-     *
-     * If commits labels become valid, the comment should be removed
-     */
-    public function removeCommitValidationComment(GithubEvent $githubEvent)
-    {
-        $pullRequest = $githubEvent->getEvent()->pullRequest;
-
-        if ($pullRequest->isClosed() || $pullRequest->isMerged()) {
-            return;
-        }
-
-        $success = $this->container
-            ->get('app.pullrequest_listener')
-            ->removeCommitValidationComment($pullRequest)
-        ;
-
-        if ($success) {
-            $githubEvent->addStatus([
-                'event' => 'pr_edited',
-                'action' => 'preston validation commit comment removed',
                 ])
             ;
         }
