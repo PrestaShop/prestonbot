@@ -74,38 +74,6 @@ class Listener
      *
      * @return bool
      */
-    public function checkCommits(PullRequest $pullRequest)
-    {
-        $commitErrors = $this->getErrorsFromCommits($pullRequest);
-
-        if (count($commitErrors) > 0) {
-            $this->commentApi->sendWithTemplate(
-                $pullRequest,
-                'markdown/pr_commit_name_nok.md.twig',
-                ['commits' => $commitErrors]
-            );
-
-            $commitsLabels = implode(',', array_map(function ($label) {
-                return '`'.$label.'`';
-            }, $commitErrors));
-
-            $this->logger->info(sprintf(
-                '[Invalid Commits]Pull request n° %s for commits %s',
-                $pullRequest->getNumber(),
-                $commitsLabels
-            ));
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param PullRequest $pullRequest
-     *
-     * @return bool
-     */
     public function removePullRequestValidationComment(PullRequest $pullRequest)
     {
         $bodyParser = new BodyParser($pullRequest->getBody());

@@ -83,11 +83,6 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'commits labels checked',
-                    'status' => 'not_valid',
-                ],
-                [
-                    'event' => 'pr_opened',
                     'action' => 'checked for changes on Classic Theme',
                     'status' => 'not_found',
                 ],
@@ -116,11 +111,6 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'commits labels checked',
-                    'status' => 'valid',
-                ],
-                [
-                    'event' => 'pr_opened',
                     'action' => 'checked for changes on Classic Theme',
                     'status' => 'not_found',
                 ],
@@ -146,11 +136,6 @@ class WebhookControllerTest extends WebTestCase
                     'event' => 'pr_opened',
                     'action' => 'checked for new translations',
                     'status' => 'not_found',
-                ],
-                [
-                    'event' => 'pr_opened',
-                    'action' => 'commits labels checked',
-                    'status' => 'valid',
                 ],
                 [
                     'event' => 'pr_opened',
@@ -200,16 +185,6 @@ class WebhookControllerTest extends WebTestCase
             'status.json',
             null,
             404,
-        ];
-        $tests['Pull request synchronize'] = [
-            'pull_request',
-            'pull_request.synchronize.json',
-            [
-                [
-                    'event' => 'pr_edited',
-                    'action' => 'preston validation commit comment removed',
-                ],
-            ],
         ];
 
         return $tests;
