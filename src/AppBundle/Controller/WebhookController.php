@@ -16,7 +16,7 @@ class WebhookController extends Controller
      */
     public function githubAction(GithubEvent $event = null)
     {
-        if (is_null($event)) {
+        if (null === $event) {
             return new JsonResponse('[err] event not found.');
         }
         $eventName = strtolower($event->getName()).'_'.$event->getEvent()->getAction();

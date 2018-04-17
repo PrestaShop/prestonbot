@@ -134,7 +134,7 @@ class Repository implements RepositoryInterface
         $userComments = $this->getCommentsFrom($pullRequest, $userLogin);
 
         foreach ($userComments as $userComment) {
-            if (strpos($userComment->getBody(), $expression) !== false) {
+            if (false !== strpos($userComment->getBody(), $expression)) {
                 $userCommentsByExpression[] = $userComment;
             }
         }

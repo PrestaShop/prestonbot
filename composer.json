@@ -19,7 +19,7 @@
     "require": {
         "php": ">=7.0",
         "ext-mbstring": "*",
-        "symfony/symfony": "v3.2.0",
+        "symfony/symfony": "~3.4",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
@@ -35,7 +35,7 @@
         "twig/twig": "~1.28"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.0.0",
+        "friendsofphp/php-cs-fixer": "^2.0",
         "symfony/phpunit-bridge": "^3.0"
     },
     "scripts": {

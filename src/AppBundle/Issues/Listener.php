@@ -146,6 +146,18 @@ class Listener
     }
 
     /**
+     * Add a label for a branch described in Pull Request template.
+     *
+     * @param PullRequest $pullRequest
+     */
+    public function addBranchLabel(PullRequest $pullRequest)
+    {
+        $bodyParser = new BodyParser($pullRequest->getBody());
+
+        $this->statusApi->addIssueLabel($pullRequest->getNumber(), $bodyParser->getBranch());
+    }
+
+    /**
      * Add "report on StarterTheme" label to an issue.
      *
      * @param int $issueNumber The issue that was labeled

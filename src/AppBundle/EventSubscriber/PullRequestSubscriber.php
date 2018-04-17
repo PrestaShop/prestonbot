@@ -31,13 +31,14 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['welcomePeople', 255],
                 ['checkForNewTranslations', 252],
                 ['initLabels', 254],
+                ['initBranchLabel', 254],
                 ['checkForClassicChanges', 252],
                 ['checkIfPrFixCriticalIssue', 253],
             ],
             'pullrequestevent_edited' => [
-               ['removePullRequestValidationComment', 255],
-               ['checkForNewTranslations', 252],
-               ['checkForClassicChanges', 252],
+                ['removePullRequestValidationComment', 255],
+                ['checkForNewTranslations', 252],
+                ['checkForClassicChanges', 252],
             ],
         ];
     }
@@ -54,15 +55,32 @@ class PullRequestSubscriber implements EventSubscriberInterface
         if (true === $this->container->getParameter('labels_pr_creation')) {
             $this->container
                 ->get('app.issue_listener')
-                ->handlePullRequestCreatedEvent($pullRequest->getNumber())
-            ;
+                ->handlePullRequestCreatedEvent($pullRequest->getNumber());
 
             $githubEvent->addStatus([
                 'event' => 'pr_opened',
                 'action' => 'labels initialized',
-                ])
-            ;
+            ]);
         }
+    }
+
+    /**
+     * @param gitHubEvent $githubEvent
+     *
+     * Add the branch label according to the branch selected in PR template
+     */
+    public function initBranchLabel(GitHubEvent $githubEvent)
+    {
+        $pullRequest = $githubEvent->getEvent()->pullRequest;
+
+        $this->container
+            ->get('app.issue_listener')
+            ->addBranchLabel($pullRequest);
+
+        $githubEvent->addStatus([
+            'event' => 'pr_opened',
+            'action' => 'branch label initialized',
+        ]);
     }
 
     /**
@@ -76,14 +94,12 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         $this->container
             ->get('app.pullrequest_listener')
-            ->checkForTableDescription($pullRequest)
-        ;
+            ->checkForTableDescription($pullRequest);
 
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'table description checked',
-            ])
-        ;
+        ]);
     }
 
     /**
@@ -101,26 +117,23 @@ class PullRequestSubscriber implements EventSubscriberInterface
         if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
             $this->container
                 ->get('app.issue_listener')
-                ->handleWaitingForWordingEvent($pullRequest->getNumber())
-            ;
+                ->handleWaitingForWordingEvent($pullRequest->getNumber());
         }
 
-        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
+        $eventStatus = 'opened' === $event->getAction() ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
             'action' => 'checked for new translations',
             'status' => $found ? 'found' : 'not_found',
-            ])
-        ;
+        ]);
     }
 
     public function checkIfPrFixCriticalIssue(GitHubEvent $githubEvent)
     {
         $labelWasAdded = $this->container
             ->get('app.issue_listener')
-            ->addLabelCriticalLabelIfNeeded($githubEvent->getEvent()->pullRequest)
-        ;
+            ->addLabelCriticalLabelIfNeeded($githubEvent->getEvent()->pullRequest);
 
         if ($labelWasAdded) {
             $githubEvent->addStatus([
@@ -145,18 +158,16 @@ class PullRequestSubscriber implements EventSubscriberInterface
         if ($found = $diff->path(self::CLASSIC_PATH)->match()) {
             $this->container
                 ->get('app.issue_listener')
-                ->handleClassicChangesEvent($pullRequest->getNumber())
-            ;
+                ->handleClassicChangesEvent($pullRequest->getNumber());
         }
 
-        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
+        $eventStatus = 'opened' === $event->getAction() ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
             'action' => 'checked for changes on Classic Theme',
             'status' => $found ? 'found' : 'not_found',
-        ])
-        ;
+        ]);
     }
 
     /**
@@ -172,14 +183,12 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         $this->container
             ->get('app.pullrequest_listener')
-            ->welcomePeople($pullRequest, $sender)
-        ;
+            ->welcomePeople($pullRequest, $sender);
 
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'user welcomed',
-            ])
-        ;
+        ]);
     }
 
     /**
@@ -197,15 +206,13 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         $success = $this->container
             ->get('app.pullrequest_listener')
-            ->removePullRequestValidationComment($pullRequest)
-        ;
+            ->removePullRequestValidationComment($pullRequest);
 
         if ($success) {
             $githubEvent->addStatus([
                 'event' => 'pr_edited',
                 'action' => 'preston validation comment removed',
-                ])
-            ;
+            ]);
         }
     }
 }

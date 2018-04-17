@@ -46,7 +46,7 @@ class Mailer
             ->setBody($this->twig->render($templateName, $params))
         ;
 
-        if (!is_null($bcc)) {
+        if (null !== $bcc) {
             $message->setBcc($bcc);
         }
 
