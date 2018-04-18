@@ -39,6 +39,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['removePullRequestValidationComment', 255],
                 ['checkForNewTranslations', 252],
                 ['checkForClassicChanges', 252],
+                ['initBranchLabel', 254],
             ],
         ];
     }
