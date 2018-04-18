@@ -19,6 +19,13 @@ class StatusApi
         Status::REPORT_ON_STARTER_THEME => 'report on StarterTheme',
         Status::LEGACY_BRANCH => '1.6.1.x',
         Status::CURRENT_BRANCH => '1.7.x',
+        Status::BRANCH_173 => '1.7.x',
+        Status::BRANCH_174 => '1.7.x',
+        Status::BRANCH_175 => '1.7.x',
+        Status::BRANCH_176 => '1.7.x',
+        Status::BRANCH_177 => '1.7.x',
+        Status::BRANCH_178 => '1.7.x',
+        Status::BRANCH_179 => '1.7.x',
         Status::FUTURE_BRANCH => '1.8.x',
         Status::DEVELOP_BRANCH => 'develop',
     ];
