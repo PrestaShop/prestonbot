@@ -22,4 +22,12 @@ final class Status
     const CRITICAL_ISSUE = 'critical_issue';
 
     const REPORT_ON_STARTER_THEME = 'report_on_starter_theme';
+
+    const LEGACY_BRANCH = '1.6.1.x';
+
+    const CURRENT_BRANCH = '1.7.x';
+
+    const FUTURE_BRANCH = '1.8.x';
+
+    const DEVELOP_BRANCH = 'develop';
 }

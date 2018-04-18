@@ -78,6 +78,10 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
+                    'action' => 'branch label initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
                     'action' => 'checked for new translations',
                     'status' => 'not_found',
                 ],
@@ -106,6 +110,10 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
+                    'action' => 'branch label initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
                     'action' => 'checked for new translations',
                     'status' => 'found',
                 ],
@@ -131,6 +139,10 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'labels initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'branch label initialized',
                 ],
                 [
                     'event' => 'pr_opened',
@@ -203,9 +215,9 @@ class WebhookControllerTest extends WebTestCase
     }
 
     /**
-     * @param string $algo
      * @param string $signedContent
      * @param string $secret
+     * @param string $algo
      *
      * @return string
      */

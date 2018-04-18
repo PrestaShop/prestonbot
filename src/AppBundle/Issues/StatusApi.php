@@ -17,6 +17,11 @@ class StatusApi
         Status::WAITING_FOR_WORDING => 'waiting for wording',
         Status::CRITICAL_ISSUE => 'Type: Critical Bug Fix',
         Status::REPORT_ON_STARTER_THEME => 'report on StarterTheme',
+        Status::LEGACY_BRANCH => '1.6.1.x',
+        Status::CURRENT_BRANCH => '1.7.x',
+        Status::FUTURE_BRANCH => '1.8.x',
+        Status::DEVELOP_BRANCH => 'develop',
+
     ];
 
     /**
