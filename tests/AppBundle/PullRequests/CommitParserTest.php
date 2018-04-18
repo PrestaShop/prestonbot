@@ -45,7 +45,7 @@ class CommitParserTest extends WebTestCase
         $parser = new CommitParser($label, self::$pullRequest);
 
         $validationsErrors = $validator->validate($parser);
-        $isValid = (count($validationsErrors) === 0);
+        $isValid = (0 === count($validationsErrors));
 
         $this->assertTrue($isValid === $expected);
     }

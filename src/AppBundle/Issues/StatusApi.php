@@ -21,7 +21,6 @@ class StatusApi
         Status::CURRENT_BRANCH => '1.7.x',
         Status::FUTURE_BRANCH => '1.8.x',
         Status::DEVELOP_BRANCH => 'develop',
-
     ];
 
     /**

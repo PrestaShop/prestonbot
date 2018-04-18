@@ -61,7 +61,7 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
         $payload = json_decode($request->getContent(), true);
         $githubEvent = null;
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (JSON_ERROR_NONE !== json_last_error()) {
             throw new InvalidArgumentException('Invalid JSON body');
         }
 

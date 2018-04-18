@@ -65,14 +65,13 @@ class PullRequestSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param GitHubEvent $githubEvent
+     * @param gitHubEvent $githubEvent
      *
-     * Add the branch label according to the branch selected in PR template.
+     * Add the branch label according to the branch selected in PR template
      */
     public function initBranchLabel(GitHubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
-
 
         $this->container
             ->get('app.issue_listener')
@@ -121,10 +120,10 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ->handleWaitingForWordingEvent($pullRequest->getNumber());
         }
 
-        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
+        $eventStatus = 'opened' === $event->getAction() ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
-            'event' => 'pr_' . $eventStatus,
+            'event' => 'pr_'.$eventStatus,
             'action' => 'checked for new translations',
             'status' => $found ? 'found' : 'not_found',
         ]);
@@ -162,10 +161,10 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ->handleClassicChangesEvent($pullRequest->getNumber());
         }
 
-        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
+        $eventStatus = 'opened' === $event->getAction() ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
-            'event' => 'pr_' . $eventStatus,
+            'event' => 'pr_'.$eventStatus,
             'action' => 'checked for changes on Classic Theme',
             'status' => $found ? 'found' : 'not_found',
         ]);

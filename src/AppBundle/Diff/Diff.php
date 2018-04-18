@@ -46,7 +46,7 @@ class Diff implements IteratorAggregate
     {
         $token = strtok($this->diffContent, PHP_EOL);
 
-        while ($token !== false && $token !== null) {
+        while (false !== $token && null !== $token) {
             $line = new Line($token);
 
             switch (true) {

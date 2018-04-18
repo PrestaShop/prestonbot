@@ -86,7 +86,7 @@ class BodyParser
         $regex = "/(\|[[:space:]]BC breaks\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
         $backwardCompatible = $this->extractWithRegex($regex);
 
-        return $backwardCompatible === 'yes';
+        return 'yes' === $backwardCompatible;
     }
 
     /**
@@ -97,7 +97,7 @@ class BodyParser
         $regex = "/(\|[[:space:]]Deprecations\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
         $willDeprecateCode = $this->extractWithRegex($regex);
 
-        return $willDeprecateCode === 'no';
+        return 'no' === $willDeprecateCode;
     }
 
     /**
