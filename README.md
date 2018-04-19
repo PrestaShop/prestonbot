@@ -46,3 +46,4 @@ Yeah, mostly the *Symfony* ones:
 * Welcome every new contributor;
 * Labelize a PR regarding information in description
 * Labelize a PR regarding files updated
+* Add labels according to the branch
