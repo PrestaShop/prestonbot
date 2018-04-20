@@ -37,15 +37,22 @@ class StatusApi
     public function addIssueLabel($issueNumber, $newLabel)
     {
         $currentLabels = $this->labelsApi->getIssueLabels($issueNumber);
-        foreach ($currentLabels as $label) {
-            if ($label !== $newLabel) {
-                $this->labelsApi->addIssueLabel($issueNumber, $newLabel);
 
-                return true;
+        if (!empty($currentLabels)) {
+            foreach ($currentLabels as $label) {
+                if ($label !== $newLabel) {
+                    $this->labelsApi->addIssueLabel($issueNumber, $newLabel);
+
+                    return true;
+                }
             }
+
+            return false;
         }
 
-        return false;
+        $this->labelsApi->addIssueLabel($issueNumber, $newLabel);
+
+        return true;
     }
 
     /**
