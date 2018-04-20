@@ -159,32 +159,17 @@ class WebhookControllerTest extends WebTestCase
         $tests['Pull request creation for critical bug'] = [
             'issues',
             'issues.labeled.bug.json',
-            [
-                [
-                    'event' => 'issue_event_labeled',
-                    'action' => 'added required labels',
-                ],
-            ],
+            [],
         ];
         $tests['Add labels'] = [
             'issues',
             'issues.labeled.bug.json',
-            [
-                [
-                    'event' => 'issue_event_labeled',
-                    'action' => 'added required labels',
-                ],
-            ],
+            [],
         ];
         $tests['Ignore labels'] = [
             'issues',
             'issues.labeled.feature.json',
-            [
-                [
-                    'event' => 'issue_event_labeled',
-                    'action' => 'ignored',
-                ],
-            ],
+            [],
         ];
         $tests['Pull request on wrong repository'] = [
             'pull_request',

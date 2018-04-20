@@ -38,7 +38,7 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
     {
         if (null !== $expectedStatus) {
             $this->statusApi->expects($this->once())
-                ->method('setIssueStatus')
+                ->method('addIssueLabel')
                 ->with(1234, $expectedStatus);
         }
 
@@ -150,71 +150,11 @@ class IssueListenerTest extends \PHPUnit_Framework_TestCase
     public function testHandlePullRequestCreatedEvent()
     {
         $this->statusApi->expects($this->once())
-            ->method('setIssueStatus')
+            ->method('addIssueLabel')
             ->with(1234, Status::NEEDS_REVIEW);
 
         $newStatus = $this->listener->handlePullRequestCreatedEvent(1234);
 
         $this->assertSame(Status::NEEDS_REVIEW, $newStatus);
-    }
-
-    public function testHandleLabelAddedEvent()
-    {
-        $this->statusApi->expects($this->once())
-            ->method('getIssueStatus')
-            ->with(1234)
-            ->willReturn(null);
-
-        $this->statusApi->expects($this->once())
-            ->method('setIssueStatus')
-            ->with(1234, Status::NEEDS_REVIEW);
-
-        $newStatus = $this->listener->handleLabelAddedEvent(1234, 'bug');
-
-        $this->assertSame(Status::NEEDS_REVIEW, $newStatus);
-    }
-
-    public function testHandleLabelAddedEventIgnoresBugCase()
-    {
-        $this->statusApi->expects($this->once())
-            ->method('getIssueStatus')
-            ->with(1234)
-            ->willReturn(null);
-
-        $this->statusApi->expects($this->once())
-            ->method('setIssueStatus')
-            ->with(1234, Status::NEEDS_REVIEW);
-
-        $newStatus = $this->listener->handleLabelAddedEvent(1234, 'BUG');
-
-        $this->assertSame(Status::NEEDS_REVIEW, $newStatus);
-    }
-
-    public function testHandleLabelAddedEventIgnoresNonBugs()
-    {
-        $this->statusApi->expects($this->never())
-            ->method('getIssueStatus');
-
-        $this->statusApi->expects($this->never())
-            ->method('setIssueStatus');
-
-        $newStatus = $this->listener->handleLabelAddedEvent(1234, 'feature');
-
-        $this->assertNull($newStatus);
-    }
-
-    public function testHandleLabelAddedEventIgnoresIfExistingStatus()
-    {
-        $this->statusApi->expects($this->once())
-            ->method('getIssueStatus')
-            ->with(1234)
-            ->willReturn(Status::NEEDS_REVIEW);
-
-        $this->statusApi->expects($this->never())
-            ->method('setIssueStatus');
-
-        $newStatus = $this->listener->handleLabelAddedEvent(1234, 'bug');
-
-        $this->assertNull($newStatus);
     }
 }

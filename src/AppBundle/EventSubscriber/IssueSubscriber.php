@@ -26,33 +26,6 @@ class IssueSubscriber implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return [
-           'issuesevent_labeled' => [
-               ['updateLabels', 255],
-           ],
-        ];
-    }
-
-    /**
-     * Changes "Bug" issues to "Needs Review".
-     */
-    public function updateLabels(GitHubEvent $githubEvent)
-    {
-        if (true === $this->container->getParameter('enable_labels')) {
-            $event = $githubEvent->getEvent();
-
-            $status = $this->container
-                ->get('app.issue_listener')
-                ->handleLabelAddedEvent(
-                    $event->issue->getNumber(),
-                    $event->label->getName()
-            );
-
-            $action = (null === $status) ? 'ignored' : 'added required labels';
-            $githubEvent->addStatus([
-                'event' => 'issue_event_labeled',
-                'action' => $action,
-            ]);
-        }
+        return [];
     }
 }

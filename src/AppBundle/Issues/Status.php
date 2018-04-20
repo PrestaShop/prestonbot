@@ -9,19 +9,19 @@ namespace AppBundle\Issues;
  */
 final class Status
 {
-    const NEEDS_REVIEW = 'needs_review';
+    const NEEDS_REVIEW = 'Status: Needs Review';
 
-    const CODE_REVIEWED = 'code_reviewed';
+    const CODE_REVIEWED = 'Code reviewed';
 
-    const QA_APPROVED = 'qa_approved';
+    const QA_APPROVED = 'QA-approved';
 
-    const PM_APPROVED = 'pm_approved';
+    const PM_APPROVED = 'PM-approved';
 
-    const WAITING_FOR_WORDING = 'waiting_for_wording';
+    const WAITING_FOR_WORDING = 'waiting for wording';
 
-    const CRITICAL_ISSUE = 'critical_issue';
+    const CRITICAL_ISSUE = 'Type: Critical Bug Fix';
 
-    const REPORT_ON_STARTER_THEME = 'report_on_starter_theme';
+    const REPORT_ON_STARTER_THEME = 'Needs port on StarterTheme';
 
     const LEGACY_BRANCH = '1.6.1.x';
 
@@ -44,4 +44,18 @@ final class Status
     const FUTURE_BRANCH = '1.8.x';
 
     const DEVELOP_BRANCH = 'develop';
+
+    public static $branches = [
+        self::LEGACY_BRANCH,
+        self::CURRENT_BRANCH,
+        self::BRANCH_173,
+        self::BRANCH_174,
+        self::BRANCH_175,
+        self::BRANCH_176,
+        self::BRANCH_177,
+        self::BRANCH_178,
+        self::BRANCH_179,
+        self::FUTURE_BRANCH,
+        self::DEVELOP_BRANCH
+    ];
 }
