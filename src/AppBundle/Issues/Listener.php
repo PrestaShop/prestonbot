@@ -153,8 +153,11 @@ class Listener
     public function addBranchLabel(PullRequest $pullRequest)
     {
         $bodyParser = new BodyParser($pullRequest->getBody());
+        $issueNumber = $pullRequest->getNumber();
+        $branch = trim($bodyParser->getBranch());
 
-        $this->statusApi->addIssueLabel($pullRequest->getNumber(), $bodyParser->getBranch());
+        $this->statusApi->addIssueLabel($issueNumber, $branch);
+        $this->log($issueNumber, $branch);
     }
 
     /**
