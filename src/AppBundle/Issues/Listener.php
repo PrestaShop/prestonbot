@@ -79,7 +79,6 @@ class Listener
         return $newStatus;
     }
 
-
     /**
      * Add "waiting for wording" label to an issue.
      *

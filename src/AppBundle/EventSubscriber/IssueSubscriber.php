@@ -2,7 +2,6 @@
 
 namespace AppBundle\EventSubscriber;
 
-use AppBundle\Event\GitHubEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 

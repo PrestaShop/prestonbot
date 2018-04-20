@@ -47,7 +47,6 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
         $this->api->addIssueLabel(1234, Status::CODE_REVIEWED);
     }
 
-
     public function testGetNeedsReviewUrl()
     {
         $this->assertSame('https://github.com/weaverryan/carson/labels/waiting%20for%20code%20review', $this->api->getNeedsReviewUrl());

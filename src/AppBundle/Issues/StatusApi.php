@@ -6,7 +6,6 @@ use AppBundle\PullRequests\Labels;
 
 class StatusApi
 {
-
     /**
      * @var CachedLabelsApi
      */
@@ -30,8 +29,8 @@ class StatusApi
     }
 
     /**
-     * @param int $issueNumber The GitHub issue number
-     * @param string $newLabel A Status::* constant
+     * @param int    $issueNumber The GitHub issue number
+     * @param string $newLabel    A Status::* constant
      *
      * @return bool
      */

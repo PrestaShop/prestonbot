@@ -56,6 +56,6 @@ final class Status
         self::BRANCH_178,
         self::BRANCH_179,
         self::FUTURE_BRANCH,
-        self::DEVELOP_BRANCH
+        self::DEVELOP_BRANCH,
     ];
 }
