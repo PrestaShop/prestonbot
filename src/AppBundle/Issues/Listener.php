@@ -55,7 +55,7 @@ class Listener
         if (preg_match_all($pattern, $comment, $matches)) {
             // Second subpattern = first status character
             $newStatus = self::$triggerWordToStatus[strtolower(end($matches[1]))];
-            $this->statusApi->setIssueStatus($issueNumber, $newStatus);
+            $this->statusApi->addIssueLabel($issueNumber, $newStatus);
             $this->log($issueNumber, $newStatus);
 
             return $newStatus;
@@ -73,38 +73,8 @@ class Listener
     {
         $newStatus = Status::NEEDS_REVIEW;
 
-        $this->statusApi->setIssueStatus($prNumber, $newStatus);
+        $this->statusApi->addIssueLabel($prNumber, $newStatus);
         $this->log($prNumber, $newStatus);
-
-        return $newStatus;
-    }
-
-    /**
-     * Changes "Bug" issues to "Needs Review".
-     *
-     * @param int    $issueNumber The issue that was labeled
-     * @param string $label       The added label
-     *
-     * @return null|string The status that the issue was moved to or null
-     */
-    public function handleLabelAddedEvent($issueNumber, $label)
-    {
-        // Ignore non-bugs
-        if ('bug' !== strtolower($label)) {
-            return;
-        }
-
-        $currentStatus = $this->statusApi->getIssueStatus($issueNumber);
-
-        // Ignore if the issue already has a status
-        if (null !== $currentStatus) {
-            return;
-        }
-
-        $newStatus = Status::NEEDS_REVIEW;
-
-        $this->statusApi->setIssueStatus($issueNumber, $newStatus);
-        $this->log($issueNumber, $newStatus);
 
         return $newStatus;
     }
@@ -128,6 +98,8 @@ class Listener
 
     /**
      * @param PullRequest $pullRequest
+     *
+     * @return bool
      */
     public function addLabelCriticalLabelIfNeeded(PullRequest $pullRequest)
     {
@@ -156,8 +128,10 @@ class Listener
         $issueNumber = $pullRequest->getNumber();
         $branch = trim($bodyParser->getBranch());
 
-        $this->statusApi->addIssueLabel($issueNumber, $branch);
-        $this->log($issueNumber, $branch);
+        if (in_array($branch, Status::$branches, true)) {
+            $this->statusApi->addIssueLabel($issueNumber, $branch);
+            $this->log($issueNumber, $branch);
+        }
     }
 
     /**
