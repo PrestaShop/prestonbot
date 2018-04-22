@@ -14,17 +14,17 @@ class Repository
     /**
      * @var string
      */
-    private $repositoryUsername;
+    private $repositoryOwner;
 
     /**
      * @var string
      */
     private $repositoryName;
 
-    public function __construct(Repo $repositoryApi, string $repositoryUsername, string $repositoryName)
+    public function __construct(Repo $repositoryApi, string $repositoryOwner, string $repositoryName)
     {
         $this->repositoryApi = $repositoryApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
     }
 
@@ -42,7 +42,7 @@ class Repository
     public function getActivity()
     {
         return $this->repositoryApi
-            ->activity($this->repositoryUsername, $this->repositoryName)
+            ->activity($this->repositoryOwner, $this->repositoryName)
         ;
     }
 
@@ -52,7 +52,7 @@ class Repository
     public function getStatistics()
     {
         return $this->repositoryApi
-            ->statistics($this->repositoryUsername, $this->repositoryName)
+            ->statistics($this->repositoryOwner, $this->repositoryName)
         ;
     }
 
@@ -62,7 +62,7 @@ class Repository
     public function getTopContributors()
     {
         return $this->repositoryApi
-            ->contributors($this->repositoryUsername, $this->repositoryName, true)
+            ->contributors($this->repositoryOwner, $this->repositoryName, true)
         ;
     }
 
@@ -72,7 +72,7 @@ class Repository
     public function getStars()
     {
         return $this->repositoryApi
-            ->stargazers($this->repositoryUsername, $this->repositoryName)
+            ->stargazers($this->repositoryOwner, $this->repositoryName)
         ;
     }
 
@@ -99,7 +99,7 @@ class Repository
     {
         return $this->repositoryApi
             ->collaborators()
-            ->all($this->repositoryUsername, $this->repositoryName)
+            ->all($this->repositoryOwner, $this->repositoryName)
         ;
     }
 }

@@ -22,17 +22,17 @@ class CachedLabelsApi
     /**
      * @var string
      */
-    private $repositoryUsername;
+    private $repositoryOwner;
 
     /**
      * @var string
      */
     private $repositoryName;
 
-    public function __construct(Labels $labelsApi, $repositoryUsername, $repositoryName)
+    public function __construct(Labels $labelsApi, $repositoryOwner, $repositoryName)
     {
         $this->labelsApi = $labelsApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
     }
 
@@ -47,7 +47,7 @@ class CachedLabelsApi
             $this->labelCache[$issueNumber] = [];
 
             $labelsData = $this->labelsApi->all(
-                $this->repositoryUsername,
+                $this->repositoryOwner,
                 $this->repositoryName,
                 $issueNumber
             );
@@ -72,7 +72,7 @@ class CachedLabelsApi
         }
 
         $this->labelsApi->add(
-            $this->repositoryUsername,
+            $this->repositoryOwner,
             $this->repositoryName,
             $issueNumber,
             $label
@@ -95,7 +95,7 @@ class CachedLabelsApi
         }
 
         $this->labelsApi->remove(
-            $this->repositoryUsername,
+            $this->repositoryOwner,
             $this->repositoryName,
             $issueNumber,
             $label

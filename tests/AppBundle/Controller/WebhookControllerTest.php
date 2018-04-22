@@ -50,16 +50,6 @@ class WebhookControllerTest extends WebTestCase
     public function getTests()
     {
         $tests = [];
-        $tests['Issue comments'] = [
-            'issue_comment',
-            'issue_comment.created.json',
-            [
-                [
-                    'event' => 'issue_comment_created',
-                    'action' => 'add labels if required',
-                ],
-            ],
-        ];
         $tests['Pull request creation'] = [
             'pull_request',
             'pull_request.opened.json',
@@ -74,11 +64,11 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'labels initialized',
+                    'action' => 'branch label initialized',
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'branch label initialized',
+                    'action' => 'pr type label initialized',
                 ],
                 [
                     'event' => 'pr_opened',
@@ -106,11 +96,11 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'labels initialized',
+                    'action' => 'branch label initialized',
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'branch label initialized',
+                    'action' => 'pr type label initialized',
                 ],
                 [
                     'event' => 'pr_opened',
@@ -138,11 +128,11 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'labels initialized',
+                    'action' => 'branch label initialized',
                 ],
                 [
                     'event' => 'pr_opened',
-                    'action' => 'branch label initialized',
+                    'action' => 'pr type label initialized',
                 ],
                 [
                     'event' => 'pr_opened',

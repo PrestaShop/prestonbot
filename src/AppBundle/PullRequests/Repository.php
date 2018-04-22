@@ -27,7 +27,7 @@ class Repository implements RepositoryInterface
     /**
      * @var
      */
-    private $repositoryUsername;
+    private $repositoryOwner;
     /**
      * @var
      */
@@ -36,12 +36,12 @@ class Repository implements RepositoryInterface
     public function __construct(
         SearchRepository $searchRepository,
         KnpCommentsApi $knpCommentsApi,
-        $repositoryUsername,
+        $repositoryOwner,
         $repositoryName
         ) {
         $this->searchRepository = $searchRepository;
         $this->knpCommentsApi = $knpCommentsApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
     }
 
@@ -88,7 +88,7 @@ class Repository implements RepositoryInterface
         try {
             $commentsApi = $this->knpCommentsApi
                 ->all(
-                    $this->repositoryUsername,
+                    $this->repositoryOwner,
                     $this->repositoryName,
                     $pullRequest->getNumber()
                 )
@@ -157,7 +157,7 @@ class Repository implements RepositoryInterface
         if (count($comments) > 0) {
             foreach ($comments as $comment) {
                 $this->knpCommentsApi->remove(
-                    $this->repositoryUsername,
+                    $this->repositoryOwner,
                     $this->repositoryName,
                     $comment->getId()
                 );

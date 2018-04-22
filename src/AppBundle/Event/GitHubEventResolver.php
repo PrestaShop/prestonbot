@@ -33,17 +33,11 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
      */
     private $repositoryName;
 
-    /**
-     * @param WebhookResolver $resolver
-     * @param $repositoryOnwer
-     * @param $repositoryName
-     * @param mixed $repositoryOwner
-     */
     public function __construct(
         WebhookResolver $resolver,
         LoggerInterface $logger,
-        $repositoryOwner,
-        $repositoryName
+        string $repositoryOwner,
+        string $repositoryName
     ) {
         $this->resolver = $resolver;
         $this->logger = $logger;
@@ -51,11 +45,19 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
         $this->repositoryName = $repositoryName;
     }
 
-    public function supports(Request $request, ArgumentMetadata $argument)
+    public function supports(Request $request, ArgumentMetadata $argument): bool
     {
         return GitHubEvent::class === $argument->getType();
     }
 
+    /**
+     * @param Request          $request
+     * @param ArgumentMetadata $argument
+     *
+     * @return \Generator
+     *
+     * @throws \Lpdigital\Github\Exception\EventNotFoundException
+     */
     public function resolve(Request $request, ArgumentMetadata $argument)
     {
         $payload = json_decode($request->getContent(), true);
@@ -91,10 +93,9 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
      *
      * @return bool
      */
-    private function isValid(ActionableEventInterface $event)
+    private function isValid(ActionableEventInterface $event): bool
     {
-        $repository = $event->getRepository();
-        list($repositoryUsername, $repositoryName) = explode('/', $repository->getFullName());
+        [$repositoryUsername, $repositoryName] = explode('/', $event->getRepository()->getFullName());
 
         return $repositoryUsername === $this->repositoryOwner && $repositoryName === $this->repositoryName;
     }

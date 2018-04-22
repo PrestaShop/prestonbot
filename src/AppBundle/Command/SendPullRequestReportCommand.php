@@ -2,7 +2,9 @@
 
 namespace AppBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use AppBundle\Mailer\Mailer;
+use AppBundle\PullRequests\Reporter;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,9 +14,41 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  * Generate report of repository activity to a group a defined users
  * and send it by email.
  */
-class SendPullRequestReportCommand extends ContainerAwareCommand
+class SendPullRequestReportCommand extends Command
 {
     const DEFAULT_BRANCH = 'develop';
+
+    protected static $defaultName = 'pull_request:report:send_mail';
+
+    /**
+     * @var Reporter
+     */
+    private $reporter;
+
+    /**
+     * @var Mailer
+     */
+    private $mailer;
+
+    /**
+     * @var array
+     */
+    private $recipients;
+
+    /**
+     * @var string
+     */
+    private $adminMail;
+
+    public function __construct(Reporter $reporter, Mailer $mailer, array $recipients, string $adminMail)
+    {
+        parent::__construct();
+
+        $this->reporter = $reporter;
+        $this->mailer = $mailer;
+        $this->recipients = $recipients;
+        $this->adminMail = $adminMail;
+    }
 
     /**
      * {@inheritdoc}
@@ -22,7 +56,6 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('pull_request:report:send_mail')
             ->setDescription('Send pull requests by tag report mails.')
             ->addArgument(
                 'branch',
@@ -40,26 +73,22 @@ class SendPullRequestReportCommand extends ContainerAwareCommand
     {
         $io = new SymfonyStyle($input, $output);
         $branch = $input->getArgument('branch') ? $input->getArgument('branch') : self::DEFAULT_BRANCH;
-
-        $groups = $this->getContainer()->getParameter('recipients');
-        $reporter = $this->getContainer()->get('app.pull_requests.reporter');
-        $mailer = $this->getContainer()->get('app.mailer');
         $nbMails = 0;
 
         $io->title('Pull requests Reporter');
         $io->comment('List of recipients');
         $headers = ['Group', 'Emails'];
-        $io->table($headers, $this->getRows($groups));
+        $io->table($headers, $this->getRows($this->recipients));
 
         try {
-            foreach ($groups as $groupName => $groupMembers) {
+            foreach ($this->recipients as $groupName => $groupMembers) {
                 foreach ($groupMembers as $groupMember) {
-                    $nbMails += $mailer->send(
+                    $nbMails += $this->mailer->send(
                         'Daily report '.date('d/m/Y'),
-                        $this->getContainer()->getParameter('admin_mail'),
+                        $this->adminMail,
                         $groupMember,
                         'mail/pr_sumup_for_mail.html.twig',
-                        $reporter->reportActivity($branch)
+                        $this->reporter->reportActivity($branch)
                     );
                 }
             }

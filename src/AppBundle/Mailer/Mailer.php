@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Services;
+namespace AppBundle\Mailer;
 
 class Mailer
 {
@@ -29,6 +29,12 @@ class Mailer
      * @param string       $templateName The template logical name
      * @param array        $params       The template variables
      * @param null|mixed   $bcc
+     *
+     * @return int
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function send(
         $subject,
@@ -38,8 +44,7 @@ class Mailer
         array $params,
         $bcc = null
     ) {
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
+        $message = (new \Swift_Message($subject))
             ->setFrom($sender)
             ->setTo($recipient)
             ->setContentType('text/html')
