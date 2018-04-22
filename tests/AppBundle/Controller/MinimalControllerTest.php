@@ -5,15 +5,18 @@ namespace tests\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * @tdodo: use data provider
+ * Functional tests for pages of PrestonBot website.
  */
 class MinimalControllerTest extends WebTestCase
 {
+    /**
+     * @var Symfony\Bundle\FrameworkBundle\Client
+     */
     private $client;
 
     protected function setUp()
     {
-        $this->client = $this->createClient();
+        $this->client = static::createClient();
     }
 
     public function testHomepageOk()
@@ -21,6 +24,6 @@ class MinimalControllerTest extends WebTestCase
         $this->client->request('HEAD', '/');
         $response = $this->client->getResponse();
 
-        $this->assertSame(200, $response->getStatusCode());
+        static::assertSame(200, $response->getStatusCode());
     }
 }

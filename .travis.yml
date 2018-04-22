@@ -4,31 +4,34 @@ sudo: false
 
 cache:
   directories:
-    - bin
-    - vendor
-    - $HOME/.composer/cache
+    - $HOME/.composer/cache/files
+    - $HOME/symfony-bridge/.phpunit
 
-php:
-  - 7.0
-  - 7.1
-  - 7.2
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.1
+    - php: 7.2
 
 env:
-    global:
-        - SYMFONY_PHPUNIT_VERSION=5.5
-        - SYMFONY_DEPRECATIONS_HELPER=disabled
+  global:
+    - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+    - SYMFONY_PHPUNIT_VERSION=5.7
 
 before_install:
   - phpenv config-rm xdebug.ini
   - composer self-update
 
 install:
-  - composer update --prefer-dist --no-interaction --no-progress
+  - composer install
+  - ./vendor/bin/simple-phpunit install
 
 script:
   - vendor/bin/simple-phpunit
   - vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`
-
+  - ./bin/console lint:yaml app/config
+  - ./bin/console lint:twig app/Resources
+  - ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock
 
 notifications:
   email: false

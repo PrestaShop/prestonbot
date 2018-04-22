@@ -4,7 +4,7 @@ This application is based on Symfony CarsonBot and aims to help PrestaShop maint
 
 ![Preston, the PrestaShop contributor best friend](http://i.imgur.com/r26gJW4.png)
 
-## How to install ?
+### Classic installation
 
 First of all you have to configure your GitHub repository and have a GitHub token.
 
@@ -12,18 +12,30 @@ First of all you have to configure your GitHub repository and have a GitHub toke
 composer install // and complete the interactive fields asked
 ```
 
-## How to test ?
+### Docker installation
+
+First, setup the `docker-compose.yml` file with a valid GitHub token and a valid Secure token (can be empty).
 
 ```bash
-./vendor/bin/simple-phpunit
+make start
 ```
+
+The Home page is now available at "http://localhost:81/".
 
 You need also to create your own GitHub [personal token](https://github.com/settings/tokens) and export it:
 
 ```bash
-export SYMFONY_PHPUNIT_VERSION=5.5
+export SYMFONY_PHPUNIT_VERSION=5.7
 export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 export GH_SECURED_TOKEN=YYYYYYYYYYYYYYYYYYYYYYYYYYYY
+```
+
+## How to run the test suite ?
+
+```bash
+./vendor/bin/simple-phpunit
+# or (using docker)
+make test
 ```
 
 > To launch unit tests, you only need to setup your own Github token (`GH_TOKEN`).
@@ -42,7 +54,6 @@ Yeah, mostly the *Symfony* ones:
 * Extract data from the pull request and look for some terms;
 * Manage labels;
 * Validate a pull request description;
-* Validate every commit label;
 * Welcome every new contributor;
 * Labelize a PR regarding information in description
 * Labelize a PR regarding files updated

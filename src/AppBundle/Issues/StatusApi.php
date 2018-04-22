@@ -14,17 +14,17 @@ class StatusApi
     /**
      * @var string
      */
-    private $repositoryUsername;
+    private $repositoryOwner;
 
     /**
      * @var string
      */
     private $repositoryName;
 
-    public function __construct(CachedLabelsApi $labelsApi, $repositoryUsername, $repositoryName)
+    public function __construct(CachedLabelsApi $labelsApi, $repositoryOwner, $repositoryName)
     {
         $this->labelsApi = $labelsApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
     }
 
@@ -62,7 +62,7 @@ class StatusApi
     {
         return sprintf(
             'https://github.com/%s/%s/labels/%s',
-            $this->repositoryUsername,
+            $this->repositoryOwner,
             $this->repositoryName,
             rawurlencode(Labels::WAITING_FOR_CODE_REVIEW)
         );
@@ -75,7 +75,7 @@ class StatusApi
     {
         return sprintf(
             'https://github.com/%s/%s/labels/%s',
-            $this->repositoryUsername,
+            $this->repositoryOwner,
             $this->repositoryName,
             rawurlencode(Labels::WAITING_FOR_QA_FEEDBACK)
         );
@@ -88,7 +88,7 @@ class StatusApi
     {
         return sprintf(
             'https://github.com/%s/%s/labels/%s',
-            $this->repositoryUsername,
+            $this->repositoryOwner,
             $this->repositoryName,
             rawurlencode(Labels::WAITING_FOR_PM_FEEDBACK)
         );

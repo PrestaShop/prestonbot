@@ -2,18 +2,17 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Issues\StatusApi;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HomeController extends Controller
+class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home_page")
      */
-    public function homepageAction()
+    public function homepageAction(StatusApi $statusApi)
     {
-        $statusApi = $this->get('app.status_api');
-
         return $this->render('default/homepage.html.twig', [
             'needsReviewUrl' => $statusApi->getNeedsReviewUrl(),
             'waitingForQAUrl' => $statusApi->getWaitingForQAUrl(),

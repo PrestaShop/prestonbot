@@ -2,32 +2,29 @@
 
 namespace tests\AppBundle\Command;
 
-use AppBundle\Command\SendPullRequestReportCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class SendPullRequestReportCommandTest extends WebTestCase
+class SendPullRequestReportCommandTest extends KernelTestCase
 {
-    protected function setUp()
-    {
-        static::$kernel = static::createKernel();
-        static::$kernel->boot();
-    }
-
     public function testExecute()
     {
-        $application = new Application(static::$kernel);
-        $application->add(new SendPullRequestReportCommand());
+        $kernel = static::createKernel();
+        $kernel->boot();
+
+        $application = new Application($kernel);
 
         $command = $application->find('pull_request:report:send_mail');
         $commandTester = new CommandTester($command);
         $commandTester->execute(['command' => $command->getName()]);
 
-        $this->assertRegExp('/Pull requests Reporter/', $commandTester->getDisplay());
-        $this->assertRegExp('/\/\/ List of recipients/', $commandTester->getDisplay());
-        $this->assertRegExp('/waiting for code review/', $commandTester->getDisplay());
-        $this->assertRegExp('/waiting for QA feedback/', $commandTester->getDisplay());
-        $this->assertRegExp('/waiting for PM feedback/', $commandTester->getDisplay());
+        $output = $commandTester->getDisplay();
+
+        static::assertRegExp('/Pull requests Reporter/', $output);
+        static::assertRegExp('/\/\/ List of recipients/', $output);
+        static::assertRegExp('/waiting for code review/', $output);
+        static::assertRegExp('/waiting for QA feedback/', $output);
+        static::assertRegExp('/waiting for PM feedback/', $output);
     }
 }

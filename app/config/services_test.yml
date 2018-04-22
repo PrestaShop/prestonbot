@@ -2,7 +2,7 @@ imports:
     - { resource: services.yml }
 
 parameters:
-    # the token needs to have admin rights on loveOSS organisation
+    # The token needs to have admin rights on loveOSS organisation
     # for testing purposes
     repository_username: 'loveOSS'
     repository_name: 'test'
@@ -15,24 +15,44 @@ parameters:
 
     github_secured_token: 'totalyFakeTokenForTests'
 
+    # list of recipients for mail notifications
+    recipients:
+        'waiting for code review':
+            - waiting_code_review@prestashop.com
+        'waiting for QA feedback':
+            - foo@prestashop.com
+            - bar@prestashop.com
+            - baz@prestashop.com
+        'waiting for PM feedback':
+            - waiting_for_pm@prestashop.com
+
 services:
-    fake_comment_api:
-        class: Tests\AppBundle\Comments\FakeCommentApi
+
+    # Integration tests shouldn't post comments to github
+    Psr\Log\NullLogger:
+
+    Tests\AppBundle\Comments\FakeCommentApi:
+        - '@Github\Api\Issue\Comments'
+        - '%repository_username%'
+        - '%repository_name%'
+        - '@twig'
+
+    Tests\AppBundle\Issues\NullStatusApi:
         arguments:
-            - '@app.github.comments_api'
+            - '@AppBundle\Issues\CachedLabelsApi'
             - '%repository_username%'
             - '%repository_name%'
-            - '@twig'
-    app.status_api:
-        class: Tests\AppBundle\Issues\NullStatusApi
-        arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
 
     # Your integrations tests shouldn't post comments to github
-    app.pullrequest_listener:
-        class: AppBundle\PullRequests\Listener
+    AppBundle\PullRequests\Listener:
         arguments:
-            - '@fake_comment_api'
-            - '@app.commit.repository'
+            - '@Tests\AppBundle\Comments\FakeCommentApi'
+            - '@AppBundle\Commits\Repository'
             - '@validator'
-            - '@app.pull_request.repository'
-            - '@logger'
+            - '@AppBundle\PullRequests\Repository'
+            - '@Psr\Log\NullLogger'
+
+    AppBundle\Issues\Listener:
+        arguments:
+            - '@Tests\AppBundle\Issues\NullStatusApi'
+            - '@Psr\Log\NullLogger'

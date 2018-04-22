@@ -24,7 +24,7 @@ class Repository implements RepositoryInterface
     /**
      * @var string
      */
-    private $repositoryUsername;
+    private $repositoryOwner;
 
     /**
      * @var string
@@ -34,12 +34,12 @@ class Repository implements RepositoryInterface
     public function __construct(
         CommitsApi $commitsApi,
         PullRequestApi $pullRequestApi,
-        $repositoryUsername,
+        $repositoryOwner,
         $repositoryName
         ) {
         $this->commitsApi = $commitsApi;
         $this->pullRequestApi = $pullRequestApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
     }
 
@@ -50,7 +50,7 @@ class Repository implements RepositoryInterface
     {
         try {
             $responseApi = $this->pullRequestApi->commits(
-                $this->repositoryUsername,
+                $this->repositoryOwner,
                 $this->repositoryName,
                 $pullRequest->getNumber()
             );
@@ -70,7 +70,7 @@ class Repository implements RepositoryInterface
             $responseApi = $this->commitsApi
                 ->getCommits()
                 ->all(
-                $this->repositoryUsername,
+                $this->repositoryOwner,
                 $this->repositoryName,
                 ['author' => $user->getLogin()]
             );
