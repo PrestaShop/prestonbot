@@ -25,7 +25,7 @@ class BodyParser
      */
     public function getBranch()
     {
-        $regex = "/(\|[[:space:]]Branch\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = '/(\|\s+Branch\?\s++\|\s+)(.+)\s+/';
 
         return $this->extractWithRegex($regex);
     }
@@ -45,7 +45,7 @@ class BodyParser
      */
     public function getDescription()
     {
-        $regex = "/(\|[[:space:]]Description\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = '/(\|\s+Description\?\s++\|\s+)(.+)\s+/';
 
         return $this->extractWithRegex($regex);
     }
@@ -59,7 +59,7 @@ class BodyParser
      */
     public function getType()
     {
-        $regex = "/(\|[[:space:]]Type\?[[:space:]]+\|[[:space:]]*)(\S+\s?\S*)[[:space:]]*\r\n/";
+        $regex = '/(\|\s+Type\?\s++\|\s+*)(\S+\s?\S*)\s+*\s+/';
 
         return $this->extractWithRegex($regex);
     }
@@ -73,7 +73,7 @@ class BodyParser
      */
     public function getCategory()
     {
-        $regex = "/(\|[[:space:]]Category\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = '/(\|\s+Category\?\s++\|\s+)(.+)\s+/';
 
         return $this->extractWithRegex($regex);
     }
@@ -83,7 +83,7 @@ class BodyParser
      */
     public function isBackwardCompatible()
     {
-        $regex = "/(\|[[:space:]]BC breaks\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = '/(\|\s+BC breaks\?\s++\|\s+)(.+)\s+/';
         $backwardCompatible = $this->extractWithRegex($regex);
 
         return 'yes' === $backwardCompatible;
@@ -94,7 +94,7 @@ class BodyParser
      */
     public function willDeprecateCode()
     {
-        $regex = "/(\|[[:space:]]Deprecations\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = '/(\|\s+Deprecations\?\s++\|\s+)(.+)\s+/';
         $willDeprecateCode = $this->extractWithRegex($regex);
 
         return 'no' === $willDeprecateCode;
@@ -145,7 +145,7 @@ class BodyParser
      */
     public function getRelatedForgeIssue()
     {
-        $regex = "/(\|[[:space:]]Fixed ticket\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = '/(\|\s+Fixed ticket\?\s++\|\s+)(.+)\s+/';
 
         return $this->extractWithRegex($regex);
     }
