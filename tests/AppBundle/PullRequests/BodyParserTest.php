@@ -57,7 +57,7 @@ class BodyParserTest extends TestCase
     public function testRepeatBodParserTestsWithSpaces()
     {
         $this->webhookResolver = new WebhookResolver();
-        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.opened.json');
+        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.spaces.opened.json');
         $data = json_decode($webhookResponse, true);
         $this->event = $this->webhookResolver->resolve($data);
         $this->bodyParser = new BodyParser($this->event->pullRequest->getBody());
