@@ -18,3 +18,4 @@
 var/SymfonyRequirements.php
 .php_cs.cache
 .idea/*
+.env
