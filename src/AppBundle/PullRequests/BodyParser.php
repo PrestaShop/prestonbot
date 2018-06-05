@@ -153,11 +153,13 @@ class BodyParser
     }
 
     /**
-     * @throws Exception
+     * @return string
      */
     public function getTestingScenario()
     {
-        throw new Exception('Need to be done');
+        $regex = sprintf(self::DEFAULT_PATTERN, 'How to test', '.+');
+
+        return $this->extractWithRegex($regex);
     }
 
     /**

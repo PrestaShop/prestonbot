@@ -1,4 +1,5 @@
 /app/config/parameters.yml
+/coverage/
 /build/
 /phpunit.xml
 /var/*

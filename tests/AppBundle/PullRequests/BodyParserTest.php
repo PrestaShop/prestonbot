@@ -26,22 +26,43 @@ class BodyParserTest extends TestCase
 
     public function testGetBody()
     {
-        $this->assertSame($this->bodyParser->getBody(), $this->event->pullRequest->getBody());
+        $this->assertSame($this->event->pullRequest->getBody(), $this->bodyParser->getBody());
     }
 
     public function testGetBranch()
     {
-        $this->assertSame($this->bodyParser->getBranch(), 'develop');
+        $this->assertSame('develop', $this->bodyParser->getBranch());
     }
 
     public function testGetDescription()
     {
-        $this->assertSame($this->bodyParser->getDescription(), 'Such a great description');
+        $this->assertSame('Such a great description', $this->bodyParser->getDescription());
+    }
+
+    public function testIsDeprecated()
+    {
+        $this->assertSame(false, $this->bodyParser->willDeprecateCode());
+    }
+
+    public function testIsBackwardCompatible()
+    {
+        $this->assertSame(false, $this->bodyParser->isBackwardCompatible());
+    }
+
+    public function testGetTestingScenario()
+    {
+        $this->assertSame('To test it, launch unit tests', $this->bodyParser->getTestingScenario());
+    }
+
+    public function testGetCategory()
+    {
+        $this->assertSame('BO', $this->bodyParser->getCategory());
     }
 
     public function testGetType()
     {
         $this->assertSame($this->bodyParser->getType(), 'new feature');
+        $this->assertContains($this->bodyParser->getType(), $this->bodyParser->getValidTypes());
         $this->assertTrue($this->bodyParser->isAFeature());
         $this->assertFalse($this->bodyParser->isAnImprovement());
         $this->assertFalse($this->bodyParser->isABugFix());
@@ -51,7 +72,7 @@ class BodyParserTest extends TestCase
 
     public function testGetTicket()
     {
-        $this->assertSame($this->bodyParser->getRelatedTicket(), 'http://forge.prestashop.com/browse/TEST-1234');
+        $this->assertSame('http://forge.prestashop.com/browse/TEST-1234', $this->bodyParser->getRelatedTicket());
     }
 
     public function testRepeatBodParserTestsWithSpaces()
@@ -67,5 +88,7 @@ class BodyParserTest extends TestCase
         $this->testGetDescription();
         $this->testGetType();
         $this->testGetTicket();
+        $this->testIsDeprecated();
+        $this->testIsBackwardCompatible();
     }
 }
