@@ -2,6 +2,7 @@
 
 namespace tests\AppBundle\Security;
 
+use PHPUnit\Framework\TestCase;
 use AppBundle\Security\SignatureValidator;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @see https://github.com/Swop/github-webhook
  */
-class SignatureValidatorTest extends \PHPUnit_Framework_TestCase
+class SignatureValidatorTest extends TestCase
 {
     const SECRET = 'MyDirtySecret';
     private $signatureValidator;

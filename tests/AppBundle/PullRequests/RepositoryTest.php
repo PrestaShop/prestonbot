@@ -2,12 +2,13 @@
 
 namespace tests\AppBundle\PullRequests;
 
+use PHPUnit\Framework\TestCase;
 use AppBundle\PullRequests\Repository;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class RepositoryTest extends \PHPUnit_Framework_TestCase
+class RepositoryTest extends TestCase
 {
     const REPOSITORY_USERNAME = 'loveOSS';
     const REPOSITORY_NAME = 'test';

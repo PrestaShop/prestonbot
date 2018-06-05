@@ -2,6 +2,7 @@
 
 namespace tests\AppBundle\PullRequests;
 
+use PHPUnit\Framework\TestCase;
 use AppBundle\PullRequests\LabelNotFoundException;
 use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\Reporter;
@@ -9,7 +10,7 @@ use AppBundle\PullRequests\Reporter;
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class ReporterTest extends \PHPUnit_Framework_TestCase
+class ReporterTest extends TestCase
 {
     private $reporter;
 

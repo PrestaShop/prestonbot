@@ -2,13 +2,14 @@
 
 namespace tests\AppBundle\PullRequests;
 
+use PHPUnit\Framework\TestCase;
 use AppBundle\PullRequests\BodyParser;
 use Lpdigital\Github\Parser\WebhookResolver;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class BodyParserTest extends \PHPUnit_Framework_TestCase
+class BodyParserTest extends TestCase
 {
     private $bodyParser;
     private $event;
@@ -48,8 +49,23 @@ class BodyParserTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->bodyParser->isARefacto());
     }
 
-    public function getIssueForge()
+    public function testGetTicket()
     {
-        $this->assertSame($this->bodyParser->getRelatedForgeIssue(), 'http://forge.prestashop.com/browse/TEST-1234');
+        $this->assertSame($this->bodyParser->getRelatedTicket(), 'http://forge.prestashop.com/browse/TEST-1234');
+    }
+
+    public function testRepeatBodParserTestsWithSpaces()
+    {
+        $this->webhookResolver = new WebhookResolver();
+        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.opened.json');
+        $data = json_decode($webhookResponse, true);
+        $this->event = $this->webhookResolver->resolve($data);
+        $this->bodyParser = new BodyParser($this->event->pullRequest->getBody());
+
+        $this->testGetBody();
+        $this->testGetBranch();
+        $this->testGetDescription();
+        $this->testGetType();
+        $this->testGetTicket();
     }
 }
