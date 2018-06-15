@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class BodyParser
 {
+    const DEFAULT_PATTERN = '~(?:\|\s+%s\?\s+\|\s+)(%s)\s+~';
+
     /**
      * @var string
      */
@@ -25,7 +27,7 @@ class BodyParser
      */
     public function getBranch()
     {
-        $regex = "/(\|[[:space:]]Branch\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Branch', '.+');
 
         return $this->extractWithRegex($regex);
     }
@@ -45,7 +47,7 @@ class BodyParser
      */
     public function getDescription()
     {
-        $regex = "/(\|[[:space:]]Description\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Description', '.+');
 
         return $this->extractWithRegex($regex);
     }
@@ -59,7 +61,7 @@ class BodyParser
      */
     public function getType()
     {
-        $regex = "/(\|[[:space:]]Type\?[[:space:]]+\|[[:space:]]*)(\S+\s?\S*)[[:space:]]*\r\n/";
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Type', '\w+\s\w+');
 
         return $this->extractWithRegex($regex);
     }
@@ -73,7 +75,7 @@ class BodyParser
      */
     public function getCategory()
     {
-        $regex = "/(\|[[:space:]]Category\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Category', '.+');
 
         return $this->extractWithRegex($regex);
     }
@@ -83,7 +85,7 @@ class BodyParser
      */
     public function isBackwardCompatible()
     {
-        $regex = "/(\|[[:space:]]BC breaks\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = sprintf(self::DEFAULT_PATTERN, 'BC breaks', '.+');
         $backwardCompatible = $this->extractWithRegex($regex);
 
         return 'yes' === $backwardCompatible;
@@ -94,7 +96,7 @@ class BodyParser
      */
     public function willDeprecateCode()
     {
-        $regex = "/(\|[[:space:]]Deprecations\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Deprecations', '.+');
         $willDeprecateCode = $this->extractWithRegex($regex);
 
         return 'no' === $willDeprecateCode;
@@ -143,19 +145,21 @@ class BodyParser
     /**
      * @return string
      */
-    public function getRelatedForgeIssue()
+    public function getRelatedTicket()
     {
-        $regex = "/(\|[[:space:]]Fixed ticket\?[[:space:]]+\|[[:space:]])(.+)\r\n/";
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Fixed ticket', '.+');
 
         return $this->extractWithRegex($regex);
     }
 
     /**
-     * @throws Exception
+     * @return string
      */
     public function getTestingScenario()
     {
-        throw new Exception('Need to be done');
+        $regex = sprintf(self::DEFAULT_PATTERN, 'How to test', '.+');
+
+        return $this->extractWithRegex($regex);
     }
 
     /**
@@ -184,6 +188,6 @@ class BodyParser
     {
         preg_match($regex, $this->getBody(), $matches);
 
-        return isset($matches[2]) ? $matches[2] : '';
+        return trim(isset($matches[1]) ? $matches[1] : '');
     }
 }

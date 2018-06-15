@@ -2,13 +2,14 @@
 
 namespace tests\AppBundle\Diff;
 
+use PHPUnit\Framework\TestCase;
 use AppBundle\Diff\Diff;
 use Lpdigital\Github\Parser\WebhookResolver;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class DiffTest extends \PHPUnit_Framework_TestCase
+class DiffTest extends TestCase
 {
     const TRANS_PATTERN = '#(trans\(|->l\()#';
     const CLASSIC_PATH = '#^themes\/classic\/#';
