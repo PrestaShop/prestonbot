@@ -2,10 +2,10 @@
 
 namespace tests\AppBundle\Issues;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\Issues\Listener;
 use AppBundle\Issues\Status;
 use AppBundle\Issues\StatusApi;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 
 /**

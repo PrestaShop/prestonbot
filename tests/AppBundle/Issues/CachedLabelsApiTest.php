@@ -2,9 +2,9 @@
 
 namespace tests\AppBundle\Issues;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\Issues\CachedLabelsApi;
 use Github\Api\Issue\Labels;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>

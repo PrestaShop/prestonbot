@@ -2,9 +2,9 @@
 
 namespace tests\AppBundle\Diff;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\Diff\Diff;
 use Lpdigital\Github\Parser\WebhookResolver;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>

@@ -2,10 +2,10 @@
 
 namespace Tests\AppBundle\Issues\GitHub;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\Issues\CachedLabelsApi;
 use AppBundle\Issues\Status;
 use AppBundle\Issues\StatusApi;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>

@@ -2,8 +2,8 @@
 
 namespace tests\AppBundle\Comments;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\Comments\CommentApi;
+use PHPUnit\Framework\TestCase;
 
 class CommentApiTest extends TestCase
 {

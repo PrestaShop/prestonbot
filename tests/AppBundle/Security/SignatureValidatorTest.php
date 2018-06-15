@@ -2,8 +2,8 @@
 
 namespace tests\AppBundle\Security;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\Security\SignatureValidator;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

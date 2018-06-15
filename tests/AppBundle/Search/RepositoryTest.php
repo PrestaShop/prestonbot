@@ -2,9 +2,9 @@
 
 namespace tests\AppBundle\Search;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\Search\Repository;
 use Github\Api\Search;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>

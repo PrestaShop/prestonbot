@@ -2,9 +2,9 @@
 
 namespace tests\AppBundle\PullRequests;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\PullRequests\BodyParser;
 use Lpdigital\Github\Parser\WebhookResolver;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
@@ -41,12 +41,12 @@ class BodyParserTest extends TestCase
 
     public function testIsDeprecated()
     {
-        $this->assertSame(false, $this->bodyParser->willDeprecateCode());
+        $this->assertFalse($this->bodyParser->willDeprecateCode());
     }
 
     public function testIsBackwardCompatible()
     {
-        $this->assertSame(false, $this->bodyParser->isBackwardCompatible());
+        $this->assertFalse($this->bodyParser->isBackwardCompatible());
     }
 
     public function testGetTestingScenario()

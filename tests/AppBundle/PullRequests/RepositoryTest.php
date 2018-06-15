@@ -2,8 +2,8 @@
 
 namespace tests\AppBundle\PullRequests;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\PullRequests\Repository;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>

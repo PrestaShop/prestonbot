@@ -2,8 +2,8 @@
 
 namespace tests\AppBundle\Organizations;
 
-use PHPUnit\Framework\TestCase;
 use AppBundle\Organizations\Repository;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
