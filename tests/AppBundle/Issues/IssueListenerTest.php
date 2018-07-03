@@ -5,12 +5,13 @@ namespace tests\AppBundle\Issues;
 use AppBundle\Issues\Listener;
 use AppBundle\Issues\Status;
 use AppBundle\Issues\StatusApi;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class IssueListenerTest extends \PHPUnit_Framework_TestCase
+class IssueListenerTest extends TestCase
 {
     /**
      * @var StatusApi|\PHPUnit_Framework_MockObject_MockObject

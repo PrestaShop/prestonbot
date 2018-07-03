@@ -4,11 +4,12 @@ namespace tests\AppBundle\Issues;
 
 use AppBundle\Issues\CachedLabelsApi;
 use Github\Api\Issue\Labels;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class CachedLabelsApiTest extends \PHPUnit_Framework_TestCase
+class CachedLabelsApiTest extends TestCase
 {
     const USER_NAME = 'weaverryan';
 

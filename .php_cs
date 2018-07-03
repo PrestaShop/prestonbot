@@ -5,8 +5,18 @@ return PhpCsFixer\Config::create()
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        'array_syntax' => array('syntax' => 'short'),
-        'no_extra_consecutive_blank_lines' => array('break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block'),
+        'array_syntax' => ['syntax' => 'short'],
+        'no_extra_consecutive_blank_lines' => [
+            'break',
+            'continue',
+            'extra',
+            'return',
+            'throw',
+            'use',
+            'parenthesis_brace_block',
+            'square_brace_block',
+            'curly_brace_block'
+        ],
         'no_useless_else' => true,
         'no_useless_return' => true,
         'ordered_class_elements' => true,

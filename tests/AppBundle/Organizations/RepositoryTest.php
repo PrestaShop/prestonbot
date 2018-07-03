@@ -3,11 +3,12 @@
 namespace tests\AppBundle\Organizations;
 
 use AppBundle\Organizations\Repository;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class RepositoryTest extends \PHPUnit_Framework_TestCase
+class RepositoryTest extends TestCase
 {
     const USER_NAME = 'loveOSS';
 

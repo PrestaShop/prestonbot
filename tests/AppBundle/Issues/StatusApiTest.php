@@ -5,11 +5,12 @@ namespace Tests\AppBundle\Issues\GitHub;
 use AppBundle\Issues\CachedLabelsApi;
 use AppBundle\Issues\Status;
 use AppBundle\Issues\StatusApi;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class StatusApiTest extends \PHPUnit_Framework_TestCase
+class StatusApiTest extends TestCase
 {
     const USER_NAME = 'weaverryan';
 
@@ -49,6 +50,9 @@ class StatusApiTest extends \PHPUnit_Framework_TestCase
 
     public function testGetNeedsReviewUrl()
     {
-        $this->assertSame('https://github.com/weaverryan/carson/labels/waiting%20for%20code%20review', $this->api->getNeedsReviewUrl());
+        $this->assertSame(
+            'https://github.com/weaverryan/carson/labels/waiting%20for%20code%20review',
+            $this->api->getNeedsReviewUrl()
+        );
     }
 }

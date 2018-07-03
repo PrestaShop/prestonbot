@@ -132,23 +132,23 @@ class Listener
     {
         $userCommits = $this->commitRepository->findAllByUser($sender);
 
-        if (0 === count($userCommits)) {
-            $this->commentApi->sendWithTemplate(
-                $pullRequest,
-                'markdown/welcome.md.twig',
-                ['username' => $sender->getLogin()]
-            );
-
-            $this->logger->info(sprintf(
-                '[Contributor] `%s` was welcomed on Pull request n° %s',
-                $pullRequest->getUser()->getLogin(),
-                $pullRequest->getNumber()
-            ));
-
-            return true;
+        if (0 !== count($userCommits)) {
+            return false;
         }
 
-        return false;
+        $this->commentApi->sendWithTemplate(
+            $pullRequest,
+            'markdown/welcome.md.twig',
+            ['username' => $sender->getLogin()]
+        );
+
+        $this->logger->info(sprintf(
+            '[Contributor] `%s` was welcomed on Pull request n° %s',
+            $pullRequest->getUser()->getLogin(),
+            $pullRequest->getNumber()
+        ));
+
+        return true;
     }
 
     /**

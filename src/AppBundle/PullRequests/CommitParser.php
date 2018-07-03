@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class CommitParser
 {
     /**
-     * @Assert\Regex("/^(CO|FO|BO|TE|IN|WS|LO)(\:[[:space:]])(.+)/")
+     * @Assert\Regex("/^(CO|FO|BO|TE|IN|WS|LO)(\:\s+)(.+)/")
      *
      * @var string
      */

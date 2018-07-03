@@ -3,8 +3,9 @@
 namespace tests\AppBundle\Comments;
 
 use AppBundle\Comments\CommentApi;
+use PHPUnit\Framework\TestCase;
 
-class CommentApiTest extends \PHPUnit_Framework_TestCase
+class CommentApiTest extends TestCase
 {
     const USER_NAME = 'weaverryan';
     const REPO_NAME = 'carson';

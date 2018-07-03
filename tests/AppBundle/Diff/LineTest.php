@@ -3,11 +3,12 @@
 namespace tests\AppBundle\Diff;
 
 use AppBundle\Diff\Line;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class LineTest extends \PHPUnit_Framework_TestCase
+class LineTest extends TestCase
 {
     const TRANS_PATTERN = '#(trans\(|->l\()#';
 
