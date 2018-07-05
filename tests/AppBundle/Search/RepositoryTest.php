@@ -4,11 +4,12 @@ namespace tests\AppBundle\Search;
 
 use AppBundle\Search\Repository;
 use Github\Api\Search;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class RepositoryTest extends \PHPUnit_Framework_TestCase
+class RepositoryTest extends TestCase
 {
     private $repository;
     private $searchApiMock;

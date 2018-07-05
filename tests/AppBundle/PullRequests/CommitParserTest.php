@@ -30,7 +30,7 @@ class CommitParserTest extends WebTestCase
     public function testGetMessage()
     {
         $parser = new CommitParser('foo', self::$pullRequest);
-        $this->assertSame($parser->getMessage(), 'foo');
+        $this->assertSame('foo', $parser->getMessage());
     }
 
     /**

@@ -5,10 +5,11 @@ namespace tests\AppBundle\Event;
 use AppBundle\Event\GitHubEvent;
 use AppBundle\Event\GitHubEventResolver;
 use Lpdigital\Github\Parser\WebhookResolver;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
-class GitHubEventResolverTest extends \PHPUnit_Framework_TestCase
+class GitHubEventResolverTest extends TestCase
 {
     const REPOSITORY_OWNER = 'loveOSS';
     const REPOSITORY_NAME = 'test';

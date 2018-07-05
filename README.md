@@ -25,7 +25,6 @@ The Home page is now available at "http://localhost:81/".
 You need also to create your own GitHub [personal token](https://github.com/settings/tokens) and export it:
 
 ```bash
-export SYMFONY_PHPUNIT_VERSION=5.7
 export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 export GH_SECURED_TOKEN=YYYYYYYYYYYYYYYYYYYYYYYYYYYY
 ```
