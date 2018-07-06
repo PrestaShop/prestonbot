@@ -48,6 +48,48 @@ class StatusApiTest extends TestCase
         $this->api->addIssueLabel(1234, Status::CODE_REVIEWED);
     }
 
+    public function testAddIssueLabelWithBugAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('getIssueLabels')
+            ->with(1234)
+            ->willReturn(['Bug', 'Status: Needs Review']);
+
+        $this->labelsApi->expects($this->once())
+            ->method('addIssueLabel')
+            ->with(1234, 'Bug');
+
+        $this->api->addIssueLabel(1234, 'bug fix');
+    }
+
+    public function testAddIssueLabelWithFeatureAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('getIssueLabels')
+            ->with(1234)
+            ->willReturn(['Feature', 'Status: Needs Review']);
+
+        $this->labelsApi->expects($this->once())
+            ->method('addIssueLabel')
+            ->with(1234, 'Feature');
+
+        $this->api->addIssueLabel(1234, 'new feature');
+    }
+
+    public function testAddIssueLabelWithImprovementAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('getIssueLabels')
+            ->with(1234)
+            ->willReturn(['Improvement', 'Status: Needs Review']);
+
+        $this->labelsApi->expects($this->once())
+            ->method('addIssueLabel')
+            ->with(1234, 'Improvement');
+
+        $this->api->addIssueLabel(1234, 'improvement');
+    }
+
     public function testGetNeedsReviewUrl()
     {
         $this->assertSame(

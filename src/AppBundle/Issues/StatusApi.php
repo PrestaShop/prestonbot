@@ -41,6 +41,10 @@ class StatusApi
         if (!empty($currentLabels)) {
             foreach ($currentLabels as $label) {
                 if ($label !== $newLabel) {
+                    if (isset(Labels::ALIASES[$newLabel])) {
+                        $newLabel = Labels::ALIASES[$newLabel];
+                    }
+
                     $this->labelsApi->addIssueLabel($issueNumber, $newLabel);
 
                     return true;
