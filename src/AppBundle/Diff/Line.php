@@ -88,11 +88,11 @@ class Line
     }
 
     /**
-     * @param $regexp
+     * @param string $regexp
      *
      * @return bool
      */
-    public function match($regexp)
+    public function match(string $regexp)
     {
         return 1 === preg_match($regexp, $this->content);
     }

@@ -108,7 +108,8 @@ class PullRequestSubscriber implements EventSubscriberInterface
     public function checkForNewTranslations(GitHubEvent $githubEvent)
     {
         $event = $githubEvent->getEvent();
-        $pullRequest = $event->pullRequest;
+
+        $pullRequest = $githubEvent->getPullRequest();
         $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
 
         if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
@@ -145,7 +146,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     public function checkForClassicChanges(GitHubEvent $githubEvent)
     {
         $event = $githubEvent->getEvent();
-        $pullRequest = $event->pullRequest;
+        $pullRequest = $githubEvent->getPullRequest();
         $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
 
         if ($found = $diff->path(self::CLASSIC_PATH)->match()) {

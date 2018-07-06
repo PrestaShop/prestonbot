@@ -51,6 +51,8 @@
         "phpstan/phpstan": "^0.10.1"
     },
     "scripts": {
+        "phpstan": "@php ./vendor/bin/phpstan analyse src tests -c phpstan.neon -l 1",
+        "cs-fix": "@php ./vendor/bin/php-cs-fixer fix",
         "symfony-scripts": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",

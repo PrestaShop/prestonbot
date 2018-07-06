@@ -37,11 +37,11 @@ class CachedLabelsApi
     }
 
     /**
-     * @param $issueNumber
+     * @param int $issueNumber
      *
      * @return array
      */
-    public function getIssueLabels($issueNumber)
+    public function getIssueLabels(int $issueNumber)
     {
         if (!isset($this->labelCache[$issueNumber])) {
             $this->labelCache[$issueNumber] = [];
@@ -62,10 +62,10 @@ class CachedLabelsApi
     }
 
     /**
-     * @param $issueNumber
-     * @param $label
+     * @param int    $issueNumber
+     * @param string $label
      */
-    public function addIssueLabel($issueNumber, $label)
+    public function addIssueLabel(int $issueNumber, string $label)
     {
         if (isset($this->labelCache[$issueNumber][$label])) {
             return;
@@ -85,10 +85,10 @@ class CachedLabelsApi
     }
 
     /**
-     * @param $issueNumber
-     * @param $label
+     * @param int    $issueNumber
+     * @param string $label
      */
-    public function removeIssueLabel($issueNumber, $label)
+    public function removeIssueLabel(int $issueNumber, string $label)
     {
         if (isset($this->labelCache[$issueNumber]) && !isset($this->labelCache[$issueNumber][$label])) {
             return;

@@ -89,11 +89,11 @@ class Diff implements IteratorAggregate
     }
 
     /**
-     * @param $regexp
+     * @param string $regexp
      *
      * @return $this
      */
-    public function path($regexp)
+    public function path(string $regexp)
     {
         $this->iterator->path($regexp);
 
@@ -101,11 +101,11 @@ class Diff implements IteratorAggregate
     }
 
     /**
-     * @param $regexp
+     * @param string $regexp
      *
      * @return $this
      */
-    public function contains($regexp)
+    public function contains(string $regexp)
     {
         $this->iterator->contains($regexp);
 

@@ -8,25 +8,25 @@ interface CommentApiInterface
 {
     /**
      * @param PullRequest $pullRequest
-     * @param $comment
+     * @param string      $comment
      *
      * @return mixed
      */
-    public function send(PullRequest $pullRequest, $comment);
+    public function send(PullRequest $pullRequest, string $comment);
 
     /**
      * @param PullRequest $pullRequest
-     * @param $templateName
-     * @param $params
+     * @param string      $templateName
+     * @param array       $params
      *
      * @return mixed
      */
-    public function sendWithTemplate(PullRequest $pullRequest, $templateName, $params);
+    public function sendWithTemplate(PullRequest $pullRequest, string $templateName, array $params);
 
     /**
-     * @param $commentId
+     * @param int $commentId
      *
      * @return mixed
      */
-    public function remove($commentId);
+    public function remove(int $commentId);
 }

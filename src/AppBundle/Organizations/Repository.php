@@ -47,9 +47,9 @@ class Repository
     }
 
     /**
-     * @param $teamName
+     * @param string $teamName
      */
-    public function getTeam($teamName)
+    public function getTeam(string $teamName)
     {
         $teams = $this->getTeams();
 
@@ -57,11 +57,11 @@ class Repository
     }
 
     /**
-     * @param $teamName
+     * @param string $teamName
      *
      * @return \Guzzle\Http\EntityBodyInterface|mixed|string
      */
-    public function getTeamMembers($teamName)
+    public function getTeamMembers(string $teamName)
     {
         $teams = $this->getTeams();
 

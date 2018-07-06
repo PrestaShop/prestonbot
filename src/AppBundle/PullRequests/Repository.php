@@ -25,11 +25,11 @@ class Repository implements RepositoryInterface
     private $knpCommentsApi;
 
     /**
-     * @var
+     * @var string
      */
     private $repositoryOwner;
     /**
-     * @var
+     * @var string
      */
     private $repositoryName;
 

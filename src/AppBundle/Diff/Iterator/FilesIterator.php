@@ -39,11 +39,11 @@ class FilesIterator implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param $regexp
+     * @param string $regexp
      *
      * @return $this
      */
-    public function path($regexp)
+    public function path(string $regexp)
     {
         $this->iterator = new PathFilterIterator($this->iterator, $regexp);
 
@@ -51,11 +51,11 @@ class FilesIterator implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param $regexp
+     * @param string $regexp
      *
      * @return $this
      */
-    public function contains($regexp)
+    public function contains(string $regexp)
     {
         $this->iterator = new ContentFilterIterator($this->iterator, $regexp);
 
