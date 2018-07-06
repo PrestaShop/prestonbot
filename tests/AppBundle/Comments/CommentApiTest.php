@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Comments;
+namespace Tests\AppBundle\Comments;
 
 use AppBundle\Comments\CommentApi;
 use PHPUnit\Framework\TestCase;
@@ -14,6 +14,7 @@ class CommentApiTest extends TestCase
     private $knpCommentApi;
     private $commentApi;
     private $pullRequest;
+    private $twig;
 
     public function setUp()
     {

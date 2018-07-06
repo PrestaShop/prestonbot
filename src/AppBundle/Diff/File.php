@@ -97,6 +97,6 @@ class File
      */
     public function match($regexp)
     {
-        return 1 === preg_match($regexp, $this->content);
+        return 1 === preg_match($regexp, $this->content());
     }
 }

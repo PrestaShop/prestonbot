@@ -1,7 +1,8 @@
 <?php
 
-namespace tests\AppBundle\Controller;
+namespace Tests\AppBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -10,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class MinimalControllerTest extends WebTestCase
 {
     /**
-     * @var Symfony\Bundle\FrameworkBundle\Client
+     * @var Client
      */
     private $client;
 

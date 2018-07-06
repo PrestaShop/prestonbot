@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Controller;
+namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -196,7 +196,7 @@ class WebhookControllerTest extends WebTestCase
      *
      * @return string
      */
-    private function createSignature($signedContent, $secret = self::SECRET, $algo = 'sha1')
+    private function createSignature($signedContent, $secret, $algo = 'sha1')
     {
         return sprintf('%s=%s', $algo, hash_hmac($algo, $signedContent, $secret));
     }

@@ -16,7 +16,7 @@ matrix:
 env:
   global:
     - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
-    - SYMFONY_PHPUNIT_VERSION=5.7
+    - SYMFONY_PHPUNIT_VERSION=6.5
 
 before_install:
   - phpenv config-rm xdebug.ini
@@ -29,6 +29,7 @@ install:
 script:
   - vendor/bin/simple-phpunit
   - vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`
+  - vendor/bin/phpstan analyse src tests -l 0
   - ./bin/console lint:yaml app/config
   - ./bin/console lint:twig app/Resources
   - ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock

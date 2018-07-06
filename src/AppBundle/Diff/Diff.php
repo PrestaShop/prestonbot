@@ -14,6 +14,12 @@ class Diff implements IteratorAggregate
      * @var string
      */
     private $diffContent;
+
+    /**
+     * @var FilesIterator
+     */
+    private $iterator;
+
     /**
      * @var array
      */

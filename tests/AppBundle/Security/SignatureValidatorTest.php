@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Security;
+namespace Tests\AppBundle\Security;
 
 use AppBundle\Security\SignatureValidator;
 use PHPUnit\Framework\TestCase;

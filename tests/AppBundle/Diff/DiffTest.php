@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Diff;
+namespace Tests\AppBundle\Diff;
 
 use AppBundle\Diff\Diff;
 use Lpdigital\Github\Parser\WebhookResolver;
