@@ -7,6 +7,10 @@ cache:
     - $HOME/.composer/cache/files
     - $HOME/symfony-bridge/.phpunit
 
+env:
+  global:
+    - SYMFONY_PHPUNIT_VERSION=6.5
+
 php:
   - 7.1
   - 7.2
