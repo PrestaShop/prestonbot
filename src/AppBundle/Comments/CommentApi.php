@@ -42,7 +42,7 @@ class CommentApi implements CommentApiInterface
     /**
      * {@inheritdoc}
      */
-    public function send(PullRequest $pullRequest, $comment)
+    public function send(PullRequest $pullRequest, string $comment)
     {
         $this->knpCommentApi
             ->create(
@@ -58,7 +58,7 @@ class CommentApi implements CommentApiInterface
     /**
      * {@inheritdoc}
      */
-    public function sendWithTemplate(PullRequest $pullRequest, $templateName, $params)
+    public function sendWithTemplate(PullRequest $pullRequest, string $templateName, array $params)
     {
         $comment = $this->twig->render($templateName, $params);
         $this->knpCommentApi
@@ -75,7 +75,7 @@ class CommentApi implements CommentApiInterface
     /**
      * {@inheritdoc}
      */
-    public function remove($commentId)
+    public function remove(int $commentId)
     {
         $this->knpCommentApi
             ->remove(

@@ -68,8 +68,8 @@ class Reporter
     }
 
     /**
-     * @param $tagName
-     * @param $base
+     * @param string $tagName
+     * @param string $base
      *
      * @return array
      */

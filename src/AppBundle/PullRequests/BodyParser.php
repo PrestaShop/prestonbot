@@ -179,11 +179,11 @@ class BodyParser
     }
 
     /**
-     * @param $regex
+     * @param string $regex
      *
      * @return string
      */
-    private function extractWithRegex($regex)
+    private function extractWithRegex(string $regex)
     {
         preg_match($regex, $this->getBody(), $matches);
 

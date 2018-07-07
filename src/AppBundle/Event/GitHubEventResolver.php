@@ -4,6 +4,7 @@ namespace AppBundle\Event;
 
 use InvalidArgumentException;
 use Lpdigital\Github\EventType\ActionableEventInterface;
+use Lpdigital\Github\EventType\GithubEventInterface;
 use Lpdigital\Github\Parser\WebhookResolver;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,6 +71,7 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
         $event = $this->resolver->resolve($payload);
 
         if ($event instanceof ActionableEventInterface &&
+            $event instanceof GithubEventInterface &&
             $this->isValid($event)
         ) {
             $githubEvent = new GitHubEvent($event::name(), $event);

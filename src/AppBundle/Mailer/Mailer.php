@@ -2,10 +2,16 @@
 
 namespace AppBundle\Mailer;
 
+use Swift_Mailer;
+use Twig_Environment;
+
+/**
+ * Wrapper around Symfony Mailer class to fits PrestonBot needs.
+ */
 class Mailer
 {
     /**
-     * @var \Swift_Mailer
+     * @var Swift_Mailer
      */
     private $mailer;
 
@@ -14,7 +20,7 @@ class Mailer
      */
     private $twig;
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig)
+    public function __construct(Swift_Mailer $mailer, Twig_Environment $twig)
     {
         $this->mailer = $mailer;
         $this->twig = $twig;

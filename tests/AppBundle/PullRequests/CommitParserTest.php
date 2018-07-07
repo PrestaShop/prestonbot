@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\PullRequests;
+namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\CommitParser;
 use Lpdigital\Github\Entity\PullRequest;

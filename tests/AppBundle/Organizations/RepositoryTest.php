@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Organizations;
+namespace Tests\AppBundle\Organizations;
 
 use AppBundle\Organizations\Repository;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +22,7 @@ class RepositoryTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->repository = new Repository($organizationApi, self::USER_NAME, self::REPO_NAME);
+        $this->repository = new Repository($organizationApi, self::REPO_NAME);
     }
 
     public function testGetTeams()

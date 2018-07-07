@@ -40,19 +40,19 @@ class FakeCommentApi implements CommentApiInterface
         $this->twig = $twig;
     }
 
-    public function send(PullRequest $pullRequest, $comment)
+    public function send(PullRequest $pullRequest, string $comment)
     {
         return true;
     }
 
-    public function sendWithTemplate(PullRequest $pullRequest, $templateName, $params)
+    public function sendWithTemplate(PullRequest $pullRequest, string $templateName, array $params)
     {
         $comment = $this->twig->render($templateName, $params);
 
         return $comment;
     }
 
-    public function remove($commentId)
+    public function remove(int $commentId)
     {
         return true;
     }

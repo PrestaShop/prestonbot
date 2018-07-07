@@ -1,11 +1,12 @@
 <?php
 
-namespace tests\AppBundle\Event;
+namespace Tests\AppBundle\Event;
 
 use AppBundle\Event\GitHubEvent;
 use AppBundle\Event\GitHubEventResolver;
 use Lpdigital\Github\Parser\WebhookResolver;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
@@ -30,7 +31,7 @@ class GitHubEventResolverTest extends TestCase
 
     public function setUp()
     {
-        $this->logger = $this->createMock('Psr\Log\LoggerInterface');
+        $this->logger = $this->createMock(LoggerInterface::class);
         $this->webhookResolver = new WebhookResolver();
 
         $this->argumentResolver = new GitHubEventResolver(

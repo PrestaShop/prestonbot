@@ -100,11 +100,11 @@ class SendPullRequestReportCommand extends Command
     }
 
     /**
-     * @param $groups
+     * @param array $groups
      *
      * @return array
      */
-    private function getRows($groups)
+    private function getRows(array $groups)
     {
         $rows = [];
 

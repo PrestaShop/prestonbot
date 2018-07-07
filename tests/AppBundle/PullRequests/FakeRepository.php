@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\PullRequests;
+namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\RepositoryInterface;
 use AppBundle\Search\Repository as SearchRepository;
@@ -33,7 +33,7 @@ class FakeRepository implements RepositoryInterface
         $this->repositoryName = $repositoryName;
     }
 
-    public function findAll($base = 'develop')
+    public function findAll(string $base = 'develop')
     {
         $pullRequests = [];
         $search = $this->searchRepository->getPullRequests(['base' => $base]);
@@ -45,7 +45,7 @@ class FakeRepository implements RepositoryInterface
         return $pullRequests;
     }
 
-    public function findAllWithLabel($label, $base = 'develop')
+    public function findAllWithLabel(string $label, string $base = 'develop')
     {
         $pullRequests = [];
         $search = $this->searchRepository->getPullRequests(

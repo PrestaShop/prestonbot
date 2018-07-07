@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Issues;
+namespace Tests\AppBundle\Issues;
 
 use AppBundle\Issues\Listener;
 use AppBundle\Issues\Status;
@@ -19,7 +19,7 @@ class IssueListenerTest extends TestCase
     private $statusApi;
 
     /**
-     * @var IssueListener
+     * @var Listener
      */
     private $listener;
 
