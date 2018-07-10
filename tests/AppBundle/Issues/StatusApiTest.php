@@ -70,6 +70,24 @@ class StatusApiTest extends TestCase
         $this->api->addIssueLabel(1234, 'improvement');
     }
 
+    public function testAddIssueLabelWithCriticalAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('addIssueLabel')
+            ->with(1234, 'Critical');
+
+        $this->api->addIssueLabel(1234, 'critical');
+    }
+
+    public function testAddIssueLabelWithRefactoAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('addIssueLabel')
+            ->with(1234, 'Need refacto');
+
+        $this->api->addIssueLabel(1234, 'refacto');
+    }
+
     public function testGetNeedsReviewUrl()
     {
         $this->assertSame(
