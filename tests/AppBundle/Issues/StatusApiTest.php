@@ -83,7 +83,7 @@ class StatusApiTest extends TestCase
     {
         $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
-            ->with(1234, 'Need refacto');
+            ->with(1234, 'Refactoring');
 
         $this->api->addIssueLabel(1234, 'refacto');
     }

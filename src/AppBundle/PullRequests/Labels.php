@@ -21,7 +21,7 @@ final class Labels
 
     const CRITICAL = 'Critical';
 
-    const REFACTONG = 'Need refacto';
+    const REFACTORING = 'Refactoring';
 
     // Help to prevent changes in the future
     const ALIASES = [
@@ -29,6 +29,6 @@ final class Labels
         'critical' => self::CRITICAL,
         'improvement' => self::IMPROVEMENT,
         'new feature' => self::FEATURE,
-        'refacto' => self::REFACTONG,
+        'refacto' => self::REFACTORING,
     ];
 }
