@@ -19,10 +19,16 @@ final class Labels
 
     const IMPROVEMENT = 'Improvement';
 
+    const CRITICAL = 'Critical';
+
+    const REFACTORING = 'Refactoring';
+
     // Help to prevent changes in the future
     const ALIASES = [
-        'new feature' => self::FEATURE,
         'bug fix' => self::BUG,
+        'critical' => self::CRITICAL,
         'improvement' => self::IMPROVEMENT,
+        'new feature' => self::FEATURE,
+        'refacto' => self::REFACTORING,
     ];
 }

@@ -37,11 +37,6 @@ class StatusApiTest extends TestCase
     public function testAddIssueLabel()
     {
         $this->labelsApi->expects($this->once())
-            ->method('getIssueLabels')
-            ->with(1234)
-            ->willReturn(['Bug', 'Status: Needs Review']);
-
-        $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
             ->with(1234, 'Code reviewed');
 
@@ -50,11 +45,6 @@ class StatusApiTest extends TestCase
 
     public function testAddIssueLabelWithBugAlias()
     {
-        $this->labelsApi->expects($this->once())
-            ->method('getIssueLabels')
-            ->with(1234)
-            ->willReturn(['Bug', 'Status: Needs Review']);
-
         $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
             ->with(1234, 'Bug');
@@ -65,11 +55,6 @@ class StatusApiTest extends TestCase
     public function testAddIssueLabelWithFeatureAlias()
     {
         $this->labelsApi->expects($this->once())
-            ->method('getIssueLabels')
-            ->with(1234)
-            ->willReturn(['Feature', 'Status: Needs Review']);
-
-        $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
             ->with(1234, 'Feature');
 
@@ -79,15 +64,28 @@ class StatusApiTest extends TestCase
     public function testAddIssueLabelWithImprovementAlias()
     {
         $this->labelsApi->expects($this->once())
-            ->method('getIssueLabels')
-            ->with(1234)
-            ->willReturn(['Improvement', 'Status: Needs Review']);
-
-        $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
             ->with(1234, 'Improvement');
 
         $this->api->addIssueLabel(1234, 'improvement');
+    }
+
+    public function testAddIssueLabelWithCriticalAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('addIssueLabel')
+            ->with(1234, 'Critical');
+
+        $this->api->addIssueLabel(1234, 'critical');
+    }
+
+    public function testAddIssueLabelWithRefactoAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('addIssueLabel')
+            ->with(1234, 'Refactoring');
+
+        $this->api->addIssueLabel(1234, 'refacto');
     }
 
     public function testGetNeedsReviewUrl()
