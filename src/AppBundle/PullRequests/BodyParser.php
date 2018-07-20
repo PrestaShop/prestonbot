@@ -60,7 +60,7 @@ class BodyParser
      */
     public function getType()
     {
-        $regex = sprintf(self::DEFAULT_PATTERN, 'Type', '\w+\s\w+');
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Type', '\w+(?:\s\w+)?');
 
         return $this->extractWithRegex($regex);
     }

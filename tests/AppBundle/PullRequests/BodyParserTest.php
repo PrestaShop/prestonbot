@@ -70,6 +70,23 @@ class BodyParserTest extends TestCase
         $this->assertFalse($this->bodyParser->isARefacto());
     }
 
+    public function testGetTypeWithoutSpaces()
+    {
+        $this->webhookResolver = new WebhookResolver();
+        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.opened.improvement.json');
+        $data = json_decode($webhookResponse, true);
+        $this->event = $this->webhookResolver->resolve($data);
+        $this->bodyParser = new BodyParser($this->event->pullRequest->getBody());
+
+        $this->assertSame($this->bodyParser->getType(), 'improvement');
+        $this->assertContains($this->bodyParser->getType(), $this->bodyParser->getValidTypes());
+        $this->assertFalse($this->bodyParser->isAFeature());
+        $this->assertTrue($this->bodyParser->isAnImprovement());
+        $this->assertFalse($this->bodyParser->isABugFix());
+        $this->assertFalse($this->bodyParser->isASmallFix());
+        $this->assertFalse($this->bodyParser->isARefacto());
+    }
+
     public function testGetTicket()
     {
         $this->assertSame('http://forge.prestashop.com/browse/TEST-1234', $this->bodyParser->getRelatedTicket());
