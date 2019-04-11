@@ -46,6 +46,16 @@ class StatusApi
     }
 
     /**
+     * @param int $issueNumber The GitHub issue number
+     *
+     * @return string[]
+     */
+    public function getLabels($issueNumber)
+    {
+        return $this->labelsApi->getIssueLabels($issueNumber);
+    }
+
+    /**
      * @return string
      */
     public function getNeedsReviewUrl()

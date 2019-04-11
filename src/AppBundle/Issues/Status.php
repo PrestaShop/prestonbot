@@ -17,6 +17,8 @@ final class Status
 
     const PM_APPROVED = 'PM-approved';
 
+    const WORDING_APPROVED = 'Wording ✔️';
+
     const WAITING_FOR_WORDING = 'waiting for wording';
 
     const CRITICAL_ISSUE = 'Type: Critical Bug Fix';

@@ -33,6 +33,12 @@ class Listener
      */
     public function handleWaitingForWordingEvent($issueNumber): string
     {
+        $labels = $this->statusApi->getLabels($issueNumber);
+
+        if (in_array(Status::WORDING_APPROVED, $labels)) {
+            return Status::WORDING_APPROVED;
+        }
+
         $newStatus = Status::WAITING_FOR_WORDING;
 
         $this->statusApi->addIssueLabel($issueNumber, $newStatus);
