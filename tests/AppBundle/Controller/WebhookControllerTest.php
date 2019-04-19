@@ -75,11 +75,12 @@ class WebhookControllerTest extends WebTestCase
                     'action' => 'checked for new translations',
                     'status' => 'not_found',
                 ],
-                [
+                // Classic Theme changes are not tracked anymore
+                /*[
                     'event' => 'pr_opened',
                     'action' => 'checked for changes on Classic Theme',
                     'status' => 'not_found',
-                ],
+                ],*/
             ],
         ];
         $tests['Pull request creation with wording'] = [
@@ -107,11 +108,12 @@ class WebhookControllerTest extends WebTestCase
                     'action' => 'checked for new translations',
                     'status' => 'found',
                 ],
-                [
+                // Classic Theme changes are not tracked anymore
+                /*[
                     'event' => 'pr_opened',
                     'action' => 'checked for changes on Classic Theme',
                     'status' => 'not_found',
-                ],
+                ],*/
             ],
         ];
         $tests['Pull request creation with classic changes'] = [
@@ -139,11 +141,12 @@ class WebhookControllerTest extends WebTestCase
                     'action' => 'checked for new translations',
                     'status' => 'not_found',
                 ],
-                [
+                // Classic Theme changes are not tracked anymore
+                /*[
                     'event' => 'pr_opened',
                     'action' => 'checked for changes on Classic Theme',
                     'status' => 'found',
-                ],
+                ],*/
             ],
         ];
         $tests['Pull request creation for critical bug'] = [
