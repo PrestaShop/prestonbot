@@ -35,7 +35,7 @@ class Listener
     {
         $labels = $this->statusApi->getLabels($issueNumber);
 
-        if (in_array(Status::WORDING_APPROVED, $labels)) {
+        if (\in_array(Status::WORDING_APPROVED, $labels, true)) {
             return Status::WORDING_APPROVED;
         }
 
