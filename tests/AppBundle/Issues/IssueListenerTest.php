@@ -32,6 +32,11 @@ class IssueListenerTest extends TestCase
     public function testHandleWaitingForWordingEvent()
     {
         $this->statusApi->expects(static::once())
+            ->method('getLabels')
+            ->with(1234)
+            ->willReturn([]);
+
+        $this->statusApi->expects(static::once())
             ->method('addIssueLabel')
             ->with(1234, Status::WAITING_FOR_WORDING);
 
