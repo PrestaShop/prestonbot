@@ -41,13 +41,11 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['checkForNewTranslations', 252],
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
-                ['checkForClassicChanges', 252],
                 ['checkIfPrFixCriticalIssue', 253],
             ],
             'pullrequestevent_edited' => [
                 ['removePullRequestValidationComment', 255],
                 ['checkForNewTranslations', 252],
-                ['checkForClassicChanges', 252],
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
             ],
