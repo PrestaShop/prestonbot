@@ -30,7 +30,7 @@
         "symfony/twig-bundle": "^3.4",
         "symfony/asset": "^3.4",
         "symfony/console": "^3.4",
-        "symfony/lts": "v3",
+        "symfony/symfony": "^3.4.26",
         "symfony/templating": "^3.4",
         "symfony/translation": "^3.4",
         "symfony/validator": "^3.4",
