@@ -5,6 +5,8 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class AppKernel extends Kernel
 {
+    const PRESTON_BOT_VERSION = '3.0.0';
+
     public function registerBundles()
     {
         $bundles = [
