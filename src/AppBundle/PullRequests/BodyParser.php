@@ -66,8 +66,8 @@ class BodyParser
     }
 
     /**
-     * @Assert\Choice(choices = {"FO", "BO", "CO", "IN", "TE", "WS", "LO"},
-     * message = "The `category` should be one of: `FO`, `BO`, `CO`, `IN`, `TE`, `WS`, `LO`",
+     * @Assert\Choice(choices = {"FO", "BO", "CO", "IN", "TE", "WS", "LO", "ME", "PM"},
+     * message = "The `category` should be one of: `FO`, `BO`, `CO`, `IN`, `TE`, `WS`, `LO`, `ME`, `PM`",
      * strict=true)
      *
      * @return string
