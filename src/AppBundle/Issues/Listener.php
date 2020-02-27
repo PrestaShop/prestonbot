@@ -3,6 +3,7 @@
 namespace AppBundle\Issues;
 
 use AppBundle\PullRequests\BodyParser;
+use AppBundle\PullRequests\Labels;
 use Lpdigital\Github\Entity\PullRequest;
 use Psr\Log\LoggerInterface;
 
@@ -96,8 +97,11 @@ class Listener
         $issueNumber = $pullRequest->getNumber();
         $pullRequestType = trim($bodyParser->getType());
 
-        $this->statusApi->addIssueLabel($issueNumber, $pullRequestType);
-        $this->log($issueNumber, $pullRequestType);
+        // only add labels if they are defined in the white list
+        if (isset(Labels::ALIASES[$pullRequestType])) {
+            $this->statusApi->addIssueLabel($issueNumber, $pullRequestType);
+            $this->log($issueNumber, $pullRequestType);
+        }
     }
 
     /**
