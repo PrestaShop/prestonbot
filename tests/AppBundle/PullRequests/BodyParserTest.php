@@ -3,7 +3,6 @@
 namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\BodyParser;
-use Lpdigital\Github\Parser\WebhookResolver;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,21 +11,10 @@ use PHPUnit\Framework\TestCase;
 class BodyParserTest extends TestCase
 {
     private $bodyParser;
-    private $event;
-    private $webhookResolver;
 
     protected function setUp()
     {
-        $this->webhookResolver = new WebhookResolver();
-        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.opened.json');
-        $data = json_decode($webhookResponse, true);
-        $this->event = $this->webhookResolver->resolve($data);
-        $this->bodyParser = new BodyParser($this->event->pullRequest->getBody());
-    }
-
-    public function testGetBody()
-    {
-        $this->assertSame($this->event->pullRequest->getBody(), $this->bodyParser->getBody());
+        $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/feature.txt'));
     }
 
     public function testGetBranch()
@@ -72,17 +60,26 @@ class BodyParserTest extends TestCase
 
     public function testGetTypeWithoutSpaces()
     {
-        $this->webhookResolver = new WebhookResolver();
-        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.opened.improvement.json');
-        $data = json_decode($webhookResponse, true);
-        $this->event = $this->webhookResolver->resolve($data);
-        $this->bodyParser = new BodyParser($this->event->pullRequest->getBody());
+        $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/improvement.txt'));
 
         $this->assertSame($this->bodyParser->getType(), 'improvement');
         $this->assertContains($this->bodyParser->getType(), $this->bodyParser->getValidTypes());
         $this->assertFalse($this->bodyParser->isAFeature());
         $this->assertTrue($this->bodyParser->isAnImprovement());
         $this->assertFalse($this->bodyParser->isABugFix());
+        $this->assertFalse($this->bodyParser->isASmallFix());
+        $this->assertFalse($this->bodyParser->isARefacto());
+    }
+
+    public function testGetTypeForBugFix()
+    {
+        $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/bug_fix.txt'));
+
+        $this->assertSame($this->bodyParser->getType(), 'improvement');
+        $this->assertContains($this->bodyParser->getType(), $this->bodyParser->getValidTypes());
+        $this->assertFalse($this->bodyParser->isAFeature());
+        $this->assertFalse($this->bodyParser->isAnImprovement());
+        $this->assertTrue($this->bodyParser->isABugFix());
         $this->assertFalse($this->bodyParser->isASmallFix());
         $this->assertFalse($this->bodyParser->isARefacto());
     }
@@ -94,13 +91,8 @@ class BodyParserTest extends TestCase
 
     public function testRepeatBodParserTestsWithSpaces()
     {
-        $this->webhookResolver = new WebhookResolver();
-        $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_body.spaces.opened.json');
-        $data = json_decode($webhookResponse, true);
-        $this->event = $this->webhookResolver->resolve($data);
-        $this->bodyParser = new BodyParser($this->event->pullRequest->getBody());
+        $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/with_spaces.txt'));
 
-        $this->testGetBody();
         $this->testGetBranch();
         $this->testGetDescription();
         $this->testGetType();
