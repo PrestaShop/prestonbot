@@ -108,7 +108,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $event = $githubEvent->getEvent();
 
         $pullRequest = $githubEvent->getPullRequest();
-        $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
+        $diff = Diff::create(@file_get_contents($pullRequest->getDiffUrl()));
 
         if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
             $this->issuesListener->handleWaitingForWordingEvent($pullRequest->getNumber());

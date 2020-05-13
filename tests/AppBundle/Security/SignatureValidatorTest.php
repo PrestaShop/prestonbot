@@ -23,60 +23,66 @@ class SignatureValidatorTest extends TestCase
     }
 
     /**
-     * @dataProvider correctSignatures
+     * @dataProvider getSignatures
      *
      * @param string $requestBody
      * @param string $signature
      */
-    public function testCorrectSignature($requestBody, $signature)
+    public function testCorrectSignature($requestBody, $signature, $expected)
     {
-        $this->signatureValidator->validate($this->createRequest($requestBody, $signature), self::SECRET);
+        $validated = $this->signatureValidator->validate($this->createRequest($requestBody, $signature), self::SECRET);
+        $this->assertEquals($expected, $validated);
     }
 
-    public function correctSignatures()
+    public function getSignatures()
     {
         return [
+            // correct signatures
             [
                 '{"foo": "bar"}',
                 self::createSignature('{"foo": "bar"}'),
+                true,
             ],
             [
                 '{"foo": "bar"}',
                 self::createSignature('{"foo": "bar"}', self::SECRET, 'md5'),
+                true,
             ],
             [
                 '{"foo": "bar", "baz": true}',
                 self::createSignature('{"foo": "bar", "baz": true}', self::SECRET, 'sha256'),
+                true,
             ],
-        ];
-    }
-
-    public function incorrectSignatures()
-    {
-        return [
+            // incorect signatures
             [
                 '{"foo": "bar"}',
                 'sha1=WrongHashOrInvalidSecret',
+                false,
             ],
             [
                 '{"foo": "bar"}',
                 null, // No HTTP_X_Hub_Signature header
+                false,
             ],
             [
                 '{"foo": "bar"}',
                 'Invalid Signature Header',
+                false,
             ],
             [
                 '{"foo": "bar"}',
                 'sha1=', // No hash value
+                false,
             ],
             [
                 '{"foo": "bar"}',
                 '=hash', // No algorithm
+                false,
             ],
             [
                 '{"foo": "bar"}',
                 '=', // No algo nor hash
+                false,
             ],
         ];
     }

@@ -13,7 +13,7 @@ class LineTest extends TestCase
     const TRANS_PATTERN = '#(trans\(|->l\()#';
 
     /**
-     * @dataProvider testCases
+     * @dataProvider getTests
      *
      * @param mixed $content
      * @param mixed $expected
@@ -48,7 +48,7 @@ class LineTest extends TestCase
         $this->assertSame($expected, $line->getFilepath());
     }
 
-    public function testCases()
+    public function getTests()
     {
         return [
             ['value.call()', false],

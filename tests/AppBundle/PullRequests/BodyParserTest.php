@@ -75,7 +75,7 @@ class BodyParserTest extends TestCase
     {
         $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/bug_fix.txt'));
 
-        $this->assertSame($this->bodyParser->getType(), 'improvement');
+        $this->assertSame($this->bodyParser->getType(), 'bug fix');
         $this->assertContains($this->bodyParser->getType(), $this->bodyParser->getValidTypes());
         $this->assertFalse($this->bodyParser->isAFeature());
         $this->assertFalse($this->bodyParser->isAnImprovement());
