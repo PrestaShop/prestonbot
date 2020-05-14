@@ -18,7 +18,7 @@ class CommentApiTest extends TestCase
 
     public function setUp()
     {
-        $this->twig = $this->createMock('\Twig_Environment');
+        $this->twig = $this->createMock('Twig\Environment');
 
         $this->twig
             ->method('render')

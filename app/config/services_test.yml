@@ -13,6 +13,7 @@ parameters:
     mailer_user: null
     mailer_password: null
 
+    github_token: 'totalyFakeTokenForTests'
     github_secured_token: 'totalyFakeTokenForTests'
 
     # list of recipients for mail notifications
@@ -37,6 +38,8 @@ services:
         - '%repository_name%'
         - '@twig'
 
+    Tests\AppBundle\Commits\FakeRepository:
+
     Tests\AppBundle\Issues\NullStatusApi:
         arguments:
             - '@AppBundle\Issues\CachedLabelsApi'
@@ -47,7 +50,7 @@ services:
     AppBundle\PullRequests\Listener:
         arguments:
             - '@Tests\AppBundle\Comments\FakeCommentApi'
-            - '@AppBundle\Commits\Repository'
+            - '@Tests\AppBundle\Commits\FakeRepository'
             - '@validator'
             - '@AppBundle\PullRequests\Repository'
             - '@Psr\Log\NullLogger'
