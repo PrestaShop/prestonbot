@@ -27,11 +27,12 @@ class SignatureValidatorTest extends TestCase
      *
      * @param string $requestBody
      * @param string $signature
+     * @param mixed  $expected
      */
     public function testCorrectSignature($requestBody, $signature, $expected)
     {
         $validated = $this->signatureValidator->validate($this->createRequest($requestBody, $signature), self::SECRET);
-        $this->assertEquals($expected, $validated);
+        $this->assertSame($expected, $validated);
     }
 
     public function getSignatures()

@@ -25,7 +25,7 @@ class WebhookControllerTest extends WebTestCase
 
         $errorsMessage = null;
 
-        $replacement = '"diff_url": "' . __DIR__ . '/../webhook_examples/git_diff_$1.diff"';
+        $replacement = '"diff_url": "'.__DIR__.'/../webhook_examples/git_diff_$1.diff"';
         $body = file_get_contents(__DIR__.'/../webhook_examples/'.$payloadFilename);
         // replace the diff url to a stub so we do not depend on Github
         $body = preg_replace('/"diff_url": ".*\/([0-9]+)\.diff"/', $replacement, $body);
