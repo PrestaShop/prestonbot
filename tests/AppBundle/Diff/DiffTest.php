@@ -136,13 +136,6 @@ class DiffTest extends TestCase
         $this->assertTrue($iterator->match());
     }
 
-    public function testFromPullRequestResponse()
-    {
-        $diff = Diff::create(file_get_contents($this->pullRequest->getDiffUrl()));
-
-        $this->assertTrue($diff->additions()->contains(self::TRANS_PATTERN)->match());
-    }
-
     private function getExpectedDiff()
     {
         return file_get_contents(__DIR__.'/../webhook_examples/git_diff_matched.diff');

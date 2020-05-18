@@ -6,6 +6,7 @@ use AppBundle\Diff\Diff;
 use AppBundle\Event\GitHubEvent;
 use AppBundle\Issues\Listener as IssuesListener;
 use AppBundle\PullRequests\Listener as PullRequestsListener;
+use Exception;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PullRequestSubscriber implements EventSubscriberInterface
@@ -108,7 +109,12 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $event = $githubEvent->getEvent();
 
         $pullRequest = $githubEvent->getPullRequest();
-        $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
+        try {
+            $content = file_get_contents($pullRequest->getDiffUrl());
+        } catch (Exception $e) {
+            return;
+        }
+        $diff = Diff::create($content);
 
         if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
             $this->issuesListener->handleWaitingForWordingEvent($pullRequest->getNumber());

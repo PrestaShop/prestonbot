@@ -1,0 +1,2442 @@
+[
+  {
+    "sha": "7bbe6480f84ef036083f059ee247357aad2aa7a2",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo3YmJlNjQ4MGY4NGVmMDM2MDgzZjA1OWVlMjQ3MzU3YWFkMmFhN2Ey",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-22T16:27:40Z"
+      },
+      "committer": {
+        "name": "Thomas Nabord",
+        "email": "thomas.nabord@prestashop.com",
+        "date": "2017-03-13T16:30:13Z"
+      },
+      "message": "CO: add displayProductPageDrawer hook",
+      "tree": {
+        "sha": "72e0149f2bbf69ee47105fe02c612dd597c7d777",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/72e0149f2bbf69ee47105fe02c612dd597c7d777"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/7bbe6480f84ef036083f059ee247357aad2aa7a2",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/7bbe6480f84ef036083f059ee247357aad2aa7a2",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/7bbe6480f84ef036083f059ee247357aad2aa7a2",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/7bbe6480f84ef036083f059ee247357aad2aa7a2/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "Quetzacoalt91",
+      "id": 6768917,
+      "node_id": "MDQ6VXNlcjY3Njg5MTc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6768917?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Quetzacoalt91",
+      "html_url": "https://github.com/Quetzacoalt91",
+      "followers_url": "https://api.github.com/users/Quetzacoalt91/followers",
+      "following_url": "https://api.github.com/users/Quetzacoalt91/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Quetzacoalt91/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Quetzacoalt91/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Quetzacoalt91/subscriptions",
+      "organizations_url": "https://api.github.com/users/Quetzacoalt91/orgs",
+      "repos_url": "https://api.github.com/users/Quetzacoalt91/repos",
+      "events_url": "https://api.github.com/users/Quetzacoalt91/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Quetzacoalt91/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "a19a5a32f0861121afde0daa8f05f901c270f935",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/a19a5a32f0861121afde0daa8f05f901c270f935",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/a19a5a32f0861121afde0daa8f05f901c270f935"
+      }
+    ]
+  },
+  {
+    "sha": "0a7aa16f5a06e4cb1fe969142e185287453cabfd",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzowYTdhYTE2ZjVhMDZlNGNiMWZlOTY5MTQyZTE4NTI4NzQ1M2NhYmZk",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-28T15:27:51Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-28T17:12:08Z"
+      },
+      "message": "CO: Allows multiple retro names for a hook",
+      "tree": {
+        "sha": "4e9111c0afad101d1d48cbd14d785d3cc062bf65",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/4e9111c0afad101d1d48cbd14d785d3cc062bf65"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/0a7aa16f5a06e4cb1fe969142e185287453cabfd",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/0a7aa16f5a06e4cb1fe969142e185287453cabfd",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/0a7aa16f5a06e4cb1fe969142e185287453cabfd",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/0a7aa16f5a06e4cb1fe969142e185287453cabfd/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "595f9179409f28d6687df1d244db6ae4c1d5bed5",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/595f9179409f28d6687df1d244db6ae4c1d5bed5",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/595f9179409f28d6687df1d244db6ae4c1d5bed5"
+      }
+    ]
+  },
+  {
+    "sha": "e7a644c81d632482b26691cd3518c4703fbd2168",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzplN2E2NDRjODFkNjMyNDgyYjI2NjkxY2QzNTE4YzQ3MDNmYmQyMTY4",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-27T14:15:57Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-27T15:14:31Z"
+      },
+      "message": "FO: Fix out of stock combination hiding",
+      "tree": {
+        "sha": "84fe85d044559dce10ede5194edfd802ee1d34d9",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/84fe85d044559dce10ede5194edfd802ee1d34d9"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/e7a644c81d632482b26691cd3518c4703fbd2168",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/e7a644c81d632482b26691cd3518c4703fbd2168",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/e7a644c81d632482b26691cd3518c4703fbd2168",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/e7a644c81d632482b26691cd3518c4703fbd2168/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "2c1e9102127b4b5117eb69e3a95857760f70e08a",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/2c1e9102127b4b5117eb69e3a95857760f70e08a",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/2c1e9102127b4b5117eb69e3a95857760f70e08a"
+      }
+    ]
+  },
+  {
+    "sha": "e51f5e244f52ae4a6846b478fd2d1575a33a85ec",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzplNTFmNWUyNDRmNTJhZTRhNjg0NmI0NzhmZDJkMTU3NWEzM2E4NWVj",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-27T12:53:38Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-27T12:53:38Z"
+      },
+      "message": "BO: fix getAvailableFields malformed json",
+      "tree": {
+        "sha": "769faf9f5f0a3da70e9d0a197553093bc7bf07ea",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/769faf9f5f0a3da70e9d0a197553093bc7bf07ea"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/e51f5e244f52ae4a6846b478fd2d1575a33a85ec",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/e51f5e244f52ae4a6846b478fd2d1575a33a85ec",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/e51f5e244f52ae4a6846b478fd2d1575a33a85ec",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/e51f5e244f52ae4a6846b478fd2d1575a33a85ec/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "2c1e9102127b4b5117eb69e3a95857760f70e08a",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/2c1e9102127b4b5117eb69e3a95857760f70e08a",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/2c1e9102127b4b5117eb69e3a95857760f70e08a"
+      }
+    ]
+  },
+  {
+    "sha": "39793a2ad50e3eb18e4ee14c3a307b96050bb17d",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzozOTc5M2EyYWQ1MGUzZWIxOGU0ZWUxNGMzYTMwN2I5NjA1MGJiMTdk",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-15T14:27:22Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-27T12:31:00Z"
+      },
+      "message": "FO: Remove fakepath",
+      "tree": {
+        "sha": "a05f9d9368255f2d1381e87d05e6dfb737b84d0a",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/a05f9d9368255f2d1381e87d05e6dfb737b84d0a"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/39793a2ad50e3eb18e4ee14c3a307b96050bb17d",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/39793a2ad50e3eb18e4ee14c3a307b96050bb17d",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/39793a2ad50e3eb18e4ee14c3a307b96050bb17d",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/39793a2ad50e3eb18e4ee14c3a307b96050bb17d/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "2c1e9102127b4b5117eb69e3a95857760f70e08a",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/2c1e9102127b4b5117eb69e3a95857760f70e08a",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/2c1e9102127b4b5117eb69e3a95857760f70e08a"
+      }
+    ]
+  },
+  {
+    "sha": "388800a813b78698e75630f9aaebb5cd14c76455",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzozODg4MDBhODEzYjc4Njk4ZTc1NjMwZjlhYWViYjVjZDE0Yzc2NDU1",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-22T14:50:18Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-22T14:50:18Z"
+      },
+      "message": "Merge pull request #7594 from maximebiloe/display-banner\n\nRestore hook displayBanner",
+      "tree": {
+        "sha": "1b7739fb89a54bd89e359fa808db4fb513b1756b",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/1b7739fb89a54bd89e359fa808db4fb513b1756b"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/388800a813b78698e75630f9aaebb5cd14c76455",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/388800a813b78698e75630f9aaebb5cd14c76455",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/388800a813b78698e75630f9aaebb5cd14c76455",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/388800a813b78698e75630f9aaebb5cd14c76455/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f22daa63716d0074ce6bb6247e0f7a6459711bd5",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/f22daa63716d0074ce6bb6247e0f7a6459711bd5",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/f22daa63716d0074ce6bb6247e0f7a6459711bd5"
+      },
+      {
+        "sha": "70aa53798aa4203534f775c6dcef6f9286f879a4",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/70aa53798aa4203534f775c6dcef6f9286f879a4",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/70aa53798aa4203534f775c6dcef6f9286f879a4"
+      }
+    ]
+  },
+  {
+    "sha": "d846b6ad917e0885b842006aba1ecaca77d1dc31",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzpkODQ2YjZhZDkxN2UwODg1Yjg0MjAwNmFiYTFlY2FjYTc3ZDFkYzMx",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-22T14:20:49Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-22T14:20:49Z"
+      },
+      "message": "CO: update some columns sizes",
+      "tree": {
+        "sha": "357a710cd42a12ed9628510a90388f8e0ee503f3",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/357a710cd42a12ed9628510a90388f8e0ee503f3"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/d846b6ad917e0885b842006aba1ecaca77d1dc31",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/d846b6ad917e0885b842006aba1ecaca77d1dc31",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/d846b6ad917e0885b842006aba1ecaca77d1dc31",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/d846b6ad917e0885b842006aba1ecaca77d1dc31/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "6ad632690de102422547c98ede6b00ff16c9b06e",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/6ad632690de102422547c98ede6b00ff16c9b06e",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/6ad632690de102422547c98ede6b00ff16c9b06e"
+      }
+    ]
+  },
+  {
+    "sha": "6ad632690de102422547c98ede6b00ff16c9b06e",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo2YWQ2MzI2OTBkZTEwMjQyMjU0N2M5OGVkZTZiMDBmZjE2YzliMDZl",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-22T14:17:15Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-22T14:17:15Z"
+      },
+      "message": "CO: Remove some useless @Column",
+      "tree": {
+        "sha": "545d52216a472ee00e381d26ad4678ea0f8f66b6",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/545d52216a472ee00e381d26ad4678ea0f8f66b6"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/6ad632690de102422547c98ede6b00ff16c9b06e",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/6ad632690de102422547c98ede6b00ff16c9b06e",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/6ad632690de102422547c98ede6b00ff16c9b06e",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/6ad632690de102422547c98ede6b00ff16c9b06e/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "4d67bce85aa64a01ec810b38cbe38079c00cfea5",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/4d67bce85aa64a01ec810b38cbe38079c00cfea5",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/4d67bce85aa64a01ec810b38cbe38079c00cfea5"
+      }
+    ]
+  },
+  {
+    "sha": "4827352b8f325c751e5dc84fb403d45f5f5fe001",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo0ODI3MzUyYjhmMzI1Yzc1MWU1ZGM4NGZiNDAzZDQ1ZjVmNWZlMDAx",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-21T15:38:02Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-21T15:38:36Z"
+      },
+      "message": "CO: I got a feeling ♫ ♫ ♫",
+      "tree": {
+        "sha": "c96bf23ec6ceadf8f16529fced95a1ded62c6498",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/c96bf23ec6ceadf8f16529fced95a1ded62c6498"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/4827352b8f325c751e5dc84fb403d45f5f5fe001",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/4827352b8f325c751e5dc84fb403d45f5f5fe001",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/4827352b8f325c751e5dc84fb403d45f5f5fe001",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/4827352b8f325c751e5dc84fb403d45f5f5fe001/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "8a606f189fd511f2ec30d3d76d2ab95f68a48891",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/8a606f189fd511f2ec30d3d76d2ab95f68a48891",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/8a606f189fd511f2ec30d3d76d2ab95f68a48891"
+      }
+    ]
+  },
+  {
+    "sha": "2ebe97378957b680a14afc2de17bd8610ee8e139",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzoyZWJlOTczNzg5NTdiNjgwYTE0YWZjMmRlMTdiZDg2MTBlZThlMTM5",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-20T16:58:37Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-20T17:00:03Z"
+      },
+      "message": "BO: Fix chosen width",
+      "tree": {
+        "sha": "88673c3407a6edb8e3fcbd054bc4112e833f644a",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/88673c3407a6edb8e3fcbd054bc4112e833f644a"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/2ebe97378957b680a14afc2de17bd8610ee8e139",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/2ebe97378957b680a14afc2de17bd8610ee8e139",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/2ebe97378957b680a14afc2de17bd8610ee8e139",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/2ebe97378957b680a14afc2de17bd8610ee8e139/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "778679f964057d53ef3437965f4bb51bbd52da3a",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/778679f964057d53ef3437965f4bb51bbd52da3a",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/778679f964057d53ef3437965f4bb51bbd52da3a"
+      }
+    ]
+  },
+  {
+    "sha": "fcfb53de733f2fd27496840decc810765bb3b977",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzpmY2ZiNTNkZTczM2YyZmQyNzQ5Njg0MGRlY2M4MTA3NjViYjNiOTc3",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-20T14:18:12Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-20T14:49:43Z"
+      },
+      "message": "CO: Fix some composer versions",
+      "tree": {
+        "sha": "b7bdc2c69f1ab12cde5ad3b26e3285e4edb01b1d",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/b7bdc2c69f1ab12cde5ad3b26e3285e4edb01b1d"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/fcfb53de733f2fd27496840decc810765bb3b977",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/fcfb53de733f2fd27496840decc810765bb3b977",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/fcfb53de733f2fd27496840decc810765bb3b977",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/fcfb53de733f2fd27496840decc810765bb3b977/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "01ec3025e83a301506fa9f89517e161c96dc58fe",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/01ec3025e83a301506fa9f89517e161c96dc58fe",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/01ec3025e83a301506fa9f89517e161c96dc58fe"
+      }
+    ]
+  },
+  {
+    "sha": "93394fc1d46c533ba85240a829b8c6a9642fa985",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo5MzM5NGZjMWQ0NmM1MzNiYTg1MjQwYTgyOWI4YzZhOTY0MmZhOTg1",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-15T16:50:24Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-15T16:54:16Z"
+      },
+      "message": "CO: Add rewrite to params",
+      "tree": {
+        "sha": "a3c7b26eae5cba793f1c9e90be8d78e229edd647",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/a3c7b26eae5cba793f1c9e90be8d78e229edd647"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/93394fc1d46c533ba85240a829b8c6a9642fa985",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/93394fc1d46c533ba85240a829b8c6a9642fa985",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/93394fc1d46c533ba85240a829b8c6a9642fa985",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/93394fc1d46c533ba85240a829b8c6a9642fa985/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "9b01fec5ae796353842bcf7db102e14b7ecb39af",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/9b01fec5ae796353842bcf7db102e14b7ecb39af",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/9b01fec5ae796353842bcf7db102e14b7ecb39af"
+      }
+    ]
+  },
+  {
+    "sha": "86c5cab3f8801f758d3c1c55f1077e9aa3c40c18",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo4NmM1Y2FiM2Y4ODAxZjc1OGQzYzFjNTVmMTA3N2U5YWEzYzQwYzE4",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-14T15:49:45Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-14T15:49:45Z"
+      },
+      "message": "FO: fix url rewrite starting with numbers",
+      "tree": {
+        "sha": "788e7453ce0232c21979ef1163c5ba82e0fef677",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/788e7453ce0232c21979ef1163c5ba82e0fef677"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/86c5cab3f8801f758d3c1c55f1077e9aa3c40c18",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/86c5cab3f8801f758d3c1c55f1077e9aa3c40c18",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/86c5cab3f8801f758d3c1c55f1077e9aa3c40c18",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/86c5cab3f8801f758d3c1c55f1077e9aa3c40c18/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e968bc4abd932cdbd3e0619e71fa088babb20730",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/e968bc4abd932cdbd3e0619e71fa088babb20730",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/e968bc4abd932cdbd3e0619e71fa088babb20730"
+      }
+    ]
+  },
+  {
+    "sha": "a9e7a638d0e60b2cda89eb175caaebf6a74efd10",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzphOWU3YTYzOGQwZTYwYjJjZGE4OWViMTc1Y2FhZWJmNmE3NGVmZDEw",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-13T13:27:14Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-13T13:29:59Z"
+      },
+      "message": "CO: Add windows 8.1 & 10 to guest useragent",
+      "tree": {
+        "sha": "e273464324cfe213e7157c09a9cdb716e81210cf",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/e273464324cfe213e7157c09a9cdb716e81210cf"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/a9e7a638d0e60b2cda89eb175caaebf6a74efd10",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/a9e7a638d0e60b2cda89eb175caaebf6a74efd10",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/a9e7a638d0e60b2cda89eb175caaebf6a74efd10",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/a9e7a638d0e60b2cda89eb175caaebf6a74efd10/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "4fd1afd4760aab8a42999e0a2d319518f679e372",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/4fd1afd4760aab8a42999e0a2d319518f679e372",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/4fd1afd4760aab8a42999e0a2d319518f679e372"
+      }
+    ]
+  },
+  {
+    "sha": "5ec15c39bc014349b3dccac93f7b2c3eecc01860",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo1ZWMxNWMzOWJjMDE0MzQ5YjNkY2NhYzkzZjdiMmMzZWVjYzAxODYw",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-13T12:43:22Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-13T12:43:22Z"
+      },
+      "message": "Merge pull request #7532 from aleeks/cedricfontaine\n\nUse Address:initialize to manage default state in one area",
+      "tree": {
+        "sha": "0e6e19cc6c79606c8212b3e44dc8f6ce6cafb1d6",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/0e6e19cc6c79606c8212b3e44dc8f6ce6cafb1d6"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/5ec15c39bc014349b3dccac93f7b2c3eecc01860",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/5ec15c39bc014349b3dccac93f7b2c3eecc01860",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/5ec15c39bc014349b3dccac93f7b2c3eecc01860",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/5ec15c39bc014349b3dccac93f7b2c3eecc01860/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f3564204af417a541e1532f07982ab6395fe342c",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/f3564204af417a541e1532f07982ab6395fe342c",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/f3564204af417a541e1532f07982ab6395fe342c"
+      },
+      {
+        "sha": "1bf2695b4ae6f5949e7ee991960dddd07162aa58",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/1bf2695b4ae6f5949e7ee991960dddd07162aa58",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/1bf2695b4ae6f5949e7ee991960dddd07162aa58"
+      }
+    ]
+  },
+  {
+    "sha": "64204926fafa978097c6f244984e8d5f5d3f4d67",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo2NDIwNDkyNmZhZmE5NzgwOTdjNmYyNDQ5ODRlOGQ1ZjVkM2Y0ZDY3",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-13T10:13:12Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-13T10:13:12Z"
+      },
+      "message": "BO: Remove call to an undefined attribute",
+      "tree": {
+        "sha": "d4ae5ce06f06bb5ed30c27f2e631ffd6f8135a49",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/d4ae5ce06f06bb5ed30c27f2e631ffd6f8135a49"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/64204926fafa978097c6f244984e8d5f5d3f4d67",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/64204926fafa978097c6f244984e8d5f5d3f4d67",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/64204926fafa978097c6f244984e8d5f5d3f4d67",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/64204926fafa978097c6f244984e8d5f5d3f4d67/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e968bc4abd932cdbd3e0619e71fa088babb20730",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/e968bc4abd932cdbd3e0619e71fa088babb20730",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/e968bc4abd932cdbd3e0619e71fa088babb20730"
+      }
+    ]
+  },
+  {
+    "sha": "c104ba6a6948b459056af01ace7cc860badf6af9",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzpjMTA0YmE2YTY5NDhiNDU5MDU2YWYwMWFjZTdjYzg2MGJhZGY2YWY5",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-13T09:02:40Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-13T09:02:40Z"
+      },
+      "message": "Merge pull request #6681 from true0r/fix-work-authorization\n\nFix work authorization for (back|front)-office. After transition from RC1 to RC2.",
+      "tree": {
+        "sha": "76e37075f784abfc9c782745e0cb4890d62e70b6",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/76e37075f784abfc9c782745e0cb4890d62e70b6"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/c104ba6a6948b459056af01ace7cc860badf6af9",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/c104ba6a6948b459056af01ace7cc860badf6af9",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/c104ba6a6948b459056af01ace7cc860badf6af9",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/c104ba6a6948b459056af01ace7cc860badf6af9/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "49d18db68840ea6033b2564fc6539fcc71e9757f",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/49d18db68840ea6033b2564fc6539fcc71e9757f",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/49d18db68840ea6033b2564fc6539fcc71e9757f"
+      },
+      {
+        "sha": "618a416e2eea4d81f1177aca394120dddc937c8b",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/618a416e2eea4d81f1177aca394120dddc937c8b",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/618a416e2eea4d81f1177aca394120dddc937c8b"
+      }
+    ]
+  },
+  {
+    "sha": "1c53cb26baed656079a047e2c743b47eb00121a3",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzoxYzUzY2IyNmJhZWQ2NTYwNzlhMDQ3ZTJjNzQzYjQ3ZWIwMDEyMWEz",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-08T16:04:44Z"
+      },
+      "committer": {
+        "name": "Alex Sampaio",
+        "email": "alex.sampaio1991@gmail.com",
+        "date": "2017-02-08T16:04:44Z"
+      },
+      "message": "BO: You can now search for a customer with several words and combinaisons.",
+      "tree": {
+        "sha": "0d5edc8b94d2279c05f6089ab1730205b78359e4",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/0d5edc8b94d2279c05f6089ab1730205b78359e4"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/1c53cb26baed656079a047e2c743b47eb00121a3",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/1c53cb26baed656079a047e2c743b47eb00121a3",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/1c53cb26baed656079a047e2c743b47eb00121a3",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/1c53cb26baed656079a047e2c743b47eb00121a3/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "aleeks",
+      "id": 9074610,
+      "node_id": "MDQ6VXNlcjkwNzQ2MTA=",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9074610?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/aleeks",
+      "html_url": "https://github.com/aleeks",
+      "followers_url": "https://api.github.com/users/aleeks/followers",
+      "following_url": "https://api.github.com/users/aleeks/following{/other_user}",
+      "gists_url": "https://api.github.com/users/aleeks/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/aleeks/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/aleeks/subscriptions",
+      "organizations_url": "https://api.github.com/users/aleeks/orgs",
+      "repos_url": "https://api.github.com/users/aleeks/repos",
+      "events_url": "https://api.github.com/users/aleeks/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/aleeks/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "94082427ecb61ec7d9c7175ac2cdb80f2a66cf80",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/94082427ecb61ec7d9c7175ac2cdb80f2a66cf80",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/94082427ecb61ec7d9c7175ac2cdb80f2a66cf80"
+      }
+    ]
+  },
+  {
+    "sha": "ac4aa578a0b8a818086252b869c06a79fa874452",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzphYzRhYTU3OGEwYjhhODE4MDg2MjUyYjg2OWMwNmE3OWZhODc0NDUy",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-08T15:31:49Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-08T15:31:49Z"
+      },
+      "message": "Merge pull request #7497 from aleeks/4661\n\nDisplay shipping max. refundable amount in order partial refund form",
+      "tree": {
+        "sha": "ac2907132e87fd0bac5868d474e53be18a761173",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/ac2907132e87fd0bac5868d474e53be18a761173"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/ac4aa578a0b8a818086252b869c06a79fa874452",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ac4aa578a0b8a818086252b869c06a79fa874452",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/ac4aa578a0b8a818086252b869c06a79fa874452",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ac4aa578a0b8a818086252b869c06a79fa874452/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "7e1ddd93788d9fb37933820e15a1145b1462ba6e",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/7e1ddd93788d9fb37933820e15a1145b1462ba6e",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/7e1ddd93788d9fb37933820e15a1145b1462ba6e"
+      },
+      {
+        "sha": "d37b49c954fb7d40362e1d6e4e95831cb5712981",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/d37b49c954fb7d40362e1d6e4e95831cb5712981",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/d37b49c954fb7d40362e1d6e4e95831cb5712981"
+      }
+    ]
+  },
+  {
+    "sha": "0c422578a8970be044d5cb121157bd9bc68a45cb",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzowYzQyMjU3OGE4OTcwYmUwNDRkNWNiMTIxMTU3YmQ5YmM2OGE0NWNi",
+    "commit": {
+      "author": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-08T13:20:03Z"
+      },
+      "committer": {
+        "name": "Michel ANTOINE",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-08T13:27:15Z"
+      },
+      "message": "CO: Remove some globals",
+      "tree": {
+        "sha": "ef3f66a62b2b238671732d7dc8c0ca8fdac028ec",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/ef3f66a62b2b238671732d7dc8c0ca8fdac028ec"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/0c422578a8970be044d5cb121157bd9bc68a45cb",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/0c422578a8970be044d5cb121157bd9bc68a45cb",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/0c422578a8970be044d5cb121157bd9bc68a45cb",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/0c422578a8970be044d5cb121157bd9bc68a45cb/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "fa6601e3a049edfee3a86483fc464168d1bf7052",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/fa6601e3a049edfee3a86483fc464168d1bf7052",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/fa6601e3a049edfee3a86483fc464168d1bf7052"
+      }
+    ]
+  },
+  {
+    "sha": "94082427ecb61ec7d9c7175ac2cdb80f2a66cf80",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo5NDA4MjQyN2VjYjYxZWM3ZDljNzE3NWFjMmNkYjgwZjJhNjZjZjgw",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-08T13:25:04Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-08T13:25:04Z"
+      },
+      "message": "Merge pull request #7486 from aleeks/4649\n\nFix incorrect product-list-colors caching",
+      "tree": {
+        "sha": "a9a1d236a3d0dca7f98dfde0f8b8a48c01406a6e",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/a9a1d236a3d0dca7f98dfde0f8b8a48c01406a6e"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/94082427ecb61ec7d9c7175ac2cdb80f2a66cf80",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/94082427ecb61ec7d9c7175ac2cdb80f2a66cf80",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/94082427ecb61ec7d9c7175ac2cdb80f2a66cf80",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/94082427ecb61ec7d9c7175ac2cdb80f2a66cf80/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "58771d89e43e615100b620ca2ed53bfb90bbeb0a",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/58771d89e43e615100b620ca2ed53bfb90bbeb0a",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/58771d89e43e615100b620ca2ed53bfb90bbeb0a"
+      },
+      {
+        "sha": "a76ddb670ee7e99d1a45d2cf322ec6bd6bd528ec",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/a76ddb670ee7e99d1a45d2cf322ec6bd6bd528ec",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/a76ddb670ee7e99d1a45d2cf322ec6bd6bd528ec"
+      }
+    ]
+  },
+  {
+    "sha": "58771d89e43e615100b620ca2ed53bfb90bbeb0a",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo1ODc3MWQ4OWU0M2U2MTUxMDBiNjIwY2EyZWQ1M2JmYjkwYmJlYjBh",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-08T13:13:07Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-08T13:13:07Z"
+      },
+      "message": "Merge pull request #7491 from aleeks/4475\n\nAllow to exclude tax and shipping in affiliation sales total",
+      "tree": {
+        "sha": "eb4063ca3e36d44a0ef97e4c1f2b94be05a3d1b0",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/eb4063ca3e36d44a0ef97e4c1f2b94be05a3d1b0"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/58771d89e43e615100b620ca2ed53bfb90bbeb0a",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/58771d89e43e615100b620ca2ed53bfb90bbeb0a",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/58771d89e43e615100b620ca2ed53bfb90bbeb0a",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/58771d89e43e615100b620ca2ed53bfb90bbeb0a/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "fa6601e3a049edfee3a86483fc464168d1bf7052",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/fa6601e3a049edfee3a86483fc464168d1bf7052",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/fa6601e3a049edfee3a86483fc464168d1bf7052"
+      },
+      {
+        "sha": "ebe888fe8fc2b2c668d848a796ebbdb4390bb4c6",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ebe888fe8fc2b2c668d848a796ebbdb4390bb4c6",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/ebe888fe8fc2b2c668d848a796ebbdb4390bb4c6"
+      }
+    ]
+  },
+  {
+    "sha": "ab0a594ed051030a52220a027276aa14a73e007c",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzphYjBhNTk0ZWQwNTEwMzBhNTIyMjBhMDI3Mjc2YWExNGE3M2UwMDdj",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-08T11:03:02Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-08T11:03:02Z"
+      },
+      "message": "Merge pull request #7489 from aleeks/5043\n\nUpdate deleteFeatures() for Multi-shop",
+      "tree": {
+        "sha": "3e5cf0661653869c9efc149edf3a4c3a0f6ee513",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/3e5cf0661653869c9efc149edf3a4c3a0f6ee513"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/ab0a594ed051030a52220a027276aa14a73e007c",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ab0a594ed051030a52220a027276aa14a73e007c",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/ab0a594ed051030a52220a027276aa14a73e007c",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ab0a594ed051030a52220a027276aa14a73e007c/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ef36c8aca3705e425b0a36589042828cbc1c0871",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ef36c8aca3705e425b0a36589042828cbc1c0871",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/ef36c8aca3705e425b0a36589042828cbc1c0871"
+      },
+      {
+        "sha": "cdc45d907a813b1faebf8367b925bc132e9ca4f5",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/cdc45d907a813b1faebf8367b925bc132e9ca4f5",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/cdc45d907a813b1faebf8367b925bc132e9ca4f5"
+      }
+    ]
+  },
+  {
+    "sha": "ef36c8aca3705e425b0a36589042828cbc1c0871",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzplZjM2YzhhY2EzNzA1ZTQyNWIwYTM2NTg5MDQyODI4Y2JjMWMwODcx",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-08T10:27:14Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-08T10:27:14Z"
+      },
+      "message": "Merge pull request #7482 from aleeks/4415\n\nUse default state for tax purposes",
+      "tree": {
+        "sha": "542bc80e859efea7bcbecf08668ca1f72e44abc5",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/542bc80e859efea7bcbecf08668ca1f72e44abc5"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/ef36c8aca3705e425b0a36589042828cbc1c0871",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ef36c8aca3705e425b0a36589042828cbc1c0871",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/ef36c8aca3705e425b0a36589042828cbc1c0871",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ef36c8aca3705e425b0a36589042828cbc1c0871/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "471f9c46eabe9968cfcc83065c95bc27ce3db900",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/471f9c46eabe9968cfcc83065c95bc27ce3db900",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/471f9c46eabe9968cfcc83065c95bc27ce3db900"
+      },
+      {
+        "sha": "904dfb59d3ba317fc16720833e3e2f245421473d",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/904dfb59d3ba317fc16720833e3e2f245421473d",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/904dfb59d3ba317fc16720833e3e2f245421473d"
+      }
+    ]
+  },
+  {
+    "sha": "caecd9bc8f28d89140fe6c024ae64ab782e1e22a",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzpjYWVjZDliYzhmMjhkODkxNDBmZTZjMDI0YWU2NGFiNzgyZTFlMjJh",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-07T16:34:16Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-07T16:34:16Z"
+      },
+      "message": "Merge pull request #7148 from Flowster/patch-1\n\nFix send to multiple addresses with different names",
+      "tree": {
+        "sha": "e92cc0745e9abb82d89e25b90cefabd2d0f7b2f5",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/e92cc0745e9abb82d89e25b90cefabd2d0f7b2f5"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/caecd9bc8f28d89140fe6c024ae64ab782e1e22a",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/caecd9bc8f28d89140fe6c024ae64ab782e1e22a",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/caecd9bc8f28d89140fe6c024ae64ab782e1e22a",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/caecd9bc8f28d89140fe6c024ae64ab782e1e22a/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "95c0fb7f8dff6f562f65c1edb7bbf9d30241e21f",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/95c0fb7f8dff6f562f65c1edb7bbf9d30241e21f",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/95c0fb7f8dff6f562f65c1edb7bbf9d30241e21f"
+      },
+      {
+        "sha": "24aa658c722b137e762c11f28903596028377334",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/24aa658c722b137e762c11f28903596028377334",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/24aa658c722b137e762c11f28903596028377334"
+      }
+    ]
+  },
+  {
+    "sha": "9f4c957cb972fa0db6c81f333bd2520e671ee2f8",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo5ZjRjOTU3Y2I5NzJmYTBkYjZjODFmMzMzYmQyNTIwZTY3MWVlMmY4",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-07T16:20:11Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-07T16:20:11Z"
+      },
+      "message": "Merge pull request #6950 from alexalouit/develop\n\n BO: allow disabled by item in Helper Form",
+      "tree": {
+        "sha": "3687829213117029c9da34a32d1e1bb19b83522a",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/3687829213117029c9da34a32d1e1bb19b83522a"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/9f4c957cb972fa0db6c81f333bd2520e671ee2f8",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/9f4c957cb972fa0db6c81f333bd2520e671ee2f8",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/9f4c957cb972fa0db6c81f333bd2520e671ee2f8",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/9f4c957cb972fa0db6c81f333bd2520e671ee2f8/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b5e94d21fa76a4bf554279cfc3aea481d940c207",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/b5e94d21fa76a4bf554279cfc3aea481d940c207",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/b5e94d21fa76a4bf554279cfc3aea481d940c207"
+      },
+      {
+        "sha": "8c6bdc22027d971ad87ba7e75b95b718604df912",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/8c6bdc22027d971ad87ba7e75b95b718604df912",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/8c6bdc22027d971ad87ba7e75b95b718604df912"
+      }
+    ]
+  },
+  {
+    "sha": "3a9b1a9ca3a16208b1201930ce2ea2a493648eb3",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4NzozYTliMWE5Y2EzYTE2MjA4YjEyMDE5MzBjZTJlYTJhNDkzNjQ4ZWIz",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-07T15:18:18Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-07T15:18:18Z"
+      },
+      "message": "Merge pull request #7206 from Nobodaddy/patch-73\n\nBO: Update wording form.html.twig",
+      "tree": {
+        "sha": "42336cdc591aea93d2b51ab2fe7aef7f560debfa",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/42336cdc591aea93d2b51ab2fe7aef7f560debfa"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/3a9b1a9ca3a16208b1201930ce2ea2a493648eb3",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/3a9b1a9ca3a16208b1201930ce2ea2a493648eb3",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/3a9b1a9ca3a16208b1201930ce2ea2a493648eb3",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/3a9b1a9ca3a16208b1201930ce2ea2a493648eb3/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "fc1f76d1ced1666708641ec8cc7548e0356b3256",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/fc1f76d1ced1666708641ec8cc7548e0356b3256",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/fc1f76d1ced1666708641ec8cc7548e0356b3256"
+      },
+      {
+        "sha": "c2c409d8b83c0a952d9b4917bcf5b4b59606237c",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/c2c409d8b83c0a952d9b4917bcf5b4b59606237c",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/c2c409d8b83c0a952d9b4917bcf5b4b59606237c"
+      }
+    ]
+  },
+  {
+    "sha": "5d885c0ae0364792d611e52b6bcb94cb8bc92447",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo1ZDg4NWMwYWUwMzY0NzkyZDYxMWU1MmI2YmNiOTRjYjhiYzkyNDQ3",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-07T14:20:07Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-07T14:20:07Z"
+      },
+      "message": "Merge pull request #7477 from aleeks/fix-brother\n\nOnly link orders with same cart",
+      "tree": {
+        "sha": "9d5c2c2f8d8b449b0bd0a11d5ad9f41a20f939f6",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/9d5c2c2f8d8b449b0bd0a11d5ad9f41a20f939f6"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/5d885c0ae0364792d611e52b6bcb94cb8bc92447",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/5d885c0ae0364792d611e52b6bcb94cb8bc92447",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/5d885c0ae0364792d611e52b6bcb94cb8bc92447",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/5d885c0ae0364792d611e52b6bcb94cb8bc92447/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "fe148f5ecde83dc9e1187b7bb647b02c27c42769",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/fe148f5ecde83dc9e1187b7bb647b02c27c42769",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/fe148f5ecde83dc9e1187b7bb647b02c27c42769"
+      },
+      {
+        "sha": "ddcb78b9fad28375e560e3ecf375b14562d68f15",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/ddcb78b9fad28375e560e3ecf375b14562d68f15",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/ddcb78b9fad28375e560e3ecf375b14562d68f15"
+      }
+    ]
+  },
+  {
+    "sha": "45b594a6ac446b6d96e7cb6281c64311e288bc92",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo0NWI1OTRhNmFjNDQ2YjZkOTZlN2NiNjI4MWM2NDMxMWUyODhiYzky",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-07T13:59:18Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-07T13:59:18Z"
+      },
+      "message": "Merge pull request #7475 from maximebiloe/fix-hook-rename\n\nFix hook name due to conflict resolution",
+      "tree": {
+        "sha": "f04f1274317f4c8f3da46709d5fb9f1c0fe4b532",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/f04f1274317f4c8f3da46709d5fb9f1c0fe4b532"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/45b594a6ac446b6d96e7cb6281c64311e288bc92",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/45b594a6ac446b6d96e7cb6281c64311e288bc92",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/45b594a6ac446b6d96e7cb6281c64311e288bc92",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/45b594a6ac446b6d96e7cb6281c64311e288bc92/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "722e53d96e183c4fe0a77804bd264dba6f066ded",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/722e53d96e183c4fe0a77804bd264dba6f066ded",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/722e53d96e183c4fe0a77804bd264dba6f066ded"
+      },
+      {
+        "sha": "cbbf66f4327dd66291d5531afe27857fd0d05bfc",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/cbbf66f4327dd66291d5531afe27857fd0d05bfc",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/cbbf66f4327dd66291d5531afe27857fd0d05bfc"
+      }
+    ]
+  },
+  {
+    "sha": "722e53d96e183c4fe0a77804bd264dba6f066ded",
+    "node_id": "MDY6Q29tbWl0Njc2MzU4Nzo3MjJlNTNkOTZlMTgzYzRmZTBhNzc4MDRiZDI2NGRiYTZmMDY2ZGVk",
+    "commit": {
+      "author": {
+        "name": "antoin_m",
+        "email": "michel.br.antoine@gmail.com",
+        "date": "2017-02-07T13:27:41Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2017-02-07T13:27:41Z"
+      },
+      "message": "Merge pull request #7471 from aleeks/missing_repo\n\nFix installation & tab entity",
+      "tree": {
+        "sha": "e4a055ea9595f1fa5e98ddcc03a6757bb3e09e50",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/trees/e4a055ea9595f1fa5e98ddcc03a6757bb3e09e50"
+      },
+      "url": "https://api.github.com/repos/PrestaShop/PrestaShop/git/commits/722e53d96e183c4fe0a77804bd264dba6f066ded",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/722e53d96e183c4fe0a77804bd264dba6f066ded",
+    "html_url": "https://github.com/PrestaShop/PrestaShop/commit/722e53d96e183c4fe0a77804bd264dba6f066ded",
+    "comments_url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/722e53d96e183c4fe0a77804bd264dba6f066ded/comments",
+    "author": {
+      "login": "antoin-m",
+      "id": 3316447,
+      "node_id": "MDQ6VXNlcjMzMTY0NDc=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3316447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/antoin-m",
+      "html_url": "https://github.com/antoin-m",
+      "followers_url": "https://api.github.com/users/antoin-m/followers",
+      "following_url": "https://api.github.com/users/antoin-m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/antoin-m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/antoin-m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/antoin-m/subscriptions",
+      "organizations_url": "https://api.github.com/users/antoin-m/orgs",
+      "repos_url": "https://api.github.com/users/antoin-m/repos",
+      "events_url": "https://api.github.com/users/antoin-m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/antoin-m/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "4630c9af57e205b2b474fcb06470e4ec10b3ca4b",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/4630c9af57e205b2b474fcb06470e4ec10b3ca4b",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/4630c9af57e205b2b474fcb06470e4ec10b3ca4b"
+      },
+      {
+        "sha": "4a327f72b6fb73b61a007eb37825a98f6adec0e8",
+        "url": "https://api.github.com/repos/PrestaShop/PrestaShop/commits/4a327f72b6fb73b61a007eb37825a98f6adec0e8",
+        "html_url": "https://github.com/PrestaShop/PrestaShop/commit/4a327f72b6fb73b61a007eb37825a98f6adec0e8"
+      }
+    ]
+  }
+]
