@@ -139,11 +139,6 @@ class WebhookControllerTest extends WebTestCase
                     'event' => 'pr_opened',
                     'action' => 'pr type label initialized',
                 ],
-                [
-                    'event' => 'pr_opened',
-                    'action' => 'checked for new translations',
-                    'status' => 'not_found',
-                ],
                 // Classic Theme changes are not tracked anymore
                 /*[
                     'event' => 'pr_opened',
