@@ -3,6 +3,7 @@
 namespace AppBundle\Organizations;
 
 use Github\Api\Organization;
+use Github\Exception\RuntimeException;
 
 class Repository
 {
@@ -18,12 +19,12 @@ class Repository
     /**
      * @var string
      */
-    private $repositoryUsername;
+    private $repositoryOwner;
 
-    public function __construct(Organization $organizationApi, $repositoryUsername)
+    public function __construct(Organization $organizationApi, $repositoryOwner)
     {
         $this->organizationApi = $organizationApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryOwner = $repositoryOwner;
     }
 
     /**
@@ -34,7 +35,7 @@ class Repository
         if (null === self::$teams) {
             $teams = $this->organizationApi
                 ->teams()
-                ->all($this->repositoryUsername)
+                ->all($this->repositoryOwner)
             ;
 
             foreach ($teams as $team) {
@@ -72,6 +73,24 @@ class Repository
                 ->teams()
                 ->members($teamId)
             ;
+        }
+    }
+
+    /**
+     * Check if a user is a member of the organisation.
+     *
+     * @param string $userLogin
+     *
+     * @return bool
+     */
+    public function isMember(string $userLogin)
+    {
+        try {
+            $this->organizationApi->members()->show($this->repositoryOwner, $userLogin);
+
+            return true;
+        } catch (RuntimeException $e) {
+            return false;
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Search;
 
+use Github\Api\GraphQL;
 use Github\Api\Search;
 
 /**
@@ -16,6 +17,10 @@ class Repository
      */
     private $searchApi;
     /**
+     * @var GraphQL
+     */
+    private $graphQL;
+    /**
      * @var string
      */
     private $repositoryOwner;
@@ -24,9 +29,10 @@ class Repository
      */
     private $repositoryName;
 
-    public function __construct(Search $searchApi, string $repositoryOwner, string $repositoryName)
+    public function __construct(Search $searchApi, GraphQL $graphQL, string $repositoryOwner, string $repositoryName)
     {
         $this->searchApi = $searchApi;
+        $this->graphQL = $graphQL;
         $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
     }
@@ -47,6 +53,17 @@ class Repository
         $allFilters = array_merge($basicFilters, $filters);
 
         return $this->searchApi->issues($this->buildQuery($allFilters));
+    }
+
+    /**
+     * @param $query
+     * @param array $variables
+     *
+     * @return array
+     */
+    public function graphQL($query, $variables = []): array
+    {
+        return $this->graphQL->execute($query, $variables);
     }
 
     /**

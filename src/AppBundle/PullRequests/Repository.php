@@ -3,6 +3,8 @@
 namespace AppBundle\PullRequests;
 
 use AppBundle\Search\Repository as SearchRepository;
+use DateInterval;
+use DateTime;
 use Github\Api\Issue\Comments as KnpCommentsApi;
 use Github\Exception\RuntimeException;
 use PrestaShop\Github\Entity\Comment;
@@ -168,6 +170,48 @@ class Repository implements RepositoryInterface
 
         return false;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMergedFromWithCommentsFrom(string $mergedFrom, string $commentedBy, ?DateTime $since = null)
+    {
+        if (null === $since) {
+            $since = (new DateTime())->sub(DateInterval::createFromDateString('30 days'));
+        }
+        $query = 'repo:'.$this->repositoryOwner.'/'.$this->repositoryName.' is:pr is:merged author:'.$mergedFrom.' commenter:'.$commentedBy.' merged:>='.$since->format('Y-m-d');
+        $search = '{
+          search(query: "'.$query.'", type: ISSUE, last: 100) {
+            edges {
+              node {
+                ... on PullRequest {
+                  id
+                  title
+                  author {
+                    login
+                  }
+                  mergedAt
+                  updatedAt
+                  comments(last: 100) {
+                    edges {
+                      node {
+                        body
+                        author {
+                          login
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            issueCount
+          }
+        }';
+
+        return $this->searchRepository->graphQL($search, ['query' => $query]);
+    }
+
 
     /**
      * @param $label
