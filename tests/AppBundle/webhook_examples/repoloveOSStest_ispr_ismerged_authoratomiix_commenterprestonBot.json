@@ -1,0 +1,54 @@
+{
+  "data": {
+    "search": {
+      "edges": [
+        {
+          "node": {
+            "id": "MDExOlB1bGxSZXF1ZXN0NDQwMDYyNzM0",
+            "title": "Cast changelogs to array for twig - Backport of #19778",
+            "author": {
+              "login": "atomiix"
+            },
+            "mergedAt": "2020-06-26T08:28:26Z",
+            "updatedAt": "2020-06-26T08:36:50Z",
+            "comments": {
+              "edges": []
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "MDExOlB1bGxSZXF1ZXN0NDM3ODA5ODQ1",
+            "title": "Add missing comma",
+            "author": {
+              "login": "atomiix"
+            },
+            "mergedAt": "2020-06-23T08:47:52Z",
+            "updatedAt": "2020-06-23T09:00:42Z",
+            "comments": {
+              "edges": [
+                {
+                  "node": {
+                    "body": "Hi @atomiix ! The 1 click Upgrade from 1765 to 177 is now OK with your PR.\r\n\r\n![upgrade pr19887](https://user-images.githubusercontent.com/55688534/85379432-0f71c180-b53c-11ea-91e3-92101e0fe78a.png)\r\n\r\nThanks ! QA :heavy_check_mark: ",
+                    "author": {
+                      "login": "Robin-Fischer-PS"
+                    }
+                  }
+                },
+                {
+                  "node": {
+                    "body": "<!-- PR_FEEDBACK_COMMENT -->\nContribution merged, congratulations!\n\nWould you mind answering our [quick 1-minute survey](https://forms-prestashop.typeform.com/to/hNaeFP)? We would love to hear about your experience so far, it will help us improve our process for the community involved, like you. ;-)",
+                    "author": {
+                      "login": "prestonBot"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "issueCount": 11
+    }
+  }
+}

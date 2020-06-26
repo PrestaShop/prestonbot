@@ -32,6 +32,11 @@ services:
     # Integration tests shouldn't post comments to github
     Psr\Log\NullLogger:
 
+    Tests\AppBundle\Organisations\FakeRepository:
+        decorates: AppBundle\Organizations\RepositoryInterface
+        arguments:
+            - ['%repository_username%']
+
     Tests\AppBundle\Comments\FakeCommentApi:
         decorates: AppBundle\Comments\CommentApiInterface
         arguments:

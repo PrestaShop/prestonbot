@@ -2,7 +2,7 @@
 
 namespace AppBundle\PullRequests;
 
-use AppBundle\Search\Repository as SearchRepository;
+use AppBundle\Search\RepositoryInterface as SearchRepository;
 use DateInterval;
 use DateTime;
 use Github\Api\Issue\Comments as KnpCommentsApi;
@@ -211,7 +211,6 @@ class Repository implements RepositoryInterface
 
         return $this->searchRepository->graphQL($search, ['query' => $query]);
     }
-
 
     /**
      * @param $label

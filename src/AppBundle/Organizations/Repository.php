@@ -5,7 +5,7 @@ namespace AppBundle\Organizations;
 use Github\Api\Organization;
 use Github\Exception\RuntimeException;
 
-class Repository
+class Repository implements RepositoryInterface
 {
     /**
      * @var array list of teams (won't change during a request)
@@ -28,7 +28,7 @@ class Repository
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getTeams()
     {
@@ -48,7 +48,7 @@ class Repository
     }
 
     /**
-     * @param string $teamName
+     * {@inheritdoc}
      */
     public function getTeam(string $teamName)
     {
@@ -58,9 +58,7 @@ class Repository
     }
 
     /**
-     * @param string $teamName
-     *
-     * @return \Guzzle\Http\EntityBodyInterface|mixed|string
+     * {@inheritdoc}
      */
     public function getTeamMembers(string $teamName)
     {
@@ -77,11 +75,7 @@ class Repository
     }
 
     /**
-     * Check if a user is a member of the organisation.
-     *
-     * @param string $userLogin
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function isMember(string $userLogin)
     {

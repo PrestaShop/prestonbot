@@ -10,7 +10,7 @@ use Github\Api\Search;
  *
  * @doc https://github.com/KnpLabs/php-github-api/blob/master/doc/search.md
  */
-class Repository
+class Repository implements RepositoryInterface
 {
     /**
      * @var Search
@@ -38,9 +38,7 @@ class Repository
     }
 
     /**
-     * @param array $filters
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getPullRequests($filters = []): array
     {
@@ -56,10 +54,7 @@ class Repository
     }
 
     /**
-     * @param $query
-     * @param array $variables
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function graphQL($query, $variables = []): array
     {

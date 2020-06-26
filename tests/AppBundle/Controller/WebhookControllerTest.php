@@ -201,6 +201,26 @@ class WebhookControllerTest extends WebTestCase
                 ],*/
             ],
         ];
+        $tests['Pull request from community merged'] = [
+            'pull_request',
+            'pull_request_community_merged.json',
+            [
+                [
+                    'event' => 'pr_merged',
+                    'action' => 'ask for feedback',
+                ],
+            ],
+        ];
+        $tests['Pull request from community merged less that 30 days ago'] = [
+            'pull_request',
+            'pull_request_community_merged_30days_ago.json',
+            [],
+        ];
+        $tests['Pull request from ps organisation merged'] = [
+            'pull_request',
+            'pull_request_organisation_merged.json',
+            [],
+        ];
         $tests['Add labels'] = [
             'issues',
             'issues.labeled.bug.json',

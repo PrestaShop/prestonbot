@@ -6,7 +6,7 @@ use AppBundle\Comments\CommentApiInterface;
 use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
 use AppBundle\Event\GitHubEvent;
 use AppBundle\GithubDownloaderInterface;
-use AppBundle\Organizations\Repository as OrganizationRepository;
+use AppBundle\Organizations\RepositoryInterface as OrganizationRepository;
 use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
 use PrestaShop\Github\Entity\PullRequest;
 use PrestaShop\Github\Entity\User;
