@@ -2,8 +2,8 @@
 
 namespace AppBundle\PullRequests;
 
-use PrestaShop\Github\Entity\PullRequest;
 use DateTime;
+use PrestaShop\Github\Entity\PullRequest;
 
 interface RepositoryInterface
 {

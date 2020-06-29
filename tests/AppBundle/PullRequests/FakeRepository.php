@@ -3,8 +3,8 @@
 namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\RepositoryInterface;
-use PrestaShop\Github\Entity\PullRequest;
 use DateTime;
+use PrestaShop\Github\Entity\PullRequest;
 
 /**
  * Get the pull requests according to some filters

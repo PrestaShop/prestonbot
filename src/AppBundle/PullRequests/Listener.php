@@ -8,10 +8,10 @@ use AppBundle\Event\GitHubEvent;
 use AppBundle\GithubDownloaderInterface;
 use AppBundle\Organizations\RepositoryInterface as OrganizationRepository;
 use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
-use PrestaShop\Github\Entity\PullRequest;
-use PrestaShop\Github\Entity\User;
 use DateInterval;
 use DateTime;
+use PrestaShop\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\User;
 use PrestaShop\TranslationToolsBundle\Configuration;
 use PrestaShop\TranslationToolsBundle\Translation\Extractor\ChainExtractor;
 use Psr\Log\LoggerInterface;
@@ -310,7 +310,7 @@ class Listener
         }
 
         $now = new DateTime();
-        $since = $now->sub(DateInterval::createFromDateString(self::FEEDBACK_DELAY . ' days'));
+        $since = $now->sub(DateInterval::createFromDateString(self::FEEDBACK_DELAY.' days'));
         $response = $this->repository->getMergedFromWithCommentsFrom($author, self::PRESTONBOT_NAME, $since);
         if (!empty($response['data']['search']['edges'])) {
             foreach ($response['data']['search']['edges'] as $pr) {
