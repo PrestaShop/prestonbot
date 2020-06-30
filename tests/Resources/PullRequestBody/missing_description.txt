@@ -5,7 +5,7 @@ Please take the time to edit the "Answers" rows with the necessary information:-
 | Questions     | Answers
 | ------------- | -------------------------------------------------------
 | Branch?       | develop
-| Description?  | Such a great description
+| Description?  |
 | Type?         |  bug fix
 | Category?     | BO
 | BC breaks?    | no

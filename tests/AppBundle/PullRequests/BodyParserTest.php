@@ -86,7 +86,7 @@ class BodyParserTest extends TestCase
 
     public function testGetTicket()
     {
-        $this->assertSame('http://forge.prestashop.com/browse/TEST-1234', $this->bodyParser->getRelatedTicket());
+        $this->assertSame('#1234', $this->bodyParser->getRelatedTicket());
     }
 
     public function testRepeatBodParserTestsWithSpaces()
@@ -99,5 +99,19 @@ class BodyParserTest extends TestCase
         $this->testGetTicket();
         $this->testIsDeprecated();
         $this->testIsBackwardCompatible();
+    }
+
+    public function testGetEmptyDescription()
+    {
+        $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/missing_description.txt'));
+
+        $this->assertSame($this->bodyParser->getType(), 'bug fix');
+        $this->assertContains($this->bodyParser->getType(), $this->bodyParser->getValidTypes());
+        $this->assertFalse($this->bodyParser->isAFeature());
+        $this->assertFalse($this->bodyParser->isAnImprovement());
+        $this->assertTrue($this->bodyParser->isABugFix());
+        $this->assertFalse($this->bodyParser->isASmallFix());
+        $this->assertFalse($this->bodyParser->isARefacto());
+        $this->assertEmpty($this->bodyParser->getDescription());
     }
 }

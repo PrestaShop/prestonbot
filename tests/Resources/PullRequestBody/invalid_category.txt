@@ -7,7 +7,7 @@ Please take the time to edit the "Answers" rows with the necessary information:-
 | Branch?       | develop
 | Description?  | Such a great description
 | Type?         |  bug fix
-| Category?     | BO
+| Category?     | AZ
 | BC breaks?    | no
 | Deprecations? | yes
 | Fixed ticket? | #1234

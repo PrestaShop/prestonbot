@@ -46,7 +46,7 @@ class BodyParser
      */
     public function getDescription()
     {
-        $regex = sprintf(self::DEFAULT_PATTERN, 'Description', '.+');
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Description', '[^|]+');
 
         return $this->extractWithRegex($regex);
     }
@@ -142,11 +142,13 @@ class BodyParser
     }
 
     /**
+     * @Assert\NotBlank(message = "Each pull request should have a ticket linked. Please link it to an existing issue or create a new issue so that it can be reviewed and tested.")
+     *
      * @return string
      */
     public function getRelatedTicket()
     {
-        $regex = sprintf(self::DEFAULT_PATTERN, 'Fixed ticket', '.+');
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Fixed ticket', '?:.*(#[0-9]+)');
 
         return $this->extractWithRegex($regex);
     }
