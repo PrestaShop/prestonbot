@@ -58,11 +58,12 @@ class Listener
         $bodyParser = new BodyParser($pullRequest->getBody());
 
         $validationErrors = $this->validator->validate($bodyParser);
+        $missingRelatedTicket = empty($bodyParser->getRelatedTicket());
         if (count($validationErrors) > 0) {
             $this->commentApi->sendWithTemplate(
                 $pullRequest,
                 'markdown/pr_table_errors.md.twig',
-                ['errors' => $validationErrors]
+                ['errors' => $validationErrors, 'missingRelatedTicket' => $missingRelatedTicket]
             );
 
             $this->logger->info(sprintf('[Invalid Table] Pull request n° %s', $pullRequest->getNumber()));

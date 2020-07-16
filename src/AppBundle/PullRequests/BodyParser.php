@@ -142,7 +142,7 @@ class BodyParser
     }
 
     /**
-     * @Assert\NotBlank(message = "Each pull request should have a ticket linked. Please link it to an existing issue or create a new issue so that it can be reviewed and tested.")
+     * @Assert\NotBlank(message = "Your pull request does not seem to fix any issue, you might consider [creating one](https://github.com/PrestaShop/PrestaShop/issues/new/choose) (see note below).")
      *
      * @return string
      */
