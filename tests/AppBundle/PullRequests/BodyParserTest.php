@@ -89,6 +89,12 @@ class BodyParserTest extends TestCase
         $this->assertSame('#1234', $this->bodyParser->getRelatedTicket());
     }
 
+    public function testGetTicketUrl()
+    {
+        $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/feature.txt'));
+        $this->assertSame('#1234', $this->bodyParser->getRelatedTicket());
+    }
+
     public function testRepeatBodParserTestsWithSpaces()
     {
         $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/with_spaces.txt'));
