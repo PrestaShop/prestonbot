@@ -8,7 +8,6 @@ use Symfony\Component\Validator\ValidatorBuilder;
 
 class ListenerTest extends TestCase
 {
-
     private $validator;
 
     public function setUp()
@@ -21,7 +20,7 @@ class ListenerTest extends TestCase
     /**
      * @dataProvider getTests
      *
-     * @param $description
+     * @param $descriptionFilename
      * @param $expected
      */
     public function testDescriptions($descriptionFilename, $expected)
@@ -30,7 +29,7 @@ class ListenerTest extends TestCase
         $bodyParser = new BodyParser($body);
 
         $validations = $this->validator->validate($bodyParser);
-        $this->assertEquals(count($expected), count($validations));
+        $this->assertSame(\count($expected), \count($validations));
         foreach ($validations as $validation) {
             $this->assertContains($validation->getPropertyPath(), $expected);
         }
