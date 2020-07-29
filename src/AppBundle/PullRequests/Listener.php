@@ -58,11 +58,12 @@ class Listener
         $bodyParser = new BodyParser($pullRequest->getBody());
 
         $validationErrors = $this->validator->validate($bodyParser);
-        if (count($validationErrors) > 0) {
+        $missingRelatedTicket = empty($bodyParser->getRelatedTicket());
+        if (\count($validationErrors) > 0) {
             $this->commentApi->sendWithTemplate(
                 $pullRequest,
                 'markdown/pr_table_errors.md.twig',
-                ['errors' => $validationErrors]
+                ['errors' => $validationErrors, 'missingRelatedTicket' => $missingRelatedTicket]
             );
 
             $this->logger->info(sprintf('[Invalid Table] Pull request n° %s', $pullRequest->getNumber()));
@@ -79,7 +80,7 @@ class Listener
         $bodyParser = new BodyParser($pullRequest->getBody());
 
         $bodyErrors = $this->validator->validate($bodyParser);
-        if (0 === count($bodyErrors)) {
+        if (0 === \count($bodyErrors)) {
             $this->repository->removeCommentsIfExists(
                 $pullRequest,
                 self::TABLE_ERROR,
@@ -104,7 +105,7 @@ class Listener
      */
     public function removeCommitValidationComment(PullRequest $pullRequest)
     {
-        if (0 === count($this->getErrorsFromCommits($pullRequest))) {
+        if (0 === \count($this->getErrorsFromCommits($pullRequest))) {
             $this->repository->removeCommentsIfExists(
                 $pullRequest,
                 self::COMMIT_ERROR,
@@ -132,7 +133,7 @@ class Listener
     {
         $userCommits = $this->commitRepository->findAllByUser($sender);
 
-        if (0 !== count($userCommits)) {
+        if (0 !== \count($userCommits)) {
             return false;
         }
 
@@ -166,7 +167,7 @@ class Listener
             $commitParser = new CommitParser($commitLabel, $pullRequest);
             $validationErrors = $this->validator->validate($commitParser);
 
-            if (count($validationErrors) > 0) {
+            if (\count($validationErrors) > 0) {
                 $commitsErrors[] = $commitLabel;
             }
         }

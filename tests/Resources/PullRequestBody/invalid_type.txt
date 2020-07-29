@@ -6,7 +6,7 @@ Please take the time to edit the "Answers" rows with the necessary information:-
 | ------------- | -------------------------------------------------------
 | Branch?       | develop
 | Description?  | Such a great description
-| Type?         |  bug fix
+| Type?         |
 | Category?     | BO
 | BC breaks?    | no
 | Deprecations? | yes

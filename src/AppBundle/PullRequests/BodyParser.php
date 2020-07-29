@@ -46,7 +46,7 @@ class BodyParser
      */
     public function getDescription()
     {
-        $regex = sprintf(self::DEFAULT_PATTERN, 'Description', '.+');
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Description', '[^|]+');
 
         return $this->extractWithRegex($regex);
     }
@@ -142,13 +142,16 @@ class BodyParser
     }
 
     /**
+     * @Assert\NotBlank(message = "Your pull request does not seem to fix any issue, you might consider [creating one](https://github.com/PrestaShop/PrestaShop/issues/new/choose) (see note below).")
+     *
      * @return string
      */
     public function getRelatedTicket()
     {
-        $regex = sprintf(self::DEFAULT_PATTERN, 'Fixed ticket', '.+');
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Fixed ticket', '?:.*(?:#|\/issues\/)([0-9]+)');
+        $ticket = $this->extractWithRegex($regex);
 
-        return $this->extractWithRegex($regex);
+        return empty($ticket) ? '' : '#'.$ticket;
     }
 
     /**
