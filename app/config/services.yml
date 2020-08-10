@@ -9,6 +9,7 @@ services:
             $recipients: '%recipients%'
             $adminMail: '%admin_mail%'
             $expectedToken: '%github_secured_token%'
+            $cacheDir: %kernel.cache_dir%
 
     AppBundle\:
         resource: '../../src/AppBundle/*'
@@ -61,3 +62,6 @@ services:
 
     Github\Api\Issue\Labels:
         factory: 'Github\Api\Issue:labels'
+
+    Github\Api\Repository\Contents:
+        factory: 'Github\Api\Repo:contents'

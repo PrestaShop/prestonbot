@@ -5,6 +5,7 @@ namespace AppBundle\Event;
 use InvalidArgumentException;
 use Lpdigital\Github\EventType\ActionableEventInterface;
 use Lpdigital\Github\EventType\GithubEventInterface;
+use Lpdigital\Github\EventType\PullRequestEvent;
 use Lpdigital\Github\Parser\WebhookResolver;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,6 +75,9 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
             $event instanceof GithubEventInterface &&
             $this->isValid($event)
         ) {
+            if ($event instanceof PullRequestEvent && isset($payload['pull_request']['changed_files'])) {
+                $event->pullRequest->setChangedFiles($payload['pull_request']['changed_files']);
+            }
             $githubEvent = new GitHubEvent($event::name(), $event);
         } else {
             $this->logger->error(

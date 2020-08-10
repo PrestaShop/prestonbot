@@ -6,12 +6,10 @@ use AppBundle\Diff\Diff;
 use AppBundle\Event\GitHubEvent;
 use AppBundle\Issues\Listener as IssuesListener;
 use AppBundle\PullRequests\Listener as PullRequestsListener;
-use Exception;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PullRequestSubscriber implements EventSubscriberInterface
 {
-    const TRANS_PATTERN = '#(trans\(|->l\()#';
     const CLASSIC_PATH = '#^themes\/classic\/#';
 
     /**
@@ -46,10 +44,12 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ],
             'pullrequestevent_edited' => [
                 ['removePullRequestValidationComment', 255],
-                ['checkForNewTranslations', 252],
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
             ],
+            'pullrequestevent_synchronize' => [
+                ['checkForNewTranslations', 252],
+            ]
         ];
     }
 
@@ -106,17 +106,11 @@ class PullRequestSubscriber implements EventSubscriberInterface
      */
     public function checkForNewTranslations(GitHubEvent $githubEvent)
     {
-        $event = $githubEvent->getEvent();
-
         $pullRequest = $githubEvent->getPullRequest();
-        try {
-            $content = file_get_contents($pullRequest->getDiffUrl());
-        } catch (Exception $e) {
-            return;
-        }
-        $diff = Diff::create($content);
+        $event = $githubEvent->getEvent();
+        $newWording = $this->pullRequestsListener->checkForNewTranslations($pullRequest);
 
-        if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
+        if ($newWording) {
             $this->issuesListener->handleWaitingForWordingEvent($pullRequest->getNumber());
         }
 
@@ -125,7 +119,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
             'action' => 'checked for new translations',
-            'status' => $found ? 'found' : 'not_found',
+            'status' => $newWording ? 'found' : 'not_found',
         ]);
     }
 
