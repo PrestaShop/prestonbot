@@ -56,4 +56,16 @@ class FakeCommentApi implements CommentApiInterface
     {
         return true;
     }
+
+    public function edit(int $commentId, string $comment)
+    {
+        return true;
+    }
+
+    public function editWithTemplate(int $commentId, string $templateName, array $params)
+    {
+        $comment = $this->twig->render($templateName, $params);
+
+        return $comment;
+    }
 }

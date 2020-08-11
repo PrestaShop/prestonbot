@@ -4,7 +4,7 @@ namespace AppBundle\PullRequests;
 
 use AppBundle\Comments\CommentApiInterface;
 use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
-use AppBundle\GithubDownloader;
+use AppBundle\GithubDownloaderInterface;
 use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
 use Lpdigital\Github\Entity\PullRequest;
 use Lpdigital\Github\Entity\User;
@@ -45,7 +45,7 @@ class Listener
     private $repository;
 
     /**
-     * @var GithubDownloader
+     * @var GithubDownloaderInterface
      */
     private $githubDownloader;
 
@@ -64,7 +64,7 @@ class Listener
         CommitRepositoryInterface $commitRepository,
         ValidatorInterface $validator,
         PullRequestRepositoryInterface $repository,
-        GithubDownloader $githubDownloader,
+        GithubDownloaderInterface $githubDownloader,
         ChainExtractor $chainExtractor,
         LoggerInterface $logger,
         string $cacheDir

@@ -7,7 +7,7 @@ use Github\Api\Repository\Contents;
 use Lpdigital\Github\Entity\PullRequest;
 use ZipArchive;
 
-class GithubDownloader
+class GithubDownloader implements GithubDownloaderInterface
 {
     private const MAX_SINGLE_FILE = 100; // Max of file downloaded one by one, before downloading the whole repo
 

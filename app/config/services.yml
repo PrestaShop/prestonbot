@@ -9,7 +9,7 @@ services:
             $recipients: '%recipients%'
             $adminMail: '%admin_mail%'
             $expectedToken: '%github_secured_token%'
-            $cacheDir: %kernel.cache_dir%
+            $cacheDir: '%cache_dir%'
 
     AppBundle\:
         resource: '../../src/AppBundle/*'
@@ -20,6 +20,7 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    PrestaShop\TranslationToolsBundle\Translation\Extractor\ChainExtractor: '@prestashop.translation.chainextractor'
 
 # Argument value resolver
     Lpdigital\Github\Parser\WebhookResolver:
