@@ -1,0 +1,14 @@
+<!-- PR_WORDING -->
+Hi!
+
+Your pull request seems to contain new translation strings:
+
+- [x] <span title="New domain!">⚠️</span> `New.Admin.Global`
+    - [ ] `Customer`
+    - [x] `Total`
+- `Admin.Global`
+    - [ ] `Payment`
+    - [x] `Status`
+    - [ ] `Date`
+
+(note: this is an automated message, but answering it will reach a real human )

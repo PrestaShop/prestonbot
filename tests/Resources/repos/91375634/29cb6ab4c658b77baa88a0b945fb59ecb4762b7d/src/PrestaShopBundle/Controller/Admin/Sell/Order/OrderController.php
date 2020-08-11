@@ -319,11 +319,6 @@ class OrderController extends FrameworkBundleAdminController
             'reference' => $this->trans('Reference', 'Admin.Global'),
             'new' => $this->trans('New client', 'Admin.Orderscustomers.Feature'),
             'country_name' => $this->trans('Delivery', 'Admin.Global'),
-            'customer' => $this->trans('Customer', 'New.Admin.Global'),
-            'total_paid_tax_incl' => $this->trans('Total', 'New.Admin.Global'),
-            'payment' => $this->trans('Payment', 'Admin.Global'),
-            'osname' => $this->trans('Status', 'Admin.Global'),
-            'date_add' => $this->trans('Date', 'Admin.Global'),
         ];
 
         if ($isB2bEnabled) {
