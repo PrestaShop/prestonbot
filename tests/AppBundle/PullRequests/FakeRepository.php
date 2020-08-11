@@ -3,9 +3,6 @@
 namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\RepositoryInterface;
-use AppBundle\Search\Repository as SearchRepository;
-use Github\Api\Issue\Comments as KnpCommentsApi;
-use Lpdigital\Github\Entity\Comment;
 use Lpdigital\Github\Entity\PullRequest;
 
 /**

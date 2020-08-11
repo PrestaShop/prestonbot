@@ -31,7 +31,7 @@ interface CommentApiInterface
     public function remove(int $commentId);
 
     /**
-     * @param int $commentId
+     * @param int    $commentId
      * @param string $comment
      *
      * @return mixed
@@ -39,9 +39,9 @@ interface CommentApiInterface
     public function edit(int $commentId, string $comment);
 
     /**
-     * @param int $commentId
+     * @param int    $commentId
      * @param string $templateName
-     * @param array $params
+     * @param array  $params
      *
      * @return mixed
      */

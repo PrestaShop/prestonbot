@@ -198,8 +198,8 @@ class Listener
         $base = $this->githubDownloader->downloadAndExtract($pullRequest, false);
         $head = $this->githubDownloader->downloadAndExtract($pullRequest);
 
-        $catalogBase = new MessageCatalogue('en', array());
-        $catalogHead = new MessageCatalogue('en', array());
+        $catalogBase = new MessageCatalogue('en', []);
+        $catalogHead = new MessageCatalogue('en', []);
 
         Configuration::fromYamlFile($this->cacheDir.'/'.$base.'/'.self::TRANS_CONFIG_FILE);
         $this->chainExtractor->extract($this->cacheDir.'/'.$base, $catalogBase);
@@ -217,12 +217,12 @@ class Listener
                         $newStrings[$domain] = [
                             'validated' => isset($validated[$domain]) && $validated[$domain]['validated'],
                             'new' => !isset($catalogBase->all()[$domain]),
-                            'strings' => []
+                            'strings' => [],
                         ];
                     }
                     $newStrings[$domain]['strings'][] = [
                         'string' => $key,
-                        'validated' => isset($validated[$domain]) && in_array($key, $validated[$domain]['strings'])
+                        'validated' => isset($validated[$domain]) && \in_array($key, $validated[$domain]['strings'], true),
                     ];
                 }
             }
@@ -244,7 +244,7 @@ class Listener
     }
 
     /**
-     * Get existing new translations comment
+     * Get existing new translations comment.
      *
      * @param PullRequest $pullRequest
      *
@@ -259,10 +259,10 @@ class Listener
             self::PRESTONBOT_NAME
         );
 
-        if (count($comments) > 0) {
+        if (\count($comments) > 0) {
             $existing = [
                 'id' => $comments[0]->getId(),
-                'body' => $comments[0]->getBody()
+                'body' => $comments[0]->getBody(),
             ];
         }
 
@@ -270,7 +270,7 @@ class Listener
     }
 
     /**
-     * Return an array of already validated domains & translation strings
+     * Return an array of already validated domains & translation strings.
      *
      * @param string $comment
      *
@@ -285,7 +285,7 @@ class Listener
         $matches = [];
         preg_match_all($groupPattern, $comment, $matches, PREG_SET_ORDER);
         foreach ($matches as $match) {
-            if ($match[1] === "x") {
+            if ('x' === $match[1]) {
                 $validatedWordings[$match[2]] = [
                     'validated' => true,
                     'strings' => [],

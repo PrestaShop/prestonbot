@@ -29,9 +29,9 @@ class GithubDownloader implements GithubDownloaderInterface
         $this->cacheDir = $cacheDir;
     }
 
-    public function downloadAndExtract(PullRequest $pullRequest, $head = true) : string
+    public function downloadAndExtract(PullRequest $pullRequest, $head = true): string
     {
-        $info = $head === true ? $pullRequest->getHead() : $pullRequest->getBase();
+        $info = true === $head ? $pullRequest->getHead() : $pullRequest->getBase();
         $archiveFullPath = $this->cacheDir.'/'.$info['sha'].'.zip';
         $user = $info['user']['login'];
         $repo = $info['repo']['name'];
@@ -50,7 +50,7 @@ class GithubDownloader implements GithubDownloaderInterface
                 foreach ($diff->getIterator() as $file) {
                     $url = self::GITHUB_RAW_URL.'/'.$user.'/'.$repo.'/'.$sha.'/'.$file->path();
                     $fullPath = $extractedDirFullPath.'/'.$file->path();
-                    $dir = dirname($fullPath);
+                    $dir = \dirname($fullPath);
                     if (!file_exists($dir)) {
                         mkdir($dir, 0777, true);
                     }

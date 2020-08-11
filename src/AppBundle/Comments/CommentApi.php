@@ -106,6 +106,4 @@ class CommentApi implements CommentApiInterface
         $comment = $this->twig->render($templateName, $params);
         $this->edit($commentId, $comment);
     }
-
-
 }

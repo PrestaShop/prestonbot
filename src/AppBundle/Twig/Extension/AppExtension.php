@@ -11,10 +11,10 @@ class AppExtension extends AbstractExtension
 {
     public function __construct(Environment $environment)
     {
-        $environment->registerUndefinedFunctionCallback(function($name) {
+        $environment->registerUndefinedFunctionCallback(function ($name) {
             return new TwigFunction($name, [$this, 'doNothing']);
         });
-        $environment->registerUndefinedFilterCallback(function($name) {
+        $environment->registerUndefinedFilterCallback(function ($name) {
             return new TwigFilter($name, [$this, 'doNothing']);
         });
     }

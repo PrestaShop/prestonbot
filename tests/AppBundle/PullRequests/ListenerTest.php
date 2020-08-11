@@ -25,17 +25,17 @@ class ListenerTest extends TestCase
     private $validator;
 
     /**
-     * @var Listener $listener
+     * @var Listener
      */
     private $listener;
 
     /**
-     * @var CommentApi $commentApiMock
+     * @var CommentApi
      */
     private $commentApiMock;
 
     /**
-     * @var Repository $repositoryMock
+     * @var Repository
      */
     private $repositoryMock;
 
@@ -94,7 +94,7 @@ class ListenerTest extends TestCase
      * @dataProvider getWordingTests
      *
      * @param string $payloadFile
-     * @param array $newWordings
+     * @param array  $newWordings
      */
     public function testWordings(string $payloadFile, array $newStrings, bool $validated = false)
     {
@@ -160,7 +160,7 @@ class ListenerTest extends TestCase
                         'strings' => [
                             ['string' => 'Customer', 'validated' => false],
                             ['string' => 'Total', 'validated' => false],
-                        ]
+                        ],
                     ],
                     'Admin.Global' => [
                         'validated' => false,
@@ -169,9 +169,9 @@ class ListenerTest extends TestCase
                             ['string' => 'Payment', 'validated' => false],
                             ['string' => 'Status', 'validated' => false],
                             ['string' => 'Date', 'validated' => false],
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ],
             'New Wording validated' => [
                 __DIR__.'/../webhook_examples/pull_request_opened_wording.json',
@@ -182,7 +182,7 @@ class ListenerTest extends TestCase
                         'strings' => [
                             ['string' => 'Customer', 'validated' => false],
                             ['string' => 'Total', 'validated' => true],
-                        ]
+                        ],
                     ],
                     'Admin.Global' => [
                         'validated' => false,
@@ -191,11 +191,11 @@ class ListenerTest extends TestCase
                             ['string' => 'Payment', 'validated' => false],
                             ['string' => 'Status', 'validated' => true],
                             ['string' => 'Date', 'validated' => false],
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
                 true,
-            ]
+            ],
         ];
     }
 
@@ -207,7 +207,7 @@ class ListenerTest extends TestCase
             'url' => '',
             'html_url' => '',
             'user' => [
-                'name' => ''
+                'name' => '',
             ],
             'created_at' => '',
             'updated_at' => '',

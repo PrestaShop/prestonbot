@@ -49,7 +49,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ],
             'pullrequestevent_synchronize' => [
                 ['checkForNewTranslations', 252],
-            ]
+            ],
         ];
     }
 
