@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AppBundle;
 
 use AppBundle\Diff\Diff;
 use Github\Api\Repository\Contents;
 use Lpdigital\Github\Entity\PullRequest;
+use Symfony\Component\Filesystem\Filesystem;
 use ZipArchive;
 
 class GithubDownloader implements GithubDownloaderInterface
@@ -23,43 +26,85 @@ class GithubDownloader implements GithubDownloaderInterface
      */
     private $cacheDir;
 
+    /**
+     * @var Filesystem
+     */
+    private $fileSystem;
+
     public function __construct(Contents $contents, string $cacheDir)
     {
         $this->contents = $contents;
         $this->cacheDir = $cacheDir;
+        $this->fileSystem = new Filesystem();
     }
 
     public function downloadAndExtract(PullRequest $pullRequest, $head = true): string
     {
         $info = true === $head ? $pullRequest->getHead() : $pullRequest->getBase();
-        $archiveFullPath = $this->cacheDir.'/'.$info['sha'].'.zip';
-        $user = $info['user']['login'];
-        $repo = $info['repo']['name'];
-        $sha = $info['sha'];
-        $extractedDirName = $user.'-'.$repo.'-'.substr($sha, 0, 7);
-        $extractedDirFullPath = $this->cacheDir.'/'.$extractedDirName;
 
-        if (!file_exists($extractedDirFullPath)) {
+        if (!file_exists($this->getExtractedFullpathDir($info))) {
             if (false === $head || self::MAX_SINGLE_FILE <= $pullRequest->getChangedFiles()) {
-                $archive = $this->contents->archive($user, $repo, 'zipball', $sha);
-                file_put_contents($archiveFullPath, $archive);
-                $this->extract($archiveFullPath, $this->cacheDir);
+                $this->downloadAndExtractArchive($info);
             } else {
-                $content = file_get_contents($pullRequest->getDiffUrl());
-                $diff = Diff::create($content);
-                foreach ($diff->getIterator() as $file) {
-                    $url = self::GITHUB_RAW_URL.'/'.$user.'/'.$repo.'/'.$sha.'/'.$file->path();
-                    $fullPath = $extractedDirFullPath.'/'.$file->path();
-                    $dir = \dirname($fullPath);
-                    if (!file_exists($dir)) {
-                        mkdir($dir, 0777, true);
-                    }
-                    file_put_contents($fullPath, file_get_contents($url));
-                }
+                $this->downloadChangedFiles($info, $pullRequest->getDiffUrl());
             }
         }
 
-        return $extractedDirName;
+        return $this->getExtractedDirName($info);
+    }
+
+    private function downloadAndExtractArchive(array $info): void
+    {
+        $archive = $this->contents->archive(
+            $info['user']['login'],
+            $info['repo']['name'],
+            'zipball',
+            $info['sha']
+        );
+        $archiveFullPath = $this->cacheDir.'/'.$info['sha'].'.zip';
+        $this->fileSystem->dumpFile($archiveFullPath, $archive);
+        $this->extract($archiveFullPath, $this->cacheDir);
+    }
+
+    private function downloadChangedFiles(array $info, string $diffUrl): void
+    {
+        $content = file_get_contents($diffUrl);
+        $diff = Diff::create($content);
+        foreach ($diff->getIterator() as $file) {
+            $url = $this->getDownloadFileUrl($file, $info);
+            $fullPath = $this->getExtractedFullpathDir($info).'/'.$file->path();
+            if (!$this->fileSystem->exists(\dirname($fullPath))) {
+                $this->fileSystem->mkdir(\dirname($fullPath));
+            }
+            $this->fileSystem->copy($url, $fullPath);
+        }
+    }
+
+    private function getExtractedDirName($info): string
+    {
+        return sprintf(
+            '%s-%s-%s',
+            $info['user']['login'],
+            $info['repo']['name'],
+            substr($info['sha'], 0, 7)
+        );
+    }
+
+    private function getExtractedFullpathDir($info): string
+    {
+        return $this->cacheDir.'/'.$this->getExtractedDirName($info);
+    }
+
+    private function getDownloadFileUrl($file, $info)
+    {
+        return sprintf(
+            '%s/%s/%s/%s/%s',
+            self::GITHUB_RAW_URL,
+            $info['user']['login'],
+            $info['repo']['name'],
+            $info['sha'],
+            $file->path()
+        );
     }
 
     private function extract(string $zipfile, string $destination)

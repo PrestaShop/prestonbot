@@ -278,14 +278,29 @@ class Listener
      */
     private function getValidatedWordings(string $comment): array
     {
+        /*
+         * $groupPattern is used for capturing individual Domain & the translation strings
+         * related to it like :
+         *
+         *  - [ ] `Domain.Name`
+         *      - [ ] `new translation string`
+         *      - [x] `new translation string`
+         *
+         */
         $groupPattern = '/^- (?:\[(x| )\].*)?\s*`(.*)`((?:\s{4,}- \[.\] .*)+)/mi';
+
+        /*
+         * $wordingPattern is used for capturing validated individual translation strings like:
+         *
+         * - [x] `new translation string`
+         */
         $wordingPattern = '/^\s+- \[x\] `(.*)`/mi';
 
         $validatedWordings = [];
         $matches = [];
         preg_match_all($groupPattern, $comment, $matches, PREG_SET_ORDER);
         foreach ($matches as $match) {
-            if ('x' === $match[1]) {
+            if ('x' === $match[1]) { // if domain is validated (- [x] `Domain.Name`)
                 $validatedWordings[$match[2]] = [
                     'validated' => true,
                     'strings' => [],
