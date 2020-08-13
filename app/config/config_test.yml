@@ -3,7 +3,7 @@ imports:
     - { resource: services_test.yml }
 
 parameters:
-    cache_dir: '%kernel.root_dir%/../tests/Resources/repos'
+    cache_dir: '%kernel.project_dir%/tests/Resources/repos'
 
 framework:
     test: ~
