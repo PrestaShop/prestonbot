@@ -5,6 +5,7 @@ namespace AppBundle\PullRequests;
 use AppBundle\Comments\CommentApiInterface;
 use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
 use AppBundle\GithubDownloaderInterface;
+use AppBundle\Event\GitHubEvent;
 use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
 use Lpdigital\Github\Entity\PullRequest;
 use Lpdigital\Github\Entity\User;
@@ -181,6 +182,22 @@ class Listener
         return true;
     }
 
+    public function checkForMilestone(GitHubEvent $gitHubEvent)
+    {
+        $pullRequest = $gitHubEvent->getPullRequest();
+
+        if (null === $pullRequest->getMilestone()) {
+            $this->commentApi->sendWithTemplate(
+                $pullRequest,
+                'markdown/pr_missing_milestone.md.twig',
+                []
+            );
+
+            return true;
+        }
+
+        return false;
+    }
     /**
      * @param PullRequest $pullRequest
      *

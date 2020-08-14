@@ -5,7 +5,9 @@ namespace AppBundle\EventSubscriber;
 use AppBundle\Diff\Diff;
 use AppBundle\Event\GitHubEvent;
 use AppBundle\Issues\Listener as IssuesListener;
+use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\Listener as PullRequestsListener;
+use Lpdigital\Github\EventType\PullRequestEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PullRequestSubscriber implements EventSubscriberInterface
@@ -49,6 +51,9 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ],
             'pullrequestevent_synchronize' => [
                 ['checkForNewTranslations', 252],
+            ],
+            'pullrequestevent_labeled' => [
+                ['checkForMilestone', 255],
             ],
         ];
     }
@@ -199,5 +204,25 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 'action' => 'preston validation comment removed',
             ]);
         }
+    }
+
+    public function checkForMilestone(GitHubEvent $gitHubEvent)
+    {
+        $event = $gitHubEvent->getEvent();
+        if (!$event instanceof PullRequestEvent || !isset($event->getPayload()['label'])) {
+            return;
+        }
+
+        if ($event->getPayload()['label']['name'] !== Labels::QA_APPROVED) {
+            return;
+        }
+
+        $missing = $this->pullRequestsListener->checkForMilestone($gitHubEvent);
+
+        $gitHubEvent->addStatus([
+            'event' => 'pr_labeled',
+            'action' => 'check for missing milestone',
+            'status' => $missing ? 'not_found' : 'found'
+        ]);
     }
 }
