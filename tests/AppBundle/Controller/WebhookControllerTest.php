@@ -167,6 +167,28 @@ class WebhookControllerTest extends WebTestCase
             'issues.labeled.feature.json',
             [],
         ];
+        $tests['Add QA ok without milestone'] = [
+            'pull_request',
+            'pull_request.labeled.QA_ok.json',
+            [
+                [
+                    'event' => 'pr_labeled',
+                    'action' => 'check for missing milestone',
+                    'status' => 'not_found'
+                ],
+            ],
+        ];
+        $tests['Add QA ok with milestone'] = [
+            'pull_request',
+            'pull_request.labeled.QA_ok.no_milestone.json',
+            [
+                [
+                    'event' => 'pr_labeled',
+                    'action' => 'check for missing milestone',
+                    'status' => 'found'
+                ],
+            ],
+        ];
         $tests['Pull request on wrong repository'] = [
             'pull_request',
             'wrong_repository.pull_request.json',
