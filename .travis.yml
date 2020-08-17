@@ -21,7 +21,7 @@ before_install:
   - ./vendor/bin/simple-phpunit install
 
 script:
- - ./vendor/bin/simple-phpunit
+ - SYMFONY_DEPRECATIONS_HELPER=weak ./vendor/bin/simple-phpunit
  - composer phpstan
 
 jobs:

@@ -84,4 +84,26 @@ class CommentApi implements CommentApiInterface
                 $commentId
             );
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function edit(int $commentId, string $comment)
+    {
+        $this->knpCommentApi->update(
+            $this->repositoryOwner,
+            $this->repositoryName,
+            $commentId,
+            ['body' => $comment]
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function editWithTemplate(int $commentId, string $templateName, array $params)
+    {
+        $comment = $this->twig->render($templateName, $params);
+        $this->edit($commentId, $comment);
+    }
 }

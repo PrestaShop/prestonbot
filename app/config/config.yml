@@ -7,6 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    cache_dir: '%kernel.cache_dir%'
 
 framework:
     #esi:             ~
@@ -16,7 +17,7 @@ framework:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:
-        enabled: false
+        enabled: true
     csrf_protection: false
     validation:      { enable_annotations: true }
     #serializer:      { enable_annotations: true }

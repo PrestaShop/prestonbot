@@ -33,12 +33,18 @@ services:
     Psr\Log\NullLogger:
 
     Tests\AppBundle\Comments\FakeCommentApi:
-        - '@Github\Api\Issue\Comments'
-        - '%repository_username%'
-        - '%repository_name%'
-        - '@twig'
+        decorates: AppBundle\Comments\CommentApiInterface
+        arguments:
+            - '@Github\Api\Issue\Comments'
+            - '%repository_username%'
+            - '%repository_name%'
+            - '@twig'
 
     Tests\AppBundle\Commits\FakeRepository:
+      decorates: AppBundle\Commits\RepositoryInterface
+
+    Tests\AppBundle\PullRequests\FakeRepository:
+        decorates: AppBundle\PullRequests\RepositoryInterface
 
     Tests\AppBundle\Issues\NullStatusApi:
         arguments:
@@ -46,14 +52,8 @@ services:
             - '%repository_username%'
             - '%repository_name%'
 
-    # Your integrations tests shouldn't post comments to github
-    AppBundle\PullRequests\Listener:
-        arguments:
-            - '@Tests\AppBundle\Comments\FakeCommentApi'
-            - '@Tests\AppBundle\Commits\FakeRepository'
-            - '@validator'
-            - '@AppBundle\PullRequests\Repository'
-            - '@Psr\Log\NullLogger'
+    Tests\AppBundle\FakeGithubDownloader:
+      decorates: AppBundle\GithubDownloaderInterface
 
     AppBundle\Issues\Listener:
         arguments:

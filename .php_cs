@@ -29,7 +29,7 @@ return PhpCsFixer\Config::create()
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->exclude(['app/Resources', 'var', 'tests'])
+            ->exclude(['Resources'])
             ->in(['src', 'app', 'tests'])
     )
 ;
