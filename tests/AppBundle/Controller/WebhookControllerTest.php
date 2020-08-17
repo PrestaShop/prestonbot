@@ -174,7 +174,7 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_labeled',
                     'action' => 'check for missing milestone',
-                    'status' => 'not_found'
+                    'status' => 'not_found',
                 ],
             ],
         ];
@@ -185,7 +185,7 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_labeled',
                     'action' => 'check for missing milestone',
-                    'status' => 'found'
+                    'status' => 'found',
                 ],
             ],
         ];

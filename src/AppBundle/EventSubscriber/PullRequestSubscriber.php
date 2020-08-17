@@ -213,7 +213,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             return;
         }
 
-        if ($event->getPayload()['label']['name'] !== Labels::QA_APPROVED) {
+        if (Labels::QA_APPROVED !== $event->getPayload()['label']['name']) {
             return;
         }
 
@@ -222,7 +222,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $gitHubEvent->addStatus([
             'event' => 'pr_labeled',
             'action' => 'check for missing milestone',
-            'status' => $missing ? 'not_found' : 'found'
+            'status' => $missing ? 'not_found' : 'found',
         ]);
     }
 }
