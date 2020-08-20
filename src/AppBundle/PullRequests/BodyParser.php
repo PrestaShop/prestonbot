@@ -86,7 +86,7 @@ class BodyParser
      */
     public function isTestCategory()
     {
-        return 1 === preg_match('/TE/', $this->getCategory());
+        return 1 === preg_match('/\\bTE\\b/', $this->getCategory());
     }
 
     /**
