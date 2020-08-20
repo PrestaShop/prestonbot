@@ -86,8 +86,19 @@ class Listener
     {
         $bodyParser = new BodyParser($pullRequest->getBody());
 
+        $missingRelatedTicket = false;
         $validationErrors = $this->validator->validate($bodyParser);
-        $missingRelatedTicket = empty($bodyParser->getRelatedTicket());
+        if (!$bodyParser->isTestCategory()) {
+            $notTestValidationErrors = $this->validator->validate(
+                $bodyParser,
+                null,
+                BodyParser::NOT_TEST_GROUP
+            );
+            if ($notTestValidationErrors->count() > 0) {
+                $validationErrors->addAll($notTestValidationErrors);
+                $missingRelatedTicket = true;
+            }
+        }
         if (\count($validationErrors) > 0) {
             $this->commentApi->sendWithTemplate(
                 $pullRequest,
