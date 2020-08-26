@@ -11,6 +11,8 @@ class BodyParser
 {
     const DEFAULT_PATTERN = '~(?:\|\s+%s\?\s+\|\s+)(%s)\s+~';
 
+    const NOT_TEST_GROUP = 'NotTest';
+
     /**
      * @var string
      */
@@ -82,6 +84,14 @@ class BodyParser
     /**
      * @return bool
      */
+    public function isTestCategory()
+    {
+        return 1 === preg_match('/\bTE\b/', $this->getCategory());
+    }
+
+    /**
+     * @return bool
+     */
     public function isBackwardCompatible()
     {
         $regex = sprintf(self::DEFAULT_PATTERN, 'BC breaks', '.+');
@@ -142,7 +152,10 @@ class BodyParser
     }
 
     /**
-     * @Assert\NotBlank(message = "Your pull request does not seem to fix any issue, you might consider [creating one](https://github.com/PrestaShop/PrestaShop/issues/new/choose) (see note below).")
+     * @Assert\NotBlank(
+     *     groups={BodyParser::NOT_TEST_GROUP},
+     *     message = "Your pull request does not seem to fix any issue, you might consider [creating one](https://github.com/PrestaShop/PrestaShop/issues/new/choose) (see note below)."
+     * )
      *
      * @return string
      */
