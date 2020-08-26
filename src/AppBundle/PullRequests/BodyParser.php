@@ -148,7 +148,7 @@ class BodyParser
      */
     public function getRelatedTicket()
     {
-        $regex = sprintf(self::DEFAULT_PATTERN, 'Fixed ticket', '?:.*(?:#|\/issues\/)([0-9]+)');
+        $regex = sprintf(self::DEFAULT_PATTERN, 'Fixed ticket', '?:.*(?:#|\/issues\/)([0-9]+)\.?');
         $ticket = $this->extractWithRegex($regex);
 
         return empty($ticket) ? '' : '#'.$ticket;

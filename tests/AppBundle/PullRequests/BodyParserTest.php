@@ -107,6 +107,18 @@ class BodyParserTest extends TestCase
         $this->testIsBackwardCompatible();
     }
 
+    public function testRepeatBodParserTestsWithSpacesAndDot()
+    {
+        $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/with_spaces_and_dots.txt'));
+
+        $this->testGetBranch();
+        $this->assertSame('Such a great description.', $this->bodyParser->getDescription());
+        $this->testGetType();
+        $this->testGetTicket();
+        $this->testIsDeprecated();
+        $this->testIsBackwardCompatible();
+    }
+
     public function testGetEmptyDescription()
     {
         $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/missing_description.txt'));
