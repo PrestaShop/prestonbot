@@ -154,7 +154,7 @@ class BodyParser
     /**
      * @Assert\NotBlank(
      *     groups={BodyParser::NOT_TEST_GROUP},
-     *     message = "Your pull request does not seem to fix any issue, you might consider [creating one](https://github.com/PrestaShop/PrestaShop/issues/new/choose) (see note below)."
+     *     message = "Your pull request does not seem to fix any issue, consider [creating one](https://github.com/PrestaShop/PrestaShop/issues/new/choose) (see note below) and linking it by writing `Fixes #1234`."
      * )
      *
      * @return string
