@@ -23,6 +23,8 @@ final class Labels
 
     const REFACTORING = 'Refactoring';
 
+    const QA_APPROVED = 'QA ✔';
+
     // Help to prevent changes in the future
     const ALIASES = [
         'bug fix' => self::BUG,
