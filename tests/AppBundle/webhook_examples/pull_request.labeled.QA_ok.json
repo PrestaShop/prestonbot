@@ -54,7 +54,7 @@
         "id": 2273747850,
         "node_id": "MDU6TGFiZWwyMjczNzQ3ODUw",
         "url": "https://api.github.com/repos/atomiix/PrestaShop/labels/QA%20%E2%9C%94",
-        "name": "QA ✔",
+        "name": "QA ✔️",
         "color": "94d14f",
         "default": false,
         "description": ""
@@ -388,7 +388,7 @@
     "id": 2273747850,
     "node_id": "MDU6TGFiZWwyMjczNzQ3ODUw",
     "url": "https://api.github.com/repos/atomiix/PrestaShop/labels/QA%20%E2%9C%94",
-    "name": "QA ✔",
+    "name": "QA ✔️",
     "color": "94d14f",
     "default": false,
     "description": ""
