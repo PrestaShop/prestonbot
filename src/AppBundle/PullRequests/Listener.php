@@ -251,7 +251,7 @@ class Listener
                         ];
                     }
                     $meta = $catalogHead->getMetadata($key, $domain);
-                    $filePath = substr($meta['file'], strlen($this->cacheDir.'/'.$head.'/'));
+                    $filePath = substr($meta['file'], \strlen($this->cacheDir.'/'.$head.'/'));
                     $newStrings[$domain]['strings'][] = [
                         'string' => $key,
                         'validated' => isset($validated[$domain]) && \in_array($key, $validated[$domain]['strings'], true),
