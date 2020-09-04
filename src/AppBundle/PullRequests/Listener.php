@@ -223,7 +223,7 @@ class Listener
             $validated = $this->getValidatedWordings($existingComment['body']);
         }
 
-        set_time_limit(90);
+        set_time_limit(180);
         $base = $this->githubDownloader->downloadAndExtract($pullRequest, false);
         $head = $this->githubDownloader->downloadAndExtract($pullRequest);
 
