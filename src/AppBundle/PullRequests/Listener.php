@@ -217,6 +217,7 @@ class Listener
      */
     public function checkForNewTranslations(PullRequest $pullRequest): bool
     {
+        $baseLineUrl = $pullRequest->getHtmlUrl().'/files#diff-%sR%s';
         $validated = [];
         $existingComment = $this->getExistingWordingComment($pullRequest);
         if (null !== $existingComment) {
@@ -249,9 +250,12 @@ class Listener
                             'strings' => [],
                         ];
                     }
+                    $meta = $catalogHead->getMetadata($key, $domain);
+                    $filePath = substr($meta['file'], \strlen($this->cacheDir.'/'.$head.'/'));
                     $newStrings[$domain]['strings'][] = [
                         'string' => $key,
                         'validated' => isset($validated[$domain]) && \in_array($key, $validated[$domain]['strings'], true),
+                        'link' => sprintf($baseLineUrl, md5($filePath), $meta['line']),
                     ];
                 }
             }
@@ -312,8 +316,8 @@ class Listener
          * related to it like :
          *
          *  - [ ] `Domain.Name`
-         *      - [ ] `new translation string`
-         *      - [x] `new translation string`
+         *      - [ ] [`new translation string`](http://github.com/...)
+         *      - [x] [`new translation string`](http://github.com/...)
          *
          */
         $groupPattern = '/^- (?:\[(x| )\].*)?\s*`(.*)`((?:\s{4,}- \[.\] .*)+)/mi';
@@ -321,9 +325,9 @@ class Listener
         /*
          * $wordingPattern is used for capturing validated individual translation strings like:
          *
-         * - [x] `new translation string`
+         * - [x] [`new translation string`](http://github.com/...)
          */
-        $wordingPattern = '/^\s+- \[x\] `(.*)`/mi';
+        $wordingPattern = '/^\s+- \[x\] \[`(.*)`\]/mi';
 
         $validatedWordings = [];
         $matches = [];

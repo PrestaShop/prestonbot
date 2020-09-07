@@ -4,11 +4,11 @@ Hi!
 Your pull request seems to contain new translation strings:
 
 - [x] <span title="New domain!">⚠️</span> `New.Admin.Global`
-    - [ ] `Customer`
-    - [x] `Total`
+    - [ ] [`Customer`](https://github.com/PrestaShop/PrestaShop/pull/1/files#diff-idjhfsjhfkjhsdkjfhskjR1)
+    - [x] [`Total`](https://github.com/PrestaShop/PrestaShop/pull/1/files#diff-idjhfsjhfkjhsdkjfhskjR1)
 - `Admin.Global`
-    - [ ] `Payment`
-    - [x] `Status`
-    - [ ] `Date`
+    - [ ] [`Payment`](https://github.com/PrestaShop/PrestaShop/pull/1/files#diff-idjhfsjhfkjhsdkjfhskjR1)
+    - [x] [`Status`](https://github.com/PrestaShop/PrestaShop/pull/1/files#diff-idjhfsjhfkjhsdkjfhskjR1)
+    - [ ] [`Date`](https://github.com/PrestaShop/PrestaShop/pull/1/files#diff-idjhfsjhfkjhsdkjfhskjR1)
 
 (note: this is an automated message, but answering it will reach a real human )

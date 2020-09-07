@@ -4,7 +4,7 @@ This pull request seems to contain new translation strings. I have summarized th
 {% for domain, strings in newStrings %}
 -{% if strings.new %} [{% if strings.validated %}x{% else %} {% endif %}] <span title="New domain!">⚠️</span>{% endif %} `{{ domain }}`
 {% for string in strings.strings %}
-    - [{% if string.validated %}x{% else %} {% endif %}] `{{ string.string }}`
+    - [{% if string.validated %}x{% else %} {% endif %}] [`{{ string.string|raw }}`]({{ string.link }})
 {% endfor %}
 {% endfor %}
 
