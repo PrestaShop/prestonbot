@@ -3,7 +3,7 @@
 namespace Tests\AppBundle;
 
 use AppBundle\GithubDownloaderInterface;
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 
 class FakeGithubDownloader implements GithubDownloaderInterface
 {

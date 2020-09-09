@@ -3,7 +3,7 @@
 namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\RepositoryInterface;
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 
 /**
  * Get the pull requests according to some filters

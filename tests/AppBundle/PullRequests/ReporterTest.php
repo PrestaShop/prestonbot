@@ -6,6 +6,7 @@ use AppBundle\PullRequests\LabelNotFoundException;
 use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\Reporter;
 use PHPUnit\Framework\TestCase;
+use PrestaShop\Github\Entity\PullRequest;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
@@ -58,8 +59,8 @@ class ReporterTest extends TestCase
     private function createPullRequestsArray()
     {
         return [
-            $this->createMock('Lpdigital\Github\Entity\PullRequest'),
-            $this->createMock('Lpdigital\Github\Entity\PullRequest'),
+            $this->createMock(PullRequest::class),
+            $this->createMock(PullRequest::class),
         ];
     }
 }

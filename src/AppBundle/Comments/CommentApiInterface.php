@@ -2,7 +2,7 @@
 
 namespace AppBundle\Comments;
 
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 
 interface CommentApiInterface
 {

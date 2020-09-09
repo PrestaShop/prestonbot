@@ -5,8 +5,8 @@ namespace AppBundle\PullRequests;
 use AppBundle\Search\Repository as SearchRepository;
 use Github\Api\Issue\Comments as KnpCommentsApi;
 use Github\Exception\RuntimeException;
-use Lpdigital\Github\Entity\Comment;
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\Comment;
+use PrestaShop\Github\Entity\PullRequest;
 
 /**
  * Get the pull requests according to some filters
@@ -54,7 +54,7 @@ class Repository implements RepositoryInterface
         $search = $this->searchRepository->getPullRequests(['base' => $base]);
 
         foreach ($search['items'] as $pullRequest) {
-            $pullRequests[] = PullRequest::createFromData($pullRequest);
+            $pullRequests[] = new PullRequest($pullRequest);
         }
 
         return $pullRequests;
@@ -74,7 +74,7 @@ class Repository implements RepositoryInterface
         );
 
         foreach ($search['items'] as $pullRequest) {
-            $pullRequests[] = PullRequest::createFromData($pullRequest);
+            $pullRequests[] = new PullRequest($pullRequest);
         }
 
         return $pullRequests;
@@ -99,7 +99,7 @@ class Repository implements RepositoryInterface
 
         $comments = [];
         foreach ($commentsApi as $comment) {
-            $comments[] = Comment::createFromData($comment);
+            $comments[] = new Comment($comment);
         }
 
         return $comments;
@@ -114,7 +114,7 @@ class Repository implements RepositoryInterface
         $userComments = [];
 
         foreach ($comments as $comment) {
-            if ($userLogin === $comment->getUserLogin()) {
+            if ($userLogin === $comment->getUser()->getLogin()) {
                 $userComments[] = $comment;
             }
         }
@@ -154,7 +154,7 @@ class Repository implements RepositoryInterface
         )
         ;
 
-        if (count($comments) > 0) {
+        if (\count($comments) > 0) {
             foreach ($comments as $comment) {
                 $this->knpCommentsApi->remove(
                     $this->repositoryOwner,

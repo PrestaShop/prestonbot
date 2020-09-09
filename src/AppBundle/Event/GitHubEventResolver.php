@@ -3,10 +3,8 @@
 namespace AppBundle\Event;
 
 use InvalidArgumentException;
-use Lpdigital\Github\EventType\ActionableEventInterface;
-use Lpdigital\Github\EventType\GithubEventInterface;
-use Lpdigital\Github\EventType\PullRequestEvent;
-use Lpdigital\Github\Parser\WebhookResolver;
+use PrestaShop\Github\Event\GithubEventInterface;
+use PrestaShop\Github\WebhookHandler;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
@@ -16,9 +14,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class GitHubEventResolver implements ArgumentValueResolverInterface
 {
     /**
-     * @var WebhookResolver
+     * @var WebhookHandler
      */
-    private $resolver;
+    private $webhookHandler;
 
     /**
      * @var LoggerInterface
@@ -36,12 +34,12 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
     private $repositoryName;
 
     public function __construct(
-        WebhookResolver $resolver,
+        WebhookHandler $webhookHandler,
         LoggerInterface $logger,
         string $repositoryOwner,
         string $repositoryName
     ) {
-        $this->resolver = $resolver;
+        $this->webhookHandler = $webhookHandler;
         $this->logger = $logger;
         $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
@@ -57,8 +55,6 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
      * @param ArgumentMetadata $argument
      *
      * @return \Generator
-     *
-     * @throws \Lpdigital\Github\Exception\EventNotFoundException
      */
     public function resolve(Request $request, ArgumentMetadata $argument)
     {
@@ -69,17 +65,8 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
             throw new InvalidArgumentException('Invalid JSON body');
         }
 
-        $event = $this->resolver->resolve($payload);
-
-        if ($event instanceof ActionableEventInterface &&
-            $event instanceof GithubEventInterface &&
-            $this->isValid($event)
-        ) {
-            if ($event instanceof PullRequestEvent && isset($payload['pull_request']['changed_files'])) {
-                $event->pullRequest->setChangedFiles($payload['pull_request']['changed_files']);
-            }
-            $githubEvent = new GitHubEvent($event::name(), $event);
-        } else {
+        $event = $this->webhookHandler->handle($payload);
+        if (null === $event || null === $event->getAction() || !$this->isValid($event)) {
             $this->logger->error(
                 sprintf(
                     '[Event] %s received from `%s` repository',
@@ -87,19 +74,20 @@ class GitHubEventResolver implements ArgumentValueResolverInterface
                     $event->getRepository()->getFullName()
                 )
             );
-
             throw new NotFoundHttpException();
         }
+
+        $githubEvent = new GitHubEvent($event::name(), $event);
 
         yield $githubEvent;
     }
 
     /**
-     * @param ActionableEventInterface $event
+     * @param GithubEventInterface $event
      *
      * @return bool
      */
-    private function isValid(ActionableEventInterface $event): bool
+    private function isValid(GithubEventInterface $event): bool
     {
         [$repositoryUsername, $repositoryName] = explode('/', $event->getRepository()->getFullName());
 

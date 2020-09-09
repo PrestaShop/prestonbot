@@ -7,7 +7,7 @@ use AppBundle\Event\GitHubEvent;
 use AppBundle\Issues\Listener as IssuesListener;
 use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\Listener as PullRequestsListener;
-use Lpdigital\Github\EventType\PullRequestEvent;
+use PrestaShop\Github\Event\PullRequestEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PullRequestSubscriber implements EventSubscriberInterface
@@ -173,7 +173,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
      */
     public function welcomePeople(GitHubEvent $githubEvent)
     {
-        $sender = $githubEvent->getEvent()->sender;
+        $sender = $githubEvent->getEvent()->getSender();
 
         $this->pullRequestsListener->welcomePeople($githubEvent->getPullRequest(), $sender);
 
@@ -192,7 +192,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $pullRequest = $githubEvent->getPullRequest();
 
-        if ($pullRequest->isClosed() || $pullRequest->isMerged()) {
+        if ($pullRequest->isClosed() || $pullRequest->getMerged()) {
             return;
         }
 
@@ -209,11 +209,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     public function checkForMilestone(GitHubEvent $gitHubEvent)
     {
         $event = $gitHubEvent->getEvent();
-        if (!$event instanceof PullRequestEvent || !isset($event->getPayload()['label'])) {
-            return;
-        }
-
-        if (Labels::QA_APPROVED !== $event->getPayload()['label']['name']) {
+        if (!$event instanceof PullRequestEvent || Labels::QA_APPROVED !== $event->getLabel()['name']) {
             return;
         }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AppBundle;
 
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 
 interface GithubDownloaderInterface
 {

@@ -4,6 +4,7 @@ namespace Tests\AppBundle\Comments;
 
 use AppBundle\Comments\CommentApi;
 use PHPUnit\Framework\TestCase;
+use PrestaShop\Github\Entity\PullRequest;
 
 class CommentApiTest extends TestCase
 {
@@ -32,7 +33,7 @@ class CommentApiTest extends TestCase
             self::USER_NAME,
             self::REPO_NAME, $this->twig
         );
-        $this->pullRequest = $this->createMock('Lpdigital\Github\Entity\PullRequest');
+        $this->pullRequest = $this->createMock(PullRequest::class);
 
         $this->pullRequest
             ->method('getNumber')

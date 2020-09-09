@@ -3,9 +3,9 @@
 namespace Tests\AppBundle\Commits;
 
 use AppBundle\Commits\RepositoryInterface;
-use Lpdigital\Github\Entity\Commit;
-use Lpdigital\Github\Entity\PullRequest;
-use Lpdigital\Github\Entity\User;
+use PrestaShop\Github\Entity\Commit;
+use PrestaShop\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\User;
 
 class FakeRepository implements RepositoryInterface
 {
@@ -15,7 +15,7 @@ class FakeRepository implements RepositoryInterface
         $responseApi = json_decode(file_get_contents(__DIR__.'/../webhook_examples/'.$filename), true);
         $commits = [];
         foreach ($responseApi as $commitApi) {
-            $commits[] = Commit::createFromData($commitApi['commit']);
+            $commits[] = new Commit($commitApi['commit']);
         }
 
         return $commits;
@@ -27,7 +27,7 @@ class FakeRepository implements RepositoryInterface
         $responseApi = json_decode(file_get_contents(__DIR__.'/../webhook_examples/'.$filename), true);
         $commits = [];
         foreach ($responseApi as $commitApi) {
-            $commits[] = Commit::createFromData($commitApi['commit']);
+            $commits[] = new Commit($commitApi['commit']);
         }
 
         return $commits;

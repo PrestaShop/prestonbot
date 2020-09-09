@@ -3,7 +3,7 @@
 namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\CommitParser;
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**

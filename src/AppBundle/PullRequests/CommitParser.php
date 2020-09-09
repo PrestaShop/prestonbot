@@ -2,7 +2,7 @@
 
 namespace AppBundle\PullRequests;
 
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

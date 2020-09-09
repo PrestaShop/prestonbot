@@ -2,17 +2,20 @@
   "action": "labeled",
   "issue": {
     "url": "https://api.github.com/repos/weaverryan/symfony/issues/5",
+    "repository_url": "https://api.github.com/repos/weaverryan/symfony",
     "labels_url": "https://api.github.com/repos/weaverryan/symfony/issues/5/labels{/name}",
     "comments_url": "https://api.github.com/repos/weaverryan/symfony/issues/5/comments",
     "events_url": "https://api.github.com/repos/weaverryan/symfony/issues/5/events",
     "html_url": "https://github.com/weaverryan/symfony/issues/5",
     "id": 95027129,
+    "node_id": "MDU6SXNzdWU5NTAyNzEyOQ==",
     "number": 5,
     "title": "Brand new issue",
     "user": {
       "login": "weaverryan",
       "id": 121003,
-      "avatar_url": "https://avatars.githubusercontent.com/u/121003?v=3",
+      "node_id": "MDQ6VXNlcjEyMTAwMw==",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/121003?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/weaverryan",
       "html_url": "https://github.com/weaverryan",
@@ -30,20 +33,30 @@
     },
     "labels": [
       {
+        "id": 109156543,
+        "node_id": "MDU6TGFiZWwxMDkxNTY1NDM=",
         "url": "https://api.github.com/repos/weaverryan/symfony/labels/bug",
         "name": "bug",
-        "color": "fc2929"
+        "color": "fc2929",
+        "default": true,
+        "description": null
       }
     ],
     "state": "open",
     "locked": false,
     "assignee": null,
+    "assignees": [
+
+    ],
     "milestone": null,
     "comments": 0,
     "created_at": "2015-07-14T20:00:15Z",
     "updated_at": "2015-07-14T20:00:19Z",
     "closed_at": null,
-    "body": ""
+    "author_association": "OWNER",
+    "active_lock_reason": null,
+    "body": "",
+    "closed_by": null
   },
   "label": {
     "url": "https://api.github.com/repos/weaverryan/symfony/labels/bug",
@@ -52,12 +65,15 @@
   },
   "repository": {
     "id": 21151556,
+    "node_id": "MDEwOlJlcG9zaXRvcnkyMTE1MTU1Ng==",
     "name": "symfony",
     "full_name": "loveOSS/test",
+    "private": false,
     "owner": {
       "login": "weaverryan",
       "id": 121003,
-      "avatar_url": "https://avatars.githubusercontent.com/u/121003?v=3",
+      "node_id": "MDQ6VXNlcjEyMTAwMw==",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/121003?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/weaverryan",
       "html_url": "https://github.com/weaverryan",
@@ -73,7 +89,6 @@
       "type": "User",
       "site_admin": false
     },
-    "private": false,
     "html_url": "https://github.com/weaverryan/symfony",
     "description": "The Symfony PHP framework",
     "fork": true,
@@ -113,6 +128,7 @@
     "notifications_url": "https://api.github.com/repos/weaverryan/symfony/notifications{?since,all,participating}",
     "labels_url": "https://api.github.com/repos/weaverryan/symfony/labels{/name}",
     "releases_url": "https://api.github.com/repos/weaverryan/symfony/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/weaverryan/symfony/deployments",
     "created_at": "2014-06-24T04:00:07Z",
     "updated_at": "2015-06-28T12:37:42Z",
     "pushed_at": "2015-06-28T15:31:08Z",
@@ -126,12 +142,22 @@
     "watchers_count": 0,
     "language": "PHP",
     "has_issues": true,
+    "has_projects": true,
     "has_downloads": false,
     "has_wiki": false,
     "has_pages": false,
     "forks_count": 0,
     "mirror_url": null,
+    "archived": false,
+    "disabled": false,
     "open_issues_count": 4,
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
     "forks": 0,
     "open_issues": 4,
     "watchers": 0,
@@ -140,7 +166,8 @@
   "sender": {
     "login": "weaverryan",
     "id": 121003,
-    "avatar_url": "https://avatars.githubusercontent.com/u/121003?v=3",
+    "node_id": "MDQ6VXNlcjEyMTAwMw==",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/121003?v=4",
     "gravatar_id": "",
     "url": "https://api.github.com/users/weaverryan",
     "html_url": "https://github.com/weaverryan",

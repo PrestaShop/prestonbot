@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ca9c592cb44f586367ae58d35442ec8",
+    "content-hash": "30fd02915814e3b548218b794180f7d6",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1194,57 +1194,6 @@
             "time": "2019-01-28T19:31:35+00:00"
         },
         {
-            "name": "lp-digital/github-event-parser",
-            "version": "v0.8.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Lp-digital/github-event-parser.git",
-                "reference": "2a57cd8ab1cf7e12fb680fd61afd1e9725db708c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Lp-digital/github-event-parser/zipball/2a57cd8ab1cf7e12fb680fd61afd1e9725db708c",
-                "reference": "2a57cd8ab1cf7e12fb680fd61afd1e9725db708c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "~1.11",
-                "phpunit/phpunit": "~4.7"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Lpdigital\\Github\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Mickaël Andrieu",
-                    "email": "mickael.andrieu@lp-digital.fr"
-                }
-            ],
-            "description": "PHP library to get a readable representation of events dispatched by Github API v3",
-            "homepage": "https://github.com/Lp-digital/github-event-parser",
-            "keywords": [
-                "event",
-                "github",
-                "json parser"
-            ],
-            "time": "2017-04-19T20:00:10+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "1.24.0",
             "source": {
@@ -1888,6 +1837,48 @@
             "time": "2016-01-26T13:27:02+00:00"
         },
         {
+            "name": "prestashop/github-webhook-parser",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PrestaShop/github-webhook-parser.git",
+                "reference": "a2ef3ff8bd88f4a44dbe807bbc4eed862829524e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PrestaShop/github-webhook-parser/zipball/a2ef3ff8bd88f4a44dbe807bbc4eed862829524e",
+                "reference": "a2ef3ff8bd88f4a44dbe807bbc4eed862829524e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PrestaShop\\Github\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PrestaShop SA",
+                    "email": "contact@prestashop.com"
+                },
+                {
+                    "name": "Thomas Baccelli",
+                    "email": "thomas.baccelli@prestashop.com"
+                }
+            ],
+            "description": "Converts Github API v3 events to PHP objects",
+            "homepage": "https://github.com/PrestaShop/github-webhook-parser",
+            "time": "2020-09-09T15:24:05+00:00"
+        },
+        {
             "name": "prestashop/translationtools-bundle",
             "version": "v4.0.3",
             "source": {
@@ -2325,6 +2316,7 @@
                 "configuration",
                 "distribution"
             ],
+            "abandoned": true,
             "time": "2018-12-14T17:36:15+00:00"
         },
         {
