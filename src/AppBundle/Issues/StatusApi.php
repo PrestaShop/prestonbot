@@ -46,6 +46,27 @@ class StatusApi
     }
 
     /**
+     * @param int    $issueNumber The GitHub issue number
+     * @param string $label       A Status::* constant
+     *
+     * @return bool
+     */
+    public function removeIssueLabel($issueNumber, $label)
+    {
+        if (isset(Labels::ALIASES[$label])) {
+            $label = Labels::ALIASES[$label];
+        }
+
+        try {
+            $this->labelsApi->removeIssueLabel($issueNumber, $label);
+        } catch (\Exception $e) {
+            // The Issue didn't have the label already
+        }
+
+        return true;
+    }
+
+    /**
      * @return string
      */
     public function getNeedsReviewUrl()

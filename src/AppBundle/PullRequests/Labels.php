@@ -25,6 +25,8 @@ final class Labels
 
     const QA_APPROVED = 'QA ✔️';
 
+    const WORDING_APPROVED = 'Wording ✔️';
+
     // Help to prevent changes in the future
     const ALIASES = [
         'bug fix' => self::BUG,

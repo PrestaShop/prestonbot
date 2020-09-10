@@ -240,21 +240,27 @@ class Listener
         $this->chainExtractor->extract($this->cacheDir.'/'.$head, $catalogHead);
 
         $newStrings = [];
+        $allValidated = true;
         foreach ($catalogHead->all() as $domain => $strings) {
             foreach ($strings as $key => $string) {
                 if (!isset($catalogBase->all()[$domain][$key])) {
                     if (!isset($newStrings[$domain])) {
+                        $isNew = !isset($catalogBase->all()[$domain]);
+                        $validatedDomain = isset($validated[$domain]) && $validated[$domain]['validated'];
+                        $allValidated &= ($validatedDomain || !$isNew);
                         $newStrings[$domain] = [
-                            'validated' => isset($validated[$domain]) && $validated[$domain]['validated'],
-                            'new' => !isset($catalogBase->all()[$domain]),
+                            'validated' => $validatedDomain,
+                            'new' => $isNew,
                             'strings' => [],
                         ];
                     }
                     $meta = $catalogHead->getMetadata($key, $domain);
                     $filePath = substr($meta['file'], \strlen($this->cacheDir.'/'.$head.'/'));
+                    $validatedString = isset($validated[$domain]) && \in_array($key, $validated[$domain]['strings'], true);
+                    $allValidated &= $validatedString;
                     $newStrings[$domain]['strings'][] = [
                         'string' => $key,
-                        'validated' => isset($validated[$domain]) && \in_array($key, $validated[$domain]['strings'], true),
+                        'validated' => $validatedString,
                         'link' => sprintf($baseLineUrl, md5($filePath), $meta['line']),
                     ];
                 }
@@ -270,7 +276,7 @@ class Listener
                 $this->commentApi->editWithTemplate($existingComment['id'], $template, $params);
             }
 
-            return true;
+            return !$allValidated;
         }
 
         return false;

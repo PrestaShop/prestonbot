@@ -17,6 +17,10 @@ class NullStatusApi extends StatusApi
     {
     }
 
+    public function removeIssueLabel($issueNumber, $label)
+    {
+    }
+
     public function setIssueStatus($issueNumber, $newStatus)
     {
     }
