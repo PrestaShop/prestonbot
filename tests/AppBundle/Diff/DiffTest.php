@@ -3,8 +3,8 @@
 namespace Tests\AppBundle\Diff;
 
 use AppBundle\Diff\Diff;
-use Lpdigital\Github\Parser\WebhookResolver;
 use PHPUnit\Framework\TestCase;
+use PrestaShop\Github\WebhookHandler;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
@@ -16,15 +16,15 @@ class DiffTest extends TestCase
 
     private $event;
     private $pullRequest;
-    private $webhookResolver;
+    private $webhookHandler;
 
     protected function setUp()
     {
-        $this->webhookResolver = new WebhookResolver();
+        $this->webhookHandler = new WebhookHandler();
         $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_opened_wording.json');
         $data = json_decode($webhookResponse, true);
-        $this->event = $this->webhookResolver->resolve($data);
-        $this->pullRequest = $this->event->pullRequest;
+        $this->event = $this->webhookHandler->handle($data);
+        $this->pullRequest = $this->event->getPullRequest();
     }
 
     public function testMatch()

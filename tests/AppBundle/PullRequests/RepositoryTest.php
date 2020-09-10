@@ -4,6 +4,8 @@ namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\Repository;
 use PHPUnit\Framework\TestCase;
+use PrestaShop\Github\Entity\Comment;
+use PrestaShop\Github\Entity\PullRequest;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
@@ -34,7 +36,7 @@ class RepositoryTest extends TestCase
             ->willReturn(true)
         ;
 
-        $this->pullRequestMock = $this->createMock('Lpdigital\Github\Entity\PullRequest');
+        $this->pullRequestMock = $this->createMock(PullRequest::class);
 
         $this->pullRequestMock
             ->method('getNumber')
@@ -95,8 +97,8 @@ class RepositoryTest extends TestCase
         $comments = $this->repository->getComments($this->pullRequestMock);
         $this->assertInternalType('array', $comments);
         $firstComment = $comments[0];
-        $this->assertInstanceOf('Lpdigital\Github\Entity\Comment', $firstComment);
-        $this->assertSame('mickaelandrieu', $firstComment->getUserLogin());
+        $this->assertInstanceOf(Comment::class, $firstComment);
+        $this->assertSame('mickaelandrieu', $firstComment->getUser()->getLogin());
     }
 
     public function testGetCommentsByExpressionFromMatch()
@@ -112,8 +114,8 @@ class RepositoryTest extends TestCase
 
         $this->assertInternalType('array', $comments);
         $firstComment = $comments[0];
-        $this->assertInstanceOf('Lpdigital\Github\Entity\Comment', $firstComment);
-        $this->assertSame('Shudrum', $firstComment->getUserLogin());
+        $this->assertInstanceOf(Comment::class, $firstComment);
+        $this->assertSame('Shudrum', $firstComment->getUser()->getLogin());
     }
 
     public function testGetCommentsByExpressionFromNotMatch()
@@ -147,6 +149,6 @@ class RepositoryTest extends TestCase
     private function minimalTests($pullRequests)
     {
         $this->assertInternalType('array', $pullRequests);
-        $this->assertInstanceOf('Lpdigital\Github\Entity\PullRequest', $pullRequests[0]);
+        $this->assertInstanceOf(PullRequest::class, $pullRequests[0]);
     }
 }

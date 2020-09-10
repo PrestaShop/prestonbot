@@ -4,9 +4,11 @@
     "html_url": "https://github.com/PrestaShop/PrestaShop/pull/5593#issuecomment-220302536",
     "issue_url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/5593",
     "id": 220302536,
+    "node_id": "MDQ6VXNlcjIyMzY3NzU2",
     "user": {
       "login": "mickaelandrieu",
       "id": 1247388,
+      "node_id": "MDQ6VXNlcjIyMzY3NzU2",
       "avatar_url": "https://avatars.githubusercontent.com/u/1247388?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/mickaelandrieu",
@@ -25,16 +27,19 @@
     },
     "created_at": "2016-05-19T11:53:18Z",
     "updated_at": "2016-05-19T11:53:18Z",
-    "body": "What do you think @Shudrum ?"
+    "body": "What do you think @Shudrum ?",
+    "author_association": "NONE"
   },
   {
     "url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/comments/220308406",
     "html_url": "https://github.com/PrestaShop/PrestaShop/pull/5593#issuecomment-220308406",
     "issue_url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/5593",
     "id": 220308406,
+    "node_id": "MDQ6VXNlcjIyMzY3NzU2",
     "user": {
       "login": "kpodemski",
       "id": 2137763,
+      "node_id": "MDQ6VXNlcjIyMzY3NzU2",
       "avatar_url": "https://avatars.githubusercontent.com/u/2137763?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/kpodemski",
@@ -53,16 +58,19 @@
     },
     "created_at": "2016-05-19T12:23:09Z",
     "updated_at": "2016-05-19T12:23:09Z",
-    "body": "Oh, we can't use shorthand for an arrays? :("
+    "body": "Oh, we can't use shorthand for an arrays? :(",
+    "author_association": "NONE"
   },
   {
     "url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/comments/220310222",
     "html_url": "https://github.com/PrestaShop/PrestaShop/pull/5593#issuecomment-220310222",
     "issue_url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/5593",
     "id": 220310222,
+    "node_id": "MDQ6VXNlcjIyMzY3NzU2",
     "user": {
       "login": "mickaelandrieu",
       "id": 1247388,
+      "node_id": "MDQ6VXNlcjIyMzY3NzU2",
       "avatar_url": "https://avatars.githubusercontent.com/u/1247388?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/mickaelandrieu",
@@ -81,16 +89,19 @@
     },
     "created_at": "2016-05-19T12:31:28Z",
     "updated_at": "2016-05-19T12:31:28Z",
-    "body": "@kpodemski nope, it's better when you want to cherry pick from 1.7 to 1.6 some bug fix."
+    "body": "@kpodemski nope, it's better when you want to cherry pick from 1.7 to 1.6 some bug fix.",
+    "author_association": "NONE"
   },
   {
     "url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/comments/220310905",
     "html_url": "https://github.com/PrestaShop/PrestaShop/pull/5593#issuecomment-220310905",
     "issue_url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/5593",
     "id": 220310905,
+    "node_id": "MDQ6VXNlcjIyMzY3NzU2",
     "user": {
       "login": "kpodemski",
       "id": 2137763,
+      "node_id": "MDQ6VXNlcjIyMzY3NzU2",
       "avatar_url": "https://avatars.githubusercontent.com/u/2137763?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/kpodemski",
@@ -109,16 +120,19 @@
     },
     "created_at": "2016-05-19T12:34:21Z",
     "updated_at": "2016-05-19T12:34:21Z",
-    "body": "Sad, but true :imp: "
+    "body": "Sad, but true :imp: ",
+    "author_association": "NONE"
   },
   {
     "url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/comments/220379625",
     "html_url": "https://github.com/PrestaShop/PrestaShop/pull/5593#issuecomment-220379625",
     "issue_url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/5593",
     "id": 220379625,
+    "node_id": "MDQ6VXNlcjIyMzY3NzU2",
     "user": {
       "login": "Shudrum",
       "id": 2795733,
+      "node_id": "MDQ6VXNlcjIyMzY3NzU2",
       "avatar_url": "https://avatars.githubusercontent.com/u/2795733?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/Shudrum",
@@ -137,16 +151,19 @@
     },
     "created_at": "2016-05-19T16:30:30Z",
     "updated_at": "2016-05-19T16:30:30Z",
-    "body": "I think this is great, but before creating to many conflicts, we should do a great merge party for the develop branch!"
+    "body": "I think this is great, but before creating to many conflicts, we should do a great merge party for the develop branch!",
+    "author_association": "NONE"
   },
   {
     "url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/comments/220380212",
     "html_url": "https://github.com/PrestaShop/PrestaShop/pull/5593#issuecomment-220380212",
     "issue_url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/5593",
     "id": 220380212,
+    "node_id": "MDQ6VXNlcjIyMzY3NzU2",
     "user": {
       "login": "Shudrum",
       "id": 2795733,
+      "node_id": "MDQ6VXNlcjIyMzY3NzU2",
       "avatar_url": "https://avatars.githubusercontent.com/u/2795733?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/Shudrum",
@@ -165,16 +182,19 @@
     },
     "created_at": "2016-05-19T16:32:31Z",
     "updated_at": "2016-05-19T16:32:31Z",
-    "body": "POC added just to not merge to quickly."
+    "body": "POC added just to not merge to quickly.",
+    "author_association": "NONE"
   },
   {
     "url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/comments/220383522",
     "html_url": "https://github.com/PrestaShop/PrestaShop/pull/5593#issuecomment-220383522",
     "issue_url": "https://api.github.com/repos/PrestaShop/PrestaShop/issues/5593",
     "id": 220383522,
+    "node_id": "MDQ6VXNlcjIyMzY3NzU2",
     "user": {
       "login": "mickaelandrieu",
       "id": 1247388,
+      "node_id": "MDQ6VXNlcjIyMzY3NzU2",
       "avatar_url": "https://avatars.githubusercontent.com/u/1247388?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/mickaelandrieu",
@@ -193,6 +213,7 @@
     },
     "created_at": "2016-05-19T16:44:52Z",
     "updated_at": "2016-05-19T16:44:52Z",
-    "body": "@Shudrum sure :) just notice we can merge some commits but not all for instance, too ;)"
+    "body": "@Shudrum sure :) just notice we can merge some commits but not all for instance, too ;)",
+    "author_association": "NONE"
   }
 ]

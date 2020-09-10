@@ -4,7 +4,7 @@ namespace AppBundle\Issues;
 
 use AppBundle\PullRequests\BodyParser;
 use AppBundle\PullRequests\Labels;
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 use Psr\Log\LoggerInterface;
 
 class Listener

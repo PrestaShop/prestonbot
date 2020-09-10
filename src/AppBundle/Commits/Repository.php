@@ -5,9 +5,9 @@ namespace AppBundle\Commits;
 use AppBundle\Repositories\Repository as CommitsApi;
 use Github\Api\PullRequest as PullRequestApi;
 use Github\Exception\RuntimeException;
-use Lpdigital\Github\Entity\Commit;
-use Lpdigital\Github\Entity\PullRequest;
-use Lpdigital\Github\Entity\User;
+use PrestaShop\Github\Entity\Commit;
+use PrestaShop\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\User;
 
 class Repository implements RepositoryInterface
 {
@@ -84,13 +84,13 @@ class Repository implements RepositoryInterface
     /**
      * @param array $responseApi
      *
-     * @return \Lpdigital\Github\Entity\Commit[]|array
+     * @return Commit[]|array
      */
     private function buildCommits(array $responseApi)
     {
         $commits = [];
         foreach ($responseApi as $commitApi) {
-            $commits[] = Commit::createFromData($commitApi['commit']);
+            $commits[] = new Commit($commitApi['commit']);
         }
 
         return $commits;

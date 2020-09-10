@@ -7,10 +7,10 @@ use AppBundle\Commits\Repository as CommitRepository;
 use AppBundle\PullRequests\BodyParser;
 use AppBundle\PullRequests\Listener;
 use AppBundle\PullRequests\Repository;
-use Lpdigital\Github\Entity\Comment;
-use Lpdigital\Github\Entity\PullRequest;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
+use PrestaShop\Github\Entity\Comment;
+use PrestaShop\Github\Entity\PullRequest;
 use PrestaShop\TranslationToolsBundle\Translation\Extractor\ChainExtractor;
 use PrestaShop\TranslationToolsBundle\Translation\Extractor\PhpExtractor;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -250,14 +250,33 @@ class ListenerTest extends TestCase
     {
         return [new Comment([
             'id' => 1,
+            'node_id' => 'MDExOlB1bGxSZXF1ZXN0OTEzNzU2MzQ=',
             'body' => file_get_contents(__DIR__.'/../../Resources/Comments/validated_wordings.txt'),
             'url' => '',
             'html_url' => '',
             'user' => [
-                'name' => '',
+                'login' => '',
+                'id' => '',
+                'node_id' => '',
+                'avatar_url' => '',
+                'gravatar_id' => '',
+                'url' => '',
+                'html_url' => '',
+                'followers_url' => '',
+                'following_url' => '',
+                'gists_url' => '',
+                'starred_url' => '',
+                'subscriptions_url' => '',
+                'organizations_url' => '',
+                'repos_url' => '',
+                'events_url' => '',
+                'received_events_url' => '',
+                'type' => '',
+                'site_admin' => '',
             ],
             'created_at' => '',
             'updated_at' => '',
+            'author_association' => '',
         ])];
     }
 }

@@ -6,7 +6,7 @@ namespace AppBundle;
 
 use AppBundle\Diff\Diff;
 use Github\Api\Repository\Contents;
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 use Symfony\Component\Filesystem\Filesystem;
 use ZipArchive;
 

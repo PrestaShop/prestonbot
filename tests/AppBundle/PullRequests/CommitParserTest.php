@@ -3,7 +3,7 @@
 namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\CommitParser;
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -45,7 +45,7 @@ class CommitParserTest extends WebTestCase
         $parser = new CommitParser($label, self::$pullRequest);
 
         $validationsErrors = $validator->validate($parser);
-        $isValid = (0 === count($validationsErrors));
+        $isValid = (0 === \count($validationsErrors));
 
         $this->assertTrue($isValid === $expected);
     }

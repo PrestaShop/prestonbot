@@ -2,8 +2,8 @@
 
 namespace AppBundle\Event;
 
-use Lpdigital\Github\Entity\PullRequest;
-use Lpdigital\Github\EventType\ActionableEventInterface;
+use PrestaShop\Github\Entity\PullRequest;
+use PrestaShop\Github\Event\GithubEventInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -16,7 +16,7 @@ class GitHubEvent extends Event
      */
     private $name;
     /**
-     * @var \Lpdigital\Github\EventType\ActionableEventInterface
+     * @var GithubEventInterface
      */
     private $event;
     /**
@@ -24,7 +24,7 @@ class GitHubEvent extends Event
      */
     private $statuses;
 
-    public function __construct(string $name, ActionableEventInterface $event)
+    public function __construct(string $name, GithubEventInterface $event)
     {
         $this->name = $name;
         $this->event = $event;
@@ -36,14 +36,14 @@ class GitHubEvent extends Event
         return $this->name;
     }
 
-    public function getEvent(): ActionableEventInterface
+    public function getEvent(): GithubEventInterface
     {
         return $this->event;
     }
 
     public function getPullRequest(): ?PullRequest
     {
-        return property_exists($this->event, 'pullRequest') ? $this->event->pullRequest : null;
+        return method_exists($this->event, 'getPullRequest') ? $this->event->getPullRequest() : null;
     }
 
     public function getStatuses(): array

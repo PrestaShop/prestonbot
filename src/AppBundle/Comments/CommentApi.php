@@ -3,7 +3,7 @@
 namespace AppBundle\Comments;
 
 use Github\Api\Issue\Comments as KnpCommentApi;
-use Lpdigital\Github\Entity\PullRequest;
+use PrestaShop\Github\Entity\PullRequest;
 use Twig_Environment;
 
 /**

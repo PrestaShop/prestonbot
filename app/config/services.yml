@@ -22,8 +22,7 @@ services:
 
     PrestaShop\TranslationToolsBundle\Translation\Extractor\ChainExtractor: '@prestashop.translation.chainextractor'
 
-# Argument value resolver
-    Lpdigital\Github\Parser\WebhookResolver:
+    PrestaShop\Github\WebhookHandler:
 
     AppBundle\Event\GitHubEventResolver:
         tags:

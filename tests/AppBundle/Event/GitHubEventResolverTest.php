@@ -4,8 +4,8 @@ namespace Tests\AppBundle\Event;
 
 use AppBundle\Event\GitHubEvent;
 use AppBundle\Event\GitHubEventResolver;
-use Lpdigital\Github\Parser\WebhookResolver;
 use PHPUnit\Framework\TestCase;
+use PrestaShop\Github\WebhookHandler;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -20,9 +20,9 @@ class GitHubEventResolverTest extends TestCase
     private $argumentResolver;
 
     /**
-     * @var WebhookResolver
+     * @var WebhookHandler
      */
-    private $webhookResolver;
+    private $webhookHandler;
 
     /**
      * @var LoggerInterface
@@ -32,10 +32,10 @@ class GitHubEventResolverTest extends TestCase
     public function setUp()
     {
         $this->logger = $this->createMock(LoggerInterface::class);
-        $this->webhookResolver = new WebhookResolver();
+        $this->webhookHandler = new WebhookHandler();
 
         $this->argumentResolver = new GitHubEventResolver(
-            $this->webhookResolver,
+            $this->webhookHandler,
             $this->logger,
             self::REPOSITORY_OWNER,
             self::REPOSITORY_NAME
