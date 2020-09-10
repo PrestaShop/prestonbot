@@ -53,7 +53,6 @@ class ListenerTest extends TestCase
         $this->repositoryMock = $this->createMock(Repository::class);
 
         $commitRepository = $this->createMock(CommitRepository::class);
-        $validator = $this->createMock(ValidatorInterface::class);
         $logger = $this->createMock(Logger::class);
 
         $githubDownloader = new FakeGithubDownloader();
@@ -63,7 +62,7 @@ class ListenerTest extends TestCase
         $this->listener = new Listener(
             $this->commentApiMock,
             $commitRepository,
-            $validator,
+            $this->validator,
             $this->repositoryMock,
             $githubDownloader,
             $chainExtractor,
@@ -91,6 +90,27 @@ class ListenerTest extends TestCase
         foreach ($validations as $validation) {
             $this->assertContains($validation->getPropertyPath(), $expected);
         }
+    }
+
+    /**
+     * @dataProvider getDescriptionTests
+     *
+     * @param mixed $descriptionFilename
+     * @param mixed $expected
+     */
+    public function testPullRequestValidationComment($descriptionFilename, $expected)
+    {
+        $body = file_get_contents(__DIR__.'/../../Resources/PullRequestBody/'.$descriptionFilename);
+
+        $pullRequestMock = $this->createMock(PullRequest::class);
+        $pullRequestMock->method('getBody')->willReturn($body);
+
+        $this->commentApiMock->expects(empty($expected) ? $this->never() : $this->once())
+            ->method('sendWithTemplate');
+        $this->listener->checkForTableDescription($pullRequestMock);
+
+        $result = $this->listener->removePullRequestValidationComment($pullRequestMock);
+        $this->assertSame(empty($expected), $result);
     }
 
     /**

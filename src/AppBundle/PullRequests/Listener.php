@@ -121,6 +121,13 @@ class Listener
         $bodyParser = new BodyParser($pullRequest->getBody());
 
         $bodyErrors = $this->validator->validate($bodyParser);
+        if (!$bodyParser->isTestCategory()) {
+            $bodyErrors->addAll($this->validator->validate(
+                $bodyParser,
+                null,
+                BodyParser::NOT_TEST_GROUP
+            ));
+        }
         if (0 === \count($bodyErrors)) {
             $this->repository->removeCommentsIfExists(
                 $pullRequest,
