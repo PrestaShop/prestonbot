@@ -37,6 +37,7 @@ class Listener
         $newStatus = Status::WAITING_FOR_WORDING;
 
         $this->statusApi->addIssueLabel($issueNumber, $newStatus);
+        $this->statusApi->removeIssueLabel($issueNumber, Labels::WORDING_APPROVED);
         $this->log($issueNumber, $newStatus);
 
         return $newStatus;

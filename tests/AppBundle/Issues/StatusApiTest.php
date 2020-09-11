@@ -88,6 +88,60 @@ class StatusApiTest extends TestCase
         $this->api->addIssueLabel(1234, 'refacto');
     }
 
+    public function testRemoveIssueLabel()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('removeIssueLabel')
+            ->with(1234, 'Code reviewed');
+
+        $this->api->removeIssueLabel(1234, Status::CODE_REVIEWED);
+    }
+
+    public function testRemoveIssueLabelWithBugAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('removeIssueLabel')
+            ->with(1234, 'Bug');
+
+        $this->api->removeIssueLabel(1234, 'bug fix');
+    }
+
+    public function testRemoveIssueLabelWithFeatureAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('removeIssueLabel')
+            ->with(1234, 'Feature');
+
+        $this->api->removeIssueLabel(1234, 'new feature');
+    }
+
+    public function testRemoveIssueLabelWithImprovementAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('removeIssueLabel')
+            ->with(1234, 'Improvement');
+
+        $this->api->removeIssueLabel(1234, 'improvement');
+    }
+
+    public function testRemoveIssueLabelWithCriticalAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('removeIssueLabel')
+            ->with(1234, 'Critical');
+
+        $this->api->removeIssueLabel(1234, 'critical');
+    }
+
+    public function testRemoveIssueLabelWithRefactoAlias()
+    {
+        $this->labelsApi->expects($this->once())
+            ->method('removeIssueLabel')
+            ->with(1234, 'Refactoring');
+
+        $this->api->removeIssueLabel(1234, 'refacto');
+    }
+
     public function testGetNeedsReviewUrl()
     {
         $this->assertSame(
