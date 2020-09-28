@@ -66,6 +66,14 @@ class BodyParserTest extends TestCase
         $this->assertTrue($this->bodyParser->isTestCategory());
     }
 
+    public function testGetMergeCategory()
+    {
+        $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/ME_category.txt'));
+
+        $this->assertSame('ME', $this->bodyParser->getCategory());
+        $this->assertTrue($this->bodyParser->isMergeCategory());
+    }
+
     public function testGetTypeWithoutSpaces()
     {
         $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/improvement.txt'));

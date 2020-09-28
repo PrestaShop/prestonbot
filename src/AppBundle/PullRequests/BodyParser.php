@@ -92,6 +92,14 @@ class BodyParser
     /**
      * @return bool
      */
+    public function isMergeCategory()
+    {
+        return 1 === preg_match('/\bME\b/', $this->getCategory());
+    }
+
+    /**
+     * @return bool
+     */
     public function isBackwardCompatible()
     {
         $regex = sprintf(self::DEFAULT_PATTERN, 'BC breaks', '.+');
