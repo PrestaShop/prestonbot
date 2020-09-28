@@ -238,7 +238,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $pullRequest = $gitHubEvent->getPullRequest();
 
-        if (!$pullRequest->isMerged()) {
+        if (!$pullRequest->getMerged()) {
             return;
         }
 
