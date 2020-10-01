@@ -119,6 +119,55 @@ class WebhookControllerTest extends WebTestCase
                 ],*/
             ],
         ];
+        $tests['Pull request creation with only old wording'] = [
+            'pull_request',
+            'pull_request_opened_old_wording.json',
+            [
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'user welcomed',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'table description checked',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'branch label initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'pr type label initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'checked for new translations',
+                    'status' => 'found',
+                ],
+            ],
+        ];
+        $tests['Pull request creation with wording but category ME'] = [
+            'pull_request',
+            'pull_request_opened_wording_ME.json',
+            [
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'user welcomed',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'table description checked',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'branch label initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'pr type label initialized',
+                ],
+            ],
+        ];
         $tests['Pull request creation with classic changes'] = [
             'pull_request',
             'pull_request_opened_classic.json',

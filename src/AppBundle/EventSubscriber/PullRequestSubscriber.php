@@ -5,13 +5,16 @@ namespace AppBundle\EventSubscriber;
 use AppBundle\Diff\Diff;
 use AppBundle\Event\GitHubEvent;
 use AppBundle\Issues\Listener as IssuesListener;
+use AppBundle\PullRequests\BodyParser;
 use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\Listener as PullRequestsListener;
+use Exception;
 use PrestaShop\Github\Event\PullRequestEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PullRequestSubscriber implements EventSubscriberInterface
 {
+    const TRANS_PATTERN = '#(trans\(|->l\()#';
     const CLASSIC_PATH = '#^themes\/classic\/#';
 
     /**
@@ -112,10 +115,24 @@ class PullRequestSubscriber implements EventSubscriberInterface
     public function checkForNewTranslations(GitHubEvent $githubEvent)
     {
         $pullRequest = $githubEvent->getPullRequest();
+        $bodyParser = new BodyParser($pullRequest->getBody());
+        if ($bodyParser->isMergeCategory()) {
+            return;
+        }
         $event = $githubEvent->getEvent();
-        $newWording = $this->pullRequestsListener->checkForNewTranslations($pullRequest);
+        $found = $this->pullRequestsListener->checkForNewTranslations($pullRequest);
 
-        if ($newWording) {
+        if (!$found) {
+            $pullRequest = $githubEvent->getPullRequest();
+            try {
+                $content = file_get_contents($pullRequest->getDiffUrl());
+                $diff = Diff::create($content);
+                $found = $diff->additions()->contains(self::TRANS_PATTERN)->match();
+            } catch (Exception $e) {
+            }
+        }
+
+        if ($found) {
             $this->issuesListener->handleWaitingForWordingEvent($pullRequest->getNumber());
         }
 
@@ -124,7 +141,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
             'action' => 'checked for new translations',
-            'status' => $newWording ? 'found' : 'not_found',
+            'status' => $found ? 'found' : 'not_found',
         ]);
     }
 
