@@ -138,14 +138,6 @@ class BodyParser
     /**
      * @return bool
      */
-    public function isASmallFix()
-    {
-        return 1 === preg_match('/small fix/', $this->getType());
-    }
-
-    /**
-     * @return bool
-     */
     public function isARefacto()
     {
         return 1 === preg_match('/refacto/', $this->getType());
@@ -183,14 +175,10 @@ class BodyParser
     public static function getValidTypes()
     {
         return [
-            'feature',
             'new feature',
             'improvement',
-            'fix',
             'refacto',
             'bug fix',
-            'small fix',
-            'critical',
         ];
     }
 

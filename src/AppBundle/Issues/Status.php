@@ -19,8 +19,6 @@ final class Status
 
     const WAITING_FOR_WORDING = 'waiting for wording';
 
-    const CRITICAL_ISSUE = 'Type: Critical Bug Fix';
-
     const REPORT_ON_STARTER_THEME = 'Needs port on StarterTheme';
 
     const LEGACY_BRANCH = '1.6.1.x';

@@ -44,27 +44,6 @@ class Listener
     }
 
     /**
-     * @param PullRequest $pullRequest
-     *
-     * @return bool
-     */
-    public function addLabelCriticalLabelIfNeeded(PullRequest $pullRequest): bool
-    {
-        $bodyParser = new BodyParser($pullRequest->getBody());
-
-        if ('critical' === $bodyParser->getType()) {
-            $prNumber = $pullRequest->getNumber();
-            $newStatus = Status::CRITICAL_ISSUE;
-            $this->statusApi->addIssueLabel($prNumber, $newStatus);
-            $this->log($prNumber, $newStatus);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * Add a label for a branch described in Pull Request template.
      *
      * @param PullRequest $pullRequest

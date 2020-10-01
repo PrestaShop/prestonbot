@@ -70,15 +70,6 @@ class StatusApiTest extends TestCase
         $this->api->addIssueLabel(1234, 'improvement');
     }
 
-    public function testAddIssueLabelWithCriticalAlias()
-    {
-        $this->labelsApi->expects($this->once())
-            ->method('addIssueLabel')
-            ->with(1234, 'Critical');
-
-        $this->api->addIssueLabel(1234, 'critical');
-    }
-
     public function testAddIssueLabelWithRefactoAlias()
     {
         $this->labelsApi->expects($this->once())
@@ -122,15 +113,6 @@ class StatusApiTest extends TestCase
             ->with(1234, 'Improvement');
 
         $this->api->removeIssueLabel(1234, 'improvement');
-    }
-
-    public function testRemoveIssueLabelWithCriticalAlias()
-    {
-        $this->labelsApi->expects($this->once())
-            ->method('removeIssueLabel')
-            ->with(1234, 'Critical');
-
-        $this->api->removeIssueLabel(1234, 'critical');
     }
 
     public function testRemoveIssueLabelWithRefactoAlias()
