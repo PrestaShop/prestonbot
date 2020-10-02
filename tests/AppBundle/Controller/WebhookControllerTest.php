@@ -201,11 +201,6 @@ class WebhookControllerTest extends WebTestCase
                 ],*/
             ],
         ];
-        $tests['Pull request creation for critical bug'] = [
-            'issues',
-            'issues.labeled.bug.json',
-            [],
-        ];
         $tests['Add labels'] = [
             'issues',
             'issues.labeled.bug.json',

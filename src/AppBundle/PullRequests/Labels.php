@@ -19,8 +19,6 @@ final class Labels
 
     const IMPROVEMENT = 'Improvement';
 
-    const CRITICAL = 'Critical';
-
     const REFACTORING = 'Refactoring';
 
     const QA_APPROVED = 'QA ✔️';
@@ -30,7 +28,6 @@ final class Labels
     // Help to prevent changes in the future
     const ALIASES = [
         'bug fix' => self::BUG,
-        'critical' => self::CRITICAL,
         'improvement' => self::IMPROVEMENT,
         'new feature' => self::FEATURE,
         'refacto' => self::REFACTORING,

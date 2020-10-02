@@ -54,7 +54,6 @@ class BodyParserTest extends TestCase
         $this->assertTrue($this->bodyParser->isAFeature());
         $this->assertFalse($this->bodyParser->isAnImprovement());
         $this->assertFalse($this->bodyParser->isABugFix());
-        $this->assertFalse($this->bodyParser->isASmallFix());
         $this->assertFalse($this->bodyParser->isARefacto());
     }
 
@@ -83,7 +82,6 @@ class BodyParserTest extends TestCase
         $this->assertFalse($this->bodyParser->isAFeature());
         $this->assertTrue($this->bodyParser->isAnImprovement());
         $this->assertFalse($this->bodyParser->isABugFix());
-        $this->assertFalse($this->bodyParser->isASmallFix());
         $this->assertFalse($this->bodyParser->isARefacto());
     }
 
@@ -96,7 +94,6 @@ class BodyParserTest extends TestCase
         $this->assertFalse($this->bodyParser->isAFeature());
         $this->assertFalse($this->bodyParser->isAnImprovement());
         $this->assertTrue($this->bodyParser->isABugFix());
-        $this->assertFalse($this->bodyParser->isASmallFix());
         $this->assertFalse($this->bodyParser->isARefacto());
     }
 
@@ -144,7 +141,6 @@ class BodyParserTest extends TestCase
         $this->assertFalse($this->bodyParser->isAFeature());
         $this->assertFalse($this->bodyParser->isAnImprovement());
         $this->assertTrue($this->bodyParser->isABugFix());
-        $this->assertFalse($this->bodyParser->isASmallFix());
         $this->assertFalse($this->bodyParser->isARefacto());
         $this->assertEmpty($this->bodyParser->getDescription());
     }
