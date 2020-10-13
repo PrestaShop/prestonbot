@@ -3,8 +3,9 @@
 namespace AppBundle\Organizations;
 
 use Github\Api\Organization;
+use Github\Exception\RuntimeException;
 
-class Repository
+class Repository implements RepositoryInterface
 {
     /**
      * @var array list of teams (won't change during a request)
@@ -18,23 +19,23 @@ class Repository
     /**
      * @var string
      */
-    private $repositoryUsername;
+    private $repositoryOwner;
 
-    public function __construct(Organization $organizationApi, $repositoryUsername)
+    public function __construct(Organization $organizationApi, $repositoryOwner)
     {
         $this->organizationApi = $organizationApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryOwner = $repositoryOwner;
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getTeams()
     {
         if (null === self::$teams) {
             $teams = $this->organizationApi
                 ->teams()
-                ->all($this->repositoryUsername)
+                ->all($this->repositoryOwner)
             ;
 
             foreach ($teams as $team) {
@@ -47,7 +48,7 @@ class Repository
     }
 
     /**
-     * @param string $teamName
+     * {@inheritdoc}
      */
     public function getTeam(string $teamName)
     {
@@ -57,9 +58,7 @@ class Repository
     }
 
     /**
-     * @param string $teamName
-     *
-     * @return \Guzzle\Http\EntityBodyInterface|mixed|string
+     * {@inheritdoc}
      */
     public function getTeamMembers(string $teamName)
     {
@@ -72,6 +71,20 @@ class Repository
                 ->teams()
                 ->members($teamId)
             ;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isMember(string $userLogin)
+    {
+        try {
+            $this->organizationApi->members()->show($this->repositoryOwner, $userLogin);
+
+            return true;
+        } catch (RuntimeException $e) {
+            return false;
         }
     }
 }

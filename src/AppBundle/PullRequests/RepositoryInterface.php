@@ -2,6 +2,7 @@
 
 namespace AppBundle\PullRequests;
 
+use DateTime;
 use PrestaShop\Github\Entity\PullRequest;
 
 interface RepositoryInterface
@@ -47,4 +48,15 @@ interface RepositoryInterface
      * @param mixed $userLogin
      */
     public function removeCommentsIfExists(PullRequest $pullRequest, $pattern, $userLogin);
+
+    /**
+     * Returns all merged pull requests of a specific user commented by another specific user.
+     *
+     * @param string        $mergedFrom  userLogin of the author of the PR
+     * @param string        $commentedBy userLogin of the author of the comment we're looking for
+     * @param DateTime|null $since       since what date should we get the PRs
+     *
+     * @return array
+     */
+    public function getMergedFromWithCommentsFrom(string $mergedFrom, string $commentedBy, ?DateTime $since = null);
 }
