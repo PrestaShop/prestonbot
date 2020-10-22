@@ -85,7 +85,7 @@ class Listener
     }
 
     /**
-     * Add "BC break" label to an issue if declared in the issue description table
+     * Add "BC break" label to an issue if declared in the issue description table.
      *
      * @param PullRequest $pullRequest
      *

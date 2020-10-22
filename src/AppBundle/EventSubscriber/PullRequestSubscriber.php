@@ -96,7 +96,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Add BC break label to the pull request according to the PR template
+     * Add BC break label to the pull request according to the PR template.
      *
      * @param GitHubEvent $githubEvent
      */
