@@ -34,7 +34,7 @@ class BodyParserTest extends TestCase
 
     public function testIsBackwardCompatible()
     {
-        $this->assertFalse($this->bodyParser->isBackwardCompatible());
+        $this->assertTrue($this->bodyParser->isBackwardCompatible());
     }
 
     public function testGetTestingScenario()

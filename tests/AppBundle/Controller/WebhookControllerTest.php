@@ -75,6 +75,11 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
+                    'action' => 'BC break label initialized',
+                    'status' => 'no BC break',
+                ],
+                [
+                    'event' => 'pr_opened',
                     'action' => 'checked for new translations',
                     'status' => 'not_found',
                 ],
@@ -105,6 +110,11 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'pr type label initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'BC break label initialized',
+                    'status' => 'no BC break',
                 ],
                 [
                     'event' => 'pr_opened',
@@ -141,6 +151,11 @@ class WebhookControllerTest extends WebTestCase
                 ],
                 [
                     'event' => 'pr_opened',
+                    'action' => 'BC break label initialized',
+                    'status' => 'no BC break',
+                ],
+                [
+                    'event' => 'pr_opened',
                     'action' => 'checked for new translations',
                     'status' => 'found',
                 ],
@@ -166,6 +181,11 @@ class WebhookControllerTest extends WebTestCase
                     'event' => 'pr_opened',
                     'action' => 'pr type label initialized',
                 ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'BC break label initialized',
+                    'status' => 'no BC break',
+                ],
             ],
         ];
         $tests['Pull request creation with classic changes'] = [
@@ -187,6 +207,11 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'pr type label initialized',
+                ],
+                [
+                    'event' => 'pr_opened',
+                    'action' => 'BC break label initialized',
+                    'status' => 'BC break',
                 ],
                 [
                     'event' => 'pr_opened',

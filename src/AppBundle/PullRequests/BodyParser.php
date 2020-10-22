@@ -103,9 +103,9 @@ class BodyParser
     public function isBackwardCompatible()
     {
         $regex = sprintf(self::DEFAULT_PATTERN, 'BC breaks', '.+');
-        $backwardCompatible = $this->extractWithRegex($regex);
+        $bcBreaks = $this->extractWithRegex($regex);
 
-        return 'yes' === $backwardCompatible;
+        return 'yes' !== $bcBreaks;
     }
 
     /**

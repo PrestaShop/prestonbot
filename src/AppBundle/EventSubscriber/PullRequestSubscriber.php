@@ -45,11 +45,13 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['checkForNewTranslations', 252],
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
+                ['initBCBreakLabel', 254],
             ],
             'pullrequestevent_edited' => [
                 ['removePullRequestValidationComment', 255],
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
+                ['initBCBreakLabel', 254],
             ],
             'pullrequestevent_synchronize' => [
                 ['checkForNewTranslations', 252],
@@ -90,6 +92,24 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_opened',
             'action' => 'pr type label initialized',
+        ]);
+    }
+
+    /**
+     * Add BC break label to the pull request according to the PR template
+     *
+     * @param GitHubEvent $githubEvent
+     */
+    public function initBCBreakLabel(GitHubEvent $githubEvent)
+    {
+        $bcBreak = $this->issuesListener->addBackwardCompatibleLabel($githubEvent->getPullRequest());
+
+        $eventStatus = 'opened' === $githubEvent->getEvent()->getAction() ? 'opened' : 'edited';
+
+        $githubEvent->addStatus([
+            'event' => 'pr_'.$eventStatus,
+            'action' => 'BC break label initialized',
+            'status' => $bcBreak ? 'BC break' : 'no BC break',
         ]);
     }
 
