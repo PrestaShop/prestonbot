@@ -109,7 +109,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
             'action' => 'BC break label initialized',
-            'status' => $bcBreak ? 'BC break' : 'no BC break',
+            'status' => $bcBreak,
         ]);
     }
 
