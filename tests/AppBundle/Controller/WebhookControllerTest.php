@@ -76,7 +76,7 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'BC break label initialized',
-                    'status' => 'no BC break',
+                    'status' => false,
                 ],
                 [
                     'event' => 'pr_opened',
@@ -114,7 +114,7 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'BC break label initialized',
-                    'status' => 'no BC break',
+                    'status' => false,
                 ],
                 [
                     'event' => 'pr_opened',
@@ -152,7 +152,7 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'BC break label initialized',
-                    'status' => 'no BC break',
+                    'status' => false,
                 ],
                 [
                     'event' => 'pr_opened',
@@ -184,7 +184,7 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'BC break label initialized',
-                    'status' => 'no BC break',
+                    'status' => false,
                 ],
             ],
         ];
@@ -211,7 +211,7 @@ class WebhookControllerTest extends WebTestCase
                 [
                     'event' => 'pr_opened',
                     'action' => 'BC break label initialized',
-                    'status' => 'BC break',
+                    'status' => true,
                 ],
                 [
                     'event' => 'pr_opened',
