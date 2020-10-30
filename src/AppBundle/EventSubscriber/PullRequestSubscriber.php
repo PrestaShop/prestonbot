@@ -41,7 +41,6 @@ class PullRequestSubscriber implements EventSubscriberInterface
         return [
             'pullrequestevent_opened' => [
                 ['checkForTableDescription', 254],
-                ['welcomePeople', 255],
                 ['checkForNewTranslations', 252],
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
@@ -169,24 +168,6 @@ class PullRequestSubscriber implements EventSubscriberInterface
             'event' => 'pr_'.$eventStatus,
             'action' => 'checked for changes on Classic Theme',
             'status' => $found ? 'found' : 'not_found',
-        ]);
-    }
-
-    /**
-     * @param GitHubEvent $githubEvent
-     *
-     * This event MUST be spawned second.
-     * Send a comment to welcome very first contribution.
-     */
-    public function welcomePeople(GitHubEvent $githubEvent)
-    {
-        $sender = $githubEvent->getEvent()->getSender();
-
-        $this->pullRequestsListener->welcomePeople($githubEvent->getPullRequest(), $sender);
-
-        $githubEvent->addStatus([
-            'event' => 'pr_opened',
-            'action' => 'user welcomed',
         ]);
     }
 

@@ -53,7 +53,6 @@ Yeah, mostly the *Symfony* ones:
 * Extract data from the pull request and look for some terms;
 * Manage labels;
 * Validate a pull request description;
-* Welcome every new contributor;
 * Labelize a PR regarding information in description
 * Labelize a PR regarding files updated
 * Add labels according to the branch

@@ -183,35 +183,6 @@ class Listener
         return false;
     }
 
-    /**
-     * @param PullRequest $pullRequest
-     * @param User        $sender
-     *
-     * @return bool
-     */
-    public function welcomePeople(PullRequest $pullRequest, User $sender)
-    {
-        $userCommits = $this->commitRepository->findAllByUser($sender);
-
-        if (0 !== \count($userCommits)) {
-            return false;
-        }
-
-        $this->commentApi->sendWithTemplate(
-            $pullRequest,
-            'markdown/welcome.md.twig',
-            ['username' => $sender->getLogin()]
-        );
-
-        $this->logger->info(sprintf(
-            '[Contributor] `%s` was welcomed on Pull request n° %s',
-            $pullRequest->getUser()->getLogin(),
-            $pullRequest->getNumber()
-        ));
-
-        return true;
-    }
-
     public function checkForMilestone(GitHubEvent $gitHubEvent)
     {
         $pullRequest = $gitHubEvent->getPullRequest();

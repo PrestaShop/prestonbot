@@ -59,10 +59,6 @@ class WebhookControllerTest extends WebTestCase
             [
                 [
                     'event' => 'pr_opened',
-                    'action' => 'user welcomed',
-                ],
-                [
-                    'event' => 'pr_opened',
                     'action' => 'table description checked',
                 ],
                 [
@@ -90,10 +86,6 @@ class WebhookControllerTest extends WebTestCase
             'pull_request',
             'pull_request_opened_wording.json',
             [
-                [
-                    'event' => 'pr_opened',
-                    'action' => 'user welcomed',
-                ],
                 [
                     'event' => 'pr_opened',
                     'action' => 'table description checked',
@@ -125,10 +117,6 @@ class WebhookControllerTest extends WebTestCase
             [
                 [
                     'event' => 'pr_opened',
-                    'action' => 'user welcomed',
-                ],
-                [
-                    'event' => 'pr_opened',
                     'action' => 'table description checked',
                 ],
                 [
@@ -152,10 +140,6 @@ class WebhookControllerTest extends WebTestCase
             [
                 [
                     'event' => 'pr_opened',
-                    'action' => 'user welcomed',
-                ],
-                [
-                    'event' => 'pr_opened',
                     'action' => 'table description checked',
                 ],
                 [
@@ -172,10 +156,6 @@ class WebhookControllerTest extends WebTestCase
             'pull_request',
             'pull_request_opened_classic.json',
             [
-                [
-                    'event' => 'pr_opened',
-                    'action' => 'user welcomed',
-                ],
                 [
                     'event' => 'pr_opened',
                     'action' => 'table description checked',
