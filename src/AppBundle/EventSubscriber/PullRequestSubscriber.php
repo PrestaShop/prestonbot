@@ -100,7 +100,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
      *
      * @param GitHubEvent $githubEvent
      */
-    public function initBCBreakLabel(GitHubEvent $githubEvent)
+    public function initBCBreakLabel(GitHubEvent $githubEvent): void
     {
         $bcBreak = $this->issuesListener->addBackwardCompatibleLabel($githubEvent->getPullRequest());
 
