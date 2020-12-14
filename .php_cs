@@ -26,6 +26,7 @@ return PhpCsFixer\Config::create()
         'psr4' => true,
         'strict_comparison' => true,
         'strict_param' => true,
+        'no_superfluous_phpdoc_tags' => false,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

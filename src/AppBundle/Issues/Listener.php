@@ -85,6 +85,28 @@ class Listener
     }
 
     /**
+     * Add "BC break" label to an issue if declared in the issue description table.
+     *
+     * @param PullRequest $pullRequest
+     *
+     * @return bool
+     */
+    public function addBackwardCompatibleLabel(PullRequest $pullRequest): bool
+    {
+        $bodyParser = new BodyParser($pullRequest->getBody());
+        $issueNumber = $pullRequest->getNumber();
+
+        if (!$bodyParser->isBackwardCompatible()) {
+            $this->statusApi->addIssueLabel($issueNumber, Labels::BC_BREAK);
+            $this->log($issueNumber, Labels::BC_BREAK);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Add "report on StarterTheme" label to an issue.
      *
      * @param int $issueNumber The issue that was labeled

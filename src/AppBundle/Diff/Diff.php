@@ -42,7 +42,7 @@ class Diff implements IteratorAggregate
      */
     public static function create(string $content)
     {
-        return new static($content);
+        return new self($content);
     }
 
     /**
@@ -56,10 +56,10 @@ class Diff implements IteratorAggregate
             $line = new Line($token);
 
             switch (true) {
-                case $line->isFilename() && 0 === count($this->lines):
+                case $line->isFilename() && 0 === \count($this->lines):
                     $this->lines[] = $line;
                 break;
-                case $line->isFilename() && count($this->lines) > 0:
+                case $line->isFilename() && \count($this->lines) > 0:
                     $this->files[] = new File($this->lines);
                     $this->lines = [];
                     $this->lines[] = $line;
@@ -72,7 +72,7 @@ class Diff implements IteratorAggregate
             $token = strtok(PHP_EOL);
         }
 
-        if (count($this->lines) > 0) {
+        if (\count($this->lines) > 0) {
             $this->files[] = new File($this->lines);
             $this->lines = [];
         }

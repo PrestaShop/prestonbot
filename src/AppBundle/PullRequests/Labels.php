@@ -25,6 +25,8 @@ final class Labels
 
     const WORDING_APPROVED = 'Wording ✔️';
 
+    const BC_BREAK = 'BC break';
+
     // Help to prevent changes in the future
     const ALIASES = [
         'bug fix' => self::BUG,
