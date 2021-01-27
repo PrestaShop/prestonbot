@@ -47,7 +47,7 @@ class StatusApiTest extends TestCase
     {
         $this->labelsApi->expects($this->once())
             ->method('addIssueLabel')
-            ->with(1234, 'Bug');
+            ->with(1234, 'Bug fix');
 
         $this->api->addIssueLabel(1234, 'bug fix');
     }
@@ -92,7 +92,7 @@ class StatusApiTest extends TestCase
     {
         $this->labelsApi->expects($this->once())
             ->method('removeIssueLabel')
-            ->with(1234, 'Bug');
+            ->with(1234, 'Bug fix');
 
         $this->api->removeIssueLabel(1234, 'bug fix');
     }
