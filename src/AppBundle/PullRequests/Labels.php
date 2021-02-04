@@ -15,7 +15,7 @@ final class Labels
 
     const FEATURE = 'Feature';
 
-    const BUG = 'Bug';
+    const BUG = 'Bug fix';
 
     const IMPROVEMENT = 'Improvement';
 
