@@ -36,7 +36,7 @@ class SignatureValidator implements SignatureValidatorInterface
         }
 
         $explodeResult = explode('=', $signature, 2);
-        if (2 !== count($explodeResult)) {
+        if (2 !== \count($explodeResult)) {
             return false;
         }
 

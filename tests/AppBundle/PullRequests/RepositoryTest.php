@@ -25,11 +25,11 @@ class RepositoryTest extends TestCase
         $this->commentsApiMock = $this->createMock('Github\Api\Issue\Comments');
 
         $searchMock->method('getPullRequests')
-            ->will($this->returnCallback([$this, 'generateExpectedArray']))
+            ->willReturnCallback([$this, 'generateExpectedArray'])
         ;
 
         $this->commentsApiMock->method('all')
-            ->will($this->returnCallback([$this, 'exportCommentsJson']))
+            ->willReturnCallback([$this, 'exportCommentsJson'])
         ;
 
         $this->commentsApiMock->method('remove')
