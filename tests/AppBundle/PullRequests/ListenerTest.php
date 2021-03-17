@@ -191,12 +191,12 @@ class ListenerTest extends TestCase
                             [
                                 'string' => 'Customer',
                                 'validated' => false,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R322',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R322',
                             ],
                             [
                                 'string' => 'Total',
                                 'validated' => false,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R323',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R323',
                             ],
                         ],
                     ],
@@ -207,17 +207,17 @@ class ListenerTest extends TestCase
                             [
                                 'string' => 'Payment',
                                 'validated' => false,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R324',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R324',
                             ],
                             [
                                 'string' => 'Status',
                                 'validated' => false,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R325',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R325',
                             ],
                             [
                                 'string' => 'Date',
                                 'validated' => false,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R326',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R326',
                             ],
                         ],
                     ],
@@ -233,12 +233,12 @@ class ListenerTest extends TestCase
                             [
                                 'string' => 'Customer',
                                 'validated' => false,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R322',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R322',
                             ],
                             [
                                 'string' => 'Total',
                                 'validated' => true,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R323',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R323',
                             ],
                         ],
                     ],
@@ -249,17 +249,17 @@ class ListenerTest extends TestCase
                             [
                                 'string' => 'Payment',
                                 'validated' => false,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R324',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R324',
                             ],
                             [
                                 'string' => 'Status',
                                 'validated' => true,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R325',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R325',
                             ],
                             [
                                 'string' => 'Date',
                                 'validated' => false,
-                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-ec3df2e862bbf3a25db2795a5eebad72R326',
+                                'link' => 'https://github.com/PrestaShop/PrestaShop/pull/6833/files#diff-b2ac0f7a267f678bfa883f6bb63740e8518c6c870987c961f5015dd528bb2a30R326',
                             ],
                         ],
                     ],
