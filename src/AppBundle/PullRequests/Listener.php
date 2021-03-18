@@ -275,7 +275,7 @@ class Listener
                     $newStrings[$domain]['strings'][] = [
                         'string' => $key,
                         'validated' => isset($validated[$domain]) && \in_array($key, $validated[$domain]['strings'], true),
-                        'link' => sprintf($baseLineUrl, md5($filePath), $meta['line']),
+                        'link' => sprintf($baseLineUrl, hash('sha256', $filePath), $meta['line']),
                     ];
                 }
             }
