@@ -33,7 +33,7 @@
       "type": "User",
       "site_admin": false
     },
-    "body": "<!-- Thank you for contributing to the PrestaShop project! \r\n\r\nPlease take the time to edit the \"Answers\" rows with the necessary information: -->\r\n\r\n| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | Delete space and colon \r\n| Type?         | bug fix\r\n| Category?     | BO\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| Fixed ticket? | http://forge.prestashop.com/browse/BOOM-1700\r\n| How to test?  | Go to sql manager page in the BO.\r\n\r\n",
+    "body": "<!-- Thank you for contributing to the PrestaShop project! \r\n\r\nPlease take the time to edit the \"Answers\" rows with the necessary information: -->\r\n\r\n| Questions     | Answers\r\n| ------------- | -------------------------------------------------------\r\n| Branch?       | develop\r\n| Description?  | Delete space and colon \r\n| Type?         | bug fix\r\n| Category?     | BO\r\n| BC breaks?    | no\r\n| Deprecations? | no\r\n| Fixed ticket? | #1700\r\n| How to test?  | Go to sql manager page in the BO.\r\n\r\n",
     "created_at": "2016-10-28T12:48:16Z",
     "updated_at": "2016-10-28T12:48:16Z",
     "closed_at": null,
