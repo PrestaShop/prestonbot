@@ -198,7 +198,7 @@ class ListenerTest extends TestCase
         ];
     }
 
-    public function getPRAvailableTests()
+    public function getPRAvailableTests(): array
     {
         return [
             'Issue Fixed' => [
