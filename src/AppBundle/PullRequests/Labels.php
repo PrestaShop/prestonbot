@@ -27,6 +27,8 @@ final class Labels
 
     const BC_BREAK = 'BC break';
 
+    public const PR_AVAILABLE = 'PR available';
+
     // Help to prevent changes in the future
     const ALIASES = [
         'bug fix' => self::BUG,

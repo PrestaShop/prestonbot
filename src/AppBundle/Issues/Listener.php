@@ -107,6 +107,27 @@ class Listener
     }
 
     /**
+     * Add "PR available" label to an issue if declared as issue fixed in the PR.
+     *
+     * @param PullRequest $pullRequest
+     *
+     * @return bool
+     */
+    public function addPRAvailableLabel(PullRequest $pullRequest): bool
+    {
+        $bodyParser = new BodyParser($pullRequest->getBody());
+        $issueNumber = $bodyParser->getRelatedTicket();
+        if (!empty($issueNumber)) {
+            $this->statusApi->addIssueLabel(substr($issueNumber, 1), Labels::PR_AVAILABLE);
+            $this->log($issueNumber, Labels::PR_AVAILABLE);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Add "report on StarterTheme" label to an issue.
      *
      * @param int $issueNumber The issue that was labeled

@@ -46,6 +46,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
                 ['initBCBreakLabel', 254],
+                ['initPRAvailableLabelInIssue', 254],
             ],
             'pullrequestevent_edited' => [
                 ['removePullRequestValidationComment', 255],
@@ -110,6 +111,24 @@ class PullRequestSubscriber implements EventSubscriberInterface
             'event' => 'pr_'.$eventStatus,
             'action' => 'BC break label initialized',
             'status' => $bcBreak,
+        ]);
+    }
+
+    /**
+     * Add PR available label to the issue being fixed by the PR.
+     *
+     * @param GitHubEvent $gitHubEvent
+     */
+    public function initPRAvailableLabelInIssue(GitHubEvent $gitHubEvent): void
+    {
+        $prAvailable = $this->issuesListener->addPRAvailableLabel($gitHubEvent->getPullRequest());
+
+        $eventStatus = 'opened' === $gitHubEvent->getEvent()->getAction() ? 'opened' : 'edited';
+
+        $gitHubEvent->addStatus([
+            'event' => 'pr_'.$eventStatus,
+            'action' => 'PR Available label initialized',
+            'status' => $prAvailable,
         ]);
     }
 

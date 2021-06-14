@@ -4,8 +4,10 @@ namespace Tests\AppBundle\PullRequests;
 
 use AppBundle\Comments\CommentApi;
 use AppBundle\Commits\Repository as CommitRepository;
+use AppBundle\Issues\StatusApi;
 use AppBundle\Organizations\Repository as OrganizationsRepository;
 use AppBundle\PullRequests\BodyParser;
+use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\Listener;
 use AppBundle\PullRequests\Repository;
 use Monolog\Logger;
@@ -117,6 +119,24 @@ class ListenerTest extends TestCase
     }
 
     /**
+     * @dataProvider getPRAvailableTests
+     */
+    public function testPullRequestHasPRAvailable(string $descriptionFilename, bool $expected): void
+    {
+        $body = file_get_contents(__DIR__.'/../../Resources/PullRequestBody/'.$descriptionFilename);
+
+        $pullRequestMock = $this->createMock(PullRequest::class);
+        $pullRequestMock->method('getBody')->willReturn($body);
+
+        $statusApiMock = $this->createMock(StatusApi::class);
+        $statusApiMock->expects($expected ? $this->once() : $this->never())
+            ->method('addIssueLabel')
+            ->with('1234', Labels::PR_AVAILABLE);
+        $issueListener = new \AppBundle\Issues\Listener($statusApiMock, $this->createMock(Logger::class));
+        $issueListener->addPRAvailableLabel($pullRequestMock);
+    }
+
+    /**
      * @dataProvider getWordingTests
      *
      * @param string $payloadFile
@@ -174,6 +194,20 @@ class ListenerTest extends TestCase
             'No related ticked TE' => [
                 'no_related_ticket_TE.txt',
                 [],
+            ],
+        ];
+    }
+
+    public function getPRAvailableTests(): array
+    {
+        return [
+            'Issue Fixed' => [
+                'bug_fix.txt',
+                true,
+            ],
+            'Issue not Fixed' => [
+                'no_related_ticket.txt',
+                false,
             ],
         ];
     }
