@@ -53,6 +53,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
                 ['initBCBreakLabel', 254],
+                ['initPRAvailableLabelInIssue', 254],
             ],
             'pullrequestevent_synchronize' => [
                 ['checkForNewTranslations', 252],
