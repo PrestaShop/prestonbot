@@ -11,7 +11,7 @@ class BodyParser
 {
     const DEFAULT_PATTERN = '~(?:\|\s+%s\?\s+\|\s+)(%s)\s+~';
 
-    const NOT_TEST_GROUP = 'NotTest';
+    const ISSUE_NEEDED_GROUP = 'IssueNeeded';
 
     /**
      * @var string
@@ -153,7 +153,7 @@ class BodyParser
 
     /**
      * @Assert\NotBlank(
-     *     groups={BodyParser::NOT_TEST_GROUP},
+     *     groups={BodyParser::ISSUE_NEEDED_GROUP},
      *     message = "Your pull request does not seem to fix any issue, consider [creating one](https://github.com/PrestaShop/PrestaShop/issues/new/choose) (see note below) and linking it by writing `Fixes #1234`."
      * )
      *
@@ -188,6 +188,14 @@ class BodyParser
             'refacto',
             'bug fix',
         ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIssueRequired()
+    {
+        return !$this->isTestCategory() && !$this->isMergeCategory();
     }
 
     /**

@@ -101,14 +101,14 @@ class Listener
 
         $missingRelatedTicket = false;
         $validationErrors = $this->validator->validate($bodyParser);
-        if (!$bodyParser->isTestCategory()) {
-            $notTestValidationErrors = $this->validator->validate(
+        if ($bodyParser->isIssueRequired()) {
+            $issueNeededValidationErrors = $this->validator->validate(
                 $bodyParser,
                 null,
-                BodyParser::NOT_TEST_GROUP
+                BodyParser::ISSUE_NEEDED_GROUP
             );
-            if ($notTestValidationErrors->count() > 0) {
-                $validationErrors->addAll($notTestValidationErrors);
+            if ($issueNeededValidationErrors->count() > 0) {
+                $validationErrors->addAll($issueNeededValidationErrors);
                 $missingRelatedTicket = true;
             }
         }
@@ -133,11 +133,11 @@ class Listener
         $bodyParser = new BodyParser($pullRequest->getBody());
 
         $bodyErrors = $this->validator->validate($bodyParser);
-        if (!$bodyParser->isTestCategory()) {
+        if ($bodyParser->isIssueRequired()) {
             $bodyErrors->addAll($this->validator->validate(
                 $bodyParser,
                 null,
-                BodyParser::NOT_TEST_GROUP
+                BodyParser::ISSUE_NEEDED_GROUP
             ));
         }
         if (0 === \count($bodyErrors)) {
