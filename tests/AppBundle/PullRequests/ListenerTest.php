@@ -88,8 +88,8 @@ class ListenerTest extends TestCase
         $bodyParser = new BodyParser($body);
 
         $validations = $this->validator->validate($bodyParser);
-        if (!$bodyParser->isTestCategory()) {
-            $validations->addAll($this->validator->validate($bodyParser, null, BodyParser::NOT_TEST_GROUP));
+        if ($bodyParser->isIssueRequired()) {
+            $validations->addAll($this->validator->validate($bodyParser, null, BodyParser::ISSUE_NEEDED_GROUP));
         }
         $this->assertSame(\count($expected), \count($validations));
         foreach ($validations as $validation) {
@@ -193,6 +193,10 @@ class ListenerTest extends TestCase
             ],
             'No related ticked TE' => [
                 'no_related_ticket_TE.txt',
+                [],
+            ],
+            'No related ticked ME' => [
+                'no_related_ticket_ME.txt',
                 [],
             ],
         ];
