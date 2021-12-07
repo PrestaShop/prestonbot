@@ -3,7 +3,6 @@
 namespace Tests\AppBundle\Search;
 
 use AppBundle\Search\Repository;
-use Github\Api\GraphQL;
 use Github\Api\Search;
 use PHPUnit\Framework\TestCase;
 
@@ -14,21 +13,17 @@ class RepositoryTest extends TestCase
 {
     private $repository;
     private $searchApiMock;
-    private $graphQL;
 
     public function setUp()
     {
         $this->searchApiMock = $this->createMock(Search::class);
-        $this->graphQL = $this->createMock(GraphQL::class);
-
-        $this->repository = new Repository($this->searchApiMock, $this->graphQL, 'fakeUsername', 'fakeName');
+        $this->repository = new Repository($this->searchApiMock, 'fakeUsername', 'fakeName');
     }
 
     public function tearDown()
     {
         $this->repository = null;
         $this->searchApiMock = null;
-        $this->graphQL = null;
     }
 
     /**

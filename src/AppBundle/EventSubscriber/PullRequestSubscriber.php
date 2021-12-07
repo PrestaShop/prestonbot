@@ -61,9 +61,6 @@ class PullRequestSubscriber implements EventSubscriberInterface
             'pullrequestevent_labeled' => [
                 ['checkForMilestone', 255],
             ],
-            'pullrequestevent_closed' => [
-                ['askForFeedback', 255],
-            ],
         ];
     }
 
@@ -267,28 +264,5 @@ class PullRequestSubscriber implements EventSubscriberInterface
             'action' => 'check for missing milestone',
             'status' => $missing ? 'not_found' : 'found',
         ]);
-    }
-
-    /**
-     * @param GitHubEvent $gitHubEvent
-     *
-     * Send a comment to an external contribution with a link to a feedback form
-     */
-    public function askForFeedback(GitHubEvent $gitHubEvent)
-    {
-        $pullRequest = $gitHubEvent->getPullRequest();
-
-        if (!$pullRequest->getMerged()) {
-            return;
-        }
-
-        $success = $this->pullRequestsListener->askForFeedback($pullRequest);
-
-        if ($success) {
-            $gitHubEvent->addStatus([
-                'event' => 'pr_merged',
-                'action' => 'ask for feedback',
-            ]);
-        }
     }
 }

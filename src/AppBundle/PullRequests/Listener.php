@@ -6,10 +6,7 @@ use AppBundle\Comments\CommentApiInterface;
 use AppBundle\Commits\RepositoryInterface as CommitRepositoryInterface;
 use AppBundle\Event\GitHubEvent;
 use AppBundle\GithubDownloaderInterface;
-use AppBundle\Organizations\RepositoryInterface as OrganizationRepository;
 use AppBundle\PullRequests\RepositoryInterface as PullRequestRepositoryInterface;
-use DateInterval;
-use DateTime;
 use PrestaShop\Github\Entity\PullRequest;
 use PrestaShop\Github\Entity\User;
 use PrestaShop\TranslationToolsBundle\Configuration;
@@ -24,11 +21,8 @@ class Listener
     const TABLE_ERROR = 'PR_TABLE_DESCRIPTION_ERROR';
     const COMMIT_ERROR = 'PR_COMMIT_NAME_ERROR';
     const WORDING_TAG = 'PR_WORDING';
-    const FEEDBACK_COMMENT = 'PR_FEEDBACK_COMMENT';
 
     const TRANS_CONFIG_FILE = '.t9n.yml';
-
-    const FEEDBACK_DELAY = 30; // days before asking feedback again
 
     /**
      * @var CommentApiInterface
@@ -50,10 +44,6 @@ class Listener
      * @var RepositoryInterface
      */
     private $repository;
-    /**
-     * @var OrganizationRepository
-     */
-    private $organizationRepository;
 
     /**
      * @var GithubDownloaderInterface
@@ -75,7 +65,6 @@ class Listener
         CommitRepositoryInterface $commitRepository,
         ValidatorInterface $validator,
         PullRequestRepositoryInterface $repository,
-        OrganizationRepository $organizationRepository,
         GithubDownloaderInterface $githubDownloader,
         ChainExtractor $chainExtractor,
         LoggerInterface $logger,
@@ -86,7 +75,6 @@ class Listener
         $this->logger = $logger;
         $this->validator = $validator;
         $this->repository = $repository;
-        $this->organizationRepository = $organizationRepository;
         $this->githubDownloader = $githubDownloader;
         $this->chainExtractor = $chainExtractor;
         $this->cacheDir = $cacheDir;
@@ -294,39 +282,6 @@ class Listener
         }
 
         return false;
-    }
-
-    /**
-     * @param PullRequest $pullRequest
-     *
-     * @return bool
-     */
-    public function askForFeedback(PullRequest $pullRequest)
-    {
-        $author = $pullRequest->getUser()->getLogin();
-
-        if ($this->organizationRepository->isMember($author)) {
-            return false;
-        }
-
-        $now = new DateTime();
-        $since = $now->sub(DateInterval::createFromDateString(self::FEEDBACK_DELAY.' days'));
-        $response = $this->repository->getMergedFromWithCommentsFrom($author, self::PRESTONBOT_NAME, $since);
-        if (!empty($response['data']['search']['edges'])) {
-            foreach ($response['data']['search']['edges'] as $pr) {
-                foreach ($pr['node']['comments']['edges'] as $comment) {
-                    if (self::PRESTONBOT_NAME === $comment['node']['author']['login']) {
-                        if (false !== strpos($comment['node']['body'], self::FEEDBACK_COMMENT)) {
-                            return false;
-                        }
-                    }
-                }
-            }
-        }
-
-        $this->commentApi->sendWithTemplate($pullRequest, 'markdown/pr_merged_feedback.md.twig', []);
-
-        return true;
     }
 
     /**

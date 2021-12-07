@@ -55,7 +55,6 @@ class ListenerTest extends TestCase
 
         $this->repositoryMock = $this->createMock(Repository::class);
 
-        $organisationRepository = $this->createMock(OrganizationsRepository::class);
         $commitRepository = $this->createMock(CommitRepository::class);
         $logger = $this->createMock(Logger::class);
 
@@ -68,7 +67,6 @@ class ListenerTest extends TestCase
             $commitRepository,
             $this->validator,
             $this->repositoryMock,
-            $organisationRepository,
             $githubDownloader,
             $chainExtractor,
             $logger,

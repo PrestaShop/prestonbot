@@ -3,9 +3,8 @@
 namespace AppBundle\Organizations;
 
 use Github\Api\Organization;
-use Github\Exception\RuntimeException;
 
-class Repository implements RepositoryInterface
+class Repository
 {
     /**
      * @var array list of teams (won't change during a request)
@@ -19,23 +18,23 @@ class Repository implements RepositoryInterface
     /**
      * @var string
      */
-    private $repositoryOwner;
+    private $repositoryUsername;
 
-    public function __construct(Organization $organizationApi, $repositoryOwner)
+    public function __construct(Organization $organizationApi, $repositoryUsername)
     {
         $this->organizationApi = $organizationApi;
-        $this->repositoryOwner = $repositoryOwner;
+        $this->repositoryUsername = $repositoryUsername;
     }
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
     public function getTeams()
     {
         if (null === self::$teams) {
             $teams = $this->organizationApi
                 ->teams()
-                ->all($this->repositoryOwner)
+                ->all($this->repositoryUsername)
             ;
 
             foreach ($teams as $team) {
@@ -48,7 +47,7 @@ class Repository implements RepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $teamName
      */
     public function getTeam(string $teamName)
     {
@@ -58,7 +57,9 @@ class Repository implements RepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $teamName
+     *
+     * @return \Guzzle\Http\EntityBodyInterface|mixed|string
      */
     public function getTeamMembers(string $teamName)
     {
@@ -71,20 +72,6 @@ class Repository implements RepositoryInterface
                 ->teams()
                 ->members($teamId)
             ;
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isMember(string $userLogin)
-    {
-        try {
-            $this->organizationApi->members()->show($this->repositoryOwner, $userLogin);
-
-            return true;
-        } catch (RuntimeException $e) {
-            return false;
         }
     }
 }
