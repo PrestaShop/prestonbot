@@ -5,7 +5,6 @@ namespace Tests\AppBundle\PullRequests;
 use AppBundle\Comments\CommentApi;
 use AppBundle\Commits\Repository as CommitRepository;
 use AppBundle\Issues\StatusApi;
-use AppBundle\Organizations\Repository as OrganizationsRepository;
 use AppBundle\PullRequests\BodyParser;
 use AppBundle\PullRequests\Labels;
 use AppBundle\PullRequests\Listener;
@@ -55,7 +54,6 @@ class ListenerTest extends TestCase
 
         $this->repositoryMock = $this->createMock(Repository::class);
 
-        $organisationRepository = $this->createMock(OrganizationsRepository::class);
         $commitRepository = $this->createMock(CommitRepository::class);
         $logger = $this->createMock(Logger::class);
 
@@ -68,7 +66,6 @@ class ListenerTest extends TestCase
             $commitRepository,
             $this->validator,
             $this->repositoryMock,
-            $organisationRepository,
             $githubDownloader,
             $chainExtractor,
             $logger,

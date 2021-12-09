@@ -2,7 +2,6 @@
 
 namespace AppBundle\Search;
 
-use Github\Api\GraphQL;
 use Github\Api\Search;
 
 /**
@@ -10,16 +9,12 @@ use Github\Api\Search;
  *
  * @doc https://github.com/KnpLabs/php-github-api/blob/master/doc/search.md
  */
-class Repository implements RepositoryInterface
+class Repository
 {
     /**
      * @var Search
      */
     private $searchApi;
-    /**
-     * @var GraphQL
-     */
-    private $graphQL;
     /**
      * @var string
      */
@@ -29,16 +24,17 @@ class Repository implements RepositoryInterface
      */
     private $repositoryName;
 
-    public function __construct(Search $searchApi, GraphQL $graphQL, string $repositoryOwner, string $repositoryName)
+    public function __construct(Search $searchApi, string $repositoryOwner, string $repositoryName)
     {
         $this->searchApi = $searchApi;
-        $this->graphQL = $graphQL;
         $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $filters
+     *
+     * @return array
      */
     public function getPullRequests($filters = []): array
     {
@@ -51,14 +47,6 @@ class Repository implements RepositoryInterface
         $allFilters = array_merge($basicFilters, $filters);
 
         return $this->searchApi->issues($this->buildQuery($allFilters));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function graphQL($query, $variables = []): array
-    {
-        return $this->graphQL->execute($query, $variables);
     }
 
     /**

@@ -65,6 +65,3 @@ services:
 
     Github\Api\Repository\Contents:
         factory: 'Github\Api\Repo:contents'
-    Github\Api\GraphQL:
-        factory: 'Github\Client:api'
-        arguments: [graphql]
