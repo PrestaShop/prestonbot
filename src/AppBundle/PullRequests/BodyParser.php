@@ -100,6 +100,14 @@ class BodyParser
     /**
      * @return bool
      */
+    public function isProjectManagementCategory()
+    {
+        return 1 === preg_match('/\bPM\b/', $this->getCategory());
+    }
+
+    /**
+     * @return bool
+     */
     public function isBackwardCompatible()
     {
         $regex = sprintf(self::DEFAULT_PATTERN, 'BC breaks', '.+');
@@ -195,7 +203,10 @@ class BodyParser
      */
     public function isIssueRequired()
     {
-        return !$this->isTestCategory() && !$this->isMergeCategory();
+        return
+            ($this->isABugFix() || $this->isAFeature())
+            && !($this->isTestCategory() || $this->isMergeCategory() || $this->isProjectManagementCategory())
+        ;
     }
 
     /**
