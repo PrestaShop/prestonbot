@@ -153,13 +153,13 @@ class BodyParserTest extends TestCase
      *
      * @return void
      */
-    public function testBackwardCompatible(string $file, bool $isBackwardCompatible)
+    public function testBackwardCompatible(string $file, bool $isBackwardCompatible): void
     {
         $bodyParser = new BodyParser(file_get_contents($file));
         $this->assertSame($isBackwardCompatible, $bodyParser->isBackwardCompatible());
     }
 
-    public function provideBackwardCompatibleTests()
+    public function provideBackwardCompatibleTests(): array
     {
         $base = __DIR__.'/../../Resources/PullRequestBody/';
 
@@ -187,13 +187,13 @@ class BodyParserTest extends TestCase
      *
      * @return void
      */
-    public function testWillDeprecateCode(string $file, bool $willDeprecateCode)
+    public function testWillDeprecateCode(string $file, bool $willDeprecateCode): void
     {
         $bodyParser = new BodyParser(file_get_contents($file));
         $this->assertSame($willDeprecateCode, $bodyParser->willDeprecateCode());
     }
 
-    public function provideWillDeprecateCodeTests()
+    public function provideWillDeprecateCodeTests(): array
     {
         $base = __DIR__.'/../../Resources/PullRequestBody/';
 
