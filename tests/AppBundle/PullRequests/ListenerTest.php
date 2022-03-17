@@ -168,7 +168,7 @@ class ListenerTest extends TestCase
     public function getDescriptionTests()
     {
         return [
-            'Valid description' => [
+            'Valid description, no comment' => [
                 'bug_fix.txt',
                 [],
             ],
@@ -184,16 +184,20 @@ class ListenerTest extends TestCase
                 'invalid_category.txt',
                 ['category'],
             ],
-            'No related ticked' => [
+            'Bug fix requires issue' => [
                 'no_related_ticket.txt',
                 ['relatedTicket'],
             ],
-            'No related ticked TE' => [
+            'Feature requires issue' => [
+                'no_related_ticket_feature.txt',
+                ['relatedTicket'],
+            ],
+            'Anything in the TE category does not require issue' => [
                 'no_related_ticket_TE.txt',
                 [],
             ],
-            'No related ticked ME' => [
-                'no_related_ticket_ME.txt',
+            'Anything in the PM category does not require issue' => [
+                'no_related_ticket_PM.txt',
                 [],
             ],
         ];
