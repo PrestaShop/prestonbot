@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class BodyParser
 {
-    const DEFAULT_PATTERN = '~(?:\|\s+%s\?\s+\|\s+)(%s)\s+~';
+    const DEFAULT_PATTERN = '~(?:\|?\s*%s\?\s*\|\s*)(%s)\s+~';
 
     const ISSUE_NEEDED_GROUP = 'IssueNeeded';
 
@@ -113,7 +113,9 @@ class BodyParser
         $regex = sprintf(self::DEFAULT_PATTERN, 'BC breaks', '.+');
         $bcBreaks = $this->extractWithRegex($regex);
 
-        return 'yes' !== $bcBreaks;
+        return
+            'yes / no' !== $bcBreaks
+            && 'yes' !== substr($bcBreaks, 0, 3);
     }
 
     /**
@@ -124,7 +126,9 @@ class BodyParser
         $regex = sprintf(self::DEFAULT_PATTERN, 'Deprecations', '.+');
         $willDeprecateCode = $this->extractWithRegex($regex);
 
-        return 'no' === $willDeprecateCode;
+        return
+            'yes / no' !== $willDeprecateCode
+            && 'yes' !== substr($willDeprecateCode, 0, 3);
     }
 
     /**

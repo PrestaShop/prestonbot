@@ -144,4 +144,72 @@ class BodyParserTest extends TestCase
         $this->assertFalse($this->bodyParser->isARefacto());
         $this->assertEmpty($this->bodyParser->getDescription());
     }
+
+    /**
+     * @dataProvider provideBackwardCompatibleTests
+     *
+     * @param string $file
+     * @param bool   $isBackwardCompatible
+     *
+     * @return void
+     */
+    public function testBackwardCompatible(string $file, bool $isBackwardCompatible): void
+    {
+        $bodyParser = new BodyParser(file_get_contents($file));
+        $this->assertSame($isBackwardCompatible, $bodyParser->isBackwardCompatible());
+    }
+
+    public function provideBackwardCompatibleTests(): array
+    {
+        $base = __DIR__.'/../../Resources/PullRequestBody/';
+
+        return [
+            'Backward compatible' => [
+                $base.'bug_fix.txt',
+                true,
+            ],
+            'Backward incompatible' => [
+                $base.'bug_fix_bc_break.txt',
+                false,
+            ],
+            'Backward incompatible with comments' => [
+                $base.'bug_fix_bc_break_alt.txt',
+                false,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider provideWillDeprecateCodeTests
+     *
+     * @param string $file
+     * @param bool   $willDeprecateCode
+     *
+     * @return void
+     */
+    public function testWillDeprecateCode(string $file, bool $willDeprecateCode): void
+    {
+        $bodyParser = new BodyParser(file_get_contents($file));
+        $this->assertSame($willDeprecateCode, $bodyParser->willDeprecateCode());
+    }
+
+    public function provideWillDeprecateCodeTests(): array
+    {
+        $base = __DIR__.'/../../Resources/PullRequestBody/';
+
+        return [
+            'No deprecates' => [
+                $base.'bug_fix_no_deprecate.txt',
+                true,
+            ],
+            'Deprecates' => [
+                $base.'bug_fix.txt',
+                false,
+            ],
+            'Deprecates with comments' => [
+                $base.'bug_fix_deprecate_alt.txt',
+                false,
+            ],
+        ];
+    }
 }
