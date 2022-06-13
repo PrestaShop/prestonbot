@@ -30,6 +30,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        composer self-update --2.2
         composer install --no-interaction
         ./vendor/bin/simple-phpunit install
 

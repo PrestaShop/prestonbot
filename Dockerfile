@@ -48,6 +48,7 @@ RUN mkdir -p \
 		var/cache \
 		var/logs \
 		var/sessions \
+	&& composer self-update --2.2 \
 	&& composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress --no-suggest \
 	&& composer clear-cache \
     # Permissions hack because setfacl does not work on Mac and Windows
