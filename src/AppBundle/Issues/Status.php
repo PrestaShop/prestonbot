@@ -27,12 +27,15 @@ final class Status
 
     const BRANCH_80 = '8.0.x';
 
+    const BRANCH_81 = '8.1.x';
+
     const DEVELOP_BRANCH = 'develop';
 
     public static $branches = [
         self::BRANCH_177,
         self::BRANCH_178,
         self::BRANCH_80,
+        self::BRANCH_81,
         self::DEVELOP_BRANCH,
     ];
 }
