@@ -88,7 +88,7 @@ class DispatchEventCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $path = $input->getArgument(self::PATH_ARGUMENT_NAME);
-        $io->title('Dispatch the event contained in ' . $path);
+        $io->title('Dispatch the event contained in '.$path);
 
         $eventAsArray = json_decode(file_get_contents($path), true);
         if (JSON_ERROR_NONE !== json_last_error()) {
@@ -98,6 +98,7 @@ class DispatchEventCommand extends Command
 
         if (null === $event) {
             $io->error('[err] event not found.');
+
             return self::EVENT_NOT_FOUND;
         }
 
@@ -124,6 +125,7 @@ class DispatchEventCommand extends Command
                     $event->getRepository()->getFullName()
                 )
             );
+
             return null;
         }
 
@@ -133,6 +135,7 @@ class DispatchEventCommand extends Command
     private function isValid(GithubEventInterface $event): bool
     {
         [$repositoryUsername, $repositoryName] = explode('/', $event->getRepository()->getFullName());
+
         return $repositoryUsername === $this->repositoryOwner && $repositoryName === $this->repositoryName;
     }
 }
