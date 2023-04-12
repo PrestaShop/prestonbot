@@ -268,6 +268,7 @@ class Listener
                 }
             }
         }
+        $this->logger->info('Find '.\count($newStrings).' new wording(s).');
 
         if (!empty($newStrings)) {
             $template = 'markdown/wordings.md.twig';
