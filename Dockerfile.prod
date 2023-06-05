@@ -1,0 +1,46 @@
+FROM php:7.3-apache
+
+ARG GH_SECURED_TOKEN
+ENV GH_SECURED_TOKEN $GH_SECURED_TOKEN
+
+ARG GH_TOKEN
+ENV GH_TOKEN $GH_TOKEN
+
+ARG SYMFONY_PHPUNIT_VERSION 
+ENV SYMFONY_PHPUNIT_VERSION $SYMFONY_PHPUNIT_VERSION
+
+ARG APP_ENV
+ENV APP_ENV $APP_ENV
+
+RUN apt-get update
+RUN apt-get install -y zip libzip-dev \
+	unzip \
+	vim \
+	sudo \
+    && docker-php-ext-install -j$(nproc) zip
+
+RUN apt-get clean
+
+
+RUN cd /var/www/html/
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+# RUN php -r "if (hash_file('SHA384', 'composer-setup.php') === 'e115a8dc7871f15d853148a7fbac7da27d6c0030b848d9b3dc09e2a0388afed865e6a3d6b3c0fad45c48e2b5fc1196ae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN mv composer.phar /usr/local/bin/composer
+RUN chmod u+x /usr/local/bin/composer
+RUN /usr/local/bin/composer self-update --2.2
+
+RUN a2enmod rewrite
+RUN a2dissite 000-default
+
+COPY docker/apache2/prestonbot.conf /tmp/prestbonbot.conf.template
+
+RUN export template="$(cat /tmp/prestbonbot.conf.template)"; eval "echo \"${template}\"" >/etc/apache2/sites-enabled/prestbonbot.conf
+
+#COPY prestonbot/ /var/www/html/
+COPY . /var/www/html/
+#RUN mkdir /var/www/html/var
+RUN chown www-data:www-data -R /var/www/
+RUN sudo -u www-data /usr/local/bin/composer install -n
+# COPY config/parameters.yml app/config/parameters.yml
