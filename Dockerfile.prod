@@ -34,9 +34,9 @@ RUN /usr/local/bin/composer self-update --2.2
 RUN a2enmod rewrite
 RUN a2dissite 000-default
 
-COPY docker/apache2/prestonbot.conf /tmp/prestbonbot.conf.template
+COPY docker/apache2/prestonbot.conf /tmp/prestonbot.conf.template
 
-RUN export template="$(cat /tmp/prestbonbot.conf.template)"; eval "echo \"${template}\"" >/etc/apache2/sites-enabled/prestbonbot.conf
+RUN export template="$(cat /tmp/prestonbot.conf.template)"; eval "echo \"${template}\"" >/etc/apache2/sites-enabled/prestonbot.conf
 
 #COPY prestonbot/ /var/www/html/
 COPY . /var/www/html/
