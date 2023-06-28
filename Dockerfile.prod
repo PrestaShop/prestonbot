@@ -38,7 +38,6 @@ COPY docker/apache2/prestonbot.conf /tmp/prestonbot.conf.template
 
 RUN export template="$(cat /tmp/prestonbot.conf.template)"; eval "echo \"${template}\"" >/etc/apache2/sites-enabled/prestonbot.conf
 
-#COPY prestonbot/ /var/www/html/
 COPY . /var/www/html/
 #RUN mkdir /var/www/html/var
 RUN chown www-data:www-data -R /var/www/
