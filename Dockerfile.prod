@@ -13,9 +13,7 @@ ARG APP_ENV
 ENV APP_ENV $APP_ENV
 
 RUN apt-get update
-RUN apt-get install -y zip libzip-dev \
-	unzip \
-    && docker-php-ext-install -j$(nproc) zip
+RUN apt-get install -y zip libzip-dev unzip && docker-php-ext-install -j$(nproc) zip
 
 RUN apt-get clean
 
