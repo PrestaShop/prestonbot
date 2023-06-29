@@ -15,8 +15,6 @@ ENV APP_ENV $APP_ENV
 RUN apt-get update
 RUN apt-get install -y zip libzip-dev \
 	unzip \
-	vim \
-	sudo \
     && docker-php-ext-install -j$(nproc) zip
 
 RUN apt-get clean
@@ -39,4 +37,4 @@ RUN export template="$(cat /tmp/prestonbot.conf.template)"; eval "echo \"${templ
 
 COPY . /var/www/html/
 RUN chown www-data:www-data -R /var/www/
-RUN sudo -u www-data /usr/local/bin/composer install -n
+RUN runuser -u www-data -- /usr/local/bin/composer install -n
