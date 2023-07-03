@@ -1,0 +1,38 @@
+FROM php:7.3-apache
+
+ARG GH_SECURED_TOKEN
+ENV GH_SECURED_TOKEN $GH_SECURED_TOKEN
+
+ARG GH_TOKEN
+ENV GH_TOKEN $GH_TOKEN
+
+ARG SYMFONY_PHPUNIT_VERSION 
+ENV SYMFONY_PHPUNIT_VERSION $SYMFONY_PHPUNIT_VERSION
+
+ARG APP_ENV
+ENV APP_ENV $APP_ENV
+
+RUN apt-get update
+RUN apt-get install -y zip libzip-dev unzip && docker-php-ext-install -j$(nproc) zip
+
+RUN apt-get clean
+
+
+RUN cd /var/www/html/
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN mv composer.phar /usr/local/bin/composer
+RUN chmod u+x /usr/local/bin/composer
+RUN /usr/local/bin/composer self-update --2.2
+
+RUN a2enmod rewrite
+RUN a2dissite 000-default
+
+COPY docker/apache2/prestonbot.conf /tmp/prestonbot.conf.template
+
+RUN export template="$(cat /tmp/prestonbot.conf.template)"; eval "echo \"${template}\"" >/etc/apache2/sites-enabled/prestonbot.conf
+
+COPY . /var/www/html/
+RUN chown www-data:www-data -R /var/www/
+RUN runuser -u www-data -- /usr/local/bin/composer install -n

@@ -14,6 +14,7 @@
 .editorconfig
 .env
 .git/
+.github/
 .gitattributes
 .gitlab-ci.yml
 .gitmodules
@@ -26,7 +27,7 @@ composer.phar
 docker-compose.override.yml
 docker-compose.yml
 docker/db/data/
-var/
 vendor/
 web/index.php
 web/bundles/
+terraform/
