@@ -65,9 +65,6 @@
         ],
         "post-install-cmd": [
             "@symfony-scripts"
-        ],
-        "post-update-cmd": [
-            "@symfony-scripts"
         ]
     },
     "extra": {
