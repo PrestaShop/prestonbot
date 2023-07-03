@@ -1,0 +1,31 @@
+name: PrestonBot Integration CICD
+
+concurrency:
+  group: prestonbot-${{ github.ref }}
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize, labeled]
+
+jobs:
+
+  prestonbot-integration:
+    name: Trigger Integration CICD
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: contains(github.event.pull_request.labels.*.name, 'integration deployment')
+
+    steps:
+
+      - name: Get tag
+        shell: bash
+        id: get_tag
+        run: echo TAG=$(echo $GITHUB_REF | cut -d / -f 3) >> $GITHUB_OUTPUT
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PRESTONBOT_CD_PAT }}
+          repository: ${{ secrets.PRESTONBOT_CD_REPOSITORY }}
+          event-type: integration_deployment
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "tag": "${{ steps.get_tag.outputs.TAG }}"}'
