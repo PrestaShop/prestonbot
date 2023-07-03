@@ -17,7 +17,7 @@ class CommentApiTest extends TestCase
     private $pullRequest;
     private $twig;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->twig = $this->createMock('Twig\Environment');
 
@@ -37,7 +37,7 @@ class CommentApiTest extends TestCase
 
         $this->pullRequest
             ->method('getNumber')
-            ->willReturn('42')
+            ->willReturn(42)
         ;
     }
 

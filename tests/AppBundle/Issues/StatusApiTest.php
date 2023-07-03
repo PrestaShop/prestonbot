@@ -26,7 +26,7 @@ class StatusApiTest extends TestCase
      */
     private $api;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->labelsApi = $this->getMockBuilder('AppBundle\Issues\CachedLabelsApi')
             ->disableOriginalConstructor()

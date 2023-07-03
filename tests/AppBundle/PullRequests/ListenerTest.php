@@ -41,7 +41,7 @@ class ListenerTest extends TestCase
      */
     private $repositoryMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->validator = (new ValidatorBuilder())
             ->enableAnnotationMapping()

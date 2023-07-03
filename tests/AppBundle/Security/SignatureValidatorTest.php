@@ -17,7 +17,7 @@ class SignatureValidatorTest extends TestCase
     const SECRET = 'MyDirtySecret';
     private $signatureValidator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->signatureValidator = new SignatureValidator();
     }

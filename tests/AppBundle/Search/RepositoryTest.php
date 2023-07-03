@@ -14,13 +14,13 @@ class RepositoryTest extends TestCase
     private $repository;
     private $searchApiMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->searchApiMock = $this->createMock(Search::class);
         $this->repository = new Repository($this->searchApiMock, 'fakeUsername', 'fakeName');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->repository = null;
         $this->searchApiMock = null;

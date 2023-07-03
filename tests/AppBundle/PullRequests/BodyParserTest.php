@@ -12,7 +12,7 @@ class BodyParserTest extends TestCase
 {
     private $bodyParser;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->bodyParser = new BodyParser(file_get_contents(__DIR__.'/../../Resources/PullRequestBody/feature.txt'));
     }

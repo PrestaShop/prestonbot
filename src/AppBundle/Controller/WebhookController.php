@@ -7,8 +7,8 @@ use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class WebhookController extends AbstractController
 {
@@ -29,7 +29,7 @@ class WebhookController extends AbstractController
             $event->getEvent()->getAction()
         ));
 
-        $eventDispatcher->dispatch($eventName, $event);
+        $eventDispatcher->dispatch($event, $eventName);
 
         return new JsonResponse($event->getStatuses());
     }

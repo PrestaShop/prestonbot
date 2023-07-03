@@ -17,7 +17,7 @@ class ReporterTest extends TestCase
 
     private $repositoryMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->repositoryMock = $this->createMock('AppBundle\PullRequests\Repository');
 

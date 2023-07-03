@@ -25,7 +25,7 @@ class CachedLabelsApiTest extends TestCase
      */
     private $api;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->backendApi = $this->getMockBuilder('Github\Api\Issue\Labels')
             ->disableOriginalConstructor()

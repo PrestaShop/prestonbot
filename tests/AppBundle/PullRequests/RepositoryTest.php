@@ -19,7 +19,7 @@ class RepositoryTest extends TestCase
     private $pullRequestMock;
     private $repository;
 
-    public function setUp()
+    public function setUp(): void
     {
         $searchMock = $this->createMock('AppBundle\Search\Repository');
         $this->commentsApiMock = $this->createMock('Github\Api\Issue\Comments');
@@ -40,7 +40,7 @@ class RepositoryTest extends TestCase
 
         $this->pullRequestMock
             ->method('getNumber')
-            ->willReturn('123')
+            ->willReturn(123)
         ;
 
         $this->repository = new Repository(
@@ -51,7 +51,7 @@ class RepositoryTest extends TestCase
         );
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->repository = null;
     }
@@ -95,7 +95,7 @@ class RepositoryTest extends TestCase
     public function testGetComments()
     {
         $comments = $this->repository->getComments($this->pullRequestMock);
-        $this->assertInternalType('array', $comments);
+        $this->assertIsArray($comments);
         $firstComment = $comments[0];
         $this->assertInstanceOf(Comment::class, $firstComment);
         $this->assertSame('mickaelandrieu', $firstComment->getUser()->getLogin());
@@ -112,7 +112,7 @@ class RepositoryTest extends TestCase
             $user
         );
 
-        $this->assertInternalType('array', $comments);
+        $this->assertIsArray($comments);
         $firstComment = $comments[0];
         $this->assertInstanceOf(Comment::class, $firstComment);
         $this->assertSame('Shudrum', $firstComment->getUser()->getLogin());
@@ -129,7 +129,7 @@ class RepositoryTest extends TestCase
             $user
         );
 
-        $this->assertInternalType('array', $comments);
+        $this->assertIsArray($comments);
         $this->assertEmpty($comments);
     }
 
@@ -148,7 +148,7 @@ class RepositoryTest extends TestCase
 
     private function minimalTests($pullRequests)
     {
-        $this->assertInternalType('array', $pullRequests);
+        $this->assertIsArray($pullRequests);
         $this->assertInstanceOf(PullRequest::class, $pullRequests[0]);
     }
 }
