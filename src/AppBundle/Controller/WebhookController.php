@@ -4,17 +4,15 @@ namespace AppBundle\Controller;
 
 use AppBundle\Event\GitHubEvent;
 use Psr\Log\LoggerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class WebhookController extends AbstractController
 {
     /**
-     * @Route("/webhooks/github", name="webhooks_github")
-     * @Method("POST")
+     * @Route("/webhooks/github", name="webhooks_github", methods={"POST"})
      */
     public function githubAction(?GitHubEvent $event, LoggerInterface $logger, EventDispatcherInterface $eventDispatcher): JsonResponse
     {
