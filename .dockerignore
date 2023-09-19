@@ -28,6 +28,5 @@ docker-compose.override.yml
 docker-compose.yml
 docker/db/data/
 vendor/
-web/index.php
 web/bundles/
 terraform/
