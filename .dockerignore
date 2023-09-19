@@ -21,7 +21,6 @@
 .php_cs.cache
 .travis.yml
 app/config/parameters.yml
-bin/symfony_requirements
 build/
 composer.phar
 docker-compose.override.yml
