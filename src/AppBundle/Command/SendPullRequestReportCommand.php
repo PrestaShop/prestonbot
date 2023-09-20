@@ -94,9 +94,13 @@ class SendPullRequestReportCommand extends Command
             }
         } catch (\Exception $e) {
             $io->error($e->getMessage());
+
+            return 1;
         }
 
         $io->success($nbMails.' mails successfuly sent !');
+
+        return 0;
     }
 
     /**

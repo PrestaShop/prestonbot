@@ -14,7 +14,7 @@ class CommitParserTest extends WebTestCase
     public static $kernel;
     public static $pullRequest;
 
-    public function setUp()
+    public function setUp(): void
     {
         $kernel = self::getKernelClass();
 

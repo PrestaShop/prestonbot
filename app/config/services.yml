@@ -38,30 +38,30 @@ services:
 # GitHub API
 
     Github\Api\Issue:
-        factory: 'Github\Client:api'
+        factory: ['@Github\Client', 'api']
         arguments: [issue]
 
     Github\Api\Issue\Comments:
-        factory: 'Github\Api\Issue:comments'
+        factory: ['@Github\Api\Issue', 'comments']
 
     Github\Api\PullRequest:
-        factory: 'Github\Client:api'
+        factory: ['@Github\Client', 'api']
         arguments: [pull_request]
 
     Github\Api\Repo:
-        factory: 'Github\Client:api'
+        factory: ['@Github\Client', 'api']
         arguments: [repository]
 
     Github\Api\Organization:
-        factory: 'Github\Client:api'
+        factory: ['@Github\Client', 'api']
         arguments: [organization]
 
     Github\Api\Search:
-        factory: 'Github\Client:api'
+        factory: ['@Github\Client', 'api']
         arguments: [search]
 
     Github\Api\Issue\Labels:
-        factory: 'Github\Api\Issue:labels'
+        factory: ['@Github\Api\Issue', 'labels']
 
     Github\Api\Repository\Contents:
-        factory: 'Github\Api\Repo:contents'
+        factory: ['@Github\Api\Repo', 'contents']

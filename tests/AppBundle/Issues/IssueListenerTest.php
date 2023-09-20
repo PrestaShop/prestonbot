@@ -23,7 +23,7 @@ class IssueListenerTest extends TestCase
      */
     private $listener;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->statusApi = $this->createMock('AppBundle\Issues\StatusApi');
         $this->listener = new Listener($this->statusApi, new NullLogger());

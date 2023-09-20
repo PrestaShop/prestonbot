@@ -18,7 +18,7 @@ class DiffTest extends TestCase
     private $pullRequest;
     private $webhookHandler;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->webhookHandler = new WebhookHandler();
         $webhookResponse = file_get_contents(__DIR__.'/../webhook_examples/pull_request_opened_wording.json');

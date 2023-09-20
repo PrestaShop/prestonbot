@@ -21,3 +21,4 @@ var/SymfonyRequirements.php
 .idea/*
 .env
 security-checker
+.phpunit.result.cache

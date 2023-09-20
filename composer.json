@@ -21,47 +21,45 @@
         "psr-4": { "Tests\\": "tests/" }
     },
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.4",
         "ext-mbstring": "*",
-        "symfony/debug-bundle": "^3.4",
-        "symfony/framework-bundle": "^3.4",
-        "symfony/web-profiler-bundle": "^3.4",
-        "symfony/security-bundle": "^3.4",
-        "symfony/twig-bundle": "^3.4",
-        "symfony/asset": "^3.4",
-        "symfony/console": "^3.4",
-        "symfony/symfony": "^3.4.26",
-        "symfony/templating": "^3.4",
-        "symfony/translation": "^3.4",
-        "symfony/validator": "^3.4",
-        "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/debug-bundle": "^4.4",
+        "symfony/framework-bundle": "^4.4",
+        "symfony/web-profiler-bundle": "^4.4",
+        "symfony/security-bundle": "^4.4",
+        "symfony/twig-bundle": "^4.4",
+        "symfony/asset": "^4.4",
+        "symfony/console": "^4.4",
+        "symfony/symfony": "^4.4",
+        "symfony/templating": "^4.4",
+        "symfony/translation": "^4.4",
+        "symfony/validator": "^4.4",
+        "symfony/swiftmailer-bundle": "^3.2",
         "symfony/monolog-bundle": "^3.2",
         "symfony/polyfill-apcu": "^1.0",
-        "sensio/distribution-bundle": "^5.0",
-        "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/github-api": "^2.0",
         "php-http/guzzle6-adapter": "^1.0",
-        "prestashop/translationtools-bundle": "^4.0",
+        "prestashop/translationtools-bundle": "^5.0",
         "prestashop/github-webhook-parser": "^0.1.0",
         "twig/twig": "^1.38.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.0",
-        "symfony/phpunit-bridge": "^3.4",
-        "symfony/browser-kit": "^3.4",
+        "symfony/phpunit-bridge": "^4.4",
+        "symfony/browser-kit": "^4.4",
         "phpstan/phpstan": "^0.12"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.0"
+        }
     },
     "scripts": {
         "phpstan": "@php ./vendor/bin/phpstan analyse src tests -c phpstan.neon -l 1",
         "cs-fix": "@php ./vendor/bin/php-cs-fixer fix",
         "symfony-scripts": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
         ],
         "post-install-cmd": [
             "@symfony-scripts"

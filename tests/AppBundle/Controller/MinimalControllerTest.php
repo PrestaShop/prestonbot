@@ -15,7 +15,7 @@ class MinimalControllerTest extends WebTestCase
      */
     private $client;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->client = static::createClient();
     }

@@ -4,7 +4,7 @@ namespace AppBundle\Event;
 
 use PrestaShop\Github\Entity\PullRequest;
 use PrestaShop\Github\Event\GithubEventInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Every event returned by GitHub is stored as a GitHubEvent instance.
