@@ -42,7 +42,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             'pullrequestevent_opened' => [
                 ['checkForTableDescription', 254],
                 ['welcomePeople', 255],
-                ['checkForNewTranslations', 252],
+//                ['checkForNewTranslations', 252],
                 ['initBranchLabel', 254],
                 ['initPullRequestTypeLabel', 254],
                 ['initBCBreakLabel', 254],
@@ -56,7 +56,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
                 ['initPRAvailableLabelInIssue', 254],
             ],
             'pullrequestevent_synchronize' => [
-                ['checkForNewTranslations', 252],
+//                ['checkForNewTranslations', 252],
             ],
             'pullrequestevent_labeled' => [
                 ['checkForMilestone', 255],
