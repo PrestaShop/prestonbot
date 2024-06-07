@@ -1,5 +1,9 @@
 # PrestonBot
 
+> [!WARNING]
+> This project is now inactive. Prestonbot has been replaced in May 2024 by [Kanbanbot](https://github.com/PrestaShop/kanbanbot) a more modern implementation
+
+
 This application is based on Symfony CarsonBot and aims to help PrestaShop maintainers and contributors.
 
 ![Preston, the PrestaShop contributor best friend](http://i.imgur.com/r26gJW4.png)
