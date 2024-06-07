@@ -55,7 +55,7 @@ class BodyParser
 
     /**
      * @Assert\Choice(callback = "getValidTypes",
-     * message = "The `type` should be one of these: `new feature`, `improvement`, `bug fix` or `refacto` ([Read explanation](https://devdocs.prestashop.com/1.7/contribute/contribution-guidelines/pull-requests/#type--category)).",
+     * message = "The `type` should be one of these: `new feature`, `improvement`, `bug fix` or `refacto` ([Read explanation](https://devdocs.prestashop-project.org/8/contribute/contribution-guidelines/pull-requests/#type--category)).",
      * strict=true)
      *
      * @return string
@@ -69,7 +69,7 @@ class BodyParser
 
     /**
      * @Assert\Choice(choices = {"BO", "CO", "FO", "IN", "LO", "ME", "PM", "TE", "WS"},
-     * message = "The `category` should be one of these: `BO`, `CO`, `FO`, `IN`, `LO`, `ME`, `PM`, `TE` or `WS` ([Read explanation](https://devdocs.prestashop.com/1.7/contribute/contribution-guidelines/pull-requests/#type--category))",
+     * message = "The `category` should be one of these: `BO`, `CO`, `FO`, `IN`, `LO`, `ME`, `PM`, `TE` or `WS` ([Read explanation](https://devdocs.prestashop-project.org/8/contribute/contribution-guidelines/pull-requests/#type--category))",
      * strict=true)
      *
      * @return string
